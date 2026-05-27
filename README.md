@@ -52,6 +52,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSL Certificate Checker** (`tools/ssl_certificate_checker.py`) - Check SSL certificate validity and expiration
 - **Stock Data Scraper** (`tools/stock_data_scraper.py`) - Scrape stock market data and financial information
 - **System Monitor** (`tools/system_monitor.py`) - Monitor system resources and performance
+- **Task Scheduler** (`tools/task_scheduler.py`) - Schedule and automate repetitive tasks
 - **Text Expander** (`tools/text_expander.py`) - Text expansion tool for frequently used phrases
 - **Travel Info Scraper** (`tools/travel_info_scraper.py`) - Scrape travel information and hotel prices
 - **Tree Printer** (`tools/tree_printer.py`) - Print directory structures in tree format
