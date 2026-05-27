@@ -1,0 +1,40 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="python-tools-collection",
+    version="1.0.0",
+    author="Ayush442842q",
+    author_email="Ayush442842q@users.noreply.github.com",
+    description="A comprehensive collection of 50+ useful Python tools and utilities",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/Ayush442842q/Python-tools",
+    packages=[],
+    py_modules=[],  # Tools are standalone scripts, not a package
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Software Development :: Tools",
+        "Topic :: Utilities",
+        "Topic :: System :: Systems Administration",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Security",
+    ],
+    python_requires=">=3.6",
+    keywords="python utilities tools automation file-organizer web-scraper data-processing",
+    project_urls={
+        "Bug Reports": "https://github.com/Ayush442842q/Python-tools/issues",
+        "Source": "https://github.com/Ayush442842q/Python-tools/",
+        "Documentation": "https://github.com/Ayush442842q/Python-tools/#readme",
+    },
+)

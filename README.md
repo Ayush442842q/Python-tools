@@ -1,77 +1,94 @@
 # Python Tools Collection
 
-This repository contains 50+ useful Python tools and utilities for various tasks.
+A comprehensive collection of 50+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+
+Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
+
+## Features
+
+- **Standalone Tools**: Each tool is a single, executable Python script
+- **No Installation Required**: Just Python 3.6+ (some tools may need additional packages)
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Well Documented**: Each tool includes help text and usage examples
+- **MIT License**: Free to use, modify, and distribute
 
 ## Tools List
 
-### File & System Utilities
-1. **File Organizer** (`tools/file_organizer.py`) - Automatically organize files by type
-2. **Password Generator** (`tools/password_generator.py`) - Generate secure passwords
-3. **Duplicate File Finder** (`tools/duplicate_finder.py`) - Find and remove duplicate files
-4. **Batch Renamer** (`tools/batch_renamer.py`) - Rename multiple files with patterns
-5. **Disk Usage Analyzer** (`tools/disk_analyzer.py`) - Analyze disk space usage
-6. **File Splitter/Joiner** (`tools/file_splitter.py`) - Split large files and rejoin them
-7. **Directory Tree Printer** (`tools/tree_printer.py`) - Print directory structures
-8. **File Watcher** (`tools/file_watcher.py`) - Monitor directory changes
-9. **Backup Utility** (`tools/backup_tool.py`) - Create timestamped backups
-10. **Temporary File Cleaner** (`tools/temp_cleaner.py`) - Clean temporary files
+### File System & Utilities
+- **Backup Tool** (`tools/backup_tool.py`) - Create timestamped backups of files and directories
+- **Batch File Renamer** (`tools/batch_file_renamer.py`) - Rename multiple files using patterns and rules
+- **Batch Renamer** (`tools/batch_renamer.py`) - Alternative batch renaming utility
+- **Data Cleaner** (`tools/data_cleaner.py`) - Clean and preprocess messy datasets
+- **Disk Analyzer** (`tools/disk_analyzer.py`) - Analyze disk space usage and find large files
+- **Disk Space Analyzer** (`tools/disk_space_analyzer.py`) - Detailed disk usage analysis tool
+- **Duplicate File Finder** (`tools/duplicate_file_finder.py`) - Find and remove duplicate files
+- **Duplicate Finder** (`tools/duplicate_finder.py`) - Alternative duplicate file detection utility
+- **File Backup Automation** (`tools/file_backup_automation.py`) - Automated file backup system
+- **File Converter** (`tools/file_converter.py`) - Convert files between different formats
+- **File Organizer** (`tools/file_organizer.py`) - Automatically organize files in a directory by type
+- **File Splitter** (`tools/file_splitter.py`) - Split large files into smaller parts
+- **File Watcher** (`tools/file_watcher.py`) - Monitor directory changes in real-time
+- **Firewall Config Tool** (`tools/firewall_config_tool.py`) - Manage firewall rules and configurations
+- **Image Processor** (`tools/image_processor.py`) - Process and manipulate images in batches
+- **Invoice Automation** (`tools/invoice_automation.py`) - Automate invoice creation and sending
+- **Job Listing Scraper** (`tools/job_listing_scraper.py`) - Scrape job listings from job boards
+- **JSON Transformer** (`tools/json_transformer.py`) - Transform and manipulate JSON data structures
+- **Log Analyzer** (`tools/log_analyzer.py`) - Analyze and parse log files for insights
+- **Log Parser** (`tools/log_parser.py`) - Parse various log formats and extract structured data
+- **Network Scanner** (`tools/network_scanner.py`) - Scan network for connected devices and open ports
+- **News Scraper** (`tools/news_scraper.py`) - Scrape news articles from multiple news websites
+- **Password Generator** (`tools/password_generator.py`) - Generate secure passwords
+- **Password Manager** (`tools/password_manager.py`) - Secure password generation and management tool
+- **PDF Toolkit** (`tools/pdf_toolkit.py`) - Extract text, merge, split, and manipulate PDF files
+- **Price Comparison Scraper** (`tools/price_comparison_scraper.py`) - Compare product prices across e-commerce websites
+- **Process Manager** (`tools/process_manager.py`) - Manage and monitor system processes
+- **QR Code Generator** (`tools/qr_code_generator.py`) - Generate QR codes for various use cases
+- **Real Estate Scraper** (`tools/real_estate_scraper.py`) - Scrape real estate listings from property websites
+- **Recipe Scraper** (`tools/recipe_scraper.py`) - Scrape recipes from cooking websites
+- **Report Generator** (`tools/report_generator.py`) - Generate automated reports from various data sources
+- **Social Media Analyzer** (`tools/social_media_analyzer.py`) - Analyze social media engagement and metrics
+- **Social Media Poster** (`tools/social_media_poster.py`) - Automatically post to social media platforms
+- **Social Media Scraper** (`tools/social_media_scraper.py`) - Scrape public data from social media platforms
+- **SSL Certificate Checker** (`tools/ssl_certificate_checker.py`) - Check SSL certificate validity and expiration
+- **Stock Data Scraper** (`tools/stock_data_scraper.py`) - Scrape stock market data and financial information
+- **System Monitor** (`tools/system_monitor.py`) - Monitor system resources and performance
+- **Text Expander** (`tools/text_expander.py`) - Text expansion tool for frequently used phrases
+- **Travel Info Scraper** (`tools/travel_info_scraper.py`) - Scrape travel information and hotel prices
+- **Tree Printer** (`tools/tree_printer.py`) - Print directory structures in tree format
+- **URL Shortener** (`tools/url_shortener.py`) - Create and manage shortened URLs
+- **Weather Scraper** (`tools/weather_scraper.py`) - Scrape weather data from weather websites
+- **Web Form Filler** (`tools/web_form_filler.py`) - Automate filling and submitting web forms
+- **Web Scraper Basic** (`tools/web_scraper_basic.py`) - Basic web scraper for extracting data from websites
+- **Website Monitor** (`tools/website_monitor.py`) - Monitor website uptime and performance
 
 ### Development Tools
-11. **Code Formatter** (`tools/code_formatter.py`) - Auto-format Python code
-12. **Import Sorter** (`tools/import_sorter.py`) - Sort and organize imports
-13. **Virtual Environment Manager** (`tools/venv_manager.py`) - Manage Python virtual environments
-14. **Requirements Generator** (`tools/req_generator.py`) - Generate requirements.txt
-15. **Changelog Generator** (`tools/changelog_generator.py`) - Generate changelogs from git
-16. **License Header Adder** (`tools/license_adder.py`) - Add license headers to files
-17. **API Documentation Generator** (`tools/apidoc_generator.py`) - Generate API docs
-18. **Test Runner** (`tools/test_runner.py`) - Run and manage tests
-19. **Code Complexity Analyzer** (`tools/complexity_analyzer.py`) - Analyze code complexity
-20. **Dependency Checker** (`tools/dependency_checker.py`) - Check for outdated packages
+- **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
+- **Code Quality Checker** (`tools/code_quality_checker.py`) - Analyze code quality and suggest improvements
 
-### Data Processing Tools
-21. **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files
-22. **JSON Validator** (`tools/json_validator.py`) - Validate and format JSON
-23. **XML to JSON Converter** (`tools/xml2json.py`) - Convert XML to JSON
-24. **Excel Processor** (`tools/excel_processor.py`) - Process Excel files
-25. **Database Query Tool** (`tools/db_query.py`) - Query databases with SQL
-26. **Data Visualizer** (`tools/data_visualizer.py`) - Create charts and graphs
-27. **Log Analyzer** (`tools/log_analyzer.py`) - Analyze log files
-28. **URL Extractor** (`tools/url_extractor.py`) - Extract URLs from text
-29. **Text Search & Replace** (`tools/text_replacer.py`) - Search and replace in files
-30. **PDF Text Extractor** (`tools/pdf_extractor.py`) - Extract text from PDFs
+### Data Processing
+- **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
+- **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
+- **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
+- **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
 
-### Network & Web Tools
-31. **HTTP Client** (`tools/http_client.py`) - Make HTTP requests
-32. **Web Scraper** (`tools/web_scraper.py`) - Scrape websites
-33. **URL Shortener** (`tools/url_shortener.py`) - Shorten URLs using APIs
-34. **IP Address Tools** (`tools/ip_tools.py`) - IP address calculation and lookup
-35. **Port Scanner** (`tools/port_scanner.py`) - Scan network ports
-36. **DNS Lookup Tool** (`tools/dns_lookup.py`) - Perform DNS queries
-37. **Website Status Checker** (`tools/site_checker.py`) - Check website availability
-38. **Email Validator** (`tools/email_validator.py`) - Validate email addresses
-39. **Social Media Downloader** (`tools/social_downloader.py`) - Download media from social platforms
-40. **API Rate Limiter** (`tools/rate_limiter.py`) - Rate limit API calls
+### Network & Web
+- **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
+- **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
+- **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
 
-### Security & Cryptography Tools
-41. **Hash Generator** (`tools/hash_generator.py`) - Generate file and string hashes
-42. **File Encryptor** (`tools/file_encryptor.py`) - Encrypt and decrypt files
-43. **QR Code Generator** (`tools/qr_generator.py`) - Generate QR codes
-44. **Steganography Tool** (`tools/steganography.py`) - Hide data in images
-45. **SSL Certificate Checker** (`tools/ssl_checker.py`) - Check SSL certificates
-46. **Password Strength Checker** (`tools/password_strength.py`) - Check password strength
-47. **JWT Token Tool** (`tools/jwt_tool.py`) - Create and verify JWT tokens
-48. **SSH Key Manager** (`tools/ssh_manager.py`) - Manage SSH keys
-49. **Firewall Rule Generator** (`tools/firewall_gen.py`) - Generate firewall rules
-50. **Network Packet Analyzer** (`tools/packet_analyzer.py`) - Analyze network packets
+### Security & Cryptography
+- **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 
 ## Usage
 
 Each tool can be run individually:
+
 ```bash
 python tools/tool_name.py [options]
 ```
 
 Most tools include help documentation:
+
 ```bash
 python tools/tool_name.py --help
 ```
@@ -84,3 +101,7 @@ python tools/tool_name.py --help
 ## Contributing
 
 Feel free to submit issues, fork the repository, and send pull requests!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
