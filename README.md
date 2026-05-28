@@ -76,9 +76,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
 - **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
 - **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
+- **URL Validator** (`tools/url_validator.py`) - Validate and check if URLs are accessible
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
+- **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
 
 ## Usage
 
