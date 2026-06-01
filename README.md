@@ -63,6 +63,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Website Monitor** (`tools/website_monitor.py`) - Monitor website uptime and performance
 
 ### Development Tools
+- **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
 - **Code Quality Checker** (`tools/code_quality_checker.py`) - Analyze code quality and suggest improvements
 
