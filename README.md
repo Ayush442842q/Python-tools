@@ -61,7 +61,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Form Filler** (`tools/web_form_filler.py`) - Automate filling and submitting web forms
 - **Web Scraper Basic** (`tools/web_scraper_basic.py`) - Basic web scraper for extracting data from websites
 - **Website Monitor** (`tools/website_monitor.py`) - Monitor website uptime and performance
-
+- **Markdown to HTML Converter** (`tools/markdown_to_html_converter.py`) - Converts Markdown files to HTML
+- **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Command-line Pomodoro timer for productivity
+- **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Generates ASCII art from text
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
@@ -72,12 +74,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
 - **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
+- **Random Name Generator** (`tools/random_name_generator.py`) - Generates random full names
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
 - **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
 - **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
 - **URL Validator** (`tools/url_validator.py`) - Validate and check if URLs are accessible
+- **Port Forwarder** (`tools/port_forwarder.py`) - Simple TCP port forwarding utility
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
