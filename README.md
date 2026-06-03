@@ -64,10 +64,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown to HTML Converter** (`tools/markdown_to_html_converter.py`) - Converts Markdown files to HTML
 - **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Command-line Pomodoro timer for productivity
 - **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Generates ASCII art from text
+- **Countdown Timer** (`tools/countdown_timer.py`) - Command-line countdown timer
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
 - **Code Quality Checker** (`tools/code_quality_checker.py`) - Analyze code quality and suggest improvements
+- **UUID Generator** (`tools/uuid_generator.py`) - Generates random UUIDs
+- **Lorem Ipsum Generator** (`tools/lorem_ipsum_generator.py`) - Generates dummy text
+- **Hex to RGB Converter** (`tools/hex_to_rgb_converter.py`) - Converts a hex color code to RGB format
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -86,6 +90,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
+- **Base64 Encoder/Decoder** (`tools/base64_encoder_decoder.py`) - Encode and decode base64 strings
 
 ## Usage
 
