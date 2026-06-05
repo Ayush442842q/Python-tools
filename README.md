@@ -65,6 +65,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Command-line Pomodoro timer for productivity
 - **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Generates ASCII art from text
 - **Countdown Timer** (`tools/countdown_timer.py`) - Command-line countdown timer
+- **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Extracts and checks the validity of links in a Markdown file
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
@@ -72,6 +73,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **UUID Generator** (`tools/uuid_generator.py`) - Generates random UUIDs
 - **Lorem Ipsum Generator** (`tools/lorem_ipsum_generator.py`) - Generates dummy text
 - **Hex to RGB Converter** (`tools/hex_to_rgb_converter.py`) - Converts a hex color code to RGB format
+- **Regex Tester** (`tools/regex_tester.py`) - Test regular expressions against text with highlighting
+- **Text Case Converter** (`tools/text_case_converter.py`) - Convert text between common programming casings
+- **Dotenv Validator** (`tools/dotenv_validator.py`) - Validate and audit .env files against template files
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -86,6 +90,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
 - **URL Validator** (`tools/url_validator.py`) - Validate and check if URLs are accessible
 - **Port Forwarder** (`tools/port_forwarder.py`) - Simple TCP port forwarding utility
+- **IP Lookup Tool** (`tools/ip_lookup.py`) - Geolocation and ISP lookup for IP addresses
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
