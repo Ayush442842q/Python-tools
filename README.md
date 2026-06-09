@@ -72,6 +72,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **System Info Reporter** (`tools/system_info_reporter.py`) - Gathers cross-platform hardware, OS, and system properties
 - **Zip Compressor** (`tools/zip_compressor.py`) - Compresses files/folders into ZIP archives and extracts them
 - **Markdown TOC Generator** (`tools/markdown_toc_gen.py`) - Automatically generates and updates Table of Contents in Markdown files
+- **Markdown Image Localizer** (`tools/markdown_image_localizer.py`) - Parses a Markdown file, downloads all remote image URLs locally, and updates references to local files
+- **CLI Todo Manager** (`tools/todo_manager.py`) - A terminal-based task manager to create, prioritize, view, toggle, and delete tasks with statistics, stored in a JSON file
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -91,6 +93,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Query Formatter** (`tools/sql_formatter.py`) - Formats SQL queries into clean, indented, and readable layouts
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parses standard 5-field cron expressions and lists the next run times
 - **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validates JSON data files against a custom schema
+- **JWT Decoder & Debugger** (`tools/jwt_decoder.py`) - Decodes and inspects JSON Web Tokens (JWT) payload, header, and signature metadata, showing formatted timestamps
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -113,6 +116,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Simple Web Server** (`tools/simple_web_server.py`) - Starts a local HTTP server in a directory with access logging
 - **User-Agent Parser** (`tools/user_agent_parser.py`) - Parses browser User-Agent strings to extract OS, browser, version, and device type
 - **Hosts File Manager** (`tools/hosts_manager.py`) - Views, adds, or removes DNS redirection mappings in the local system hosts file
+- **Sitemap Generator** (`tools/sitemap_generator.py`) - Crawls a website from a starting URL up to a specified depth and generates a sitemap.xml
+- **Ping Monitor & Latency Tracker** (`tools/ping_monitor.py`) - Monitors host availability and records response times, displaying summary statistics in the terminal
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
