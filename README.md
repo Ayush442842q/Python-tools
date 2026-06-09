@@ -85,10 +85,12 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Dotenv Validator** (`tools/dotenv_validator.py`) - Validate and audit .env files against template files
 - **Text Diff Tool** (`tools/text_diff.py`) - Compares two text files and displays unified colored diffs in the terminal
 - **HTML Minifier** (`tools/html_minifier.py`) - Minifies HTML files by stripping comments and spaces safely
+- **CSS Minifier** (`tools/css_minifier.py`) - Minifies CSS files by stripping comments and spaces safely
 - **Epoch Time Converter** (`tools/epoch_converter.py`) - Converts Unix timestamps to human-readable datetime formats and vice versa
 - **Color Code Converter** (`tools/color_code_converter.py`) - Converts color codes between Hex, RGB, HSL, and CMYK formats
 - **SQL Query Formatter** (`tools/sql_formatter.py`) - Formats SQL queries into clean, indented, and readable layouts
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parses standard 5-field cron expressions and lists the next run times
+- **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validates JSON data files against a custom schema
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -97,6 +99,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
 - **Random Name Generator** (`tools/random_name_generator.py`) - Generates random full names
 - **XML to JSON Converter** (`tools/xml_to_json.py`) - Converts structured XML files into JSON format
+- **CSV to HTML Converter** (`tools/csv_to_html.py`) - Converts CSV documents into clean, responsive, styled HTML tables
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
@@ -108,6 +111,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **URL Encoder/Decoder** (`tools/url_encoder_decoder.py`) - Encodes and decodes URL-safe strings
 - **IP Subnet Calculator** (`tools/subnet_calculator.py`) - Calculates subnet ranges, usable hosts, and CIDR network info
 - **Simple Web Server** (`tools/simple_web_server.py`) - Starts a local HTTP server in a directory with access logging
+- **User-Agent Parser** (`tools/user_agent_parser.py`) - Parses browser User-Agent strings to extract OS, browser, version, and device type
+- **Hosts File Manager** (`tools/hosts_manager.py`) - Views, adds, or removes DNS redirection mappings in the local system hosts file
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
