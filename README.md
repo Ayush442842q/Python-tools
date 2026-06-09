@@ -74,6 +74,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown TOC Generator** (`tools/markdown_toc_gen.py`) - Automatically generates and updates Table of Contents in Markdown files
 - **Markdown Image Localizer** (`tools/markdown_image_localizer.py`) - Parses a Markdown file, downloads all remote image URLs locally, and updates references to local files
 - **CLI Todo Manager** (`tools/todo_manager.py`) - A terminal-based task manager to create, prioritize, view, toggle, and delete tasks with statistics, stored in a JSON file
+- **Markdown Linter** (`tools/markdown_linter.py`) - Analyzes Markdown files for style, structure, and formatting issues with auto-fix support
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -94,6 +95,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parses standard 5-field cron expressions and lists the next run times
 - **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validates JSON data files against a custom schema
 - **JWT Decoder & Debugger** (`tools/jwt_decoder.py`) - Decodes and inspects JSON Web Tokens (JWT) payload, header, and signature metadata, showing formatted timestamps
+- **Code Search and Regex Replacer** (`tools/code_search_replace.py`) - A powerful codebase find and replace utility supporting regex and diff previews
+- **Advanced CLI Unit Converter** (`tools/unit_converter.py`) - A comprehensive utility to convert measurements across various units with CLI and interactive modes
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -103,6 +106,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Random Name Generator** (`tools/random_name_generator.py`) - Generates random full names
 - **XML to JSON Converter** (`tools/xml_to_json.py`) - Converts structured XML files into JSON format
 - **CSV to HTML Converter** (`tools/csv_to_html.py`) - Converts CSV documents into clean, responsive, styled HTML tables
+- **JSON-CSV Bidirectional Converter** (`tools/json_csv_converter.py`) - Bidirectionally converts JSON to CSV and CSV to JSON with key flattening/unflattening support
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
@@ -118,6 +122,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Hosts File Manager** (`tools/hosts_manager.py`) - Views, adds, or removes DNS redirection mappings in the local system hosts file
 - **Sitemap Generator** (`tools/sitemap_generator.py`) - Crawls a website from a starting URL up to a specified depth and generates a sitemap.xml
 - **Ping Monitor & Latency Tracker** (`tools/ping_monitor.py`) - Monitors host availability and records response times, displaying summary statistics in the terminal
+- **HTTP Load Tester** (`tools/http_load_tester.py`) - A multi-threaded benchmarking tool to measure web server throughput, RPS, and response latencies
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
