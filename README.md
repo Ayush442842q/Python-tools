@@ -66,6 +66,13 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Generates ASCII art from text
 - **Countdown Timer** (`tools/countdown_timer.py`) - Command-line countdown timer
 - **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Extracts and checks the validity of links in a Markdown file
+- **Markdown Table Generator** (`tools/markdown_table_generator.py`) - Converts CSV/delimited text into formatted Markdown tables
+- **Word Counter** (`tools/word_counter.py`) - Counts words, characters, sentences, lines, and average word length in files/text
+- **PDF Metadata Extractor** (`tools/pdf_metadata_extractor.py`) - Extracts and prints metadata properties from PDF files
+- **System Info Reporter** (`tools/system_info_reporter.py`) - Gathers cross-platform hardware, OS, and system properties
+- **Zip Compressor** (`tools/zip_compressor.py`) - Compresses files/folders into ZIP archives and extracts them
+- **Markdown TOC Generator** (`tools/markdown_toc_gen.py`) - Automatically generates and updates Table of Contents in Markdown files
+
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
@@ -76,6 +83,12 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Regex Tester** (`tools/regex_tester.py`) - Test regular expressions against text with highlighting
 - **Text Case Converter** (`tools/text_case_converter.py`) - Convert text between common programming casings
 - **Dotenv Validator** (`tools/dotenv_validator.py`) - Validate and audit .env files against template files
+- **Text Diff Tool** (`tools/text_diff.py`) - Compares two text files and displays unified colored diffs in the terminal
+- **HTML Minifier** (`tools/html_minifier.py`) - Minifies HTML files by stripping comments and spaces safely
+- **Epoch Time Converter** (`tools/epoch_converter.py`) - Converts Unix timestamps to human-readable datetime formats and vice versa
+- **Color Code Converter** (`tools/color_code_converter.py`) - Converts color codes between Hex, RGB, HSL, and CMYK formats
+- **SQL Query Formatter** (`tools/sql_formatter.py`) - Formats SQL queries into clean, indented, and readable layouts
+- **Cron Expression Parser** (`tools/cron_parser.py`) - Parses standard 5-field cron expressions and lists the next run times
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -83,6 +96,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
 - **Random Name Generator** (`tools/random_name_generator.py`) - Generates random full names
+- **XML to JSON Converter** (`tools/xml_to_json.py`) - Converts structured XML files into JSON format
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
@@ -91,11 +105,18 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **URL Validator** (`tools/url_validator.py`) - Validate and check if URLs are accessible
 - **Port Forwarder** (`tools/port_forwarder.py`) - Simple TCP port forwarding utility
 - **IP Lookup Tool** (`tools/ip_lookup.py`) - Geolocation and ISP lookup for IP addresses
+- **URL Encoder/Decoder** (`tools/url_encoder_decoder.py`) - Encodes and decodes URL-safe strings
+- **IP Subnet Calculator** (`tools/subnet_calculator.py`) - Calculates subnet ranges, usable hosts, and CIDR network info
+- **Simple Web Server** (`tools/simple_web_server.py`) - Starts a local HTTP server in a directory with access logging
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
 - **Base64 Encoder/Decoder** (`tools/base64_encoder_decoder.py`) - Encode and decode base64 strings
+- **File Hash Calculator** (`tools/file_hash_calculator.py`) - Calculates MD5, SHA-1, and SHA-256 hashes of files
+- **Base32 Encoder/Decoder** (`tools/base32_encoder_decoder.py`) - Encodes and decodes strings or files using Base32
+- **Port Scanner** (`tools/port_scanner.py`) - Scans range of TCP ports on a host for open ports
+- **MAC Address Generator** (`tools/mac_address_generator.py`) - Generates random, valid MAC addresses with custom formatting
 
 ## Usage
 
