@@ -75,6 +75,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Image Localizer** (`tools/markdown_image_localizer.py`) - Parses a Markdown file, downloads all remote image URLs locally, and updates references to local files
 - **CLI Todo Manager** (`tools/todo_manager.py`) - A terminal-based task manager to create, prioritize, view, toggle, and delete tasks with statistics, stored in a JSON file
 - **Markdown Linter** (`tools/markdown_linter.py`) - Analyzes Markdown files for style, structure, and formatting issues with auto-fix support
+- **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Converts HTML files or standard input into clean Markdown format
+- **Log Colorizer & Tail Viewer** (`tools/log_colorizer.py`) - A terminal utility to colorize log levels, timestamps, IPs, URLs, and custom keywords with real-time tailing support
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -97,6 +99,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JWT Decoder & Debugger** (`tools/jwt_decoder.py`) - Decodes and inspects JSON Web Tokens (JWT) payload, header, and signature metadata, showing formatted timestamps
 - **Code Search and Regex Replacer** (`tools/code_search_replace.py`) - A powerful codebase find and replace utility supporting regex and diff previews
 - **Advanced CLI Unit Converter** (`tools/unit_converter.py`) - A comprehensive utility to convert measurements across various units with CLI and interactive modes
+- **Code Line Counter (CLOC)** (`tools/code_line_counter.py`) - Recursively scans directories, detects programming languages, and counts blank, comment, and code lines
+- **JSON Schema Generator** (`tools/json_schema_generator.py`) - Recursively parses and analyzes JSON files to generate standard JSON Schema with constraints
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -107,6 +111,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML to JSON Converter** (`tools/xml_to_json.py`) - Converts structured XML files into JSON format
 - **CSV to HTML Converter** (`tools/csv_to_html.py`) - Converts CSV documents into clean, responsive, styled HTML tables
 - **JSON-CSV Bidirectional Converter** (`tools/json_csv_converter.py`) - Bidirectionally converts JSON to CSV and CSV to JSON with key flattening/unflattening support
+- **SQL Dump to CSV Extractor** (`tools/sql_dump_to_csv.py`) - Parses database SQL dump files (.sql) and extracts INSERT statements into CSV tables
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
