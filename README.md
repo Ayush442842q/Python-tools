@@ -77,6 +77,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Linter** (`tools/markdown_linter.py`) - Analyzes Markdown files for style, structure, and formatting issues with auto-fix support
 - **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Converts HTML files or standard input into clean Markdown format
 - **Log Colorizer & Tail Viewer** (`tools/log_colorizer.py`) - A terminal utility to colorize log levels, timestamps, IPs, URLs, and custom keywords with real-time tailing support
+- **System Benchmark Tool** (`tools/system_benchmark.py`) - Benchmark CPU, memory, disk, and network speeds in a detailed dashboard
+- **Morse Code Converter & Audio Player** (`tools/morse_converter.py`) - Translate to/from Morse code and play audio beeps with terminal animations
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -101,6 +103,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Advanced CLI Unit Converter** (`tools/unit_converter.py`) - A comprehensive utility to convert measurements across various units with CLI and interactive modes
 - **Code Line Counter (CLOC)** (`tools/code_line_counter.py`) - Recursively scans directories, detects programming languages, and counts blank, comment, and code lines
 - **JSON Schema Generator** (`tools/json_schema_generator.py`) - Recursively parses and analyzes JSON files to generate standard JSON Schema with constraints
+- **REST API Mock Server** (`tools/api_mock_server.py`) - A lightweight mock server serving customizable JSON endpoints with delay simulation
+- **WCAG Contrast Checker & Palette Generator** (`tools/wcag_contrast_checker.py`) - Calculate color contrast and generate WCAG-compliant color palettes with live terminal true-color previews
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -112,6 +116,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV to HTML Converter** (`tools/csv_to_html.py`) - Converts CSV documents into clean, responsive, styled HTML tables
 - **JSON-CSV Bidirectional Converter** (`tools/json_csv_converter.py`) - Bidirectionally converts JSON to CSV and CSV to JSON with key flattening/unflattening support
 - **SQL Dump to CSV Extractor** (`tools/sql_dump_to_csv.py`) - Parses database SQL dump files (.sql) and extracts INSERT statements into CSV tables
+- **Data PII Anonymizer** (`tools/data_anonymizer.py`) - Redact, mask, and hash personally identifiable information (PII) in text, CSV, and JSON datasets
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
