@@ -79,6 +79,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log Colorizer & Tail Viewer** (`tools/log_colorizer.py`) - A terminal utility to colorize log levels, timestamps, IPs, URLs, and custom keywords with real-time tailing support
 - **System Benchmark Tool** (`tools/system_benchmark.py`) - Benchmark CPU, memory, disk, and network speeds in a detailed dashboard
 - **Morse Code Converter & Audio Player** (`tools/morse_converter.py`) - Translate to/from Morse code and play audio beeps with terminal animations
+- **Text Summarizer & Keyword Extractor** (`tools/text_summarizer.py`) - Summarizes text files and extracts key terms using word frequency analysis
+- **Terminal Slideshow Presenter** (`tools/terminal_slideshow.py`) - Renders Markdown presentations directly in the terminal with ASCII borders and keyboard navigation
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -105,6 +107,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Schema Generator** (`tools/json_schema_generator.py`) - Recursively parses and analyzes JSON files to generate standard JSON Schema with constraints
 - **REST API Mock Server** (`tools/api_mock_server.py`) - A lightweight mock server serving customizable JSON endpoints with delay simulation
 - **WCAG Contrast Checker & Palette Generator** (`tools/wcag_contrast_checker.py`) - Calculate color contrast and generate WCAG-compliant color palettes with live terminal true-color previews
+- **JSON Diff Tool** (`tools/json_diff.py`) - Performs recursive semantic comparison of two JSON files with colorized output
+- **Config File Converter** (`tools/config_converter.py`) - Converts configuration files between JSON, XML, INI, YAML, and TOML
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -142,6 +146,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Base32 Encoder/Decoder** (`tools/base32_encoder_decoder.py`) - Encodes and decodes strings or files using Base32
 - **Port Scanner** (`tools/port_scanner.py`) - Scans range of TCP ports on a host for open ports
 - **MAC Address Generator** (`tools/mac_address_generator.py`) - Generates random, valid MAC addresses with custom formatting
+- **Secure File Shredder** (`tools/file_shredder.py`) - Overwrites file/directory contents multiple times with random data or zeros before deleting to prevent recovery
 
 ## Usage
 
