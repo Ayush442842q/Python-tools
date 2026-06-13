@@ -81,6 +81,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Morse Code Converter & Audio Player** (`tools/morse_converter.py`) - Translate to/from Morse code and play audio beeps with terminal animations
 - **Text Summarizer & Keyword Extractor** (`tools/text_summarizer.py`) - Summarizes text files and extracts key terms using word frequency analysis
 - **Terminal Slideshow Presenter** (`tools/terminal_slideshow.py`) - Renders Markdown presentations directly in the terminal with ASCII borders and keyboard navigation
+- **Directory Diff & Sync Planner** (`tools/directory_diff.py`) - Recursively compares two directories, reporting unique, missing, and modified files with support for hashing, custom ignore patterns, and generating a synchronization plan.
+- **Media Metadata Extractor** (`tools/media_metadata_extractor.py`) - Extracts dimensions and metadata from image files (JPEG, PNG, GIF) and ID3 (v1/v2) tag metadata from MP3 audio files using pure Python binary parsing.
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -109,6 +111,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **WCAG Contrast Checker & Palette Generator** (`tools/wcag_contrast_checker.py`) - Calculate color contrast and generate WCAG-compliant color palettes with live terminal true-color previews
 - **JSON Diff Tool** (`tools/json_diff.py`) - Performs recursive semantic comparison of two JSON files with colorized output
 - **Config File Converter** (`tools/config_converter.py`) - Converts configuration files between JSON, XML, INI, YAML, and TOML
+- **SQL to Mermaid & Markdown Schema Documenter** (`tools/sql_to_mermaid.py`) - Parses SQL DDL schemas and generates Mermaid ER diagrams and detailed Markdown documentation.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -147,6 +150,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Port Scanner** (`tools/port_scanner.py`) - Scans range of TCP ports on a host for open ports
 - **MAC Address Generator** (`tools/mac_address_generator.py`) - Generates random, valid MAC addresses with custom formatting
 - **Secure File Shredder** (`tools/file_shredder.py`) - Overwrites file/directory contents multiple times with random data or zeros before deleting to prevent recovery
+- **Classical Ciphers Toolkit** (`tools/classical_ciphers.py`) - Encrypts/decrypts text using classical ciphers (Caesar, Vigenère, ROT13, Rail Fence, Playfair, Affine) and cracks Caesar ciphers using frequency analysis.
+- **Hex Dumper** (`tools/hex_dumper.py`) - Bidirectional hex dumper and restorer (similar to `xxd` / `xxd -r`) that produces formatted hex/ASCII dumps with optional ANSI coloring.
 
 ## Usage
 
