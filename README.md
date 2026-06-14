@@ -83,6 +83,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Slideshow Presenter** (`tools/terminal_slideshow.py`) - Renders Markdown presentations directly in the terminal with ASCII borders and keyboard navigation
 - **Directory Diff & Sync Planner** (`tools/directory_diff.py`) - Recursively compares two directories, reporting unique, missing, and modified files with support for hashing, custom ignore patterns, and generating a synchronization plan.
 - **Media Metadata Extractor** (`tools/media_metadata_extractor.py`) - Extracts dimensions and metadata from image files (JPEG, PNG, GIF) and ID3 (v1/v2) tag metadata from MP3 audio files using pure Python binary parsing.
+- **Terminal Chart Plotter** (`tools/terminal_chart_plotter.py`) - Plots beautiful CLI bar charts using Unicode blocks from CSV, JSON, or standard input with automatic scaling and colors
+- **Subtitle Sync & Converter** (`tools/subtitle_sync_converter.py`) - Time shift and convert subtitle files between SRT and WebVTT formats
+
 
 ### Development Tools
 - **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
@@ -112,6 +115,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Diff Tool** (`tools/json_diff.py`) - Performs recursive semantic comparison of two JSON files with colorized output
 - **Config File Converter** (`tools/config_converter.py`) - Converts configuration files between JSON, XML, INI, YAML, and TOML
 - **SQL to Mermaid & Markdown Schema Documenter** (`tools/sql_to_mermaid.py`) - Parses SQL DDL schemas and generates Mermaid ER diagrams and detailed Markdown documentation.
+- **Git Repository Analyzer** (`tools/git_repository_analyzer.py`) - Scans local Git repositories and generates statistics on commits, authors, active hours, weekdays, and top modified files with visual ASCII bar charts
+- **Python Code Obfuscator** (`tools/python_code_obfuscator.py`) - Obfuscates Python code by removing comments/docstrings, base64-encoding string literals, and/or compressing and packaging the script into a dynamic runner
+- **Image Data URI Converter** (`tools/image_data_uri_converter.py`) - Encodes images to Base64 Data URIs, decodes Data URIs, and inlines local images in HTML/CSS web documents
+
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
