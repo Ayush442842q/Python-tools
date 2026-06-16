@@ -86,6 +86,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Chart Plotter** (`tools/terminal_chart_plotter.py`) - Plots beautiful CLI bar charts using Unicode blocks from CSV, JSON, or standard input with automatic scaling and colors
 - **Subtitle Sync & Converter** (`tools/subtitle_sync_converter.py`) - Time shift and convert subtitle files between SRT and WebVTT formats
 - **Process Resource Profiler** (`tools/process_profiler.py`) - Profile a command or monitor an existing PID, tracking CPU and memory usage over time and displaying ASCII line charts
+- **CLI Time Tracker** (`tools/time_tracker.py`) - Clock in/out of projects and tasks, track time elapsed, log sessions, and generate grouped ASCII summary reports
+
 
 
 ### Development Tools
@@ -123,6 +125,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock Log Generator** (`tools/log_generator.py`) - Generate realistic Nginx, Apache, Syslog, or JSON logs to files or standard output with custom rates
 - **HTTP REST Client CLI** (`tools/http_client.py`) - A lightweight CLI client for sending HTTP requests, displaying response headers, timing, and pretty-printing JSON payloads
 - **Base Converter & Bitwise Calculator** (`tools/base_converter.py`) - Convert numbers between binary, octal, decimal, hex, and custom bases, with step-by-step bitwise visualizations
+- **SVG Optimizer & Minifier** (`tools/svg_optimizer.py`) - Optimizes SVG vector graphic files by removing editor metadata, namespaces, comments, and rounding path coordinates
+- **Git Commit Linter & Hook Installer** (`tools/git_commit_linter.py`) - Lints git commit messages for Conventional Commit compliance and installs pre-commit/commit-msg hooks
+
 
 
 ### Data Processing
@@ -136,6 +141,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON-CSV Bidirectional Converter** (`tools/json_csv_converter.py`) - Bidirectionally converts JSON to CSV and CSV to JSON with key flattening/unflattening support
 - **SQL Dump to CSV Extractor** (`tools/sql_dump_to_csv.py`) - Parses database SQL dump files (.sql) and extracts INSERT statements into CSV tables
 - **Data PII Anonymizer** (`tools/data_anonymizer.py`) - Redact, mask, and hash personally identifiable information (PII) in text, CSV, and JSON datasets
+- **Mock Data Generator** (`tools/mock_data_generator.py`) - Generates synthetic mock datasets in CSV, JSON, or SQL format from custom schema configurations without dependencies
+
 
 ### Network & Web
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
@@ -164,6 +171,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Secure File Shredder** (`tools/file_shredder.py`) - Overwrites file/directory contents multiple times with random data or zeros before deleting to prevent recovery
 - **Classical Ciphers Toolkit** (`tools/classical_ciphers.py`) - Encrypts/decrypts text using classical ciphers (Caesar, Vigenère, ROT13, Rail Fence, Playfair, Affine) and cracks Caesar ciphers using frequency analysis.
 - **Hex Dumper** (`tools/hex_dumper.py`) - Bidirectional hex dumper and restorer (similar to `xxd` / `xxd -r`) that produces formatted hex/ASCII dumps with optional ANSI coloring.
+- **Dictionary Hash Cracker** (`tools/hash_cracker.py`) - Cracks cryptographic hashes (MD5, SHA-1, SHA-256, etc.) using dictionary attacks with word mutation rules
+
 
 ## Usage
 
