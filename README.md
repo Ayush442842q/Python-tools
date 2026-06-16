@@ -85,6 +85,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Media Metadata Extractor** (`tools/media_metadata_extractor.py`) - Extracts dimensions and metadata from image files (JPEG, PNG, GIF) and ID3 (v1/v2) tag metadata from MP3 audio files using pure Python binary parsing.
 - **Terminal Chart Plotter** (`tools/terminal_chart_plotter.py`) - Plots beautiful CLI bar charts using Unicode blocks from CSV, JSON, or standard input with automatic scaling and colors
 - **Subtitle Sync & Converter** (`tools/subtitle_sync_converter.py`) - Time shift and convert subtitle files between SRT and WebVTT formats
+- **Process Resource Profiler** (`tools/process_profiler.py`) - Profile a command or monitor an existing PID, tracking CPU and memory usage over time and displaying ASCII line charts
 
 
 ### Development Tools
@@ -118,6 +119,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Repository Analyzer** (`tools/git_repository_analyzer.py`) - Scans local Git repositories and generates statistics on commits, authors, active hours, weekdays, and top modified files with visual ASCII bar charts
 - **Python Code Obfuscator** (`tools/python_code_obfuscator.py`) - Obfuscates Python code by removing comments/docstrings, base64-encoding string literals, and/or compressing and packaging the script into a dynamic runner
 - **Image Data URI Converter** (`tools/image_data_uri_converter.py`) - Encodes images to Base64 Data URIs, decodes Data URIs, and inlines local images in HTML/CSS web documents
+- **SQLite Database Explorer CLI** (`tools/sqlite_explorer.py`) - Inspect SQLite database schemas, view table structures, execute SQL queries, and export results
+- **Mock Log Generator** (`tools/log_generator.py`) - Generate realistic Nginx, Apache, Syslog, or JSON logs to files or standard output with custom rates
+- **HTTP REST Client CLI** (`tools/http_client.py`) - A lightweight CLI client for sending HTTP requests, displaying response headers, timing, and pretty-printing JSON payloads
+- **Base Converter & Bitwise Calculator** (`tools/base_converter.py`) - Convert numbers between binary, octal, decimal, hex, and custom bases, with step-by-step bitwise visualizations
 
 
 ### Data Processing
