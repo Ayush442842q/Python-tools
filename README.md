@@ -127,6 +127,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Base Converter & Bitwise Calculator** (`tools/base_converter.py`) - Convert numbers between binary, octal, decimal, hex, and custom bases, with step-by-step bitwise visualizations
 - **SVG Optimizer & Minifier** (`tools/svg_optimizer.py`) - Optimizes SVG vector graphic files by removing editor metadata, namespaces, comments, and rounding path coordinates
 - **Git Commit Linter & Hook Installer** (`tools/git_commit_linter.py`) - Lints git commit messages for Conventional Commit compliance and installs pre-commit/commit-msg hooks
+- **Command History Analyzer** (`tools/command_history_analyzer.py`) - Auto-detect and analyze command history (PowerShell, Bash, Zsh) to generate usage statistics, executable frequencies, and visual ASCII time charts
+- **Python AST Visualizer** (`tools/python_ast_visualizer.py`) - Parse Python source code and render its Abstract Syntax Tree (AST) in an interactive ASCII tree format or export as a Mermaid.js diagram definition
 
 
 
@@ -159,6 +161,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Sitemap Generator** (`tools/sitemap_generator.py`) - Crawls a website from a starting URL up to a specified depth and generates a sitemap.xml
 - **Ping Monitor & Latency Tracker** (`tools/ping_monitor.py`) - Monitors host availability and records response times, displaying summary statistics in the terminal
 - **HTTP Load Tester** (`tools/http_load_tester.py`) - A multi-threaded benchmarking tool to measure web server throughput, RPS, and response latencies
+- **DNS Propagation Checker** (`tools/dns_propagation_checker.py`) - Check domain DNS resolution propagation globally across multiple public DoH providers in parallel
+- **RSS & Atom Feed Reader** (`tools/rss_feed_reader.py`) - Subscribe, list, read, and search RSS/Atom feeds inside the terminal using pure Python XML parsing
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -172,6 +176,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Classical Ciphers Toolkit** (`tools/classical_ciphers.py`) - Encrypts/decrypts text using classical ciphers (Caesar, Vigenère, ROT13, Rail Fence, Playfair, Affine) and cracks Caesar ciphers using frequency analysis.
 - **Hex Dumper** (`tools/hex_dumper.py`) - Bidirectional hex dumper and restorer (similar to `xxd` / `xxd -r`) that produces formatted hex/ASCII dumps with optional ANSI coloring.
 - **Dictionary Hash Cracker** (`tools/hash_cracker.py`) - Cracks cryptographic hashes (MD5, SHA-1, SHA-256, etc.) using dictionary attacks with word mutation rules
+- **Steganography Tool** (`tools/steganography_tool.py`) - Hide and extract secret messages or files inside images (EOF marker injection) or text documents (Zero-Width Characters) with optional SHA-256 XOR encryption
 
 
 ## Usage
