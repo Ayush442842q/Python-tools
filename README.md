@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 50+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 195+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -19,11 +19,13 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Batch File Renamer** (`tools/batch_file_renamer.py`) - Rename multiple files using patterns and rules
 - **Batch Renamer** (`tools/batch_renamer.py`) - Alternative batch renaming utility
 - **Data Cleaner** (`tools/data_cleaner.py`) - Clean and preprocess messy datasets
+- **Directory Compare** (`tools/dir_compare.py`) - Compare two directories recursively for differences
 - **Disk Analyzer** (`tools/disk_analyzer.py`) - Analyze disk space usage and find large files
 - **Disk Space Analyzer** (`tools/disk_space_analyzer.py`) - Detailed disk usage analysis tool
 - **Duplicate File Finder** (`tools/duplicate_file_finder.py`) - Find and remove duplicate files
 - **Duplicate Finder** (`tools/duplicate_finder.py`) - Alternative duplicate file detection utility
 - **File Backup Automation** (`tools/file_backup_automation.py`) - Automated file backup system
+- **File Compressor** (`tools/file_compressor.py`) - Compress and decompress files and directories using ZIP and TAR formats
 - **File Converter** (`tools/file_converter.py`) - Convert files between different formats
 - **File Organizer** (`tools/file_organizer.py`) - Automatically organize files in a directory by type
 - **File Splitter** (`tools/file_splitter.py`) - Split large files into smaller parts
@@ -35,11 +37,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Transformer** (`tools/json_transformer.py`) - Transform and manipulate JSON data structures
 - **Log Analyzer** (`tools/log_analyzer.py`) - Analyze and parse log files for insights
 - **Log Parser** (`tools/log_parser.py`) - Parse various log formats and extract structured data
+- **Log Rotate Tool** (`tools/log_rotate_tool.py`) - Manage, rotate, compress, and prune log files with size and retention limits
+- **Morse Code Converter** (`tools/morse_converter.py`) - Encode and decode Morse code with audio feedback
 - **Network Scanner** (`tools/network_scanner.py`) - Scan network for connected devices and open ports
 - **News Scraper** (`tools/news_scraper.py`) - Scrape news articles from multiple news websites
 - **Password Generator** (`tools/password_generator.py`) - Generate secure passwords
 - **Password Manager** (`tools/password_manager.py`) - Secure password generation and management tool
 - **PDF Toolkit** (`tools/pdf_toolkit.py`) - Extract text, merge, split, and manipulate PDF files
+- **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Terminal-based productivity timer with custom work/break intervals, live progress bar, sound alerts, and session logging
 - **Price Comparison Scraper** (`tools/price_comparison_scraper.py`) - Compare product prices across e-commerce websites
 - **Process Manager** (`tools/process_manager.py`) - Manage and monitor system processes
 - **QR Code Generator** (`tools/qr_code_generator.py`) - Generate QR codes for various use cases
@@ -51,6 +56,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Social Media Scraper** (`tools/social_media_scraper.py`) - Scrape public data from social media platforms
 - **SSL Certificate Checker** (`tools/ssl_certificate_checker.py`) - Check SSL certificate validity and expiration
 - **Stock Data Scraper** (`tools/stock_data_scraper.py`) - Scrape stock market data and financial information
+- **System Benchmark** (`tools/system_benchmark.py`) - Test CPU, Memory, and Disk I/O performance
+- **System Info & Diagnostics Reporter** (`tools/system_info_reporter.py`) - Gather hardware, OS, network, and Python environment diagnostics
+- **System Load Generator** (`tools/system_load_generator.py`) - Simulate CPU and Memory load for system testing and monitoring validation
 - **System Monitor** (`tools/system_monitor.py`) - Monitor system resources and performance
 - **Task Scheduler** (`tools/task_scheduler.py`) - Schedule and automate repetitive tasks
 - **Text Expander** (`tools/text_expander.py`) - Text expansion tool for frequently used phrases
@@ -61,122 +69,145 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Form Filler** (`tools/web_form_filler.py`) - Automate filling and submitting web forms
 - **Web Scraper Basic** (`tools/web_scraper_basic.py`) - Basic web scraper for extracting data from websites
 - **Website Monitor** (`tools/website_monitor.py`) - Monitor website uptime and performance
-- **Markdown to HTML Converter** (`tools/markdown_to_html_converter.py`) - Converts Markdown files to HTML
-- **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Command-line Pomodoro timer for productivity
-- **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Generates ASCII art from text
-- **Countdown Timer** (`tools/countdown_timer.py`) - Command-line countdown timer
-- **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Extracts and checks the validity of links in a Markdown file
-- **Markdown Table Generator** (`tools/markdown_table_generator.py`) - Converts CSV/delimited text into formatted Markdown tables
-- **Word Counter** (`tools/word_counter.py`) - Counts words, characters, sentences, lines, and average word length in files/text
-- **PDF Metadata Extractor** (`tools/pdf_metadata_extractor.py`) - Extracts and prints metadata properties from PDF files
-- **System Info Reporter** (`tools/system_info_reporter.py`) - Gathers cross-platform hardware, OS, and system properties
-- **Zip Compressor** (`tools/zip_compressor.py`) - Compresses files/folders into ZIP archives and extracts them
-- **Markdown TOC Generator** (`tools/markdown_toc_gen.py`) - Automatically generates and updates Table of Contents in Markdown files
-- **Markdown Image Localizer** (`tools/markdown_image_localizer.py`) - Parses a Markdown file, downloads all remote image URLs locally, and updates references to local files
-- **CLI Todo Manager** (`tools/todo_manager.py`) - A terminal-based task manager to create, prioritize, view, toggle, and delete tasks with statistics, stored in a JSON file
-- **Markdown Linter** (`tools/markdown_linter.py`) - Analyzes Markdown files for style, structure, and formatting issues with auto-fix support
-- **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Converts HTML files or standard input into clean Markdown format
-- **Log Colorizer & Tail Viewer** (`tools/log_colorizer.py`) - A terminal utility to colorize log levels, timestamps, IPs, URLs, and custom keywords with real-time tailing support
-- **System Benchmark Tool** (`tools/system_benchmark.py`) - Benchmark CPU, memory, disk, and network speeds in a detailed dashboard
-- **Morse Code Converter & Audio Player** (`tools/morse_converter.py`) - Translate to/from Morse code and play audio beeps with terminal animations
-- **Text Summarizer & Keyword Extractor** (`tools/text_summarizer.py`) - Summarizes text files and extracts key terms using word frequency analysis
-- **Terminal Slideshow Presenter** (`tools/terminal_slideshow.py`) - Renders Markdown presentations directly in the terminal with ASCII borders and keyboard navigation
-- **Directory Diff & Sync Planner** (`tools/directory_diff.py`) - Recursively compares two directories, reporting unique, missing, and modified files with support for hashing, custom ignore patterns, and generating a synchronization plan.
-- **Media Metadata Extractor** (`tools/media_metadata_extractor.py`) - Extracts dimensions and metadata from image files (JPEG, PNG, GIF) and ID3 (v1/v2) tag metadata from MP3 audio files using pure Python binary parsing.
-- **Terminal Chart Plotter** (`tools/terminal_chart_plotter.py`) - Plots beautiful CLI bar charts using Unicode blocks from CSV, JSON, or standard input with automatic scaling and colors
-- **Subtitle Sync & Converter** (`tools/subtitle_sync_converter.py`) - Time shift and convert subtitle files between SRT and WebVTT formats
-- **Process Resource Profiler** (`tools/process_profiler.py`) - Profile a command or monitor an existing PID, tracking CPU and memory usage over time and displaying ASCII line charts
-- **CLI Time Tracker** (`tools/time_tracker.py`) - Clock in/out of projects and tasks, track time elapsed, log sessions, and generate grouped ASCII summary reports
-
-
+- **Log Grepper** (`tools/log_grepper.py`) - Advanced search and filter utility for plain and compressed logs (.gz/.zip)
+- **Archive File Searcher** (`tools/archive_searcher.py`) - Search for text patterns or regular expressions inside ZIP and TAR archives without extracting them
+- **Directory Syncer** (`tools/directory_syncer.py`) - One-way directory synchronization utility comparing sizes, times, and MD5 checksums
+- **Log Merger** (`tools/log_merger.py`) - Chronologically merge multiple log files with different formats using low-memory merge sort
+- **Text File Sorter** (`tools/text_file_sorter.py`) - Sort lines in text files using alphabetical, numerical, length, or field‑based rules
 
 ### Development Tools
-- **Hello Tool** (`tools/hello.py`) - A simple command‑line tool that prints a greeting
+- **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
+- **File Hash Tool** (`tools/file_hash.py`) - Computes SHA256 hash of a file
+- **JSON Validate Tool** (`tools/json_validate.py`) - Validates JSON file and pretty‑prints if valid
+- **JSON Diff Tool** (`tools/json_diff_tool.py`) - Compare two JSON files recursively and display key-by-key changes
+- **Ping Tool** (`tools/ping_tool.py`) - Simple wrapper around system ping
+- **Banner Tool** (`tools/banner.py`) - Prints text with optional ANSI color
+- **Base64 Image Encoder/Decoder** (`tools/base64_image_tool.py`) - Encode images to Base64/Data URIs and decode Base64 strings back to image files
+- **Binary File Analyzer** (`tools/binary_analyzer.py`) - Generate hex dumps, calculate entropy, and extract printable ASCII strings
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
+- **API Request Snippet Generator** (`tools/api_code_generator.py`) - Generate copy-pasteable HTTP client request snippets for curl, Python, JavaScript, and Go
+- **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Create terminal text banners in various font styles
+- **Text Case Converter** (`tools/case_converter.py`) - Convert text casing between common programmer formats
+- **Interactive CLI Cheat Sheet** (`tools/cli_cheat_sheet.py`) - Local interactive search tool and guide for command lines (Git, Docker, Bash, etc.)
+- **Code Comment Stripper** (`tools/comment_stripper.py`) - Strip comments, docstrings, and blank lines from source code files
+- **Code Line Counter** (`tools/code_line_counter.py`) - Count lines of code, comments, and blank lines grouped by language in a directory
 - **Code Quality Checker** (`tools/code_quality_checker.py`) - Analyze code quality and suggest improvements
-- **UUID Generator** (`tools/uuid_generator.py`) - Generates random UUIDs
-- **Lorem Ipsum Generator** (`tools/lorem_ipsum_generator.py`) - Generates dummy text
-- **Hex to RGB Converter** (`tools/hex_to_rgb_converter.py`) - Converts a hex color code to RGB format
-- **Regex Tester** (`tools/regex_tester.py`) - Test regular expressions against text with highlighting
-- **Text Case Converter** (`tools/text_case_converter.py`) - Convert text between common programming casings
-- **Dotenv Validator** (`tools/dotenv_validator.py`) - Validate and audit .env files against template files
-- **Text Diff Tool** (`tools/text_diff.py`) - Compares two text files and displays unified colored diffs in the terminal
-- **HTML Minifier** (`tools/html_minifier.py`) - Minifies HTML files by stripping comments and spaces safely
-- **CSS Minifier** (`tools/css_minifier.py`) - Minifies CSS files by stripping comments and spaces safely
-- **Epoch Time Converter** (`tools/epoch_converter.py`) - Converts Unix timestamps to human-readable datetime formats and vice versa
-- **Color Code Converter** (`tools/color_code_converter.py`) - Converts color codes between Hex, RGB, HSL, and CMYK formats
-- **SQL Query Formatter** (`tools/sql_formatter.py`) - Formats SQL queries into clean, indented, and readable layouts
-- **Cron Expression Parser** (`tools/cron_parser.py`) - Parses standard 5-field cron expressions and lists the next run times
-- **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validates JSON data files against a custom schema
-- **JWT Decoder & Debugger** (`tools/jwt_decoder.py`) - Decodes and inspects JSON Web Tokens (JWT) payload, header, and signature metadata, showing formatted timestamps
-- **Code Search and Regex Replacer** (`tools/code_search_replace.py`) - A powerful codebase find and replace utility supporting regex and diff previews
-- **Advanced CLI Unit Converter** (`tools/unit_converter.py`) - A comprehensive utility to convert measurements across various units with CLI and interactive modes
-- **Code Line Counter (CLOC)** (`tools/code_line_counter.py`) - Recursively scans directories, detects programming languages, and counts blank, comment, and code lines
-- **JSON Schema Generator** (`tools/json_schema_generator.py`) - Recursively parses and analyzes JSON files to generate standard JSON Schema with constraints
-- **REST API Mock Server** (`tools/api_mock_server.py`) - A lightweight mock server serving customizable JSON endpoints with delay simulation
-- **WCAG Contrast Checker & Palette Generator** (`tools/wcag_contrast_checker.py`) - Calculate color contrast and generate WCAG-compliant color palettes with live terminal true-color previews
-- **JSON Diff Tool** (`tools/json_diff.py`) - Performs recursive semantic comparison of two JSON files with colorized output
-- **Config File Converter** (`tools/config_converter.py`) - Converts configuration files between JSON, XML, INI, YAML, and TOML
-- **SQL to Mermaid & Markdown Schema Documenter** (`tools/sql_to_mermaid.py`) - Parses SQL DDL schemas and generates Mermaid ER diagrams and detailed Markdown documentation.
-- **Git Repository Analyzer** (`tools/git_repository_analyzer.py`) - Scans local Git repositories and generates statistics on commits, authors, active hours, weekdays, and top modified files with visual ASCII bar charts
-- **Python Code Obfuscator** (`tools/python_code_obfuscator.py`) - Obfuscates Python code by removing comments/docstrings, base64-encoding string literals, and/or compressing and packaging the script into a dynamic runner
-- **Image Data URI Converter** (`tools/image_data_uri_converter.py`) - Encodes images to Base64 Data URIs, decodes Data URIs, and inlines local images in HTML/CSS web documents
-- **SQLite Database Explorer CLI** (`tools/sqlite_explorer.py`) - Inspect SQLite database schemas, view table structures, execute SQL queries, and export results
-- **Mock Log Generator** (`tools/log_generator.py`) - Generate realistic Nginx, Apache, Syslog, or JSON logs to files or standard output with custom rates
-- **HTTP REST Client CLI** (`tools/http_client.py`) - A lightweight CLI client for sending HTTP requests, displaying response headers, timing, and pretty-printing JSON payloads
-- **Base Converter & Bitwise Calculator** (`tools/base_converter.py`) - Convert numbers between binary, octal, decimal, hex, and custom bases, with step-by-step bitwise visualizations
-- **SVG Optimizer & Minifier** (`tools/svg_optimizer.py`) - Optimizes SVG vector graphic files by removing editor metadata, namespaces, comments, and rounding path coordinates
-- **Git Commit Linter & Hook Installer** (`tools/git_commit_linter.py`) - Lints git commit messages for Conventional Commit compliance and installs pre-commit/commit-msg hooks
-- **Command History Analyzer** (`tools/command_history_analyzer.py`) - Auto-detect and analyze command history (PowerShell, Bash, Zsh) to generate usage statistics, executable frequencies, and visual ASCII time charts
-- **Python AST Visualizer** (`tools/python_ast_visualizer.py`) - Parse Python source code and render its Abstract Syntax Tree (AST) in an interactive ASCII tree format or export as a Mermaid.js diagram definition
-
+- **Code Spell Checker** (`tools/code_spell_checker.py`) - Scan source code comments and string literals for typos using split identifier checks
+- **Codec Utility** (`tools/codec_utility.py`) - Encode and decode data using Base64, URL, Hex, Binary, and HTML formats
+- **Color Converter & Contrast Checker** (`tools/color_converter.py`) - Convert colors (HEX, RGB, HSL, CMYK) and check WCAG contrast compliance
+- **Cron Expression Parser** (`tools/cron_parser.py`) - Parse cron schedule expressions and list next run times
+- **Environment Variable Manager** (`tools/env_manager.py`) - Check consistency and sync environment files (.env vs .env.example)
+- **File Diff Tool** (`tools/file_diff_tool.py`) - Compare files line by line with colored console outputs or interactive HTML diff reports
+- **File Patch Applicator & Diff Generator** (`tools/file_patcher.py`) - Generate unified diff patches and apply them to base files with dry-run and backup options
+- **File Regex Replacer** (`tools/file_regex_replacer.py`) - Search and replace text in multiple files using regular expressions
+- **Git Commit Message Linter** (`tools/git_commit_linter.py`) - Lint git commit messages for Conventional Commits compliance
+- **Git Repository Summarizer** (`tools/git_repo_summarizer.py`) - Generate activity and contribution reports for a local Git repository
+- **Git Branch Cleaner** (`tools/git_branch_cleaner.py`) - Clean up local Git branches that have been merged or whose upstream tracking branches have been deleted
+- **Git Large File Finder & History Analyzer** (`tools/git_large_file_finder.py`) - Scan repository history to find large files, calculate cumulative bloat, and get instructions to prune them
+- **Git Churn Analyzer** (`tools/git_churn_analyzer.py`) - Measure and rank code churn of files in a Git repository to identify development hotspots
+- **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Convert HTML documents or snippets into clean, structured Markdown
+- **HTML Formatter & Minifier** (`tools/html_formatter.py`) - Format, beautify, or minify HTML documents using standard parser
+- **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Scan markdown files for broken local and external links
+- **Markdown Linter** (`tools/markdown_linter.py`) - Scan and validate Markdown file formatting and structure
+- **Markdown to HTML Converter** (`tools/markdown_to_html.py`) - Compiles Markdown documents into styled, responsive standalone HTML pages
+- **Markdown Table of Contents Generator** (`tools/markdown_toc_generator.py`) - Generate tables of contents with anchor links for Markdown files
+- **Regex Tester & Matcher** (`tools/regex_tester.py`) - Test regex patterns against text or files with colored highlights
+- **Regex Data Extractor** (`tools/regex_extractor.py`) - Extract pattern matches (emails, URLs, IPs, dates, UUIDs) and custom regexes from files or directories
+- **Terminal Slideshow Player** (`tools/terminal_slideshow.py`) - Render Markdown files as interactive console slides with colors and navigation controls
+- **Python Code Complexity Analyzer** (`tools/code_complexity_analyzer.py`) - Compute cyclomatic complexity and structural metrics of Python source files using AST parsing
+- **Python Performance Profiler** (`tools/python_performance_profiler.py`) - Profile CPU execution time and memory allocations of a Python script using standard libraries
+- **Terminal Chart Generator** (`tools/terminal_chart_generator.py`) - Generate visual charts in the terminal using Unicode blocks and ANSI colors
+- **Markdown Checklist Tracker** (`tools/markdown_todo_tracker.py`) - Scan a Markdown file for task checklists, compute completion statistics, and print a progress report grouped by section
+- **UUID/GUID Generator** (`tools/uuid_generator.py`) - Generate secure and standardized UUIDs (v1, v3, v4, v5) with various formatting options
+- **Log Colorizer & Highlight Tool** (`tools/log_colorizer.py`) - Colorize log levels and highlight custom regex patterns in stdin or log files
+- **Developer's Unit Converter** (`tools/unit_converter.py`) - Convert digital storage sizes, network speeds, base systems, and epoch timestamps
+- **.gitignore Generator** (`tools/gitignore_generator.py`) - Generate standard .gitignore files from gitignore.io or offline templates
+- **Safe Math Evaluator** (`tools/safe_math_evaluator.py`) - Safely evaluate mathematical expressions using AST analysis
+- **CSS Formatter & Minifier** (`tools/css_formatter.py`) - Clean, format, sort properties, or compress and minify CSS files
+- **Code TODO Scanner** (`tools/code_todo_scanner.py`) - Scan directories recursively for developer task comments (TODO, FIXME, HACK, BUG, REVIEW) across multiple programming languages
+- **SVG Vector Graphic Optimizer** (`tools/svg_optimizer.py`) - Clean editor metadata, strip empty groups, and reduce path coordinate precision to compress SVG files
+- **Markdown Table Formatter** (`tools/markdown_table_formatter.py`) - Format and align columns in Markdown tables for neat text alignment
+- **Unicode & Character Inspector** (`tools/unicode_inspector.py`) - Inspect strings or files for Unicode code points, character names, UTF-8 byte sequences, and category summaries
+- **Lorem Ipsum Generator** (`tools/lorem_ipsum_generator.py`) - Generate customizable placeholder text (words, sentences, paragraphs, lists, and HTML) for development and design
+- **Timezone Converter** (`tools/timezone_converter.py`) - Convert dates/times across timezones, list world clocks, and compare time offsets
+- **PyPI Version Checker** (`tools/pypi_version_checker.py`) - Check listed packages against PyPI for newer versions and update availability
+- **Code Duplicate Detector** (`tools/code_duplicate_detector.py`) - Find duplicate or copied code blocks recursively using sliding window hash comparison
+- **Binary Hex Diff** (`tools/binary_diff.py`) - Compare two binary files side-by-side with colored hex differences
 
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
 - **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
+- **SQLite Database Explorer** (`tools/sqlite_explorer.py`) - Inspect database schemas, tables, and execute queries in tabular format
+- **SQL Formatter** (`tools/sql_formatter.py`) - Standardize, format, and beautify SQL queries
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
-- **Random Name Generator** (`tools/random_name_generator.py`) - Generates random full names
-- **XML to JSON Converter** (`tools/xml_to_json.py`) - Converts structured XML files into JSON format
-- **CSV to HTML Converter** (`tools/csv_to_html.py`) - Converts CSV documents into clean, responsive, styled HTML tables
-- **JSON-CSV Bidirectional Converter** (`tools/json_csv_converter.py`) - Bidirectionally converts JSON to CSV and CSV to JSON with key flattening/unflattening support
-- **SQL Dump to CSV Extractor** (`tools/sql_dump_to_csv.py`) - Parses database SQL dump files (.sql) and extracts INSERT statements into CSV tables
-- **Data PII Anonymizer** (`tools/data_anonymizer.py`) - Redact, mask, and hash personally identifiable information (PII) in text, CSV, and JSON datasets
-- **Mock Data Generator** (`tools/mock_data_generator.py`) - Generates synthetic mock datasets in CSV, JSON, or SQL format from custom schema configurations without dependencies
+- **Config Format Converter** (`tools/config_converter.py`) - Convert configuration files between JSON, INI, XML, YAML, and TOML
+- **JSON Schema Generator** (`tools/json_schema_generator.py`) - Infer Draft-07 JSON Schema from a sample JSON data payload
+- **JSON Flattener & Unflattener** (`tools/json_flattener.py`) - Flatten nested JSON objects or unflatten them back using dotted-key paths
+- **Mock Data Generator** (`tools/mock_data_generator.py`) - Generate mock user profiles in JSON, CSV, or XML format
+- **Markdown Table Generator** (`tools/markdown_table_generator.py`) - Convert CSV, JSON, or delimited text into clean, aligned Markdown tables
+- **Markdown Table Parser** (`tools/markdown_table_parser.py`) - Parse Markdown tables and convert them to CSV, TSV, or JSON formats
+- **Extractive Text Summarizer** (`tools/text_summarizer.py`) - Generate concise summaries and compute text analytics/reading metrics from documents or standard input
+- **Sentiment Analyzer** (`tools/sentiment_analyzer.py`) - Standalone lexicon-based text sentiment analyzer that computes sentiment scores and classifications
+- **Log Visualizer** (`tools/log_visualizer.py`) - Parse log files (JSON-Lines, CSV, or raw text), aggregate metrics, and print a horizontal progress/severity histogram in the terminal
+- **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
+- **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
+- **Word Frequency Analyzer** (`tools/word_frequency_analyzer.py`) - Calculate word frequencies, filter stop words, compute text metrics, and render terminal bar charts or tag clouds
+- **CSV Data Profiler** (`tools/csv_profiler.py`) - Profile CSV file columns to infer data types and compute detailed statistics without pandas
+- **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validate JSON data payloads against JSON Schema draft-07 specifications
+- **Text Similarity Detector** (`tools/text_similarity_detector.py`) - Compare documents or code files to compute similarity scores using Jaccard, Cosine, and TF-IDF metrics
+- **Configuration Merger** (`tools/config_merger.py`) - Deep merge multiple JSON, INI, XML, YAML, or TOML configuration files with hierarchical overrides
+- **SQLite Database Schema Visualizer** (`tools/db_schema_visualizer.py`) - Extract SQLite table structures and generate text reports or Mermaid ER diagrams
 
 
 ### Network & Web
+- **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
 - **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
+- **DNS Propagation Checker** (`tools/dns_propagation_checker.py`) - Query multiple DNS providers for domain records to check propagation
+- **DNS Zone File Parser & Validator** (`tools/dns_zone_validator.py`) - Parse and validate RFC 1035 DNS zone files for syntax and logical configuration errors
 - **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
+- **Hosts File Manager** (`tools/hosts_manager.py`) - List, add, remove, enable, or disable domain resolution mappings in the system hosts file
+- **HTML Link Extractor** (`tools/html_link_extractor.py`) - Parse HTML to extract and export hyperlinks, images, stylesheets, and scripts
+- **HTML Table Extractor** (`tools/html_table_extractor.py`) - Extract tables from HTML files, raw HTML, or URLs and format them as CSV, JSON, or Markdown
+- **HTTP Load Tester** (`tools/http_load_tester.py`) - Benchmark web servers and APIs with concurrent HTTP requests
+- **IP Geolocation Finder** (`tools/ip_geolocation_finder.py`) - Find geographic details of an IP address or domain name
+- **IP Subnet Calculator** (`tools/ip_subnet_calculator.py`) - Calculate network subnetting details and binary representations
+- **TCP Port Forwarder** (`tools/port_forwarder.py`) - Forward TCP traffic from a local port to a target host and port with real-time statistics
+- **TCP Port Scanner** (`tools/port_scanner.py`) - Scan target host TCP ports and retrieve service banners
+- **Socket Debugger** (`tools/socket_debugger.py`) - TCP/UDP socket diagnostics, testing, client/server modes, and hex dump utility (Netcat-like)
+- **URL Parser & Query Inspector** (`tools/url_parser.py`) - Parse URLs and inspect components and query parameters
 - **URL Validator** (`tools/url_validator.py`) - Validate and check if URLs are accessible
-- **Port Forwarder** (`tools/port_forwarder.py`) - Simple TCP port forwarding utility
-- **IP Lookup Tool** (`tools/ip_lookup.py`) - Geolocation and ISP lookup for IP addresses
-- **URL Encoder/Decoder** (`tools/url_encoder_decoder.py`) - Encodes and decodes URL-safe strings
-- **IP Subnet Calculator** (`tools/subnet_calculator.py`) - Calculates subnet ranges, usable hosts, and CIDR network info
-- **Simple Web Server** (`tools/simple_web_server.py`) - Starts a local HTTP server in a directory with access logging
-- **User-Agent Parser** (`tools/user_agent_parser.py`) - Parses browser User-Agent strings to extract OS, browser, version, and device type
-- **Hosts File Manager** (`tools/hosts_manager.py`) - Views, adds, or removes DNS redirection mappings in the local system hosts file
-- **Sitemap Generator** (`tools/sitemap_generator.py`) - Crawls a website from a starting URL up to a specified depth and generates a sitemap.xml
-- **Ping Monitor & Latency Tracker** (`tools/ping_monitor.py`) - Monitors host availability and records response times, displaying summary statistics in the terminal
-- **HTTP Load Tester** (`tools/http_load_tester.py`) - A multi-threaded benchmarking tool to measure web server throughput, RPS, and response latencies
-- **DNS Propagation Checker** (`tools/dns_propagation_checker.py`) - Check domain DNS resolution propagation globally across multiple public DoH providers in parallel
-- **RSS & Atom Feed Reader** (`tools/rss_feed_reader.py`) - Subscribe, list, read, and search RSS/Atom feeds inside the terminal using pure Python XML parsing
+- **User-Agent String Analyzer & Web Log Parser** (`tools/user_agent_analyzer.py`) - Parse HTTP User-Agent strings and aggregate browser/OS/device stats from Apache/Nginx web logs
+- **Web Archiver** (`tools/web_archiver.py`) - Bundle a web page and its assets into a single self-contained HTML file
+- **HTTP Security Headers Checker** (`tools/http_headers_checker.py`) - Fetch a URL and analyze response headers for missing, misconfigured, or recommended security settings
+- **Markdown Image Localizer** (`tools/markdown_image_localizer.py`) - Scan a Markdown file for remote image references, download them locally, and update paths to reference them
+- **Local Port Finder & Inspector** (`tools/port_finder.py`) - Find free local TCP ports and inspect active port statuses
+- **Sitemap Generator** (`tools/sitemap_generator.py`) - Crawl websites recursively to generate SEO-compliant XML or text sitemaps
+- **Local File Sharing Server** (`tools/file_sharing_server.py`) - Standalone local HTTP server with uploading and downloading capabilities under a responsive dark web UI
+- **Mock DNS Server** (`tools/dns_server_mock.py`) - Local UDP DNS stub server for resolving domain names using custom JSON files
+- **Subdomain Enumerator** (`tools/subdomain_enumerator.py`) - Fast multi-threaded DNS subdomain discovery utility using a wordlist
+- **DNS Benchmarker** (`tools/dns_benchmarker.py`) - Benchmark latencies and success rates of multiple public DNS resolvers using raw UDP queries
+- **RSS & Atom Feed Reader** (`tools/rss_feed_reader.py`) - Terminal-based feed reader and aggregator with HTML report exporting
+- **Port Listener & Request Dumper** (`tools/request_dumper.py`) - Listen on TCP/UDP ports and dump incoming request payloads, headers, and hex bytes
+- **URL Route Pattern Matcher** (`tools/url_route_matcher.py`) - Parse and test routing patterns (Flask, Express styles) against paths to extract parameters
+- **Web Broken Link Checker** (`tools/web_broken_link_checker.py`) - Recursively crawls a website up to a specified depth and identifies broken links
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
-- **Base64 Encoder/Decoder** (`tools/base64_encoder_decoder.py`) - Encode and decode base64 strings
-- **File Hash Calculator** (`tools/file_hash_calculator.py`) - Calculates MD5, SHA-1, and SHA-256 hashes of files
-- **Base32 Encoder/Decoder** (`tools/base32_encoder_decoder.py`) - Encodes and decodes strings or files using Base32
-- **Port Scanner** (`tools/port_scanner.py`) - Scans range of TCP ports on a host for open ports
-- **MAC Address Generator** (`tools/mac_address_generator.py`) - Generates random, valid MAC addresses with custom formatting
-- **Secure File Shredder** (`tools/file_shredder.py`) - Overwrites file/directory contents multiple times with random data or zeros before deleting to prevent recovery
-- **Classical Ciphers Toolkit** (`tools/classical_ciphers.py`) - Encrypts/decrypts text using classical ciphers (Caesar, Vigenère, ROT13, Rail Fence, Playfair, Affine) and cracks Caesar ciphers using frequency analysis.
-- **Hex Dumper** (`tools/hex_dumper.py`) - Bidirectional hex dumper and restorer (similar to `xxd` / `xxd -r`) that produces formatted hex/ASCII dumps with optional ANSI coloring.
-- **Dictionary Hash Cracker** (`tools/hash_cracker.py`) - Cracks cryptographic hashes (MD5, SHA-1, SHA-256, etc.) using dictionary attacks with word mutation rules
-- **Steganography Tool** (`tools/steganography_tool.py`) - Hide and extract secret messages or files inside images (EOF marker injection) or text documents (Zero-Width Characters) with optional SHA-256 XOR encryption
+- **EXIF Metadata Inspector & Cleaner** (`tools/exif_cleaner.py`) - Inspect and strip EXIF metadata from images to preserve privacy
+- **Offline JWT Debugger** (`tools/jwt_debugger.py`) - Decode, inspect, verify, and encode HS256 JSON Web Tokens locally and offline
+- **Log Anonymizer & PII Masker** (`tools/log_anonymizer.py`) - Scrub sensitive PII, credentials, and IP addresses from logs and text files
+- **Time-based One-Time Password (TOTP) Generator** (`tools/totp_generator.py`) - Secure, offline multi-factor authentication (MFA) client with visual countdown progress bars
+- **Hash Generator & Verifier** (`tools/hash_generator.py`) - Generate cryptographic hashes (MD5, SHA-1, SHA-256, etc.) for text strings or files, and verify them against expected values
+- **Wi-Fi Password Retriever** (`tools/wifi_password_retriever.py`) - Retrieve saved Wi-Fi profiles and passwords cross-platform
+- **Text Steganography Tool** (`tools/text_steganography.py`) - Invisibly hide and extract secret messages in cover text using Unicode zero-width characters
+- **Secure File Shredder** (`tools/file_shredder.py`) - Overwrites files and directories with random data/zeroes to prevent recovery
+- **Classic Cipher Utility** (`tools/cipher_utility.py`) - Encrypt and decrypt text using classical ciphers (Caesar, Vigenère, ROT13, Atbash, XOR)
+- **CSV PII Anonymizer & Masker** (`tools/csv_anonymizer.py`) - Anonymize and mask sensitive personal identifiers (PII) in structured CSV datasets
+- **Security Log Anomaly Detector** (`tools/log_anomaly_detector.py`) - Scans application logs for SQL injection, XSS, traversals, and volumetric outliers
 
 
 ## Usage

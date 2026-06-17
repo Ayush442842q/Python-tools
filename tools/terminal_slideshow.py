@@ -1,264 +1,279 @@
 #!/usr/bin/env python3
 """
-Terminal Slideshow - Present markdown files in your terminal.
+Terminal Slideshow Player - Render Markdown files as interactive console slides.
 
-This tool parses markdown files, splits them into slides using '---', and
-provides an interactive terminal-based slide presenter.
-
-Usage:
-    python tools/terminal_slideshow.py slides.md [options]
+This script parses a Markdown file, splits content by '---', and renders slides
+directly in the terminal with colored headers, lists, code blocks, and keyboard navigation.
 """
 
 import os
 import sys
 import argparse
 import shutil
-import textwrap
-from typing import List
 
-# Key codes for cross-platform navigation
-KEY_QUIT = 'quit'
-KEY_NEXT = 'next'
-KEY_PREV = 'prev'
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Terminal Slideshow - Interactive Markdown slide presenter in the terminal."
-    )
-    parser.add_argument("file", help="Markdown file containing slides (separated by '---')")
-    parser.add_argument(
-        "-w", "--width", type=int, default=80, help="Maximum slide text width (default: 80)"
-    )
-    parser.add_argument(
-        "--no-border", action="store_true", help="Disable drawing ASCII borders around slides"
-    )
-    return parser.parse_args()
-
-
-def get_keypress() -> str:
-    """Reads a single keypress from the terminal (cross-platform)."""
-    # Windows implementation
-    try:
-        import msvcrt
-        while True:
-            if msvcrt.kbhit():
-                ch = msvcrt.getch()
-                if ch in (b'\x00', b'\xe0'):  # Arrow keys prefix
-                    ch2 = msvcrt.getch()
-                    if ch2 == b'K':  # Left arrow
-                        return KEY_PREV
-                    elif ch2 == b'M':  # Right arrow
-                        return KEY_NEXT
-                elif ch.lower() in (b'q', b'\x1b'):  # 'q' or Esc
-                    return KEY_QUIT
-                elif ch.lower() in (b'n', b' ', b'\r'):  # 'n', Space, or Enter
-                    return KEY_NEXT
-                elif ch.lower() in (b'p', b'\x08'):  # 'p' or Backspace
-                    return KEY_PREV
-    except ImportError:
-        pass
-
-    # Unix (macOS/Linux) implementation
-    try:
-        import termios
+# Try to set up cross-platform key reading
+try:
+    import msvcrt
+    def get_key():
+        ch = msvcrt.getch()
+        if ch in (b'\x00', b'\xe0'):  # Arrow keys prefix
+            ch2 = msvcrt.getch()
+            if ch2 == b'M': return 'right'
+            if ch2 == b'K': return 'left'
+            if ch2 == b'H': return 'up'
+            if ch2 == b'P': return 'down'
+        elif ch == b' ': return 'space'
+        elif ch in (b'\r', b'\n'): return 'enter'
+        elif ch in (b'q', b'Q'): return 'q'
+        elif ch in (b'r', b'R'): return 'r'
+        elif ch in (b'h', b'H'): return 'h'
+        return ch.decode('utf-8', errors='ignore').lower()
+except ImportError:
+    # Unix-like key reader
+    def get_key():
         import tty
+        import termios
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
-            tty.setraw(fd)
+            tty.setraw(sys.stdin.fileno())
             ch = sys.stdin.read(1)
-            if ch == '\x1b':  # Escape sequence (e.g. arrow keys)
-                # Read next two characters
+            if ch == '\x1b':
+                # Parse escape sequences for arrow keys
                 ch2 = sys.stdin.read(2)
-                if ch2 == '[D':  # Left arrow
-                    return KEY_PREV
-                elif ch2 == '[C':  # Right arrow
-                    return KEY_NEXT
-            elif ch.lower() in ('q', '\x1b'):
-                return KEY_QUIT
-            elif ch.lower() in ('n', ' ', '\r', '\n'):
-                return KEY_NEXT
-            elif ch.lower() in ('p', '\x7f'):  # 'p' or backspace
-                return KEY_PREV
+                if ch2 == '[C': return 'right'
+                if ch2 == '[D': return 'left'
+                if ch2 == '[A': return 'up'
+                if ch2 == '[B': return 'down'
+            elif ch == ' ': return 'space'
+            elif ch in ('\r', '\n'): return 'enter'
+            elif ch in ('q', 'Q'): return 'q'
+            elif ch in ('r', b'R'): return 'r'
+            elif ch in ('h', b'H'): return 'h'
+            return ch.lower()
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    except Exception:
-        # Fallback to standard input if tty is not available
-        try:
-            inp = input().strip().lower()
-            if inp in ('q', 'exit', 'quit'):
-                return KEY_QUIT
-            elif inp in ('p', 'prev', 'back'):
-                return KEY_PREV
-            else:
-                return KEY_NEXT
-        except (KeyboardInterrupt, EOFError):
-            return KEY_QUIT
 
-    return KEY_NEXT
+# ANSI escape codes for coloring
+RESET = "\033[0m"
+BOLD = "\033[1m"
+DIM = "\033[2m"
+ITALIC = "\033[3m"
+UNDERLINE = "\033[4m"
 
+# Foreground colors
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+MAGENTA = "\033[35m"
+CYAN = "\033[36m"
+WHITE = "\033[37m"
 
-def parse_slides(filepath: str) -> List[List[str]]:
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
-    except FileNotFoundError:
-        print(f"Error: File '{filepath}' not found.", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"Error reading file: {e}", file=sys.stderr)
-        sys.exit(1)
+DEMO_CONTENT = """# Terminal Slideshow Player 🎤
+---
+## Features ⚡
+- **Zero Dependencies**: Pure Python 3.6+ standard library code.
+- **Cross-Platform**: Smooth navigation on Windows, macOS, and Linux.
+- **Markdown Parsing**: Supports headers, bullet lists, code blocks, and colors.
+- **Dynamic Resizing**: Automatically adapts to terminal width/height changes.
+---
+## Navigation Guide 🧭
+Use these keys during the presentation:
+- `Right Arrow` or `Space` : Next Slide
+- `Left Arrow` or `Backspace` : Previous Slide
+- `R` : Refresh / Re-render current slide (helps after resizing)
+- `H` : Jump to Home (First Slide)
+- `Q` or `Esc` : Exit Slideshow
+---
+## Code Block Example 💻
 
-    # Split content by markdown thematic breaks (lines containing only --- or *** or ___)
-    raw_slides = re_split_slides(content)
-    
+```python
+# A simple python snippet
+def greet(name):
+    print(f"Hello, {name}!")
+
+if __name__ == "__main__":
+    greet("Antigravity")
+```
+
+---
+## The End 🎬
+Thank you for trying out **Terminal Slideshow Player**!
+Create your own slide decks using markdown files separated by `---` dividers.
+"""
+
+def parse_slides(text):
+    """Split input text into slides by horizontal rules (---)"""
+    raw_slides = text.split('\n---\n')
     slides = []
-    for raw in raw_slides:
-        lines = [line.rstrip() for line in raw.strip('\n').splitlines()]
-        # Remove leading/trailing empty lines per slide
-        while lines and not lines[0]:
+    for s in raw_slides:
+        # Strip leading/trailing empty lines of slide content
+        lines = s.split('\n')
+        while lines and not lines[0].strip():
             lines.pop(0)
-        while lines and not lines[-1]:
+        while lines and not lines[-1].strip():
             lines.pop()
         if lines:
             slides.append(lines)
-            
-    if not slides:
-        slides = [["# Empty Presentation", "Add content separated by '---'"]]
-        
     return slides
 
-
-def re_split_slides(text: str) -> List[str]:
-    # Matches lines with 3 or more dashes, asterisks, or underscores (with optional spaces)
-    import re
-    pattern = re.compile(r'\n[ \t]*[-*_]{3,}[ \t]*\n')
-    return pattern.split('\n' + text + '\n')
-
-
-def render_slide(slide_lines: List[str], current: int, total: int, max_width: int, draw_border: bool):
-    # Clear terminal screen
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    # Get actual console size
-    console_cols, console_rows = shutil.get_terminal_size((80, 24))
+def colorize_line(line, in_code_block):
+    """Add ANSI escape codes to a single line based on simple markdown parsing"""
+    if in_code_block:
+        return YELLOW + line + RESET
     
-    # Calculate rendering width (clamped to terminal width and max_width)
-    width = min(max_width, console_cols - 6)
-    if width < 20:
-        width = 20
-
-    # Wrap and format slide content
-    formatted_lines = []
-    for line in slide_lines:
-        if line.startswith('#'):
-            # Heading formatting
-            level = len(line) - len(line.lstrip('#'))
-            title = line.lstrip('#').strip()
-            # Double line divider for main heading, single line for subheadings
-            if level == 1:
-                formatted_lines.append("")
-                formatted_lines.extend(textwrap.wrap(f"★ {title.upper()} ★", width=width))
-                formatted_lines.append("=" * len(title.upper()))
-                formatted_lines.append("")
-            else:
-                formatted_lines.append("")
-                formatted_lines.extend(textwrap.wrap(title, width=width))
-                formatted_lines.append("-" * len(title))
-        elif line.startswith('- ') or line.startswith('* '):
-            # Bullet items
-            bullet_indent = "  • "
-            wrapped = textwrap.wrap(line[2:], width=width - len(bullet_indent))
-            if wrapped:
-                formatted_lines.append(bullet_indent + wrapped[0])
-                for w in wrapped[1:]:
-                    formatted_lines.append("    " + w)
-        else:
-            # Standard paragraphs
-            if not line:
-                formatted_lines.append("")
-            else:
-                formatted_lines.extend(textwrap.wrap(line, width=width))
-
-    # Add spacing to center vertically if terminal is tall enough
-    content_height = len(formatted_lines)
-    max_content_rows = console_rows - 6  # Reserve rows for margins, status, border
-    top_margin = max(1, (max_content_rows - content_height) // 2) if content_height < max_content_rows else 1
-
-    # Render with/without ASCII borders
-    if draw_border:
-        # Top border
-        print("┌" + "─" * (width + 4) + "┐")
-        for _ in range(top_margin):
-            print("│" + " " * (width + 4) + "│")
-            
-        for line in formatted_lines:
-            # Crop line if it exceeds width somehow
-            line_str = line[:width]
-            padding = " " * (width - len(line_str))
-            print(f"│  {line_str}{padding}  │")
-            
-        # Fill remaining vertical space
-        remaining_rows = max(1, max_content_rows - content_height - top_margin)
-        for _ in range(remaining_rows):
-            print("│" + " " * (width + 4) + "│")
-            
-        # Footer inside border
-        footer = f"Slide {current}/{total}"
-        controls = "[←] Prev  [→] Next  [Q] Quit"
-        space_len = (width + 4) - len(footer) - len(controls) - 4
-        space = " " * max(1, space_len)
-        print(f"│  {footer}{space}{controls}  │")
+    stripped = line.strip()
+    if not stripped:
+        return line
+    
+    # Headers
+    if stripped.startswith('# '):
+        return BOLD + CYAN + line + RESET
+    elif stripped.startswith('## '):
+        return BOLD + BLUE + line + RESET
+    elif stripped.startswith('### '):
+        return BOLD + GREEN + line + RESET
+    elif stripped.startswith('#### '):
+        return BOLD + MAGENTA + line + RESET
         
-        # Bottom border
-        print("└" + "─" * (width + 4) + "┘")
-    else:
-        # Borderless rendering
-        for _ in range(top_margin):
-            print()
-        for line in formatted_lines:
-            print("  " + line)
-        remaining_rows = max(1, max_content_rows - content_height - top_margin)
-        for _ in range(remaining_rows):
-            print()
-        footer = f"Slide {current}/{total}"
-        controls = "[P] Prev  [N] Next  [Q] Quit"
-        space = " " * max(1, (width - len(footer) - len(controls)))
-        print(f"  {footer}{space}{controls}")
-        print()
+    # Bullet lists
+    if stripped.startswith('- ') or stripped.startswith('* '):
+        parts = line.split(stripped[0], 1)
+        return parts[0] + GREEN + "•" + RESET + parts[1]
+    
+    # Inline formatting (bold, italic, code)
+    # Simple replacement rules (non-nested)
+    import re
+    # Bold **text**
+    line = re.sub(r'\*\*(.*?)\*\*', BOLD + r'\1' + RESET, line)
+    # Italic *text*
+    line = re.sub(r'\*(.*?)\*', ITALIC + r'\1' + RESET, line)
+    # Code `inline`
+    line = re.sub(r'`(.*?)`', MAGENTA + r'\1' + RESET, line)
+    
+    return line
 
+def render_slide(slide_lines, current_index, total_slides):
+    """Draw a single slide centered on the terminal screen"""
+    term_width, term_height = shutil.get_terminal_size((80, 24))
+    
+    # Clear screen and move cursor to top-left
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        sys.stdout.write("\033[2J\033[H")
+        sys.stdout.flush()
+        
+    content_lines = []
+    in_code_block = False
+    
+    for line in slide_lines:
+        if line.strip().startswith('```'):
+            in_code_block = not in_code_block
+            continue
+        content_lines.append(colorize_line(line, in_code_block))
+        
+    # Calculate vertical padding
+    # Reserve 3 lines for status bar/border
+    padding_top = max(0, (term_height - len(content_lines) - 3) // 2)
+    
+    # Print top padding
+    print('\n' * padding_top, end='')
+    
+    # Print slide content
+    for line in content_lines:
+        # Standard indent to prevent text hugging the left edge
+        print("  " + line)
+        
+    # Fill remaining space
+    padding_bottom = max(0, term_height - len(content_lines) - padding_top - 3)
+    print('\n' * padding_bottom, end='')
+    
+    # Render Status Bar
+    status_text = f" Slide {current_index + 1} of {total_slides} "
+    nav_help = " [←/→ Navigate | R: Refresh | H: Home | Q: Exit] "
+    
+    # Pad to term_width
+    space_between = max(1, term_width - len(status_text) - len(nav_help) - 4)
+    status_bar = BOLD + BLUE + " " + "═" * (term_width - 2) + "\n " + RESET + \
+                 BOLD + WHITE + status_text + RESET + \
+                 " " * space_between + \
+                 DIM + nav_help + RESET
+    print(status_bar)
+
+def run_slideshow(slides):
+    if not slides:
+        print("No slide content to display.")
+        return
+        
+    current_slide = 0
+    total = len(slides)
+    
+    # Enable terminal VT processing on Windows (if needed for ANSI colors)
+    if os.name == 'nt':
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+        
+    while True:
+        render_slide(slides[current_slide], current_slide, total)
+        key = get_key()
+        
+        if key in ('right', 'space', 'n'):
+            if current_slide < total - 1:
+                current_slide += 1
+        elif key in ('left', 'backspace', 'p'):
+            if current_slide > 0:
+                current_slide -= 1
+        elif key == 'h':
+            current_slide = 0
+        elif key == 'r':
+            # Re-render current slide
+            continue
+        elif key in ('q', 'exit', '\x1b'):
+            break
 
 def main():
-    args = parse_args()
-    slides = parse_slides(args.file)
-    total_slides = len(slides)
-    current_index = 0
-
-    while True:
-        render_slide(
-            slides[current_index],
-            current_index + 1,
-            total_slides,
-            args.width,
-            not args.no_border
-        )
-        
-        key = get_keypress()
-        if key == KEY_QUIT:
-            break
-        elif key == KEY_NEXT:
-            if current_index < total_slides - 1:
-                current_index += 1
-        elif key == KEY_PREV:
-            if current_index > 0:
-                current_index -= 1
-
-    # Clear terminal when exiting
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("Presentation finished.")
-    return 0
-
+    parser = argparse.ArgumentParser(
+        description="Terminal Slideshow Player - Interactive Markdown presentations in the console."
+    )
+    parser.add_argument(
+        "file",
+        nargs="?",
+        help="Path to the Markdown file (.md). If omitted, a demo presentation runs."
+    )
+    parser.add_argument(
+        "--demo",
+        action="store_true",
+        help="Run the built-in demo presentation"
+    )
+    
+    args = parser.parse_args()
+    
+    if args.demo or not args.file:
+        print("Starting demo presentation...")
+        slides = parse_slides(DEMO_CONTENT)
+    else:
+        try:
+            with open(args.file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            slides = parse_slides(content)
+        except Exception as e:
+            print(f"Error reading file '{args.file}': {e}", file=sys.stderr)
+            sys.exit(1)
+            
+    try:
+        run_slideshow(slides)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        # Clear screen on exit
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            print("\033[2J\033[H", end="")
+        print("Slideshow finished. Have a great day!")
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

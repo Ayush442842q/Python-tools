@@ -1,0 +1,67 @@
+[
+    {
+        "path": "/api/users",
+        "method": "GET",
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json",
+            "X-Mock-Server": "Python-API-Mock"
+        },
+        "body": [
+            {
+                "id": 1,
+                "name": "Alice Smith",
+                "role": "Developer"
+            },
+            {
+                "id": 2,
+                "name": "Bob Jones",
+                "role": "Designer"
+            },
+            {
+                "id": 3,
+                "name": "Charlie Brown",
+                "role": "Product Manager"
+            }
+        ],
+        "delay": 0.2
+    },
+    {
+        "path": "/api/users/1",
+        "method": "GET",
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "id": 1,
+            "name": "Alice Smith",
+            "role": "Developer"
+        }
+    },
+    {
+        "path": "/api/users",
+        "method": "POST",
+        "status": 201,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "status": "success",
+            "message": "User created successfully",
+            "id": 4
+        }
+    },
+    {
+        "path": "/api/status",
+        "method": "GET",
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "status": "healthy",
+            "uptime": "up"
+        }
+    }
+]

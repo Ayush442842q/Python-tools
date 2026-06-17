@@ -1,109 +1,168 @@
 #!/usr/bin/env python3
 """
-Regex Tester
+Regex Tester & Matcher
 
-Test regular expressions against text or file input, with group capture details and highlighted matches.
+A command-line tool to test regular expressions against text inputs or files.
+Highlights matches using ANSI colors and displays captured groups.
 
 Usage:
-    python tools/regex_tester.py "pattern" "text to search"
-    python tools/regex_tester.py "pattern" -f input.txt
+    python regex_tester.py -p "pattern" -t "text to test" [options]
 """
 
-import argparse
-import re
 import sys
+import os
+import re
+import argparse
 
-# ANSI Escape Sequences for coloring
-GREEN = "\033[92m"
-BLUE = "\033[94m"
-CYAN = "\033[96m"
-BOLD = "\033[1m"
-RESET = "\033[0m"
+def highlight_matches(pattern, text, flags, color_code="31"):
+    """Find and colorize all matches in the text."""
+    # ANSI escape colors
+    color_start = f"\033[1;{color_code}m"
+    color_end = "\033[0m"
+    
+    # We compile the regex to find all matching ranges
+    try:
+        rx = re.compile(pattern, flags)
+    except re.error as e:
+        print(f"Regex Compilation Error: {e}", file=sys.stderr)
+        return None, []
+        
+    matches = list(rx.finditer(text))
+    if not matches:
+        return text, []
+
+    # Reconstruct text with color markers by working backwards to keep indices correct
+    highlighted = text
+    for match in reversed(matches):
+        start, end = match.span()
+        # Skip empty matches to prevent infinite loops or corrupt tags
+        if start == end:
+            continue
+        highlighted = highlighted[:start] + color_start + highlighted[start:end] + color_end + highlighted[end:]
+        
+    return highlighted, matches
 
 def main():
-    parser = argparse.ArgumentParser(description="Regex Tester - Test regular expressions with group details and highlighting")
-    parser.add_argument('pattern', help='The regular expression pattern to test')
-    parser.add_argument('text', nargs='?', help='The text string to search against')
-    parser.add_argument('-f', '--file', help='Path to a file to search against')
-    parser.add_argument('-i', '--ignore-case', action='store_true', help='Perform case-insensitive matching')
+    parser = argparse.ArgumentParser(
+        description="Test regular expression patterns against text or files with colored matching and group output.",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    
+    parser.add_argument(
+        "--pattern", "-p",
+        required=True,
+        help="The regular expression pattern to test."
+    )
+    
+    # Input source (either direct text or file)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--text", "-t",
+        help="Text string to test the pattern against."
+    )
+    group.add_argument(
+        "--file", "-f",
+        help="Path to a file to search for matches."
+    )
+    
+    # Regex flags
+    parser.add_argument(
+        "--ignore-case", "-i",
+        action="store_true",
+        help="Enable case-insensitive matching (re.IGNORECASE)."
+    )
+    parser.add_argument(
+        "--multiline", "-m",
+        action="store_true",
+        help="Enable multiline matching (re.MULTILINE)."
+    )
+    parser.add_argument(
+        "--dotall", "-s",
+        action="store_true",
+        help="Make '.' match any character including newline (re.DOTALL)."
+    )
+    
+    # Customization
+    parser.add_argument(
+        "--color", "-c",
+        default="31",
+        choices=["31", "32", "33", "34", "35", "36"],
+        help="ANSI color code for matches (31=Red, 32=Green, 33=Yellow, 34=Blue, 35=Magenta, 36=Cyan)."
+    )
+    parser.add_argument(
+        "--no-highlight",
+        action="store_true",
+        help="Disable ANSI colorized output."
+    )
     
     args = parser.parse_args()
-
-    # Get input text
-    if args.file:
-        try:
-            with open(args.file, 'r', encoding='utf-8') as f:
-                text = f.read()
-        except FileNotFoundError:
-            print(f"Error: File '{args.file}' not found.")
-            return 1
-        except Exception as e:
-            print(f"Error reading file: {e}")
-            return 1
-    elif args.text is not None:
-        text = args.text
+    
+    # Get test text
+    test_text = ""
+    if args.text is not None:
+        test_text = args.text
     else:
-        print("Error: You must provide either a text string or a file with -f/--file.")
-        parser.print_help()
+        file_path = os.path.abspath(args.file)
+        if not os.path.exists(file_path):
+            print(f"Error: File '{args.file}' does not exist.", file=sys.stderr)
+            return 1
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                test_text = f.read()
+        except Exception as e:
+            print(f"Error reading file: {e}", file=sys.stderr)
+            return 1
+            
+    # Set regex flags
+    flags = 0
+    if args.ignore_case:
+        flags |= re.IGNORECASE
+    if args.multiline:
+        flags |= re.MULTILINE
+    if args.dotall:
+        flags |= re.DOTALL
+        
+    # Perform matching
+    highlighted_text, matches = highlight_matches(args.pattern, test_text, flags, args.color)
+    
+    if highlighted_text is None:
+        # regex failed to compile
         return 1
-
-    flags = re.IGNORECASE if args.ignore_case else 0
-
-    try:
-        regex = re.compile(args.pattern, flags)
-    except re.error as e:
-        print(f"Error: Invalid regex pattern: {e}")
-        return 1
-
-    matches = list(regex.finditer(text))
-
+        
+    print("\n" + "="*40)
+    print(f"Pattern: {args.pattern}")
+    print(f"Flags: " + (" ".join(f for f in ["IGNORECASE" if args.ignore_case else "", 
+                                            "MULTILINE" if args.multiline else "", 
+                                            "DOTALL" if args.dotall else ""] if f) or "None"))
+    print("="*40)
+    
     if not matches:
-        print(f"No matches found for pattern: '{args.pattern}'")
+        print("\nNo matches found.")
         return 0
-
-    print(f"Found {len(matches)} match(es):\n")
-
-    # Highlight matches in the text
-    # We will reconstruct the text with highlights
-    highlighted_text = ""
-    last_idx = 0
-    for match in matches:
-        start, end = match.span()
-        # Add text before match
-        highlighted_text += text[last_idx:start]
-        # Add highlighted match
-        highlighted_text += f"{GREEN}{BOLD}{text[start:end]}{RESET}"
-        last_idx = end
-    highlighted_text += text[last_idx:]
-
-    print(f"{BOLD}Highlighted Output:{RESET}")
-    print("-" * 40)
-    print(highlighted_text)
-    print("-" * 40)
-    print()
-
-    # Print details for each match and its groups
-    print(f"{BOLD}Match Details:{RESET}")
+        
+    print(f"\nFound {len(matches)} match(es):")
     for idx, match in enumerate(matches, 1):
         start, end = match.span()
-        print(f"Match {idx}: '{match.group(0)}' (Indices: {start}-{end})")
+        print(f"\nMatch {idx} (Span: {start}-{end}): '{match.group(0)}'")
+        
+        # Display capture groups if any
         if match.groups():
-            print("  Capture Groups:")
-            for g_idx, group in enumerate(match.groups(), 1):
-                g_start, g_end = match.span(g_idx)
-                print(f"    Group {g_idx}: '{group}' (Indices: {g_start}-{g_end})")
-        if match.groupdict():
-            print("  Named Groups:")
-            for name, val in match.groupdict().items():
-                g_start, g_end = match.span(name)
-                print(f"    {name}: '{val}' (Indices: {g_start}-{g_end})")
-        print()
-
+            print("  Groups:")
+            for g_idx, group_val in enumerate(match.groups(), 1):
+                # Print group name if it is a named group
+                g_name = list(match.groupdict().keys())[list(match.groupdict().values()).index(group_val)] if group_val in match.groupdict().values() else None
+                name_str = f" (Name: {g_name})" if g_name else ""
+                print(f"    Group {g_idx}{name_str}: '{group_val}'")
+                
+    if not args.no_highlight:
+        print("\n" + "-"*15 + " Highlighted Text " + "-"*15)
+        print(highlighted_text)
+        print("-"*48)
+    
     return 0
 
 if __name__ == "__main__":
-    # Standard cmd.exe on Windows doesn't support ANSI codes by default, so we enable it
-    if sys.platform == 'win32':
-        import os
-        os.system('') # this enables ANSI escape sequences on Windows 10+ command prompt
+    # Windows ANSI terminal colors enablement
+    if sys.platform == "win32":
+        os.system("")
     sys.exit(main())

@@ -1,246 +1,152 @@
 #!/usr/bin/env python3
 """
-Log Colorizer
-
-A standalone terminal utility to colorize log files or live log streams. 
-Applies syntax highlighting to log levels, dates, times, IP addresses, URLs,
-and custom keyword matches.
-
-Supports tailing log files in real-time (like `tail -f`).
-
-Usage:
-    python tools/log_colorizer.py [options] [log_file]
-
-Examples:
-    python tools/log_colorizer.py app.log
-    python tools/log_colorizer.py -t app.log
-    cat app.log | python tools/log_colorizer.py
-    docker logs container | python tools/log_colorizer.py -k "database,auth"
+Log Colorizer & Highlight Tool
+Reads logs from stdin or a file and colorizes standard log levels and custom regex patterns.
 """
 
 import argparse
-import ctypes
-import os
 import re
 import sys
 import time
+import os
 
-# ANSI color escape sequences
+# ANSI escape codes for colors
 RESET = "\033[0m"
 BOLD = "\033[1m"
-UNDERLINE = "\033[4m"
 
-RED = "\033[91m"
-GREEN = "\033[92m"
-YELLOW = "\033[93m"
-BLUE = "\033[94m"
-MAGENTA = "\033[95m"
-CYAN = "\033[96m"
-WHITE = "\033[97m"
+# Text Colors
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+MAGENTA = "\033[35m"
+CYAN = "\033[36m"
+WHITE = "\033[37m"
 
-DARK_GRAY = "\033[90m"
+# Background Colors
+BG_RED = "\033[41m"
+BG_YELLOW = "\033[43m"
+BG_BLUE = "\033[44m"
 
-LEVEL_COLORS = {
-    'ERROR': BOLD + RED,
-    'FAIL': BOLD + RED,
-    'FATAL': BOLD + RED,
-    'CRITICAL': BOLD + RED,
-    'CRIT': BOLD + RED,
-    'ERR': BOLD + RED,
-    
-    'WARN': BOLD + YELLOW,
-    'WARNING': BOLD + YELLOW,
-    'WRN': BOLD + YELLOW,
-    
+# Default pattern highlighting color (cyan background with black text or just bold yellow text)
+HIGHLIGHT_COLOR = f"\033[1;30;103m" # Bold black text on bright yellow background
+
+# Severity mapping to colors
+LEVEL_STYLES = {
+    'DEBUG': CYAN,
     'INFO': GREEN,
+    'NOTICE': BLUE,
+    'WARN': YELLOW,
+    'WARNING': YELLOW,
+    'ERROR': RED,
+    'ERR': RED,
+    'CRITICAL': BOLD + RED,
+    'FATAL': BOLD + BG_RED + WHITE,
+    'SEVERE': BOLD + RED,
     'SUCCESS': BOLD + GREEN,
-    'OK': GREEN,
-    'CONF': GREEN,
-    
-    'DEBUG': BLUE,
-    'DEBG': BLUE,
-    'DBG': BLUE,
-    
-    'TRACE': MAGENTA,
-    'TRC': MAGENTA,
 }
 
-# Regex definitions
-IP_PATTERN = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
-URL_PATTERN = re.compile(r"\bhttps?://[a-zA-Z0-9.\-_~:/?#\[\]@!$&'()*+,;=]+\b")
+# Compile standard log level regexes
+# Looks for brackets, colons, or boundaries around keywords, e.g. [INFO], INFO:, [ERROR]
+LEVEL_PATTERNS = [
+    (re.compile(r'\b(' + '|'.join(LEVEL_STYLES.keys()) + r')\b', re.IGNORECASE), None)
+]
 
-# Matches ISO8601-like timestamps and times (e.g. 2026-06-11 12:34:56.789, 12:34:56)
-TIME_PATTERN = re.compile(
-    r"\b(?:\d{4}[-/]\d{2}[-/]\d{2}[ T])?\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:?\d{2})?\b"
-)
+def get_styled_level(match):
+    word = match.group(1)
+    upper_word = word.upper()
+    style = LEVEL_STYLES.get(upper_word, RESET)
+    return f"{style}{word}{RESET}"
 
-# Matches log levels inside braces, brackets, or as standalone words
-LEVEL_PATTERN = re.compile(
-    r"\b(ERROR|FAIL|FATAL|CRITICAL|CRIT|ERR|WARNING|WARN|WRN|INFO|SUCCESS|OK|CONF|DEBUG|DEBG|DBG|TRACE|TRC)\b",
-    re.IGNORECASE
-)
-
-def enable_ansi_windows():
-    """Enable virtual terminal processing in Windows 10+ console using ctypes."""
-    if os.name == 'nt':
-        try:
-            kernel32 = ctypes.windll.kernel32
-            # STD_OUTPUT_HANDLE = -11
-            stdout_handle = kernel32.GetStdHandle(-11)
-            if stdout_handle == -1 or stdout_handle is None:
-                return False
-                
-            mode = ctypes.c_ulong()
-            if not kernel32.GetConsoleMode(stdout_handle, ctypes.byref(mode)):
-                return False
-                
-            # ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004
-            mode.value |= 0x0004
-            if not kernel32.SetConsoleMode(stdout_handle, mode):
-                return False
-            return True
-        except Exception:
-            return False
-    return False
-
-def colorize_line(line, keywords=None, keyword_color=YELLOW):
-    """Parse and colorize elements of a log line."""
-    # Strip trailing newline for clean processing
-    line_stripped = line.rstrip('\n')
+def colorize_line(line, custom_regex=None, ignore_case=False):
+    # Strip newline for processing, but we'll add it back
+    line_content = line.rstrip('\r\n')
     
-    # 1. Colorize Log Level
-    def replace_level(match):
-        lvl = match.group(1).upper()
-        color = LEVEL_COLORS.get(lvl, WHITE)
-        return f"{color}{match.group(1)}{RESET}"
+    # 1. Apply level highlighting
+    for pattern, _ in LEVEL_PATTERNS:
+        line_content = pattern.sub(get_styled_level, line_content)
         
-    line_colored = LEVEL_PATTERN.sub(replace_level, line_stripped)
-    
-    # 2. Colorize Timestamps
-    line_colored = TIME_PATTERN.sub(lambda m: f"{CYAN}{m.group(0)}{RESET}", line_colored)
-    
-    # 3. Colorize IP Addresses
-    line_colored = IP_PATTERN.sub(lambda m: f"{MAGENTA}{m.group(0)}{RESET}", line_colored)
-    
-    # 4. Colorize URLs
-    line_colored = URL_PATTERN.sub(lambda m: f"{UNDERLINE}{CYAN}{m.group(0)}{RESET}", line_colored)
-    
-    # 5. Highlight custom keywords
-    if keywords:
-        for kw in keywords:
-            if kw:
-                # Case-insensitive replacement
-                pattern = re.compile(re.escape(kw), re.IGNORECASE)
-                line_colored = pattern.sub(lambda m: f"{BOLD}{keyword_color}{m.group(0)}{RESET}", line_colored)
-                
-    return line_colored
+    # 2. Apply custom pattern highlighting
+    if custom_regex:
+        flags = re.IGNORECASE if ignore_case else 0
+        try:
+            compiled_custom = re.compile(f"({custom_regex})", flags)
+            line_content = compiled_custom.sub(lambda m: f"{HIGHLIGHT_COLOR}{m.group(1)}{RESET}", line_content)
+        except re.error as e:
+            # If invalid regex, treat as literal text
+            escaped = re.escape(custom_regex)
+            compiled_custom = re.compile(f"({escaped})", flags)
+            line_content = compiled_custom.sub(lambda m: f"{HIGHLIGHT_COLOR}{m.group(1)}{RESET}", line_content)
+            
+    return line_content
 
-def tail_file(file_path, keywords=None, keyword_color=YELLOW):
-    """Monitor a file in real-time, colorizing new lines as they are appended."""
+def process_stream(stream, custom_pattern=None, ignore_case=False):
+    try:
+        for line in stream:
+            colored = colorize_line(line, custom_pattern, ignore_case)
+            print(colored)
+            sys.stdout.flush()
+    except KeyboardInterrupt:
+        pass
+
+def follow_file(file_path, custom_pattern=None, ignore_case=False):
+    """Implement tail -f logic with colorizing."""
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            # Seek to the end of the file
+            # Go to the end of the file
             f.seek(0, os.SEEK_END)
-            print(f"{DARK_GRAY}Tailing {file_path.name}... Press Ctrl+C to stop.{RESET}")
-            
             while True:
                 line = f.readline()
                 if not line:
                     time.sleep(0.1)
                     continue
-                print(colorize_line(line, keywords, keyword_color))
+                colored = colorize_line(line, custom_pattern, ignore_case)
+                print(colored)
                 sys.stdout.flush()
     except KeyboardInterrupt:
-        print(f"\n{DARK_GRAY}Stopped tailing.{RESET}")
+        print("\nStopping log tail.")
     except Exception as e:
-        print(f"\nError tailing file: {e}", file=sys.stderr)
+        print(f"Error reading file: {e}", file=sys.stderr)
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Colorize logs from files or stdin with support for log levels, IPs, URLs, and tailing."
-    )
-    parser.add_argument(
-        'log_file',
-        nargs='?',
-        help='Log file to view. If omitted, reads from standard input.'
-    )
-    parser.add_argument(
-        '-t', '--tail',
-        action='store_true',
-        help='Tail the log file in real-time (like tail -f)'
-    )
-    parser.add_argument(
-        '-k', '--keywords',
-        help='Comma-separated custom keywords to highlight (e.g. "database,auth")'
-    )
-    parser.add_argument(
-        '--color',
-        choices=['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'],
-        default='yellow',
-        help='Color to use for custom keywords (default: yellow)'
-    )
-    
+    parser = argparse.ArgumentParser(description='Colorize and highlight terminal log lines.')
+    parser.add_argument('file', nargs='?', default=None,
+                        help='Log file to read (reads from stdin if not specified)')
+    parser.add_argument('-p', '--pattern', type=str, default=None,
+                        help='Custom regex pattern or keyword to highlight')
+    parser.add_argument('-i', '--ignore-case', action='store_true',
+                        help='Ignore case for custom pattern matching')
+    parser.add_argument('-f', '--follow', action='store_true',
+                        help='Follow the file (like tail -f, only valid when file is specified)')
+
+    # Check if stdout is a TTY (if not, we might want to disable colors, but usually log colorizers are run to be seen)
+    # We will support a flag to disable colors if needed, but default to True for this tool
+    parser.add_argument('--no-color', action='store_true', help='Disable all ANSI color codes')
+
     args = parser.parse_args()
-    
-    # Enable Windows 10 ANSI escape support
-    enable_ansi_windows()
-    
-    # Resolve custom keyword color
-    color_map = {
-        'red': RED,
-        'green': GREEN,
-        'yellow': YELLOW,
-        'blue': BLUE,
-        'magenta': MAGENTA,
-        'cyan': CYAN,
-        'white': WHITE
-    }
-    kw_color = color_map.get(args.color, YELLOW)
-    
-    keywords = [k.strip() for k in args.keywords.split(',')] if args.keywords else []
-    
-    if args.tail:
-        if not args.log_file:
-            print("Error: Live tailing requires a target file path.", file=sys.stderr)
-            return 1
-        log_path = Path(args.log_file)
-        if not log_path.exists():
-            print(f"Error: Log file '{args.log_file}' does not exist.", file=sys.stderr)
-            return 1
-        tail_file(log_path, keywords, kw_color)
-        return 0
-        
-    # Standard read mode
-    if args.log_file:
-        log_path = Path(args.log_file)
-        if not log_path.exists():
-            print(f"Error: Log file '{args.log_file}' does not exist.", file=sys.stderr)
-            return 1
+
+    if args.no_color:
+        global RESET, BOLD, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, BG_RED, BG_YELLOW, BG_BLUE, HIGHLIGHT_COLOR, LEVEL_STYLES
+        RESET = BOLD = RED = GREEN = YELLOW = BLUE = MAGENTA = CYAN = WHITE = BG_RED = BG_YELLOW = BG_BLUE = HIGHLIGHT_COLOR = ""
+        LEVEL_STYLES = {k: "" for k in LEVEL_STYLES}
+
+    if args.file:
+        if not os.path.exists(args.file):
+            print(f"Error: File '{args.file}' not found.", file=sys.stderr)
+            sys.exit(1)
             
-        try:
-            with open(log_path, 'r', encoding='utf-8', errors='ignore') as f:
-                for line in f:
-                    print(colorize_line(line, keywords, kw_color))
-        except KeyboardInterrupt:
-            pass
-        except Exception as e:
-            print(f"Error reading log file: {e}", file=sys.stderr)
-            return 1
+        if args.follow:
+            follow_file(args.file, args.pattern, args.ignore_case)
+        else:
+            with open(args.file, 'r', encoding='utf-8', errors='ignore') as f:
+                process_stream(f, args.pattern, args.ignore_case)
     else:
-        # Read from stdin
+        if args.follow:
+            print("Warning: --follow is ignored when reading from standard input.", file=sys.stderr)
+        # Check if stdin has data
         if sys.stdin.isatty():
-            print("Error: No log file provided, and standard input is empty.", file=sys.stderr)
-            parser.print_help()
-            return 1
-            
-        try:
-            for line in sys.stdin:
-                print(colorize_line(line, keywords, kw_color))
-                sys.stdout.flush()
-        except KeyboardInterrupt:
-            pass
-            
-    return 0
+            print("Log Colorizer: Waiting for stdin... Press Ctrl+C to exit.")
+        process_stream(sys.stdin, args.pattern, args.ignore_case)
 
 if __name__ == '__main__':
-    sys.exit(main())
+    main()

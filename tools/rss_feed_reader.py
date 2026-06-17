@@ -1,298 +1,293 @@
 #!/usr/bin/env python3
 """
-RSS & Atom Feed Reader
+RSS & Atom Feed Reader - Aggregates and displays RSS/Atom web feeds
 
-A command-line interface to subscribe to, list, update, and search RSS/Atom feeds.
-Subscribed feeds are cached locally in the user's home directory.
-Parsed using Python's built-in XML parsing libraries.
+This tool fetches RSS or Atom feeds from a given URL, parses the XML content,
+and outputs formatted article headlines, dates, and links. It supports filtering
+by keywords, limiting article counts, and exporting the feeds to a styled HTML report.
 
 Usage:
-    python tools/rss_feed_reader.py add "https://news.ycombinator.com/rss" --name "Hacker News"
-    python tools/rss_feed_reader.py list
-    python tools/rss_feed_reader.py read
-    python tools/rss_feed_reader.py read "Hacker News" -n 5
-    python tools/rss_feed_reader.py search "python"
-    python tools/rss_feed_reader.py remove "Hacker News"
+    python tools/rss_feed_reader.py FEED_URL [options]
+
+Options:
+    -n, --limit N           Limit the number of articles shown (default: 10)
+    -f, --filter WORD       Only show articles containing keyword (case-insensitive)
+    -o, --output FILE       Export parsed feed to a styled HTML report
+    -v, --verbose           Print debug info like HTTP requests and raw tags
+    -h, --help              Show this help message and exit
+
+Example:
+    python tools/rss_feed_reader.py https://news.ycombinator.com/rss -n 5
 """
 
 import argparse
 import html
-import json
-import os
-import re
 import sys
 import urllib.request
-from pathlib import Path
-from typing import Dict, Any, List, Optional
 import xml.etree.ElementTree as ET
+from datetime import datetime
+from typing import Dict, List, Optional, Tuple
 
-# ANSI Colors
-COLOR_GREEN = "\033[92m"
-COLOR_YELLOW = "\033[93m"
-COLOR_RED = "\033[91m"
-COLOR_CYAN = "\033[96m"
-COLOR_RESET = "\033[0m"
-COLOR_BOLD = "\033[1m"
-COLOR_DIM = "\033[2m"
 
-# Default subscription database path
-DB_PATH = Path.home() / ".rss_subscriptions.json"
-
-DEFAULT_FEEDS = {
-    "Hacker News": "https://news.ycombinator.com/rss",
-    "Python.org Blog": "https://www.python.org/blogs/feed/"
-}
-
-def supports_color() -> bool:
-    plat = sys.platform
-    supported_platform = plat != 'Pocket PC' and (plat != 'win32' or 'ANSICON' in os.environ)
-    is_a_tty = hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
-    return supported_platform or is_a_tty
-
-def color_text(text: str, color_code: str) -> str:
-    return f"{color_code}{text}{COLOR_RESET}" if supports_color() else text
-
-def load_subscriptions() -> Dict[str, str]:
-    """Loads subscriptions from the database file, creating it with defaults if not exists."""
-    if not DB_PATH.exists():
-        save_subscriptions(DEFAULT_FEEDS)
-        return DEFAULT_FEEDS
-    try:
-        with open(DB_PATH, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(color_text(f"[-] Warning: Failed to load subscriptions: {e}. Using defaults.", COLOR_YELLOW))
-        return DEFAULT_FEEDS
-
-def save_subscriptions(subscriptions: Dict[str, str]):
-    """Saves subscriptions to the database file."""
-    try:
-        with open(DB_PATH, 'w', encoding='utf-8') as f:
-            json.dump(subscriptions, f, indent=4)
-    except Exception as e:
-        print(color_text(f"[-] Error: Failed to save subscriptions: {e}", COLOR_RED), file=sys.stderr)
-
-def strip_html(html_text: str) -> str:
-    """Strips HTML tags and unescapes HTML entities for clean CLI output."""
-    if not html_text:
-        return ""
-    # Remove HTML tags
-    clean = re.compile('<.*?>')
-    text = re.sub(clean, '', html_text)
-    # Unescape HTML entities
-    return html.unescape(text).strip()
-
-def clean_tag(tag: str) -> str:
-    """Strips namespace brackets from XML tag names."""
-    if '}' in tag:
-        return tag.split('}', 1)[1]
-    return tag
-
-def fetch_and_parse_feed(url: str, timeout: float = 6.0) -> Dict[str, Any]:
-    """Fetches a feed URL and parses it as either RSS 2.0 or Atom 1.0."""
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) RSS-Feed-Reader/1.0"}
+def fetch_xml(url: str, verbose: bool) -> bytes:
+    """Fetch raw XML data from URL with User-Agent header."""
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) RSSReader/1.0"}
     req = urllib.request.Request(url, headers=headers)
-    
-    with urllib.request.urlopen(req, timeout=timeout) as response:
-        xml_data = response.read()
-        
+    if verbose:
+        print(f"Fetching feed from: {url}...")
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            return response.read()
+    except Exception as e:
+        print(f"Error fetching feed: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def parse_feed(xml_data: bytes) -> Tuple[Dict[str, str], List[Dict[str, str]]]:
+    """
+    Parses RSS or Atom XML structure.
+    Returns: (feed_metadata, list_of_articles)
+    """
     root = ET.fromstring(xml_data)
-    tag = clean_tag(root.tag).lower()
     
-    feed_title = "Unknown Feed"
+    feed_meta = {"title": "Unknown Feed", "link": "", "description": ""}
     articles = []
     
-    if tag == 'feed':  # Atom Format
-        # Extract feed title
-        for child in root:
-            if clean_tag(child.tag) == 'title':
-                feed_title = child.text or feed_title
-                break
-                
-        # Extract entries
-        for child in root:
-            if clean_tag(child.tag) == 'entry':
-                title = ""
-                link = ""
-                summary = ""
-                pub_date = ""
-                for prop in child:
-                    ptag = clean_tag(prop.tag)
-                    if ptag == 'title':
-                        title = prop.text or ""
-                    elif ptag == 'link':
-                        link = prop.attrib.get('href', '') or prop.text or ""
-                    elif ptag == 'summary' or ptag == 'content':
-                        summary = prop.text or ""
-                    elif ptag == 'updated' or ptag == 'published':
-                        pub_date = prop.text or ""
-                        
-                articles.append({
-                    "title": strip_html(title),
-                    "link": link.strip(),
-                    "description": strip_html(summary),
-                    "pub_date": pub_date.strip()
-                })
-                
-    elif tag == 'rss':  # RSS Format
-        channel = root.find('channel')
-        if channel is not None:
-            title_el = channel.find('title')
-            if title_el is not None:
-                feed_title = title_el.text or feed_title
-                
-            for item in channel.findall('item'):
-                title = item.find('title')
-                title = title.text if title is not None else ""
-                link = item.find('link')
-                link = link.text if link is not None else ""
-                description = item.find('description')
-                description = description.text if description is not None else ""
-                
-                pub_date = item.find('pubDate')
-                if pub_date is None:
-                    pub_date = item.find('pubdate')
-                pub_date = pub_date.text if pub_date is not None else ""
-                
-                articles.append({
-                    "title": strip_html(title),
-                    "link": link.strip(),
-                    "description": strip_html(description),
-                    "pub_date": pub_date.strip()
-                })
-    else:
-        raise ValueError(f"Unsupported feed format: {root.tag}")
+    # Detect Atom namespace
+    atom_ns = ""
+    if "http://www.w3.org/2005/Atom" in root.tag:
+        atom_ns = "{http://www.w3.org/2005/Atom}"
         
-    return {
-        "title": feed_title,
-        "articles": articles
-    }
-
-def print_articles(feed_name: str, articles: List[Dict[str, Any]], limit: int):
-    """Prints a list of articles to the terminal."""
-    print("\n" + color_text(f"=== {feed_name} (Top {min(limit, len(articles))}) ===", COLOR_BOLD + COLOR_CYAN))
-    
-    for i, art in enumerate(articles[:limit], 1):
-        print(f"\n{color_text(f'{i}. {art['title']}', COLOR_BOLD)}")
-        if art['pub_date']:
-            print(f"   {color_text('Published:', COLOR_DIM)} {art['pub_date']}")
-        if art['link']:
-            print(f"   {color_text('Link:', COLOR_DIM)} {color_text(art['link'], COLOR_GREEN)}")
-        if art['description']:
-            # Truncate summary to keep console neat
-            summary = art['description']
-            if len(summary) > 180:
-                summary = summary[:177] + "..."
-            print(f"   {color_text('Summary:', COLOR_DIM)} {summary}")
+    # Check if Atom feed
+    if root.tag == f"{atom_ns}feed":
+        # Atom Metadata
+        title_el = root.find(f"{atom_ns}title")
+        if title_el is not None:
+            feed_meta["title"] = title_el.text or ""
             
-    print(color_text("=" * (len(feed_name) + 14), COLOR_DIM))
+        link_el = root.find(f"{atom_ns}link")
+        if link_el is not None:
+            feed_meta["link"] = link_el.get("href", "")
+            
+        desc_el = root.find(f"{atom_ns}subtitle")
+        if desc_el is not None:
+            feed_meta["description"] = desc_el.text or ""
+            
+        # Atom Entries
+        for entry in root.findall(f"{atom_ns}entry"):
+            art = {"title": "", "link": "", "pub_date": "", "summary": ""}
+            
+            t = entry.find(f"{atom_ns}title")
+            if t is not None:
+                art["title"] = t.text or ""
+                
+            l = entry.find(f"{atom_ns}link")
+            if l is not None:
+                art["link"] = l.get("href", "")
+                
+            # Try updated or published
+            d = entry.find(f"{atom_ns}updated")
+            if d is None:
+                d = entry.find(f"{atom_ns}published")
+            if d is not None:
+                art["pub_date"] = d.text or ""
+                
+            s = entry.find(f"{atom_ns}summary")
+            if s is None:
+                s = entry.find(f"{atom_ns}content")
+            if s is not None:
+                art["summary"] = s.text or ""
+                
+            articles.append(art)
+            
+    # Check if RSS feed
+    elif root.tag == "rss":
+        channel = root.find("channel")
+        if channel is not None:
+            # RSS Metadata
+            t = channel.find("title")
+            if t is not None:
+                feed_meta["title"] = t.text or ""
+                
+            l = channel.find("link")
+            if l is not None:
+                feed_meta["link"] = l.text or ""
+                
+            d = channel.find("description")
+            if d is not None:
+                feed_meta["description"] = d.text or ""
+                
+            # RSS Items
+            for item in channel.findall("item"):
+                art = {"title": "", "link": "", "pub_date": "", "summary": ""}
+                
+                t_item = item.find("title")
+                if t_item is not None:
+                    art["title"] = t_item.text or ""
+                    
+                l_item = item.find("link")
+                if l_item is not None:
+                    art["link"] = l_item.text or ""
+                    
+                d_item = item.find("pubDate")
+                if d_item is not None:
+                    art["pub_date"] = d_item.text or ""
+                    
+                s_item = item.find("description")
+                if s_item is not None:
+                    art["summary"] = s_item.text or ""
+                    
+                articles.append(art)
+                
+    return feed_meta, articles
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="RSS & Atom Feed Reader: Subscribe to and read web feeds in the terminal.",
-        formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    
-    subparsers = parser.add_subparsers(dest="command", required=True, help="Command to run")
-    
-    # Add Subparser
-    add_parser = subparsers.add_parser("add", help="Subscribe to a new RSS/Atom feed")
-    add_parser.add_argument("url", help="Feed URL")
-    add_parser.add_argument("-n", "--name", required=True, help="Name for the subscription")
-    
-    # List Subparser
-    subparsers.add_parser("list", help="List all subscribed feeds")
-    
-    # Remove Subparser
-    remove_parser = subparsers.add_parser("remove", help="Unsubscribe from a feed")
-    remove_parser.add_argument("name", help="Name of the subscription to remove")
-    
-    # Read Subparser
-    read_parser = subparsers.add_parser("read", help="Read articles from feeds")
-    read_parser.add_argument("name", nargs="?", help="Specific feed name (optional, reads all if omitted)")
-    read_parser.add_argument("-n", "--limit", type=int, default=5, help="Number of articles to show per feed (default: 5)")
-    
-    # Search Subparser
-    search_parser = subparsers.add_parser("search", help="Search article titles for a keyword across all feeds")
-    search_parser.add_argument("keyword", help="Keyword to search for")
-    search_parser.add_argument("-n", "--limit", type=int, default=5, help="Max search results (default: 5)")
 
+def clean_html(raw_html: str) -> str:
+    """Basic helper to strip simple HTML tags from descriptions."""
+    import re
+    if not raw_html:
+        return ""
+    # Strip HTML tags
+    clean = re.sub(r'<[^>]+>', '', raw_html)
+    # Unescape HTML entities
+    return html.unescape(clean).strip()
+
+
+def export_html(meta: Dict[str, str], articles: List[Dict[str, str]], filepath: str) -> None:
+    """Exports parsed feeds into a neat responsive HTML report."""
+    html_content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{html.escape(meta['title'])} - Feed Aggregator</title>
+    <style>
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f9fa;
+        }}
+        header {{
+            background: linear-gradient(135deg, #ff6600, #ff8833);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        header h1 {{ margin: 0 0 10px 0; }}
+        header a {{ color: white; text-decoration: underline; }}
+        .article-card {{
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }}
+        .article-card:hover {{ transform: translateY(-2px); }}
+        .article-card h2 {{ margin: 0 0 10px 0; font-size: 1.4rem; }}
+        .article-card h2 a {{ color: #0066cc; text-decoration: none; }}
+        .article-card h2 a:hover {{ text-decoration: underline; }}
+        .date {{ font-size: 0.85rem; color: #777; margin-bottom: 10px; }}
+        .summary {{ color: #555; }}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{html.escape(meta['title'])}</h1>
+        <p>{html.escape(meta['description'])}</p>
+        <p><a href="{html.escape(meta['link'])}" target="_blank">Visit original source website</a></p>
+    </header>
+    <main>
+    """
+    
+    for art in articles:
+        html_content += f"""
+        <article class="article-card">
+            <h2><a href="{html.escape(art['link'])}" target="_blank">{html.escape(art['title'])}</a></h2>
+            <div class="date">{html.escape(art['pub_date'])}</div>
+            <div class="summary">{html.escape(clean_html(art['summary'])[:300])}...</div>
+        </article>
+        """
+        
+    html_content += """
+    </main>
+</body>
+</html>
+    """
+    
+    write_mode = "w"
+    with open(filepath, write_mode, encoding="utf-8") as f:
+        f.write(html_content)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Standalone RSS & Atom Feed Reader.")
+    parser.add_argument("url", help="Feed URL (RSS or Atom)")
+    parser.add_argument("-n", "--limit", type=int, default=10, help="Max articles to show")
+    parser.add_argument("-f", "--filter", help="Filter articles by keyword")
+    parser.add_argument("-o", "--output", help="Path to write styled HTML report")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Print debug/verbose log")
+    
     args = parser.parse_args()
     
-    subscriptions = load_subscriptions()
+    xml_data = fetch_xml(args.url, args.verbose)
     
-    if args.command == "add":
-        if args.name in subscriptions:
-            print(color_text(f"[-] A subscription named '{args.name}' already exists.", COLOR_YELLOW))
-            sys.exit(1)
+    if args.verbose:
+        print("Parsing XML structure...")
+    try:
+        meta, articles = parse_feed(xml_data)
+    except Exception as e:
+        print(f"Error parsing feed XML: {e}", file=sys.stderr)
+        return 1
+        
+    # Apply keyword filter
+    if args.filter:
+        kw = args.filter.lower()
+        articles = [a for a in articles if kw in a["title"].lower() or kw in a["summary"].lower()]
+        
+    # Limit count
+    articles = articles[:args.limit]
+    
+    # Print terminal output
+    print(f"\n======================================================================")
+    print(f" FEED: {meta['title']}")
+    print(f" {meta['description']}")
+    print(f" Source: {meta['link']}")
+    print(f"======================================================================\n")
+    
+    if not articles:
+        print("No articles found matching filters.")
+    else:
+        for idx, art in enumerate(articles, 1):
+            print(f"{idx}. {art['title']}")
+            if art['pub_date']:
+                print(f"   Date: {art['pub_date']}")
+            print(f"   Link: {art['link']}")
             
-        print(f"Validating feed at: {args.url} ...")
+            clean_desc = clean_html(art['summary'])
+            if clean_desc:
+                # Truncate preview description
+                preview = clean_desc[:180] + ("..." if len(clean_desc) > 180 else "")
+                print(f"   Summary: {preview}")
+            print()
+            
+    # Export to HTML if requested
+    if args.output:
         try:
-            feed = fetch_and_parse_feed(args.url)
-            subscriptions[args.name] = args.url
-            save_subscriptions(subscriptions)
-            print(color_text(f"[+] Successfully subscribed to '{args.name}' ({feed['title']})!", COLOR_GREEN))
+            export_html(meta, articles, args.output)
+            print(f"Successfully exported {len(articles)} feed entries to HTML report at: {args.output}")
         except Exception as e:
-            print(color_text(f"[-] Failed to validate feed: {e}", COLOR_RED), file=sys.stderr)
-            sys.exit(1)
+            print(f"Error exporting HTML file: {e}", file=sys.stderr)
+            return 1
             
-    elif args.command == "list":
-        print("\n" + color_text("Subscribed Feeds:", COLOR_BOLD))
-        print("-" * 50)
-        for name, url in subscriptions.items():
-            print(f"- {color_text(name, COLOR_CYAN)} ({url})")
-        print("-" * 50)
-        
-    elif args.command == "remove":
-        if args.name not in subscriptions:
-            print(color_text(f"[-] Subscription '{args.name}' not found.", COLOR_RED), file=sys.stderr)
-            sys.exit(1)
-        del subscriptions[args.name]
-        save_subscriptions(subscriptions)
-        print(color_text(f"[+] Unsubscribed from '{args.name}'.", COLOR_GREEN))
-        
-    elif args.command == "read":
-        if args.name:
-            if args.name not in subscriptions:
-                print(color_text(f"[-] Subscription '{args.name}' not found.", COLOR_RED), file=sys.stderr)
-                sys.exit(1)
-            url = subscriptions[args.name]
-            try:
-                feed = fetch_and_parse_feed(url)
-                print_articles(args.name, feed["articles"], args.limit)
-            except Exception as e:
-                print(color_text(f"[-] Error reading feed '{args.name}': {e}", COLOR_RED), file=sys.stderr)
-        else:
-            if not subscriptions:
-                print("No feeds subscribed yet. Add one with the 'add' command.")
-                return
-            for name, url in subscriptions.items():
-                try:
-                    feed = fetch_and_parse_feed(url)
-                    print_articles(name, feed["articles"], args.limit)
-                except Exception as e:
-                    print(color_text(f"[-] Error reading feed '{name}': {e}", COLOR_RED), file=sys.stderr)
-                    
-    elif args.command == "search":
-        keyword = args.keyword.lower()
-        print(f"Searching for '{keyword}' across all subscribed feeds...")
-        found_any = False
-        
-        for name, url in subscriptions.items():
-            try:
-                feed = fetch_and_parse_feed(url)
-                matching = []
-                for art in feed["articles"]:
-                    if keyword in art["title"].lower() or keyword in art["description"].lower():
-                        matching.append(art)
-                if matching:
-                    found_any = True
-                    print_articles(f"{name} (Matches)", matching, args.limit)
-            except Exception as e:
-                print(color_text(f"[-] Error checking feed '{name}': {e}", COLOR_RED), file=sys.stderr)
-                
-        if not found_any:
-            print("No matching articles found.")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

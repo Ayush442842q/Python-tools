@@ -1,195 +1,129 @@
 #!/usr/bin/env python3
 """
-JSON Schema Generator
-
-A standalone developer utility to recursively analyze a JSON dataset or document
-and automatically generate a draft-07 compliant JSON Schema with inferred types
-and constraint rules.
-
-Usage:
-    python tools/json_schema_generator.py [options] [json_file]
-
-Examples:
-    python tools/json_schema_generator.py sample.json
-    python tools/json_schema_generator.py --strict --indent 4 sample.json > schema.json
-    cat sample.json | python tools/json_schema_generator.py
+JSON Schema Generator - Infers a Draft-07 JSON Schema from a sample JSON file or payload.
 """
 
 import argparse
 import json
 import sys
-from collections import OrderedDict
+import os
 
-def infer_schema(data, strict=False, infer_constraints=True):
-    """Recursively analyze data and build its corresponding JSON schema."""
-    schema = OrderedDict()
+def infer_type(val):
+    """Infer JSON schema type from python value."""
+    if val is None:
+        return "null"
+    elif isinstance(val, bool):
+        return "boolean"
+    elif isinstance(val, int):
+        return "integer"
+    elif isinstance(val, float):
+        return "number"
+    elif isinstance(val, str):
+        return "string"
+    elif isinstance(val, list):
+        return "array"
+    elif isinstance(val, dict):
+        return "object"
+    return "string"
+
+def generate_schema(val, make_required=True):
+    """Recursively generate schema details."""
+    val_type = infer_type(val)
+    schema = {"type": val_type}
     
-    if data is None:
-        schema['type'] = 'null'
-        
-    elif isinstance(data, bool):
-        schema['type'] = 'boolean'
-        
-    elif isinstance(data, int):
-        schema['type'] = 'integer'
-        if infer_constraints:
-            schema['minimum'] = data
-            schema['maximum'] = data
-            
-    elif isinstance(data, float):
-        schema['type'] = 'number'
-        if infer_constraints:
-            schema['minimum'] = data
-            schema['maximum'] = data
-            
-    elif isinstance(data, str):
-        schema['type'] = 'string'
-        if infer_constraints:
-            schema['minLength'] = len(data)
-            schema['maxLength'] = len(data)
-            # Basic checks for format
-            if data.startswith(('http://', 'https://')):
-                schema['format'] = 'uri'
-            elif '@' in data and '.' in data:
-                schema['format'] = 'email'
-            elif len(data) == 19 and data[4] == '-' and data[7] == '-' and data[10] == 'T':
-                schema['format'] = 'date-time'
-                
-    elif isinstance(data, list):
-        schema['type'] = 'array'
-        if infer_constraints:
-            schema['minItems'] = len(data)
-            schema['maxItems'] = len(data)
-            
-        if not data:
-            schema['items'] = {}
-        else:
-            # Analyze all items in the array
-            item_schemas = []
-            for item in data:
-                item_schemas.append(infer_schema(item, strict, infer_constraints))
-                
-            # Deduplicate items schemas
-            unique_schemas = []
-            for item_s in item_schemas:
-                if item_s not in unique_schemas:
-                    unique_schemas.append(item_s)
-                    
-            if len(unique_schemas) == 1:
-                schema['items'] = unique_schemas[0]
-                # If constraints were inferred, we merge them into min/max ranges
-                if infer_constraints and unique_schemas[0].get('type') in ('integer', 'number'):
-                    vals = [x for x in data if isinstance(x, (int, float))]
-                    if vals:
-                        schema['items']['minimum'] = min(vals)
-                        schema['items']['maximum'] = max(vals)
-                elif infer_constraints and unique_schemas[0].get('type') == 'string':
-                    lens = [len(x) for x in data if isinstance(x, str)]
-                    if lens:
-                        schema['items']['minLength'] = min(lens)
-                        schema['items']['maxLength'] = max(lens)
-            else:
-                schema['items'] = {'anyOf': unique_schemas}
-                
-    elif isinstance(data, dict):
-        schema['type'] = 'object'
-        properties = OrderedDict()
+    if val_type == "object":
+        properties = {}
         required = []
-        
-        # Process in sorted or original order
-        for key, value in data.items():
-            properties[key] = infer_schema(value, strict, infer_constraints)
-            required.append(key)
-            
-        schema['properties'] = properties
+        for k, v in val.items():
+            properties[k] = generate_schema(v, make_required)
+            if make_required:
+                required.append(k)
+        schema["properties"] = properties
         if required:
-            schema['required'] = required
+            schema["required"] = required
             
-        if strict:
-            schema['additionalProperties'] = False
-            
+    elif val_type == "array":
+        if not val:
+            # Empty array, default to items matching any type
+            schema["items"] = {}
+        else:
+            # Check if uniform or multiple types
+            item_types = set(infer_type(item) for item in val)
+            if len(item_types) == 1:
+                # Uniform type
+                sample_item = val[0]
+                schema["items"] = generate_schema(sample_item, make_required)
+            else:
+                # Mixed types: use 'anyOf'
+                schemas = []
+                for t in item_types:
+                    # Find first instance of that type to build schema
+                    example = next(item for item in val if infer_type(item) == t)
+                    schemas.append(generate_schema(example, make_required))
+                schema["items"] = {"anyOf": schemas}
+                
     return schema
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Generate a draft-07 JSON Schema from a sample JSON file or standard input."
-    )
-    parser.add_argument(
-        'json_file',
-        nargs='?',
-        help='Path to the sample JSON file. If omitted, reads from standard input.'
-    )
-    parser.add_argument(
-        '-s', '--strict',
-        action='store_true',
-        help='Enable strict schema mode (sets additionalProperties to false for objects)'
-    )
-    parser.add_argument(
-        '--no-constraints',
-        action='store_true',
-        help='Disable smart constraint inference (like minimum/maximum, minLength/maxLength, formats)'
-    )
-    parser.add_argument(
-        '-i', '--indent',
-        type=int,
-        default=2,
-        help='Spacing indentation for the output JSON (default: 2)'
-    )
-    parser.add_argument(
-        '-o', '--output',
-        help='Write the generated schema to a file instead of stdout'
-    )
+    parser = argparse.ArgumentParser(description="JSON Schema Generator - Infer JSON Schema from sample data.")
+    parser.add_argument("input_file", nargs="?", help="Input JSON file path (reads from stdin if omitted)")
+    parser.add_argument("-o", "--output", help="Output schema file path (prints to stdout if omitted)")
+    parser.add_argument("-p", "--pretty", action="store_true", default=True, help="Pretty print JSON output")
+    parser.add_argument("--no-required", action="store_true", help="Do not include all fields in 'required' lists")
+    parser.add_argument("-t", "--title", default="Generated Schema", help="Schema title")
+    parser.add_argument("-d", "--description", default="Generated by JSON Schema Generator Tool", help="Schema description")
     
     args = parser.parse_args()
     
-    # Read input data
-    input_str = ""
-    if args.json_file:
+    # Read input
+    if args.input_file:
+        if not os.path.exists(args.input_file):
+            print(f"Error: File '{args.input_file}' does not exist.", file=sys.stderr)
+            sys.exit(1)
         try:
-            with open(args.json_file, 'r', encoding='utf-8') as f:
-                input_str = f.read()
+            with open(args.input_file, 'r', encoding='utf-8') as f:
+                content = f.read()
         except Exception as e:
-            print(f"Error reading file '{args.json_file}': {e}", file=sys.stderr)
-            return 1
+            print(f"Error reading file: {e}", file=sys.stderr)
+            sys.exit(1)
     else:
-        # Check if stdin is a TTY (user did not pipe anything)
-        if sys.stdin.isatty():
-            print("Error: No input JSON file provided, and standard input is empty.", file=sys.stderr)
-            parser.print_help()
-            return 1
-        input_str = sys.stdin.read()
+        content = sys.stdin.read()
+        
+    if not content.strip():
+        print("Error: Input is empty.", file=sys.stderr)
+        sys.exit(1)
         
     try:
-        data = json.loads(input_str)
-    except json.JSONDecodeError as e:
-        print(f"Error parsing input as valid JSON: {e}", file=sys.stderr)
-        return 1
+        data = json.loads(content)
+    except Exception as e:
+        print(f"Error parsing input as JSON: {e}", file=sys.stderr)
+        sys.exit(1)
         
-    # Generate schema root
-    schema_root = OrderedDict()
-    schema_root['$schema'] = 'http://json-schema.org/draft-07/schema#'
-    schema_root['title'] = 'Generated Schema'
-    schema_root['description'] = 'Auto-generated schema from sample dataset'
+    # Generate full schema wrapper
+    schema = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": args.title,
+        "description": args.description,
+    }
     
-    # Infer inner schema
-    inferred = infer_schema(data, strict=args.strict, infer_constraints=not args.no_constraints)
-    schema_root.update(inferred)
+    make_required = not args.no_required
+    inferred = generate_schema(data, make_required)
+    schema.update(inferred)
     
-    # Render JSON schema
-    out_schema = json.dumps(schema_root, indent=args.indent)
+    indent = 4 if args.pretty else None
+    output_str = json.dumps(schema, indent=indent)
     
+    # Save or print
     if args.output:
         try:
             with open(args.output, 'w', encoding='utf-8') as f:
-                f.write(out_schema + '\n')
-            print(f"Schema successfully written to {args.output}")
+                f.write(output_str + '\n')
+            print(f"Schema successfully saved to {args.output}")
         except Exception as e:
-            print(f"Error writing to output file '{args.output}': {e}", file=sys.stderr)
-            return 1
+            print(f"Error writing schema to output file: {e}", file=sys.stderr)
+            sys.exit(1)
     else:
-        print(out_schema)
-        
-    return 0
+        print(output_str)
 
-if __name__ == '__main__':
-    sys.exit(main())
+if __name__ == "__main__":
+    main()

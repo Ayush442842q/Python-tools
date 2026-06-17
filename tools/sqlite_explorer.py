@@ -1,186 +1,220 @@
 #!/usr/bin/env python3
 """
-SQLite Database Explorer CLI
-
-A standalone tool to inspect SQLite database structures, view tables, 
-execute SQL queries, and export results.
-
-Usage:
-    python tools/sqlite_explorer.py --db /path/to/database.db --list-tables
-    python tools/sqlite_explorer.py --db /path/to/database.db --schema table_name
-    python tools/sqlite_explorer.py --db /path/to/database.db --query "SELECT * FROM table"
+SQLite Database Explorer
+CLI utility to inspect SQLite databases, show tables, display schema,
+count rows, and execute queries with formatted tabular output.
 """
 
-import argparse
-import csv
-import json
+import sys
 import os
 import sqlite3
-import sys
-from typing import List, Dict, Any, Tuple
+import argparse
 
-def list_tables(conn: sqlite3.Connection) -> None:
-    """Lists all tables, views, and indexes in the database."""
-    cursor = conn.cursor()
-    
-    # Get tables
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;")
-    tables = cursor.fetchall()
-    
-    # Get views
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='view' ORDER BY name;")
-    views = cursor.fetchall()
-    
-    print("=== Database Objects ===")
-    print(f"\n[Tables] ({len(tables)} found):")
-    for row in tables:
-        print(f"  - {row[0]}")
+def format_table(headers, rows):
+    """Format tabular data into a pretty CLI table."""
+    if not headers:
+        return ""
         
-    print(f"\n[Views] ({len(views)} found):")
-    for row in views:
-        print(f"  - {row[0]}")
+    # Convert all cells to strings
+    string_rows = [[str(cell) for cell in row] for row in rows]
+    
+    # Calculate column widths
+    col_widths = [len(h) for h in headers]
+    for row in string_rows:
+        for i, cell in enumerate(row):
+            if i < len(col_widths):
+                col_widths[i] = max(col_widths[i], len(cell))
+            else:
+                col_widths.append(len(cell))
+                
+    # Build lines
+    sep_line = "+" + "+".join("-" * (w + 2) for w in col_widths) + "+"
+    header_line = "|" + "|".join(f" {h:<{w}} " for h, w in zip(headers, col_widths)) + "|"
+    
+    output = [sep_line, header_line, sep_line]
+    for row in string_rows:
+        row_line = "|" + "|".join(f" {cell:<{w}} " for cell, w in zip(row, col_widths)) + "|"
+        output.append(row_line)
+    output.append(sep_line)
+    
+    return "\n".join(output)
 
-def show_schema(conn: sqlite3.Connection, table_name: str) -> None:
-    """Displays the schema for a specific table."""
-    cursor = conn.cursor()
+def get_db_info(db_path):
+    """Retrieve general information about the SQLite database."""
+    size_bytes = os.path.getsize(db_path)
     try:
-        # Check if table exists
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", (table_name,))
-        if not cursor.fetchone():
-            print(f"Error: Table '{table_name}' not found.")
-            return
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute("SELECT sqlite_version();")
+        version = cursor.fetchone()[0]
+        
+        # Get count of tables and views
+        cursor.execute("SELECT count(*) FROM sqlite_master WHERE type='table';")
+        table_count = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT count(*) FROM sqlite_master WHERE type='view';")
+        view_count = cursor.fetchone()[0]
+        
+        conn.close()
+        
+        print("=== SQLite Database Info ===")
+        print(f"File Path:      {db_path}")
+        print(f"File Size:      {size_bytes} bytes ({size_bytes / 1024:.2f} KB)")
+        print(f"SQLite Version: {version}")
+        print(f"Tables:         {table_count}")
+        print(f"Views:          {view_count}")
+        print("============================\n")
+    except sqlite3.Error as e:
+        print(f"Error querying database metadata: {e}", file=sys.stderr)
 
-        cursor.execute(f"PRAGMA table_info({table_name});")
+def list_tables(db_path):
+    """List all tables with their schema and row counts."""
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Get tables
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name;")
+        tables = [row[0] for row in cursor.fetchall()]
+        
+        if not tables:
+            print("No user tables found in this database.")
+            conn.close()
+            return
+            
+        headers = ["Table Name", "Row Count", "Columns Count"]
+        rows = []
+        
+        for table in tables:
+            # Row count
+            try:
+                cursor.execute(f"SELECT count(*) FROM [{table}];")
+                row_count = cursor.fetchone()[0]
+            except sqlite3.Error:
+                row_count = "N/A"
+                
+            # Column count
+            try:
+                cursor.execute(f"PRAGMA table_info([{table}]);")
+                col_count = len(cursor.fetchall())
+            except sqlite3.Error:
+                col_count = "N/A"
+                
+            rows.append([table, row_count, col_count])
+            
+        print("--- Table Summary ---")
+        print(format_table(headers, rows))
+        conn.close()
+    except sqlite3.Error as e:
+        print(f"Database error: {e}", file=sys.stderr)
+
+def show_schema(db_path, table_name):
+    """Show the schema details for a specific table."""
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute(f"PRAGMA table_info([{table_name}]);")
         columns = cursor.fetchall()
         
-        # Display schema
-        print(f"=== Schema for Table: {table_name} ===")
-        print(f"{'CID':<5} | {'Name':<25} | {'Type':<15} | {'NotNull':<8} | {'Default':<12} | {'PK':<5}")
-        print("-" * 78)
+        if not columns:
+            # Check if table even exists
+            cursor.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = ?;", (table_name,))
+            exists = cursor.fetchone()[0] > 0
+            if not exists:
+                print(f"Error: Table '{table_name}' does not exist.", file=sys.stderr)
+            else:
+                print(f"No schema found for table '{table_name}'.")
+            conn.close()
+            return
+            
+        # Columns in PRAGMA table_info: cid, name, type, notnull, dflt_value, pk
+        headers = ["CID", "Column Name", "Data Type", "Not Null", "Default Value", "Primary Key"]
+        rows = []
         for col in columns:
             cid, name, col_type, notnull, dflt_value, pk = col
-            dflt_val_str = str(dflt_value) if dflt_value is not None else "NULL"
-            print(f"{cid:<5} | {name:<25} | {col_type:<15} | {notnull:<8} | {dflt_val_str:<12} | {pk:<5}")
+            rows.append([
+                cid, 
+                name, 
+                col_type if col_type else "BLOB/NONE", 
+                "Yes" if notnull else "No", 
+                dflt_value if dflt_value is not None else "NULL", 
+                "Yes" if pk else "No"
+            ])
             
-        # Get indexes
-        cursor.execute(f"PRAGMA index_list({table_name});")
-        indexes = cursor.fetchall()
-        if indexes:
-            print("\n[Indexes]:")
-            for idx in indexes:
-                seq, name, unique, origin, partial = idx
-                unique_str = "UNIQUE" if unique else "NON-UNIQUE"
-                print(f"  - {name} ({unique_str})")
+        print(f"--- Schema for table: {table_name} ---")
+        print(format_table(headers, rows))
+        
+        # Also print raw CREATE statement if available
+        cursor.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name = ?;", (table_name,))
+        create_sql = cursor.fetchone()
+        if create_sql and create_sql[0]:
+            print("\nRaw CREATE SQL:")
+            print(create_sql[0])
+            
+        conn.close()
     except sqlite3.Error as e:
         print(f"Database error: {e}", file=sys.stderr)
 
-def execute_query(conn: sqlite3.Connection, query: str, export_path: str = None, export_format: str = 'csv') -> None:
-    """Executes a SQL query and prints or exports the results."""
-    cursor = conn.cursor()
+def execute_query(db_path, query):
+    """Execute a query and print the output in format."""
     try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
         cursor.execute(query)
         
-        # Handle queries that don't return rows (e.g. UPDATE, INSERT, CREATE)
-        if cursor.description is None:
+        if cursor.description:
+            headers = [desc[0] for desc in cursor.description]
+            rows = cursor.fetchall()
+            print(f"Executed: {query}")
+            print(f"Results ({len(rows)} row(s)):")
+            print(format_table(headers, rows))
+        else:
             conn.commit()
-            print(f"Query executed successfully. Rows affected: {cursor.rowcount}")
-            return
+            print(f"Executed query successfully. Affected rows: {cursor.rowcount}")
             
-        columns = [desc[0] for desc in cursor.description]
-        rows = cursor.fetchall()
-        
-        if not rows:
-            print("Query executed. No rows returned.")
-            return
-            
-        if export_path:
-            export_results(columns, rows, export_path, export_format)
-        else:
-            print_table(columns, rows)
-            
+        conn.close()
     except sqlite3.Error as e:
-        print(f"Database error: {e}", file=sys.stderr)
+        print(f"SQL Execution Error: {e}", file=sys.stderr)
 
-def print_table(columns: List[str], rows: List[Tuple]) -> None:
-    """Prints rows in a formatted text table with automatic column sizing."""
-    # Find max width of each column
-    widths = [len(col) for col in columns]
-    for row in rows:
-        for i, val in enumerate(row):
-            widths[i] = max(widths[i], len(str(val if val is not None else "NULL")))
-            
-    # Print header
-    header = " | ".join(f"{col:<{widths[i]}}" for i, col in enumerate(columns))
-    print(header)
-    print("-" * len(header))
-    
-    # Print rows
-    for row in rows:
-        row_str = " | ".join(f"{str(val if val is not None else 'NULL'):<{widths[i]}}" for i, val in enumerate(row))
-        print(row_str)
-        
-    print(f"\n({len(rows)} row(s) returned)")
-
-def export_results(columns: List[str], rows: List[Tuple], path: str, format: str) -> None:
-    """Exports query results to a CSV or JSON file."""
-    try:
-        if format.lower() == 'csv':
-            with open(path, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.writer(f)
-                writer.writerow(columns)
-                writer.writerows(rows)
-            print(f"Successfully exported {len(rows)} rows to CSV: {path}")
-        elif format.lower() == 'json':
-            data = []
-            for row in rows:
-                data.append(dict(zip(columns, row)))
-            with open(path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4)
-            print(f"Successfully exported {len(rows)} rows to JSON: {path}")
-        else:
-            print(f"Error: Unknown export format '{format}'. Supported formats: csv, json", file=sys.stderr)
-    except IOError as e:
-        print(f"File write error: {e}", file=sys.stderr)
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description="SQLite Database Explorer CLI")
-    parser.add_argument('--db', required=True, help="Path to SQLite database file")
-    
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--list-tables', action='store_true', help="List all tables and views")
-    group.add_argument('--schema', help="Show schema of a specific table")
-    group.add_argument('--query', help="Execute a raw SQL SELECT query")
-    
-    parser.add_argument('--export', help="File path to export query results")
-    parser.add_argument('--format', choices=['csv', 'json'], default='csv', help="Export format (default: csv)")
+def main():
+    parser = argparse.ArgumentParser(
+        description="SQLite Database Explorer - Inspect schemas and run CLI queries",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("database", help="Path to SQLite database file")
+    parser.add_argument("--info", "-i", action="store_true", help="Print database size, version, and general metadata")
+    parser.add_argument("--list-tables", "-l", action="store_true", help="List all tables, column counts, and row counts")
+    parser.add_argument("--schema", "-s", metavar="TABLE", help="Display columns and primary keys for the specified table")
+    parser.add_argument("--query", "-q", metavar="SQL", help="Execute SQL statement and display formatted output")
     
     args = parser.parse_args()
     
-    if not os.path.exists(args.db):
-        print(f"Error: Database file '{args.db}' not found.", file=sys.stderr)
+    if not os.path.exists(args.database):
+        print(f"Error: Database file '{args.database}' does not exist.", file=sys.stderr)
         return 1
         
-    try:
-        # Connect to database (read-only mode if possible)
-        db_uri = f"file:{args.db}?mode=ro"
-        conn = sqlite3.connect(db_uri, uri=True)
-    except sqlite3.Error:
-        # Fallback to standard connection if URI mode fails
-        try:
-            conn = sqlite3.connect(args.db)
-        except sqlite3.Error as e:
-            print(f"Failed to connect to database: {e}", file=sys.stderr)
-            return 1
-            
-    try:
-        if args.list_tables:
-            list_tables(conn)
-        elif args.schema:
-            show_schema(conn, args.schema)
-        elif args.query:
-            execute_query(conn, args.query, args.export, args.format)
-    finally:
-        conn.close()
+    if os.path.isdir(args.database):
+        print(f"Error: '{args.database}' is a directory.", file=sys.stderr)
+        return 1
+        
+    # Default behavior if no specific flags are passed
+    if not (args.info or args.list_tables or args.schema or args.query):
+        args.info = True
+        args.list_tables = True
+        
+    if args.info:
+        get_db_info(args.database)
+        
+    if args.list_tables:
+        list_tables(args.database)
+        
+    if args.schema:
+        show_schema(args.database, args.schema)
+        
+    if args.query:
+        execute_query(args.database, args.query)
         
     return 0
 

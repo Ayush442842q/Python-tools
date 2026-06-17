@@ -1,195 +1,295 @@
 #!/usr/bin/env python3
 """
-System Info Reporter - A cross-platform tool to query and report system
-specifications, OS version details, CPU/Memory hardware info, and paths.
+System Info & Diagnostics Reporter
+Queries OS, CPU, memory, disk, network, and Python environment details without external dependencies.
 """
 
-import argparse
 import sys
 import os
 import platform
-import json
-import tempfile
 import subprocess
+import socket
+import json
+import shutil
+import argparse
+from datetime import datetime
 
-def get_ram_info():
-    """Gathers total and available RAM using platform-specific APIs without external dependencies."""
-    total_bytes = 0
-    avail_bytes = 0
-    sys_type = platform.system()
+def get_cmd_output(cmd):
+    """Run a shell command and return its stdout stripped."""
+    try:
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, text=True, timeout=3.0)
+        return result.stdout.strip() if result.returncode == 0 else None
+    except Exception:
+        return None
 
-    if sys_type == "Windows":
-        try:
-            import ctypes
-            class MEMORYSTATUSEX(ctypes.Structure):
-                _fields_ = [
-                    ("dwLength", ctypes.c_ulong),
-                    ("dwMemoryLoad", ctypes.c_ulong),
-                    ("ullTotalPhys", ctypes.c_uint64),
-                    ("ullAvailPhys", ctypes.c_uint64),
-                    ("ullTotalPageFile", ctypes.c_uint64),
-                    ("ullAvailPageFile", ctypes.c_uint64),
-                    ("ullTotalVirtual", ctypes.c_uint64),
-                    ("ullAvailVirtual", ctypes.c_uint64),
-                    ("ullAvailExtendedVirtual", ctypes.c_uint64),
-                ]
-            stat = MEMORYSTATUSEX()
-            stat.dwLength = ctypes.sizeof(stat)
-            if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat)):
-                total_bytes = stat.ullTotalPhys
-                avail_bytes = stat.ullAvailPhys
-        except Exception:
-            pass
+def format_bytes(bytes_num):
+    """Format bytes into human readable units."""
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if bytes_num < 1024.0:
+            return f"{bytes_num:.2f} {unit}"
+        bytes_num /= 1024.0
+    return f"{bytes_num:.2f} PB"
 
-    elif sys_type == "Linux":
-        try:
-            # Parse /proc/meminfo
-            mem_info = {}
-            with open("/proc/meminfo", "r") as f:
-                for line in f:
+def get_windows_mem():
+    """Get total physical memory in bytes on Windows."""
+    out = get_cmd_output("wmic ComputerSystem get TotalPhysicalMemory /value")
+    if out:
+        for line in out.splitlines():
+            if "TotalPhysicalMemory" in line:
+                try:
+                    return int(line.split("=")[1].strip())
+                except ValueError:
+                    pass
+    return None
+
+def get_linux_mem():
+    """Get total physical memory in bytes on Linux."""
+    try:
+        with open("/proc/meminfo", "r") as f:
+            for line in f:
+                if "MemTotal" in line:
                     parts = line.split()
-                    if len(parts) >= 2:
-                        key = parts[0].rstrip(":")
-                        val = int(parts[1]) * 1024 # KB to Bytes
-                        mem_info[key] = val
-            total_bytes = mem_info.get("MemTotal", 0)
-            avail_bytes = mem_info.get("MemAvailable", mem_info.get("MemFree", 0))
-        except Exception:
-            pass
+                    return int(parts[1]) * 1024 # KB to bytes
+    except Exception:
+        pass
+    return None
 
-    elif sys_type == "Darwin": # macOS
+def get_macos_mem():
+    """Get total physical memory in bytes on macOS."""
+    out = get_cmd_output("sysctl -n hw.memsize")
+    if out:
         try:
-            # Get total physical memory
-            proc = subprocess.Popen(["sysctl", "-n", "hw.memsize"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            stdout, _ = proc.communicate()
-            if proc.returncode == 0:
-                total_bytes = int(stdout.strip())
-                
-            # Get page size
-            proc = subprocess.Popen(["sysctl", "-n", "hw.pagesize"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            stdout, _ = proc.communicate()
-            pagesize = int(stdout.strip()) if proc.returncode == 0 else 4096
+            return int(out)
+        except ValueError:
+            pass
+    return None
+
+def get_cpu_info():
+    """Get processor name/brand string."""
+    cpu_name = platform.processor()
+    system = platform.system()
+    
+    if system == "Windows":
+        out = get_cmd_output("wmic cpu get Name /value")
+        if out:
+            for line in out.splitlines():
+                if "Name=" in line:
+                    return line.split("=")[1].strip()
+    elif system == "Linux":
+        out = get_cmd_output("grep -m 1 'model name' /proc/cpuinfo")
+        if out:
+            return out.split(":")[1].strip()
+    elif system == "Darwin": # macOS
+        out = get_cmd_output("sysctl -n machdep.cpu.brand_string")
+        if out:
+            return out
             
-            # Get vm_stat (page counts)
-            proc = subprocess.Popen(["vm_stat"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            stdout, _ = proc.communicate()
-            if proc.returncode == 0:
-                free_pages = 0
-                inactive_pages = 0
-                for line in stdout.decode("utf-8").splitlines():
-                    if "Pages free" in line:
-                        free_pages = int(line.split()[-1].strip("."))
-                    elif "Pages inactive" in line:
-                        inactive_pages = int(line.split()[-1].strip("."))
-                # Available is approximately Free + Inactive
-                avail_bytes = (free_pages + inactive_pages) * pagesize
+    return cpu_name or "Unknown Processor"
+
+def get_external_ip():
+    """Get external IP address with a short timeout."""
+    # Try different public IP providers
+    providers = ['https://api.ipify.org', 'https://ifconfig.me/ip', 'http://ipinfo.io/ip']
+    
+    # We will use python's standard urllib
+    import urllib.request
+    for url in providers:
+        try:
+            with urllib.request.urlopen(url, timeout=2.0) as response:
+                return response.read().decode('utf-8').strip()
+        except Exception:
+            continue
+    return "Unavailable/Offline"
+
+def gather_diagnostics():
+    """Compile all system diagnostic reports."""
+    system = platform.system()
+    
+    # OS Info
+    os_info = {
+        'system': system,
+        'release': platform.release(),
+        'version': platform.version(),
+        'architecture': platform.machine(),
+        'platform_string': platform.platform()
+    }
+    
+    # Python Info
+    py_info = {
+        'version': platform.python_version(),
+        'implementation': platform.python_implementation(),
+        'compiler': platform.python_compiler(),
+        'build': ", ".join(platform.python_build())
+    }
+    
+    # CPU Info
+    cpu_count = os.cpu_count() or "Unknown"
+    cpu_info = {
+        'cores': cpu_count,
+        'model': get_cpu_info()
+    }
+    
+    # Memory Info
+    total_mem = None
+    if system == "Windows":
+        total_mem = get_windows_mem()
+    elif system == "Linux":
+        total_mem = get_linux_mem()
+    elif system == "Darwin":
+        total_mem = get_macos_mem()
+        
+    mem_info = {
+        'total_raw': total_mem,
+        'total_formatted': format_bytes(total_mem) if total_mem else "Unknown"
+    }
+    
+    # Disk Info
+    total, used, free = shutil.disk_usage(os.path.abspath(os.sep))
+    disk_info = {
+        'total': format_bytes(total),
+        'used': format_bytes(used),
+        'free': format_bytes(free),
+        'percent_used': f"{(used/total)*100:.2f}%"
+    }
+    
+    # Network Info
+    hostname = socket.gethostname()
+    local_ip = "Unknown"
+    try:
+        # Standard hack to get local network IP
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        local_ip = s.getsockname()[0]
+        s.close()
+    except Exception:
+        try:
+            local_ip = socket.gethostbyname(hostname)
         except Exception:
             pass
+            
+    net_info = {
+        'hostname': hostname,
+        'local_ip': local_ip,
+        'external_ip': get_external_ip()
+    }
+    
+    return {
+        'timestamp': datetime.now().isoformat(),
+        'os': os_info,
+        'cpu': cpu_info,
+        'memory': mem_info,
+        'disk': disk_info,
+        'network': net_info,
+        'python': py_info
+    }
 
-    return total_bytes, avail_bytes
+def format_text_report(data):
+    """Generate plaintext output."""
+    lines = []
+    lines.append("=" * 50)
+    lines.append(f"SYSTEM DIAGNOSTICS REPORT - {data['timestamp']}")
+    lines.append("=" * 50)
+    
+    lines.append("\n[Operating System]")
+    lines.append(f"  OS Name:      {data['os']['system']}")
+    lines.append(f"  Release:      {data['os']['release']}")
+    lines.append(f"  Version:      {data['os']['version']}")
+    lines.append(f"  Architecture: {data['os']['architecture']}")
+    lines.append(f"  Details:      {data['os']['platform_string']}")
+    
+    lines.append("\n[Hardware Details]")
+    lines.append(f"  CPU Model:    {data['cpu']['model']}")
+    lines.append(f"  CPU Cores:    {data['cpu']['cores']}")
+    lines.append(f"  Physical Mem: {data['memory']['total_formatted']}")
+    
+    lines.append("\n[Storage Usage (Root)]")
+    lines.append(f"  Total Space:  {data['disk']['total']}")
+    lines.append(f"  Used Space:   {data['disk']['used']} ({data['disk']['percent_used']})")
+    lines.append(f"  Free Space:   {data['disk']['free']}")
+    
+    lines.append("\n[Network Interface]")
+    lines.append(f"  Hostname:     {data['network']['hostname']}")
+    lines.append(f"  Local IP:     {data['network']['local_ip']}")
+    lines.append(f"  External IP:  {data['network']['external_ip']}")
+    
+    lines.append("\n[Python Environment]")
+    lines.append(f"  Version:      {data['python']['version']}")
+    lines.append(f"  Impl:         {data['python']['implementation']}")
+    lines.append(f"  Compiler:     {data['python']['compiler']}")
+    lines.append(f"  Build:        {data['python']['build']}")
+    lines.append("\n" + "=" * 50)
+    return "\n".join(lines)
 
-def format_bytes(byte_count):
-    """Formats raw bytes into a human-readable string (GB/MB)."""
-    if byte_count <= 0:
-        return "Unknown"
-    gb = byte_count / (1024 ** 3)
-    return f"{gb:.2f} GB"
+def format_markdown_report(data):
+    """Generate Markdown output."""
+    md = []
+    md.append(f"# System Diagnostics Report")
+    md.append(f"*Generated on: {data['timestamp']}*\n")
+    
+    md.append("## Operating System")
+    md.append(f"- **OS:** {data['os']['system']}")
+    md.append(f"- **Release:** {data['os']['release']}")
+    md.append(f"- **Version:** {data['os']['version']}")
+    md.append(f"- **Architecture:** {data['os']['architecture']}")
+    md.append(f"- **Platform String:** `{data['os']['platform_string']}`\n")
+    
+    md.append("## Hardware Details")
+    md.append(f"- **CPU Model:** {data['cpu']['model']}")
+    md.append(f"- **CPU Cores:** {data['cpu']['cores']}")
+    md.append(f"- **Physical Memory:** {data['memory']['total_formatted']}\n")
+    
+    md.append("## Storage Usage (Root)")
+    md.append("| Property | Value |")
+    md.append("| --- | --- |")
+    md.append(f"| Total | {data['disk']['total']} |")
+    md.append(f"| Used | {data['disk']['used']} ({data['disk']['percent_used']}) |")
+    md.append(f"| Free | {data['disk']['free']} | \n")
+    
+    md.append("## Network Interface")
+    md.append(f"- **Hostname:** `{data['network']['hostname']}`")
+    md.append(f"- **Local IP:** `{data['network']['local_ip']}`")
+    md.append(f"- **External IP:** `{data['network']['external_ip']}`\n")
+    
+    md.append("## Python Environment")
+    md.append(f"- **Python Version:** `{data['python']['version']}`")
+    md.append(f"- **Implementation:** {data['python']['implementation']}")
+    md.append(f"- **Compiler:** `{data['python']['compiler']}`")
+    md.append(f"- **Build info:** `{data['python']['build']}`")
+    
+    return "\n".join(md)
 
 def main():
     parser = argparse.ArgumentParser(
-        description="System Info Reporter - Gather details on hardware, operating system, and system paths."
+        description="System Info & Diagnostics Reporter",
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("--os", action="store_true", help="Print OS/Kernel information only")
-    group.add_argument("--hardware", action="store_true", help="Print CPU and Memory details only")
-    group.add_argument("--paths", action="store_true", help="Print system paths and directories only")
-    group.add_argument("-j", "--json", action="store_true", help="Output reports in JSON format")
-
+    parser.add_argument("--format", "-f", default="text", choices=["text", "markdown", "json"], help="Output format (default: text)")
+    parser.add_argument("--output", "-o", help="File path to write report to (otherwise stdout)")
+    
     args = parser.parse_args()
-
-    # Retrieve all info
-    os_name = platform.system()
-    os_release = platform.release()
-    os_version = platform.version()
-    hostname = platform.node()
-    arch, _ = platform.architecture()
-    machine = platform.machine()
-    processor = platform.processor() or "Unknown Processor"
     
-    cpu_cores = os.cpu_count() or 0
-    total_ram, avail_ram = get_ram_info()
+    print("Collecting system diagnostics...", file=sys.stderr)
+    report_data = gather_diagnostics()
     
-    home_dir = os.path.expanduser("~")
-    temp_dir = tempfile.gettempdir()
-    cwd = os.getcwd()
-    python_path = sys.executable
-    python_ver = platform.python_version()
-
-    # Formulate structure
-    report = {
-        "os": {
-            "system": os_name,
-            "release": os_release,
-            "version": os_version,
-            "hostname": hostname,
-            "architecture": arch,
-            "machine": machine
-        },
-        "hardware": {
-            "processor": processor,
-            "logical_cores": cpu_cores,
-            "total_ram_bytes": total_ram,
-            "available_ram_bytes": avail_ram,
-            "total_ram_formatted": format_bytes(total_ram),
-            "available_ram_formatted": format_bytes(avail_ram)
-        },
-        "paths": {
-            "current_working_directory": cwd,
-            "home_directory": home_dir,
-            "temp_directory": temp_dir,
-            "python_executable": python_path,
-            "python_version": python_ver
-        }
-    }
-
-    if args.json:
-        # JSON output
-        if args.os:
-            print(json.dumps(report["os"], indent=2))
-        elif args.hardware:
-            print(json.dumps(report["hardware"], indent=2))
-        elif args.paths:
-            print(json.dumps(report["paths"], indent=2))
-        else:
-            print(json.dumps(report, indent=2))
-        sys.exit(0)
-
-    # Format human-readable output
-    if args.os or (not args.hardware and not args.paths):
-        print("--- Operating System Info ---")
-        print(f"OS/Kernel Name:     {report['os']['system']}")
-        print(f"OS Release Version: {report['os']['release']}")
-        print(f"OS Build Detail:    {report['os']['version']}")
-        print(f"Hostname:           {report['os']['hostname']}")
-        print(f"Architecture:       {report['os']['architecture']} ({report['os']['machine']})")
-        print()
-
-    if args.hardware or (not args.os and not args.paths):
-        print("--- Hardware Specifications ---")
-        print(f"Processor Name:     {report['hardware']['processor']}")
-        print(f"Logical CPU Cores:  {report['hardware']['logical_cores']}")
-        print(f"Total System RAM:   {report['hardware']['total_ram_formatted']}")
-        print(f"Available RAM:      {report['hardware']['available_ram_formatted']}")
-        print()
-
-    if args.paths or (not args.os and not args.hardware):
-        print("--- System Environment & Paths ---")
-        print(f"Current Directory:  {report['paths']['current_working_directory']}")
-        print(f"Home Directory:     {report['paths']['home_directory']}")
-        print(f"Temp Directory:     {report['paths']['temp_directory']}")
-        print(f"Python Executable:  {report['paths']['python_executable']}")
-        print(f"Python Version:     {report['paths']['python_version']}")
-        print()
+    if args.format == "json":
+        report_out = json.dumps(report_data, indent=4)
+    elif args.format == "markdown":
+        report_out = format_markdown_report(report_data)
+    else:
+        report_out = format_text_report(report_data)
+        
+    if args.output:
+        try:
+            with open(args.output, 'w', encoding='utf-8') as f:
+                f.write(report_out + "\n")
+            print(f"Report saved to '{args.output}'")
+        except Exception as e:
+            print(f"Error saving report to file: {e}", file=sys.stderr)
+            return 1
+    else:
+        print(report_out)
+        
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

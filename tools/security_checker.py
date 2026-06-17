@@ -15,7 +15,7 @@ PATTERNS = [
     (r'pickle\.loads?\s*', "Pickle can execute arbitrary code, use with caution"),
     (r'os\.system\s*\(', "os.system() is dangerous, use subprocess module"),
     (r'subprocess\.call\s*[^,]*shell\s*=\s*True', "subprocess with shell=True is dangerous"),
-    (r'open\s*[^)]*['\"']w['\"']', "Opening file in write mode without checking path can be risky"),
+    (r"open\s*[^)]*['\"]w['\"]", "Opening file in write mode without checking path can be risky"),
     (r'r\s*=\s*requests\.get\s*\([^)]*\)\s*\.text', "Consider using .content for binary data or check for HTTPS"),
 ]
 

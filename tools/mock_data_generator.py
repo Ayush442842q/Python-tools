@@ -1,251 +1,172 @@
 #!/usr/bin/env python3
 """
-Custom Mock Data Generator
-
-Generates synthetic datasets in CSV, JSON, or SQL format based on user-defined schemas.
-Supports auto-incrementing IDs, names, emails, phone numbers, dates, numbers, text, 
-custom choices, and UUIDs. Requires no external dependencies (like Faker).
-
-Usage:
-    python tools/mock_data_generator.py -n 50 -f csv -s "id:id,name:name,email:email,status:choice[Active|Inactive],score:number[1-100]" -o output.csv
-    python tools/mock_data_generator.py -n 5 -f sql --table users -s "id:id,name:name,created_at:date[2020-01-01:2025-12-31]"
+Mock Data Generator - Generates realistic random profile data (names, emails, addresses, companies, jobs).
+Supports JSON, CSV, and XML output formats, making it ideal for database seeding and API testing.
 """
 
 import argparse
 import csv
+import io
 import json
 import random
-import re
 import sys
 import uuid
-from datetime import datetime, timedelta
+import xml.etree.ElementTree as ET
 
-# Mock lists for generation without external dependencies
+# Embedded datasets for generating realistic data without third-party dependencies
 FIRST_NAMES = [
-    "James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda", "William", "Elizabeth",
-    "David", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Charles", "Karen",
-    "Christopher", "Lisa", "Daniel", "Nancy", "Matthew", "Betty", "Anthony", "Sandra", "Mark", "Margaret",
-    "Donald", "Ashley", "Steven", "Kimberly", "Paul", "Emily", "Andrew", "Donna", "Joshua", "Michelle"
+    "James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Elizabeth",
+    "William", "Linda", "David", "Barbara", "Richard", "Susan", "Joseph", "Jessica",
+    "Thomas", "Sarah", "Charles", "Karen", "Christopher", "Nancy", "Daniel", "Lisa",
+    "Matthew", "Betty", "Anthony", "Margaret", "Mark", "Sandra", "Donald", "Ashley",
+    "Steven", "Dorothy", "Andrew", "Kimberly", "Paul", "Emily", "Joshua", "Donna",
+    "Kenneth", "Michelle", "Kevin", "Carol", "Brian", "Amanda", "George", "Melissa",
+    "Timothy", "Deborah", "Ronald", "Stephanie", "Edward", "Rebecca", "Jason", "Sharon",
+    "Jeffrey", "Laura", "Ryan", "Cynthia", "Jacob", "Kathleen", "Gary", "Amy",
+    "Nicholas", "Angela", "Eric", "Shirley", "Jonathan", "Anna", "Stephen", "Brenda"
 ]
 
 LAST_NAMES = [
-    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-    "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
-    "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
-    "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores"
+    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
+    "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas",
+    "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson", "White",
+    "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker", "Young",
+    "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores",
+    "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell",
+    "Carter", "Roberts", "Gomez", "Phillips", "Evans", "Turner", "Diaz", "Parker"
 ]
 
-DOMAINS = ["example.com", "test.org", "mockmail.net", "company.io", "web.com"]
+DOMAINS = ["example.com", "mockmail.net", "testmail.org", "company.io", "webmail.com", "service.co"]
 
-LOREM_WORDS = [
-    "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do", 
-    "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua", "ut", 
-    "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi"
+STREET_NAMES = [
+    "Broadway", "Main St", "Oak Ave", "Pine St", "Maple Dr", "Cedar Rd", "Elm St",
+    "Park Ln", "Hill St", "Washington St", "Lake Dr", "Sunset Blvd", "River Rd", "Forest Ave"
 ]
 
-def generate_name():
-    return f"{random.choice(FIRST_NAMES)} {random.choice(LAST_NAMES)}"
+CITIES = [
+    ("New York", "NY", "10001"), ("Los Angeles", "CA", "90001"), ("Chicago", "IL", "60601"),
+    ("Houston", "TX", "77001"), ("Phoenix", "AZ", "85001"), ("Philadelphia", "PA", "19101"),
+    ("San Antonio", "TX", "78201"), ("San Diego", "CA", "92101"), ("Dallas", "TX", "75201"),
+    ("San Jose", "CA", "95101"), ("Austin", "TX", "78701"), ("Jacksonville", "FL", "32201"),
+    ("Fort Worth", "TX", "76101"), ("Columbus", "OH", "43201"), ("Charlotte", "NC", "28201")
+]
 
-def generate_email(name):
-    clean_name = re.sub(r'[^a-zA-Z0-9]', '', name.lower())
-    return f"{clean_name}{random.randint(10, 99)}@{random.choice(DOMAINS)}"
+COMPANIES = [
+    "TechCorp", "InnoSystems", "ApexSolutions", "CloudScale", "QuantumData", "NovusLabs",
+    "VortexGroup", "ElementHQ", "SynergyCo", "CoreTech", "StellarDynamics", "InfiniLink"
+]
 
-def generate_phone():
-    return f"+1-{random.randint(200, 999)}-{random.randint(200, 999)}-{random.randint(1000, 9999)}"
+JOB_TITLES = [
+    "Software Engineer", "Product Manager", "Data Analyst", "UX Designer", "DevOps Engineer",
+    "Marketing Lead", "HR Specialist", "Sales Director", "Systems Architect", "Financial Analyst",
+    "QA Engineer", "Security Consultant", "Database Administrator", "Technical Writer"
+]
 
-def generate_date(param_str):
-    # Default range: past year
-    start_date = datetime.now() - timedelta(days=365)
-    end_date = datetime.now()
+def generate_record():
+    """Generates a single random mock profile record."""
+    first = random.choice(FIRST_NAMES)
+    last = random.choice(LAST_NAMES)
+    company = random.choice(COMPANIES)
+    city_info = random.choice(CITIES)
     
-    if param_str:
-        try:
-            parts = param_str.split(':')
-            if len(parts) == 2:
-                start_date = datetime.strptime(parts[0], "%Y-%m-%d")
-                end_date = datetime.strptime(parts[1], "%Y-%m-%d")
-        except Exception:
-            pass
-            
-    delta = end_date - start_date
-    int_delta = int(delta.total_seconds())
-    if int_delta <= 0:
-        return start_date.strftime("%Y-%m-%d %H:%M:%S")
-    random_second = random.randint(0, int_delta)
-    return (start_date + timedelta(seconds=random_second)).strftime("%Y-%m-%d %H:%M:%S")
-
-def generate_number(param_str):
-    # Default: 1-100 int
-    min_val, max_val = 1, 100
-    is_float = False
+    # Derivations
+    username = f"{first.lower()}{random.randint(10, 99)}"
+    email = f"{first.lower()}.{last.lower()}@{random.choice(DOMAINS)}"
+    phone = f"+1-{random.randint(200, 999)}-{random.randint(200, 999)}-{random.randint(1000, 9999)}"
+    street_num = random.randint(100, 9999)
+    address = f"{street_num} {random.choice(STREET_NAMES)}, {city_info[0]}, {city_info[1]} {city_info[2]}"
+    ip_addr = f"{random.randint(1, 254)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(1, 254)}"
     
-    if param_str:
-        try:
-            # Parse [1-100] or [1.5-10.5]
-            parts = param_str.split('-')
-            if len(parts) == 2:
-                if '.' in parts[0] or '.' in parts[1]:
-                    min_val = float(parts[0])
-                    max_val = float(parts[1])
-                    is_float = True
-                else:
-                    min_val = int(parts[0])
-                    max_val = int(parts[1])
-        except Exception:
-            pass
-            
-    if is_float:
-        return round(random.uniform(min_val, max_val), 2)
-    return random.randint(int(min_val), int(max_val))
+    return {
+        "id": str(uuid.uuid4())[:8],
+        "name": f"{first} {last}",
+        "username": username,
+        "email": email,
+        "phone": phone,
+        "address": address,
+        "company": company,
+        "job_title": random.choice(JOB_TITLES),
+        "ip_address": ip_addr
+    }
 
-def generate_choice(param_str):
-    # Parse options like "Active|Inactive|Pending"
-    if not param_str:
-        return "Option"
-    choices = param_str.split('|')
-    return random.choice(choices)
-
-def generate_text(param_str):
-    # Default: 10 words
-    word_count = 10
-    if param_str:
-        try:
-            word_count = int(param_str)
-        except ValueError:
-            pass
-    words = [random.choice(LOREM_WORDS) for _ in range(word_count)]
-    return " ".join(words).capitalize() + "."
-
-def parse_schema(schema_str):
-    """
-    Parses fields like "name:name,email:email,age:number[18-65],role:choice[Admin|User]"
-    Returns a list of dicts: [{'name': 'age', 'type': 'number', 'param': '18-65'}]
-    """
-    fields = []
-    # Match comma separated fields, handling nested brackets
-    # E.g. "role:choice[Admin|User],age:number[18-65]"
-    pattern = r'([a-zA-Z0-9_]+):([a-zA-Z]+)(?:\[([^\]]+)\])?'
-    matches = re.findall(pattern, schema_str)
-    
-    for name, field_type, param in matches:
-        fields.append({
-            'name': name,
-            'type': field_type.lower(),
-            'param': param
-        })
-    return fields
-
-def generate_dataset(fields, count):
-    dataset = []
-    for i in range(1, count + 1):
-        row = {}
-        # Keep track of generated names in this row to link with email if necessary
-        row_name = None
-        
-        for field in fields:
-            ftype = field['type']
-            fparam = field['param']
-            fname = field['name']
-            
-            if ftype == 'id':
-                row[fname] = i
-            elif ftype == 'uuid':
-                row[fname] = str(uuid.uuid4())
-            elif ftype == 'name':
-                row_name = generate_name()
-                row[fname] = row_name
-            elif ftype == 'email':
-                # Try to use row's name if we generated it, else make new
-                ref_name = row_name or generate_name()
-                row[fname] = generate_email(ref_name)
-            elif ftype == 'phone':
-                row[fname] = generate_phone()
-            elif ftype == 'date':
-                row[fname] = generate_date(fparam)
-            elif ftype == 'number':
-                row[fname] = generate_number(fparam)
-            elif ftype == 'choice':
-                row[fname] = generate_choice(fparam)
-            elif ftype == 'text':
-                row[fname] = generate_text(fparam)
-            elif ftype == 'boolean':
-                row[fname] = random.choice([True, False])
-            else:
-                row[fname] = f"unknown_{ftype}"
-        dataset.append(row)
-    return dataset
-
-def export_csv(dataset, headers, stream):
-    writer = csv.DictWriter(stream, fieldnames=headers)
+def to_csv(records):
+    """Formats records to CSV string."""
+    output = io.StringIO()
+    if not records:
+        return ""
+    writer = csv.DictWriter(output, fieldnames=records[0].keys())
     writer.writeheader()
-    for row in dataset:
-        writer.writerow(row)
+    writer.writerows(records)
+    return output.getvalue()
 
-def export_sql(dataset, headers, table_name, stream):
-    for row in dataset:
-        cols = []
-        vals = []
-        for h in headers:
-            cols.append(f"`{h}`")
-            val = row[h]
-            if isinstance(val, (int, float)):
-                vals.append(str(val))
-            elif isinstance(val, bool):
-                vals.append("1" if val else "0")
-            elif val is None:
-                vals.append("NULL")
-            else:
-                # Escape single quotes
-                escaped = str(val).replace("'", "''")
-                vals.append(f"'{escaped}'")
-                
-        col_str = ", ".join(cols)
-        val_str = ", ".join(vals)
-        stream.write(f"INSERT INTO `{table_name}` ({col_str}) VALUES ({val_str});\n")
+def to_xml(records):
+    """Formats records to XML string."""
+    root = ET.Element("dataset")
+    for r in records:
+        record_node = ET.SubElement(root, "record")
+        for key, val in r.items():
+            child = ET.SubElement(record_node, key)
+            child.text = str(val)
+    
+    # Beautifully indent
+    try:
+        ET.indent(root, space="  ")
+    except AttributeError:
+        # indent added in Python 3.9
+        pass
+        
+    return ET.tostring(root, encoding="utf-8").decode("utf-8")
 
 def main():
-    parser = argparse.ArgumentParser(description="Custom Mock Data Generator - Generate synthetic datasets in JSON, CSV, or SQL format.")
-    parser.add_argument('-n', '--count', type=int, default=10, help='Number of rows to generate (default: 10)')
-    parser.add_argument('-f', '--format', choices=['json', 'csv', 'sql'], default='json', help='Output format (default: json)')
-    parser.add_argument('-s', '--schema', required=True, 
-                        help='Schema definition. Example: "id:id,username:text[1],email:email,status:choice[Active|Inactive],score:number[1-100]"')
-    parser.add_argument('--table', default='mock_data', help='SQL table name (default: mock_data)')
-    parser.add_argument('-o', '--output', help='Output file path (prints to console if omitted)')
+    parser = argparse.ArgumentParser(
+        description="Mock Data Generator - Create sample user data sets in JSON, CSV, or XML format."
+    )
+    parser.add_argument(
+        "-n", "--count",
+        type=int,
+        default=10,
+        help="Number of records to generate (default: 10)"
+    )
+    parser.add_argument(
+        "-f", "--format",
+        choices=["json", "csv", "xml"],
+        default="json",
+        help="Output format style (default: json)"
+    )
+    parser.add_argument(
+        "-o", "--output",
+        help="File path to save the generated mock data"
+    )
 
     args = parser.parse_args()
 
-    fields = parse_schema(args.schema)
-    if not fields:
-        print("❌ Error: Invalid schema format. Please define columns as name:type[parameter].", file=sys.stderr)
-        print("Types: id, uuid, name, email, phone, date, number, choice, text, boolean.", file=sys.stderr)
+    if args.count <= 0:
+        print("Error: Count must be a positive integer.", file=sys.stderr)
         return 1
 
-    dataset = generate_dataset(fields, args.count)
-    headers = [f['name'] for f in fields]
+    records = [generate_record() for _ in range(args.count)]
 
-    # Open output stream
+    # Format result
+    if args.format == "json":
+        output_str = json.dumps(records, indent=2)
+    elif args.format == "csv":
+        output_str = to_csv(records)
+    elif args.format == "xml":
+        output_str = to_xml(records)
+    else:
+        output_str = ""
+
+    # Write output
     if args.output:
         try:
-            stream = open(args.output, 'w', encoding='utf-8', newline='')
-        except IOError as e:
-            print(f"❌ Error opening output file: {e}", file=sys.stderr)
+            with open(args.output, "w", encoding="utf-8") as f:
+                f.write(output_str)
+            print(f"[+] Successfully generated {args.count} records and saved to {args.output}")
+        except Exception as e:
+            print(f"Error saving to file: {e}", file=sys.stderr)
             return 1
     else:
-        stream = sys.stdout
-
-    try:
-        if args.format == 'json':
-            json.dump(dataset, stream, indent=4)
-            if not args.output:
-                stream.write('\n')
-        elif args.format == 'csv':
-            export_csv(dataset, headers, stream)
-        elif args.format == 'sql':
-            export_sql(dataset, headers, args.table, stream)
-    finally:
-        if args.output:
-            stream.close()
-            print(f"🎉 Generated {args.count} mock rows in {args.format.upper()} format and saved to: {args.output}")
+        print(output_str)
 
     return 0
 

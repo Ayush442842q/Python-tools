@@ -1,27 +1,45 @@
 #!/usr/bin/env python3
 """
-Sitemap Generator
+Sitemap Generator - Standalone website crawler and SEO sitemap builder
 
-Crawls a website starting from a base URL up to a maximum depth/page limit,
-discovers all internal links, and generates a standard sitemap.xml file.
-Uses only Python built-in modules.
+Crawls a target website recursively (within a domain, up to a specified depth 
+and page count) and generates a standard XML Sitemap or text site hierarchy.
+Uses only Python standard libraries.
 
 Usage:
-    python tools/sitemap_generator.py https://example.com [--max-pages 100] [--max-depth 3] [-o sitemap.xml]
+    python tools/sitemap_generator.py <url> [options]
+
+Options:
+    url                 Starting URL (e.g. https://example.com)
+    -o, --output        Output file path (default: sitemap.xml)
+    -d, --depth         Max crawling depth (default: 3)
+    -m, --max-pages     Max pages to crawl (default: 50)
+    -t, --type          Output format: xml, txt (default: xml)
+    -v, --verbose       Show real-time crawling logs
+
+Example:
+    python tools/sitemap_generator.py https://example.com -d 2 -o my_sitemap.xml
 """
 
 import argparse
-import os
 import sys
-import time
-import urllib.parse
+import os
 import urllib.request
+import urllib.parse
 from html.parser import HTMLParser
-from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
-from xml.dom import minidom
+from collections import deque
+import ssl
 
-class LinkParser(HTMLParser):
-    """Simple HTML Parser to extract href links from a page."""
+# ANSI escape codes
+RESET = "\033[0m"
+BOLD = "\033[1m"
+GREEN = "\033[32m"
+RED = "\033[31m"
+YELLOW = "\033[33m"
+CYAN = "\033[36m"
+
+class LinkExtractor(HTMLParser):
+    """HTML parser to extract all href links from a page."""
     def __init__(self, base_url):
         super().__init__()
         self.base_url = base_url
@@ -29,163 +47,153 @@ class LinkParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         if tag == 'a':
-            for name, value in attrs:
-                if name == 'href' and value:
-                    # Ignore anchors, mailto:, javascript:, tel:
-                    if value.startswith(('#', 'mailto:', 'javascript:', 'tel:')):
-                        continue
-                    # Resolve relative URLs
-                    absolute = urllib.parse.urljoin(self.base_url, value)
-                    # Strip URL fragment (#heading)
-                    absolute = urllib.parse.urlsplit(absolute)._replace(fragment='').geturl()
-                    self.links.add(absolute)
+            attrs_dict = dict(attrs)
+            href = attrs_dict.get('href')
+            if href:
+                # Remove anchor fragments
+                href = href.split('#')[0].strip()
+                if href:
+                    # Resolve relative URLs to absolute
+                    absolute_url = urllib.parse.urljoin(self.base_url, href)
+                    self.links.add(absolute_url)
 
-def fetch_page_links(url, domain, user_agent):
-    """Fetches a page and parses all internal URLs from it."""
-    headers = {'User-Agent': user_agent}
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        # Ignore SSL errors for scraping if they occur, but try to open normally
-        with urllib.request.urlopen(req, timeout=8) as response:
-            content_type = response.info().get_content_type()
-            if 'text/html' not in content_type:
-                return set()
-            
-            html_bytes = response.read()
-            # Attempt decoding, fallback to ignore errors
-            try:
-                html_text = html_bytes.decode('utf-8')
-            except UnicodeDecodeError:
-                html_text = html_bytes.decode('latin-1', errors='ignore')
-                
-            parser = LinkParser(url)
-            parser.feed(html_text)
-            
-            # Filter links to keep only internal ones (same domain)
-            internal_links = set()
-            for link in parser.links:
-                parsed_link = urllib.parse.urlparse(link)
-                # Check if it has same netloc (domain)
-                if parsed_link.netloc == domain:
-                    internal_links.add(link)
-                    
-            return internal_links
-    except Exception as e:
-        # Silently catch fetch errors to continue crawl (e.g. 404, timeouts)
-        return set()
+def get_domain(url):
+    """Extract netloc/domain from a URL."""
+    return urllib.parse.urlparse(url).netloc
 
-def crawl_site(base_url, max_pages, max_depth, delay, user_agent):
-    """Crawls pages starting from base_url, adhering to constraints."""
-    parsed_base = urllib.parse.urlparse(base_url)
-    domain = parsed_base.netloc
-    
-    if not domain:
-        print(f"Error: Invalid URL scheme or domain for: {base_url}", file=sys.stderr)
+def crawl_site(start_url, max_depth=3, max_pages=50, verbose=False):
+    """Crawls pages recursively using BFS to extract internal links."""
+    start_domain = get_domain(start_url)
+    if not start_domain:
+        print(f"{RED}Error: Invalid starting URL domain.{RESET}", file=sys.stderr)
         return []
 
-    # Queue of tuples: (url, depth)
-    queue = [(base_url, 0)]
-    visited = {} # url -> lastmod (simulated as current crawl date)
-    
-    print(f"Starting crawl of domain: {domain}")
-    print(f"Limits: max depth = {max_depth}, max pages = {max_pages}, delay = {delay}s")
-    print("-" * 50)
-    
-    while queue and len(visited) < max_pages:
-        url, depth = queue.pop(0)
+    # Queue contains tuples of (url, current_depth)
+    queue = deque([(start_url, 0)])
+    visited = {start_url}
+    pages_crawled = []
+
+    # Create a custom SSL context to avoid certificate verification errors for self-signed or dev setups
+    ssl_context = ssl._create_unverified_context()
+
+    print(f"Starting crawl of domain: {BOLD}{start_domain}{RESET}")
+    print("-----------------------------------------")
+
+    while queue and len(visited) <= max_pages:
+        current_url, depth = queue.popleft()
         
-        # Skip if already visited
-        if url in visited:
+        if depth > max_depth:
             continue
             
-        print(f"[{len(visited) + 1}/{max_pages}] Crawling: {url} (Depth: {depth})")
-        
-        visited[url] = time.strftime('%Y-%m-%d')
-        
-        if depth < max_depth:
-            # Fetch links
-            discovered = fetch_page_links(url, domain, user_agent)
-            
-            # Add new links to queue
-            for link in discovered:
-                if link not in visited and link not in [q[0] for q in queue]:
-                    queue.append((link, depth + 1))
-                    
-        # Throttle request rate
-        if delay > 0 and queue:
-            time.sleep(delay)
-
-    print("-" * 50)
-    print(f"Crawl completed. Discovered {len(visited)} total pages.")
-    return visited
-
-def generate_sitemap_xml(urls_with_dates, output_file):
-    """Generates a sitemap.xml file from crawled URLs."""
-    urlset = Element('urlset', {
-        'xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'
-    })
-    
-    for url, date in sorted(urls_with_dates.items()):
-        url_el = SubElement(urlset, 'url')
-        loc_el = SubElement(url_el, 'loc')
-        loc_el.text = url
-        lastmod_el = SubElement(url_el, 'lastmod')
-        lastmod_el.text = date
-        changefreq_el = SubElement(url_el, 'changefreq')
-        changefreq_el.text = 'weekly'
-        priority_el = SubElement(url_el, 'priority')
-        # Simple heuristic: homepage is 1.0, deeper paths are 0.5 - 0.8
-        path = urllib.parse.urlparse(url).path.strip('/')
-        if not path:
-            priority_el.text = '1.0'
+        if verbose:
+            print(f"[{len(pages_crawled) + 1}] Crawling: {current_url} (depth={depth})")
         else:
-            depth = len(path.split('/'))
-            priority = max(0.2, 0.9 - (depth * 0.15))
-            priority_el.text = f"{priority:.2f}"
+            sys.stdout.write(f"\rCrawling... Found {len(visited)} URLs, parsed {len(pages_crawled)} pages.")
+            sys.stdout.flush()
 
-    # Format XML nicely using minidom
-    xml_str = tostring(urlset, 'utf-8')
-    parsed_xml = minidom.parseString(xml_str)
-    pretty_xml = parsed_xml.toprettyxml(indent="  ", encoding="UTF-8").decode("UTF-8")
+        pages_crawled.append(current_url)
 
-    try:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(pretty_xml)
-        print(f"Sitemap written successfully to: {os.path.abspath(output_file)}")
-        return True
-    except Exception as e:
-        print(f"Error saving sitemap: {e}", file=sys.stderr)
-        return False
+        try:
+            # Add user-agent header to avoid 403 Forbidden errors
+            req = urllib.request.Request(
+                current_url, 
+                headers={'User-Agent': 'Mozilla/5.0 (SitemapGenerator Crawler)'}
+            )
+            with urllib.request.urlopen(req, timeout=10, context=ssl_context) as response:
+                # We only parse HTML documents
+                content_type = response.info().get_content_type()
+                if 'text/html' not in content_type:
+                    continue
+                    
+                html_bytes = response.read()
+                html_text = html_bytes.decode('utf-8', errors='ignore')
+                
+            parser = LinkExtractor(current_url)
+            parser.feed(html_text)
+            
+            for link in parser.links:
+                parsed_link = urllib.parse.urlparse(link)
+                # Keep crawls restricted to the original domain and protocol http/https
+                if parsed_link.netloc == start_domain and parsed_link.scheme in ('http', 'https'):
+                    if link not in visited and len(visited) < max_pages:
+                        visited.add(link)
+                        queue.append((link, depth + 1))
+                        
+        except Exception as e:
+            if verbose:
+                print(f"{YELLOW}  Failed to crawl {current_url}: {e}{RESET}")
+            continue
+
+    if not verbose:
+        sys.stdout.write("\n")
+        sys.stdout.flush()
+
+    print(f"\n{GREEN}✔ Crawl completed! Scanned {len(pages_crawled)} pages, found {len(visited)} URLs.{RESET}")
+    return sorted(list(visited))
+
+def generate_xml_sitemap(urls):
+    """Format a list of URLs into standard XML sitemap format."""
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    ]
+    for url in urls:
+        # XML escape special characters
+        escaped_url = url.replace('&', '&amp;').replace("'", '&apos;').replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;')
+        lines.append('  <url>')
+        lines.append(f'    <loc>{escaped_url}</loc>')
+        lines.append('  </url>')
+    lines.append('</urlset>')
+    return '\n'.join(lines)
+
+def generate_txt_sitemap(urls):
+    """Format a list of URLs into a flat text list."""
+    return '\n'.join(urls)
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate a standard XML sitemap by crawling a website.")
-    parser.add_argument('url', help='The base URL of the website to crawl (must include http:// or https://)')
-    parser.add_argument('-m', '--max-pages', type=int, default=50, help='Maximum number of pages to crawl (default: 50)')
-    parser.add_argument('-d', '--max-depth', type=int, default=3, help='Maximum crawling depth (default: 3)')
-    parser.add_argument('-w', '--delay', type=float, default=0.2, help='Wait time (in seconds) between requests (default: 0.2)')
-    parser.add_argument('-o', '--output', default='sitemap.xml', help='Output file path (default: sitemap.xml)')
-    parser.add_argument('--user-agent', default='SitemapGeneratorBot/1.0', help='User Agent header string')
+    parser = argparse.ArgumentParser(description="Standalone recursive Sitemap XML/TXT Generator")
+    parser.add_argument('url', help="Starting URL to crawl (e.g. https://example.com)")
+    parser.add_argument('-o', '--output', default='sitemap.xml', help="Output file path (default: sitemap.xml)")
+    parser.add_argument('-d', '--depth', type=int, default=3, help="Max crawling depth (default: 3)")
+    parser.add_argument('-m', '--max-pages', type=int, default=50, help="Max pages to crawl (default: 50)")
+    parser.add_argument('-t', '--type', choices=['xml', 'txt'], default='xml', help="Output format: xml, txt")
+    parser.add_argument('-v', '--verbose', action='store_true', help="Print crawl logs in real-time")
+    
     args = parser.parse_args()
-
-    # Normalize starting URL
-    start_url = args.url.strip()
-    if not (start_url.startswith('http://') or start_url.startswith('https://')):
+    
+    start_url = args.url
+    if not start_url.startswith(('http://', 'https://')):
+        # Attempt to auto-fix starting protocol
         start_url = 'https://' + start_url
         
-    crawled_urls = crawl_site(
-        base_url=start_url,
-        max_pages=args.max_pages,
-        max_depth=args.max_depth,
-        delay=args.delay,
-        user_agent=args.user_agent
-    )
+    print(f"{BOLD}{GREEN}========================================={RESET}")
+    print(f"{BOLD}{GREEN}            SITEMAP GENERATOR            {RESET}")
+    print(f"{BOLD}{GREEN}========================================={RESET}")
+    print(f"Target: {start_url}")
+    print(f"Max Depth: {args.depth} | Max Pages Limit: {args.max_pages}")
+    print(f"Output: {args.output} ({args.type})")
+    print()
     
-    if not crawled_urls:
-        print("Error: No pages crawled. Sitemap generation aborted.", file=sys.stderr)
+    urls = crawl_site(start_url, max_depth=args.depth, max_pages=args.max_pages, verbose=args.verbose)
+    
+    if not urls:
+        print(f"{RED}No URLs found. Sitemap was not created.{RESET}", file=sys.stderr)
         return 1
+        
+    if args.type == 'xml':
+        sitemap_content = generate_xml_sitemap(urls)
+    else:
+        sitemap_content = generate_txt_sitemap(urls)
+        
+    try:
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(sitemap_content + '\n')
+        print(f"{GREEN}✔ Successfully saved sitemap to {args.output}{RESET}")
+    except Exception as e:
+        print(f"{RED}Failed to write sitemap output to {args.output}: {e}{RESET}", file=sys.stderr)
+        return 1
+        
+    return 0
 
-    success = generate_sitemap_xml(crawled_urls, args.output)
-    return 0 if success else 1
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

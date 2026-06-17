@@ -2,23 +2,28 @@
 """
 HTML to Markdown Converter
 
-A standalone utility to convert HTML documents or fragments into clean, 
-standard Markdown format using Python's built-in html.parser.
+Converts HTML text or files into formatted Markdown. Leverages Python's built-in
+html.parser library to ensure a standalone script without external dependencies.
 
 Usage:
-    python tools/html_to_markdown.py [options] [html_file]
+    python tools/html_to_markdown.py [input_file] [options]
 
-Examples:
-    python tools/html_to_markdown.py index.html
-    python tools/html_to_markdown.py --ignore-links page.html -o page.md
-    curl -s https://example.com | python tools/html_to_markdown.py > example.md
+Options:
+    input_file          HTML file to convert (reads from stdin if omitted or '-')
+    -o, --output        Output file to write Markdown (default: print to stdout)
+    -g, --ignore-links  Ignore hyperlinks (convert to plain text)
+    -i, --ignore-images Ignore image tags
+
+Example:
+    python tools/html_to_markdown.py index.html -o README.md
+    echo "<h1>Hello World</h1><p>This is <b>bold</b>!</p>" | python tools/html_to_markdown.py
 """
 
 import argparse
-import html
 import sys
+import os
 from html.parser import HTMLParser
-from pathlib import Path
+import re
 
 class HTMLToMarkdownParser(HTMLParser):
     def __init__(self, ignore_links=False, ignore_images=False):
@@ -26,330 +31,210 @@ class HTMLToMarkdownParser(HTMLParser):
         self.ignore_links = ignore_links
         self.ignore_images = ignore_images
         
-        # Output accumulation
-        self.markdown_parts = []
-        
-        # Parser state
+        # State tracking
+        self.markdown = []
         self.tag_stack = []
-        self.list_state = []  # Stack of dicts: {'type': 'ul'/'ol', 'index': int}
-        self.current_link = None
+        self.list_counters = [] # Stores current list type or numbered count
+        self.href = None
+        self.alt = None
         self.in_pre = False
-        self.in_style_or_script = False
-        
-        # Buffer to aggregate inline content to avoid unnecessary spacing issues
-        self.inline_buffer = []
-        
-        # Table parsing state
-        self.table_data = []  # List of rows, each is list of cell texts
-        self.current_row = []
-        self.current_cell = []
-        self.in_table = False
-        self.in_th = False
+        self.in_code = False
+        self.in_blockquote = False
+        self.newline_buffer = 0
 
-    def flush_buffer(self):
-        """Append inline buffer content to the main markdown output."""
-        if self.inline_buffer:
-            text = "".join(self.inline_buffer)
-            self.markdown_parts.append(text)
-            self.inline_buffer = []
+    def add_text(self, text):
+        if not text:
+            return
+        # If we are in code block (pre), preserve spaces and newlines
+        if self.in_pre:
+            self.markdown.append(text)
+            self.newline_buffer = 0
+            return
+            
+        # Clean up whitespace for ordinary text
+        text = text.replace('\n', ' ')
+        text = re.sub(r'\s+', ' ', text)
+        
+        # If we just had structural elements (like block elements), ensure newlines
+        if self.newline_buffer > 0:
+            self.markdown.append('\n' * self.newline_buffer)
+            self.newline_buffer = 0
+            
+        self.markdown.append(text)
 
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
-        tag_lower = tag.lower()
-        self.tag_stack.append(tag_lower)
+        self.tag_stack.append(tag)
         
-        if tag_lower in ('style', 'script', 'head', 'meta', 'link'):
-            self.in_style_or_script = True
-            return
+        if tag in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+            self.newline_buffer = 2
+            level = int(tag[1])
+            self.add_text('#' * level + ' ')
             
-        if self.in_style_or_script:
-            return
-
-        # Handle block-level tags by flushing previous buffer
-        if tag_lower in ('p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'pre', 'blockquote', 'hr', 'table', 'tr', 'div'):
-            self.flush_buffer()
-
-        if tag_lower == 'pre':
+        elif tag == 'p':
+            self.newline_buffer = 2
+            
+        elif tag in ('b', 'strong'):
+            self.markdown.append('**')
+            
+        elif tag in ('i', 'em'):
+            self.markdown.append('*')
+            
+        elif tag == 'code':
+            self.in_code = True
+            if self.in_pre:
+                pass # Already handled by pre
+            else:
+                self.markdown.append('`')
+                
+        elif tag == 'pre':
             self.in_pre = True
-            self.markdown_parts.append("\n```\n")
+            self.newline_buffer = 2
+            self.markdown.append('```\n')
             
-        elif tag_lower == 'code':
-            if not self.in_pre:
-                self.inline_buffer.append("`")
-                
-        elif tag_lower in ('strong', 'b'):
-            self.inline_buffer.append("**")
+        elif tag == 'blockquote':
+            self.in_blockquote = True
+            self.newline_buffer = 1
+            self.markdown.append('> ')
             
-        elif tag_lower in ('em', 'i'):
-            self.inline_buffer.append("*")
+        elif tag == 'a' and not self.ignore_links:
+            self.href = attrs_dict.get('href', '')
+            self.markdown.append('[')
             
-        elif tag_lower == 'blockquote':
-            self.markdown_parts.append("\n> ")
-            
-        elif tag_lower == 'a':
-            href = attrs_dict.get('href', '')
-            if href and not self.ignore_links:
-                self.current_link = href
-                self.inline_buffer.append("[")
-                
-        elif tag_lower == 'img':
+        elif tag == 'img' and not self.ignore_images:
             src = attrs_dict.get('src', '')
             alt = attrs_dict.get('alt', 'Image')
-            if src and not self.ignore_images:
-                self.flush_buffer()
-                self.markdown_parts.append(f"\n![{alt}]({src})\n")
-                
-        elif tag_lower == 'hr':
-            self.markdown_parts.append("\n---\n")
+            self.markdown.append(f'![{alt}]({src})')
             
-        elif tag_lower == 'ul':
-            self.list_state.append({'type': 'ul', 'index': 0})
-            self.markdown_parts.append("\n")
+        elif tag == 'ul':
+            self.list_counters.append('ul')
+            self.newline_buffer = 1
             
-        elif tag_lower == 'ol':
-            self.list_state.append({'type': 'ol', 'index': 1})
-            self.markdown_parts.append("\n")
+        elif tag == 'ol':
+            self.list_counters.append(1)
+            self.newline_buffer = 1
             
-        elif tag_lower == 'li':
-            indent = "  " * (len(self.list_state) - 1)
-            if self.list_state:
-                lst = self.list_state[-1]
-                if lst['type'] == 'ul':
-                    self.markdown_parts.append(f"{indent}- ")
+        elif tag == 'li':
+            # Compute indentation
+            indent = '    ' * (len(self.list_counters) - 1)
+            if self.list_counters:
+                current_list = self.list_counters[-1]
+                if current_list == 'ul':
+                    prefix = '- '
                 else:
-                    self.markdown_parts.append(f"{indent}{lst['index']}. ")
-                    lst['index'] += 1
+                    prefix = f'{current_list}. '
+                    self.list_counters[-1] += 1
             else:
-                self.markdown_parts.append("- ")
-                
-        elif tag_lower == 'table':
-            self.in_table = True
-            self.table_data = []
+                prefix = '- '
             
-        elif tag_lower == 'tr':
-            self.current_row = []
+            self.newline_buffer = 1
+            self.add_text(f'{indent}{prefix}')
             
-        elif tag_lower in ('td', 'th'):
-            self.current_cell = []
-            self.in_th = (tag_lower == 'th')
+        elif tag == 'br':
+            self.markdown.append('\n')
+            
+        elif tag == 'hr':
+            self.newline_buffer = 1
+            self.add_text('---\n')
+            self.newline_buffer = 1
 
     def handle_endtag(self, tag):
-        tag_lower = tag.lower()
-        
-        # Pop from stack
-        if self.tag_stack and self.tag_stack[-1] == tag_lower:
+        if self.tag_stack and self.tag_stack[-1] == tag:
             self.tag_stack.pop()
             
-        if tag_lower in ('style', 'script', 'head', 'meta', 'link'):
-            self.in_style_or_script = False
-            return
+        if tag in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'):
+            self.newline_buffer = 2
             
-        if self.in_style_or_script:
-            return
-
-        if tag_lower == 'pre':
-            self.flush_buffer()
-            self.in_pre = False
-            # Strip trailing newline inside markdown block before closing
-            if self.markdown_parts and self.markdown_parts[-1].endswith('\n'):
-                self.markdown_parts[-1] = self.markdown_parts[-1][:-1]
-            self.markdown_parts.append("\n```\n")
+        elif tag in ('b', 'strong'):
+            self.markdown.append('**')
             
-        elif tag_lower == 'code':
+        elif tag in ('i', 'em'):
+            self.markdown.append('*')
+            
+        elif tag == 'code':
+            self.in_code = False
             if not self.in_pre:
-                self.inline_buffer.append("`")
+                self.markdown.append('`')
                 
-        elif tag_lower in ('strong', 'b'):
-            self.inline_buffer.append("**")
+        elif tag == 'pre':
+            self.in_pre = False
+            self.markdown.append('\n```')
+            self.newline_buffer = 2
             
-        elif tag_lower in ('em', 'i'):
-            self.inline_buffer.append("*")
+        elif tag == 'blockquote':
+            self.in_blockquote = False
+            self.newline_buffer = 2
             
-        elif tag_lower == 'a':
-            if self.current_link and not self.ignore_links:
-                self.inline_buffer.append(f"]({self.current_link})")
-                self.current_link = None
-                
-        elif tag_lower == 'p':
-            self.flush_buffer()
-            self.markdown_parts.append("\n\n")
+        elif tag == 'a' and not self.ignore_links:
+            if self.href:
+                self.markdown.append(f']({self.href})')
+            else:
+                self.markdown.append(']')
+            self.href = None
             
-        elif tag_lower in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
-            self.flush_buffer()
-            level = int(tag_lower[1])
-            header_text = self.markdown_parts.pop() if self.markdown_parts else ""
-            self.markdown_parts.append(f"\n{'#' * level} {header_text.strip()}\n\n")
+        elif tag in ('ul', 'ol'):
+            if self.list_counters:
+                self.list_counters.pop()
+            self.newline_buffer = 2
             
-        elif tag_lower in ('ul', 'ol'):
-            if self.list_state:
-                self.list_state.pop()
-            self.flush_buffer()
-            self.markdown_parts.append("\n")
-            
-        elif tag_lower == 'li':
-            self.flush_buffer()
-            self.markdown_parts.append("\n")
-            
-        elif tag_lower == 'blockquote':
-            self.flush_buffer()
-            self.markdown_parts.append("\n\n")
-            
-        elif tag_lower in ('td', 'th'):
-            cell_text = "".join(self.current_cell).strip().replace('\n', ' ')
-            self.current_row.append((cell_text, self.in_th))
-            self.in_th = False
-            
-        elif tag_lower == 'tr':
-            if self.current_row:
-                self.table_data.append(self.current_row)
-                
-        elif tag_lower == 'table':
-            self.in_table = False
-            self.render_table()
+        elif tag == 'li':
+            self.newline_buffer = 1
 
     def handle_data(self, data):
-        if self.in_style_or_script:
-            return
-            
-        if self.in_table:
-            # We are inside td or th
-            if self.tag_stack and self.tag_stack[-1] in ('td', 'th'):
-                self.current_cell.append(data)
-            return
-
-        if self.in_pre:
-            self.markdown_parts.append(data)
-        else:
-            # Normalize whitespace outside pre blocks
-            clean_data = data if self.tag_stack and self.tag_stack[-1] == 'code' else ' '.join(data.split())
-            if clean_data:
-                # Add spaces if necessary to avoid slamming inline tags together
-                if data.startswith(' ') and self.inline_buffer and not self.inline_buffer[-1].endswith(' '):
-                    self.inline_buffer.append(' ')
-                self.inline_buffer.append(html.unescape(clean_data))
-                if data.endswith(' '):
-                    self.inline_buffer.append(' ')
-
-    def render_table(self):
-        """Format the parsed table details as a Markdown table."""
-        if not self.table_data:
-            return
-            
-        self.flush_buffer()
-        self.markdown_parts.append("\n")
-        
-        # Determine number of columns
-        max_cols = max(len(row) for row in self.table_data)
-        
-        # Setup column alignments and widths
-        widths = [0] * max_cols
-        for row in self.table_data:
-            for idx, cell in enumerate(row):
-                widths[idx] = max(widths[idx], len(cell[0]))
-                
-        # Fill table rows
-        for r_idx, row in enumerate(self.table_data):
-            row_str = "|"
-            for c_idx in range(max_cols):
-                val = row[c_idx][0] if c_idx < len(row) else ""
-                w = max(widths[c_idx], 3)
-                row_str += f" {val.ljust(w)} |"
-            self.markdown_parts.append(row_str + "\n")
-            
-            # Print alignment separator line after first row (headers)
-            if r_idx == 0:
-                sep_str = "|"
-                for c_idx in range(max_cols):
-                    w = max(widths[c_idx], 3)
-                    sep_str += f" {'-' * w} |"
-                self.markdown_parts.append(sep_str + "\n")
-                
-        self.markdown_parts.append("\n")
+        self.add_text(data)
 
     def get_markdown(self):
-        self.flush_buffer()
-        raw_md = "".join(self.markdown_parts)
-        
-        # Post-process cleanup of empty lines and excessive spaces
-        lines = raw_md.split('\n')
-        cleaned_lines = []
-        for line in lines:
-            cleaned_lines.append(line.rstrip())
-            
-        result = "\n".join(cleaned_lines)
-        # Collapse multiple empty lines (max 2 consecutive empty lines)
-        while "\n\n\n" in result:
-            result = result.replace("\n\n\n", "\n\n")
-            
-        return result.strip() + "\n"
+        result = ''.join(self.markdown)
+        # Clean up excessive newlines
+        result = re.sub(r'\n{3,}', '\n\n', result)
+        return result.strip()
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Convert HTML documents or snippets to clean Markdown format."
-    )
-    parser.add_argument(
-        'html_file',
-        nargs='?',
-        help='Path to the HTML file. If omitted, reads from standard input.'
-    )
-    parser.add_argument(
-        '-o', '--output',
-        help='Write Markdown output to a file instead of stdout'
-    )
-    parser.add_argument(
-        '--ignore-links',
-        action='store_true',
-        help='Convert hyperlinks into plain text (removes href references)'
-    )
-    parser.add_argument(
-        '--ignore-images',
-        action='store_true',
-        help='Ignore image tags completely'
-    )
+    parser = argparse.ArgumentParser(description="Convert HTML to Markdown")
+    parser.add_argument('input_file', nargs='?', default='-', 
+                        help="HTML file to parse (default or '-': read from stdin)")
+    parser.add_argument('-o', '--output', help="Output file path for Markdown")
+    parser.add_argument('-g', '--ignore-links', action='store_true', help="Convert hyperlinks to plain text")
+    parser.add_argument('-i', '--ignore-images', action='store_true', help="Skip image conversion")
     
     args = parser.parse_args()
     
     # Read HTML content
-    html_content = ""
-    if args.html_file:
+    if args.input_file == '-':
+        html_content = sys.stdin.read()
+    else:
+        if not os.path.exists(args.input_file):
+            print(f"Error: File '{args.input_file}' not found.", file=sys.stderr)
+            return 1
         try:
-            with open(args.html_file, 'r', encoding='utf-8', errors='ignore') as f:
+            with open(args.input_file, 'r', encoding='utf-8') as f:
                 html_content = f.read()
         except Exception as e:
-            print(f"Error reading HTML file '{args.html_file}': {e}", file=sys.stderr)
+            print(f"Error reading file '{args.input_file}': {e}", file=sys.stderr)
             return 1
-    else:
-        # Check if stdin is a TTY (user did not pipe anything)
-        if sys.stdin.isatty():
-            print("Error: No input HTML file provided, and standard input is empty.", file=sys.stderr)
-            parser.print_help()
-            return 1
-        html_content = sys.stdin.read()
-        
+            
     # Parse HTML
-    parser_instance = HTMLToMarkdownParser(
-        ignore_links=args.ignore_links,
-        ignore_images=args.ignore_images
-    )
+    parser = HTMLToMarkdownParser(ignore_links=args.ignore_links, ignore_images=args.ignore_images)
     try:
-        parser_instance.feed(html_content)
-        parser_instance.close()
-        markdown_output = parser_instance.get_markdown()
+        parser.feed(html_content)
+        parser.close()
     except Exception as e:
         print(f"Error parsing HTML: {e}", file=sys.stderr)
         return 1
         
+    markdown_out = parser.get_markdown()
+    
     # Write output
     if args.output:
         try:
             with open(args.output, 'w', encoding='utf-8') as f:
-                f.write(markdown_output)
-            print(f"Markdown successfully saved to {args.output}")
+                f.write(markdown_out + '\n')
+            print(f"Success: HTML converted and saved to {args.output}")
         except Exception as e:
-            print(f"Error writing to output file '{args.output}': {e}", file=sys.stderr)
+            print(f"Error writing output to '{args.output}': {e}", file=sys.stderr)
             return 1
     else:
-        print(markdown_output, end="")
+        print(markdown_out)
         
     return 0
 

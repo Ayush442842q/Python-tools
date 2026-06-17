@@ -1,243 +1,185 @@
 #!/usr/bin/env python3
 """
-Advanced CLI Unit Converter - A utility to convert measurements between various units.
-
-Features:
-- Categories supported: Length, Mass/Weight, Temperature, Data Storage, Speed, and Time.
-- Supports both direct command line arguments and a friendly interactive menu mode.
-- Zero external dependencies.
+Developer's Unit Converter
+Converts between common developer unit systems: digital storage, data transfer rates, 
+number systems, and epoch timestamps.
 """
 
 import argparse
 import sys
+import datetime
+import math
 
-# Define unit conversion systems
-# Values are scale factors relative to the category's base unit.
+# Digital Storage mapping
+STORAGE_DECIMAL = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+STORAGE_BINARY = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB']
 
-UNITS = {
-    'length': {
-        'base': 'm',
-        'desc': 'Length / Distance',
-        'factors': {
-            'm': 1.0,           # Meter (Base)
-            'km': 1000.0,       # Kilometer
-            'cm': 0.01,         # Centimeter
-            'mm': 0.001,        # Millimeter
-            'mi': 1609.344,     # Mile
-            'yd': 0.9144,       # Yard
-            'ft': 0.3048,       # Foot
-            'in': 0.0254,       # Inch
-        }
-    },
-    'mass': {
-        'base': 'g',
-        'desc': 'Mass / Weight',
-        'factors': {
-            'g': 1.0,           # Gram (Base)
-            'kg': 1000.0,       # Kilogram
-            'mg': 0.001,        # Milligram
-            'lb': 453.59237,    # Pound
-            'oz': 28.349523,    # Ounce
-            'ton': 1000000.0,   # Metric Ton
-        }
-    },
-    'data': {
-        'base': 'B',
-        'desc': 'Data Storage (Decimal / SI base 1000)',
-        'factors': {
-            'B': 1.0,           # Byte (Base)
-            'KB': 1000.0,       # Kilobyte
-            'MB': 1000.0 ** 2,  # Megabyte
-            'GB': 1000.0 ** 3,  # Gigabyte
-            'TB': 1000.0 ** 4,  # Terabyte
-            'KiB': 1024.0,      # Kibibyte (Binary base 1024)
-            'MiB': 1024.0 ** 2, # Mebibyte
-            'GiB': 1024.0 ** 3, # Gibibyte
-            'TiB': 1024.0 ** 4, # Tebibyte
-        }
-    },
-    'speed': {
-        'base': 'm/s',
-        'desc': 'Speed / Velocity',
-        'factors': {
-            'm/s': 1.0,         # Meters per second (Base)
-            'km/h': 1 / 3.6,    # Kilometers per hour
-            'mph': 0.44704,     # Miles per hour
-            'knots': 0.514444,  # Knots
-        }
-    },
-    'time': {
-        'base': 's',
-        'desc': 'Time',
-        'factors': {
-            's': 1.0,           # Second (Base)
-            'ms': 0.001,        # Millisecond
-            'min': 60.0,        # Minute
-            'h': 3600.0,        # Hour
-            'd': 86400.0,       # Day
-            'w': 604800.0,      # Week
-            'y': 31536000.0,    # Year (365 days)
-        }
-    }
-}
+# Bandwidth mapping
+BANDWIDTH_UNITS = ['bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps']
 
-def convert_temperature(val, from_unit, to_unit):
-    """Special handling for temperature conversions."""
-    from_unit = from_unit.upper()
-    to_unit = to_unit.upper()
+def convert_storage(value, from_unit, to_unit, binary=False):
+    units = STORAGE_BINARY if binary else STORAGE_DECIMAL
+    base = 1024 if binary else 1000
     
-    # Standardize to Celsius first
-    if from_unit == 'C':
-        c = val
-    elif from_unit == 'F':
-        c = (val - 32) * 5/9
-    elif from_unit == 'K':
-        c = val - 273.15
-    else:
-        raise ValueError(f"Unknown temperature unit: {from_unit}")
-        
-    # Convert Celsius to target
-    if to_unit == 'C':
-        return c
-    elif to_unit == 'F':
-        return (c * 9/5) + 32
-    elif to_unit == 'K':
-        return c + 273.15
-    else:
-        raise ValueError(f"Unknown temperature unit: {to_unit}")
-
-def convert(val, from_unit, to_unit):
-    """Converts a value from one unit to another."""
-    # Check temperature
-    temp_units = {'C', 'F', 'K', 'CELSIUS', 'FAHRENHEIT', 'KELVIN'}
-    if from_unit.upper() in temp_units or to_unit.upper() in temp_units:
-        # Map long names to shorthand
-        mapping = {'CELSIUS': 'C', 'FAHRENHEIT': 'F', 'KELVIN': 'K'}
-        u_from = mapping.get(from_unit.upper(), from_unit.upper())
-        u_to = mapping.get(to_unit.upper(), to_unit.upper())
-        return convert_temperature(val, u_from, u_to), 'temperature'
-
-    # Find the category
-    for cat_name, cat_data in UNITS.items():
-        factors = cat_data['factors']
-        # Case insensitive check
-        matching_from = next((k for k in factors if k.lower() == from_unit.lower()), None)
-        matching_to = next((k for k in factors if k.lower() == to_unit.lower()), None)
-        
-        if matching_from and matching_to:
-            # Convert to base unit, then to target unit
-            val_in_base = val * factors[matching_from]
-            val_in_target = val_in_base / factors[matching_to]
-            return val_in_target, cat_name
-
-    raise ValueError(f"Invalid conversion path from '{from_unit}' to '{to_unit}'. Units must belong to the same category.")
-
-def list_units():
-    """Print all available categories and units."""
-    print("=" * 60)
-    print("Available Unit Categories and Units")
-    print("=" * 60)
-    for cat_name, cat_data in UNITS.items():
-        units_str = ", ".join(cat_data['factors'].keys())
-        print(f"{cat_data['desc']} ({cat_name}):")
-        print(f"  Units: {units_str}")
-        print(f"  Base:  {cat_data['base']}")
-        print()
-    print("Temperature (temperature):")
-    print("  Units: C, F, K")
-    print("=" * 60)
-
-def run_interactive():
-    """Run interactive CLI menu."""
-    print("=" * 60)
-    print("           CLI Unit Converter - Interactive Mode")
-    print("=" * 60)
+    # Normalize inputs
+    from_idx = -1
+    to_idx = -1
     
-    categories = list(UNITS.keys()) + ['temperature']
-    
-    while True:
-        print("\nSelect a category:")
-        for idx, cat in enumerate(categories, 1):
-            desc = UNITS[cat]['desc'] if cat in UNITS else 'Temperature (C, F, K)'
-            print(f"  {idx}. {desc}")
-        print("  0. Exit")
-        
-        try:
-            choice = input("\nEnter choice (0-6): ").strip()
-            if choice == '0' or not choice:
-                print("Goodbye!")
+    # Allow loose matching (e.g. "kb" to "KB" or "KiB")
+    for i, u in enumerate(units):
+        if u.lower() == from_unit.lower():
+            from_idx = i
+        if u.lower() == to_unit.lower():
+            to_idx = i
+            
+    # Fallback to check prefix if no exact match (e.g. from="kb" on binary mode)
+    if from_idx == -1:
+        prefix = from_unit.rstrip('iB').rstrip('B').upper()
+        for i, u in enumerate(units):
+            if u.startswith(prefix):
+                from_idx = i
                 break
                 
-            idx = int(choice) - 1
-            if idx < 0 or idx >= len(categories):
-                print("Invalid choice, try again.")
-                continue
-                
-            selected_cat = categories[idx]
-            
-            # Print available units
-            if selected_cat == 'temperature':
-                available_units = ['C', 'F', 'K']
-                print("\nAvailable Temperature Units: C (Celsius), F (Fahrenheit), K (Kelvin)")
-            else:
-                available_units = list(UNITS[selected_cat]['factors'].keys())
-                print(f"\nAvailable Units: {', '.join(available_units)}")
-                
-            from_unit = input("Convert from unit: ").strip()
-            if from_unit.lower() not in [u.lower() for u in available_units]:
-                print(f"Invalid unit '{from_unit}' for category '{selected_cat}'.")
-                continue
-                
-            to_unit = input("Convert to unit: ").strip()
-            if to_unit.lower() not in [u.lower() for u in available_units]:
-                print(f"Invalid unit '{to_unit}' for category '{selected_cat}'.")
-                continue
-                
-            val_str = input("Enter value: ").strip()
-            val = float(val_str)
-            
-            res, _ = convert(val, from_unit, to_unit)
-            print(f"\n---> {val} {from_unit} = {res:.6g} {to_unit}")
-            print("-" * 40)
-            
+    if to_idx == -1:
+        prefix = to_unit.rstrip('iB').rstrip('B').upper()
+        for i, u in enumerate(units):
+            if u.startswith(prefix):
+                to_idx = i
+                break
+
+    if from_idx == -1 or to_idx == -1:
+        raise ValueError(f"Invalid units: '{from_unit}' or '{to_unit}'. Supported: {', '.join(units)}")
+        
+    # Convert to bytes first, then to target
+    bytes_val = value * (base ** from_idx)
+    target_val = bytes_val / (base ** to_idx)
+    return target_val, units[to_idx]
+
+def convert_bandwidth(value, from_unit, to_unit):
+    # Bandwidth standard is base-1000
+    try:
+        from_idx = [u.lower() for u in BANDWIDTH_UNITS].index(from_unit.lower())
+        to_idx = [u.lower() for u in BANDWIDTH_UNITS].index(to_unit.lower())
+    except ValueError:
+        raise ValueError(f"Invalid bandwidth units. Supported: {', '.join(BANDWIDTH_UNITS)}")
+        
+    bps_val = value * (1000 ** from_idx)
+    target_val = bps_val / (1000 ** to_idx)
+    return target_val, BANDWIDTH_UNITS[to_idx]
+
+def convert_bases(val_str, from_base, to_base):
+    # Parse inputs
+    try:
+        if from_base.lower() in ('dec', '10'):
+            num = int(val_str)
+        elif from_base.lower() in ('hex', '16'):
+            num = int(val_str, 16)
+        elif from_base.lower() in ('bin', '2'):
+            num = int(val_str, 2)
+        elif from_base.lower() in ('oct', '8'):
+            num = int(val_str, 8)
+        elif from_base.lower() in ('ascii', 'char'):
+            if len(val_str) != 1:
+                raise ValueError("ASCII input must be a single character.")
+            num = ord(val_str)
+        else:
+            raise ValueError(f"Unsupported from-base: '{from_base}'")
+    except ValueError as e:
+        raise ValueError(f"Failed to parse input '{val_str}' with base '{from_base}': {e}")
+
+    # Format output
+    if to_base.lower() in ('dec', '10'):
+        return str(num)
+    elif to_base.lower() in ('hex', '16'):
+        return hex(num)
+    elif to_base.lower() in ('bin', '2'):
+        return bin(num)
+    elif to_base.lower() in ('oct', '8'):
+        return oct(num)
+    elif to_base.lower() in ('ascii', 'char'):
+        if 0 <= num <= 0x10FFFF:
+            return chr(num)
+        else:
+            return f"Out of ASCII/Unicode range: {num}"
+    else:
+        raise ValueError(f"Unsupported to-base: '{to_base}'")
+
+def convert_time(val_str):
+    # Try converting timestamp to date
+    try:
+        # Check if float or int timestamp
+        ts = float(val_str)
+        dt_utc = datetime.datetime.fromtimestamp(ts, datetime.timezone.utc)
+        dt_local = datetime.datetime.fromtimestamp(ts)
+        return (f"Unix Timestamp: {ts}\n"
+                f"UTC Datetime:   {dt_utc.isoformat()}\n"
+                f"Local Datetime: {dt_local.isoformat()}")
+    except ValueError:
+        pass
+        
+    # Try converting ISO string to timestamp
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+        try:
+            dt = datetime.datetime.strptime(val_str, fmt)
+            ts = dt.timestamp()
+            return (f"ISO/Date Input: {val_str}\n"
+                    f"Unix Timestamp: {ts}\n"
+                    f"UTC Datetime:   {dt.astimezone(datetime.timezone.utc).isoformat()}")
         except ValueError:
-            print("Error: Please enter numeric values where expected.")
-        except KeyboardInterrupt:
-            print("\nGoodbye!")
-            break
-        except Exception as e:
-            print(f"Error: {e}")
+            continue
+            
+    raise ValueError(f"Could not parse '{val_str}' as Unix timestamp or YYYY-MM-DD [HH:MM:SS] format.")
 
 def main():
-    parser = argparse.ArgumentParser(description="Advanced CLI Unit Converter - A simple yet robust conversion tool")
-    parser.add_argument("value", type=float, nargs="?", help="Value to convert")
-    parser.add_argument("--from", dest="from_unit", help="Unit to convert from (e.g. km, C, MB)")
-    parser.add_argument("--to", dest="to_unit", help="Unit to convert to (e.g. miles, F, GB)")
-    parser.add_argument("-l", "--list", action="store_true", help="List all supported categories and units")
+    parser = argparse.ArgumentParser(description="Developer's conversion utility for digital storage, bandwidth, number systems, and time.")
+    
+    subparsers = parser.add_subparsers(dest='category', help='Category of conversion')
+    
+    # 1. Digital Storage
+    p_storage = subparsers.add_parser('storage', help='Convert between digital storage sizes (e.g. KB to GB)')
+    p_storage.add_argument('value', type=float, help='Numeric value to convert')
+    p_storage.add_argument('from_unit', type=str, help='Source unit (e.g. B, KB, MB, GB, TB, KiB, MiB, GiB)')
+    p_storage.add_argument('to_unit', type=str, help='Target unit (e.g. GB, GiB)')
+    p_storage.add_argument('-b', '--binary', action='store_true', help='Use base-1024 binary units (KiB, MiB) instead of base-1000 decimal (KB, MB)')
+    
+    # 2. Bandwidth
+    p_band = subparsers.add_parser('bandwidth', help='Convert network data rates (e.g. Mbps to Gbps)')
+    p_band.add_argument('value', type=float, help='Numeric value to convert')
+    p_band.add_argument('from_unit', type=str, help='Source unit (e.g. bps, Kbps, Mbps, Gbps)')
+    p_band.add_argument('to_unit', type=str, help='Target unit (e.g. Gbps)')
+    
+    # 3. Number Systems
+    p_base = subparsers.add_parser('base', help='Convert numbers between base representation (2, 8, 10, 16, ASCII)')
+    p_base.add_argument('value', type=str, help='Value to convert (prefix hex with 0x, bin with 0b if converting from dec/hex/etc.)')
+    p_base.add_argument('from_base', type=str, help='Source base (bin, oct, dec, hex, ascii)')
+    p_base.add_argument('to_base', type=str, help='Target base (bin, oct, dec, hex, ascii)')
+    
+    # 4. Epoch Time
+    p_time = subparsers.add_parser('time', help='Convert Unix epoch timestamps to ISO datetimes and vice-versa')
+    p_time.add_argument('value', type=str, help='Epoch timestamp or ISO-like string (e.g. "1687000000" or "2026-06-17 12:00:00")')
 
     args = parser.parse_args()
 
-    if args.list:
-        list_units()
-        return 0
+    if not args.category:
+        parser.print_help()
+        sys.exit(1)
 
-    if args.value is not None:
-        if not args.from_unit or not args.to_unit:
-            print("Error: Direct conversion requires both --from and --to arguments.")
-            print("Usage example: python unit_converter.py 100 --from km --to mi")
-            return 1
-            
-        try:
-            result, category = convert(args.value, args.from_unit, args.to_unit)
-            print(f"{args.value} {args.from_unit} = {result:.6g} {args.to_unit} ({category})")
-            return 0
-        except ValueError as e:
-            print(f"Error: {e}")
-            return 1
-            
-    # Default to interactive mode
-    run_interactive()
-    return 0
+    try:
+        if args.category == 'storage':
+            res, target_u = convert_storage(args.value, args.from_unit, args.to_unit, args.binary)
+            print(f"{args.value} {args.from_unit} = {res:.6f} {target_u}")
+        elif args.category == 'bandwidth':
+            res, target_u = convert_bandwidth(args.value, args.from_unit, args.to_unit)
+            print(f"{args.value} {args.from_unit} = {res:.6f} {target_u}")
+        elif args.category == 'base':
+            res = convert_bases(args.value, args.from_base, args.to_base)
+            print(f"Input ({args.from_base}): {args.value} -> Output ({args.to_base}): {res}")
+        elif args.category == 'time':
+            res = convert_time(args.value)
+            print(res)
+    except Exception as e:
+        print(f"Error during conversion: {e}", file=sys.stderr)
+        sys.exit(1)
 
-if __name__ == "__main__":
-    sys.exit(main())
+if __name__ == '__main__':
+    main()

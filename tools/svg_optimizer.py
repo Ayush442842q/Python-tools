@@ -1,202 +1,291 @@
 #!/usr/bin/env python3
 """
-SVG Optimizer & Minifier
+svg_optimizer - Standalone SVG vector graphic optimizer and minifier
 
-Optimizes SVG vector graphics files by removing editor metadata, namespaces,
-comments, and empty elements, and optionally rounding coordinates to a custom 
-decimal precision.
+Parses SVG files to strip editor metadata (Inkscape, Illustrator), clean unused groups,
+shorten colors, and reduce coordinate precision in paths and points to compress file size.
 
 Usage:
-    python tools/svg_optimizer.py -i input.svg -o output.svg -p 2
-    python tools/svg_optimizer.py -i input.svg --dry-run
+    python tools/svg_optimizer.py [FILE] [-o OUTPUT] [-p PRECISION]
+
+Options:
+    FILE                SVG file to optimize (reads from standard input if omitted)
+    -o, --output        Output file path (writes to stdout if omitted)
+    -p, --precision     Decimal precision for path coordinates (default: 2)
+    --strip-metadata    Remove <metadata> and RDF tags (default: True)
+    --remove-empty-g    Delete empty group (<g>) tags (default: True)
+
+Example:
+    python tools/svg_optimizer.py logo.svg -o logo.min.svg -p 1
 """
 
-import argparse
 import os
 import re
 import sys
+import xml.etree.ElementTree as ET
+import argparse
 
-def optimize_svg(svg_content, precision=2, strip_metadata=True):
-    """
-    Optimizes the SVG content.
-    """
-    # 1. Remove XML/HTML comments
-    svg_content = re.sub(r'<!--.*?-->', '', svg_content, flags=re.DOTALL)
+# Console colors
+COLOR_GREEN = "\033[92m"
+COLOR_YELLOW = "\033[93m"
+COLOR_RED = "\033[91m"
+COLOR_BOLD = "\033[1m"
+COLOR_END = "\033[0m"
 
-    # 2. Strip editor namespaces and metadata blocks if requested
+# Namespace URIs for editor junk
+NAMESPACES_TO_REMOVE = {
+    'http://www.inkscape.org/namespaces/inkscape',
+    'http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd',
+    'http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/',
+    'http://ns.adobe.com/SaveForWeb/1.0/',
+    'http://ns.adobe.com/AdobeIllustrator/10.0/',
+    'http://ns.adobe.com/Variables/1.0/',
+    'http://ns.adobe.com/Graphs/1.0/',
+    'http://ns.adobe.com/Flows/1.0/',
+    'http://ns.adobe.com/ImageReplacement/1.0/',
+    'http://ns.adobe.com/Extensibility/1.0/',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+    'http://web.resource.org/cc/',
+    'http://purl.org/dc/elements/1.1/'
+}
+
+def clean_element(elem, strip_metadata=True, remove_empty_g=True):
+    """Recursively clean an XML element and its children."""
+    # Remove metadata elements
     if strip_metadata:
-        # Remove metadata tags and their contents
-        svg_content = re.sub(r'<metadata>.*?</metadata>', '', svg_content, flags=re.DOTALL)
-        svg_content = re.sub(r'<desc>.*?</desc>', '', svg_content, flags=re.DOTALL)
-        svg_content = re.sub(r'<title>.*?</title>', '', svg_content, flags=re.DOTALL)
-        # Remove sodipodi:namedview blocks
-        svg_content = re.sub(r'<sodipodi:namedview.*?>.*?</sodipodi:namedview>', '', svg_content, flags=re.DOTALL)
-        svg_content = re.sub(r'<sodipodi:namedview.*?/>', '', svg_content, flags=re.DOTALL)
+        # Check tag name (ignoring namespace prefix in braces)
+        tag_local = elem.tag.split('}')[-1] if '}' in elem.tag else elem.tag
+        if tag_local.lower() in ('metadata', 'rdf', 'rdf:rdf', 'work', 'format', 'type', 'title'):
+            return None
 
-    # 3. Strip editor-specific attributes (inkscape:*, sodipodi:*, etc.)
-    editor_attrs = [
-        r'\s*inkscape:[a-z0-9-]+="[^"]*"',
-        r'\s*sodipodi:[a-z0-9-]+="[^"]*"',
-        r'\s*xmlns:inkscape="[^"]*"',
-        r'\s*xmlns:sodipodi="[^"]*"',
-        r'\s*xmlns:rdf="[^"]*"',
-        r'\s*xmlns:cc="[^"]*"',
-        r'\s*xmlns:dc="[^"]*"',
-        r'\s*rdf:[a-z0-9-]+="[^"]*"',
-    ]
-    for pattern in editor_attrs:
-        svg_content = re.sub(pattern, '', svg_content, flags=re.IGNORECASE)
+    # Remove attributes that contain namespaces we want to discard
+    attrs_to_del = []
+    for attr in elem.attrib:
+        if '}' in attr:
+            ns = attr.split('}')[0].strip('{')
+            if ns in NAMESPACES_TO_REMOVE:
+                attrs_to_del.append(attr)
+        # Drop inkscape/sodipodi specific raw attributes
+        attr_local = attr.split('}')[-1]
+        if attr_local.startswith('inkscape:') or attr_local.startswith('sodipodi:'):
+            attrs_to_del.append(attr)
 
-    # 4. Round decimal coordinates/numbers to specified precision
-    if precision >= 0:
-        # Match floating point numbers in attributes, especially path data (d="...")
-        # A float can look like: 12.3456, -0.456, .456, -.456
-        float_pattern = re.compile(r'([-+]?\d*\.\d+([eE][-+]?\d+)?)')
-        
-        def round_match(match):
-            val_str = match.group(1)
-            try:
-                val = float(val_str)
-                # Formats float to remove trailing zeros and format correctly
-                rounded = f"{val:.{precision}f}".rstrip('0').rstrip('.')
-                # If rounded is empty (e.g. for .000), make it 0
-                return rounded if rounded and rounded != '-' else '0'
-            except ValueError:
-                return val_str
+    for attr in attrs_to_del:
+        del elem.attrib[attr]
 
-        # Find all attributes containing path coordinates, points, or numeric dimensions
-        # Matches content inside double quotes: name="value"
-        attr_pattern = re.compile(r'([a-zA-Z0-9:-]+)="([^"]*)"')
+    # Recursively clean children
+    cleaned_children = []
+    for child in list(elem):
+        cleaned_child = clean_element(child, strip_metadata, remove_empty_g)
+        if cleaned_child is not None:
+            # Drop empty group tags if requested
+            if remove_empty_g and cleaned_child.tag.endswith('}g') and len(cleaned_child) == 0 and not cleaned_child.attrib:
+                continue
+            cleaned_children.append(cleaned_child)
 
-        def opt_attributes(match):
-            attr_name = match.group(1)
-            attr_val = match.group(2)
-            # Apply coordinate rounding only to specific numeric attributes
-            # e.g., d, points, x, y, cx, cy, r, rx, ry, width, height, x1, y1, x2, y2, transform
-            numeric_attrs = {
-                'd', 'points', 'x', 'y', 'cx', 'cy', 'r', 'rx', 'ry', 
-                'width', 'height', 'x1', 'y1', 'x2', 'y2', 'transform', 
-                'viewBox', 'stroke-width', 'dx', 'dy'
-            }
-            if attr_name.lower() in numeric_attrs or ':' in attr_name: # round values in attributes
-                new_val = float_pattern.sub(round_match, attr_val)
-                # Clean up spaces around signs and separators in path/coordinates
-                # "M 10, 20" -> "M10,20"
-                new_val = re.sub(r'\s*([,+-])\s*', r'\1', new_val)
-                # Compress double spaces
-                new_val = re.sub(r'\s+', ' ', new_val).strip()
-                return f'{attr_name}="{new_val}"'
-            return match.group(0)
-
-        svg_content = attr_pattern.sub(opt_attributes, svg_content)
-
-    # 5. Minify: strip unnecessary spaces and empty lines
-    # Remove leading/trailing spaces on each line
-    lines = [line.strip() for line in svg_content.split('\n')]
-    # Remove empty lines
-    lines = [line for line in lines if line]
-    # Reassemble as minified string (single line or space-separated tags)
-    minified = "".join(lines)
-    # Put spaces between tags if they are adjacent, but only when safe
-    minified = re.sub(r'>\s+<', '><', minified)
+    # Replace children list
+    elem.clear()
+    elem.text = None
+    elem.tail = None
     
-    return minified
+    # Restore cleaned attributes and children
+    for attr, val in elem.attrib.items():
+        elem.set(attr, val)
+    elem.extend(cleaned_children)
 
-def pretty_print_xml(xml_str):
-    """
-    Formats XML string with indentation for better readability.
-    """
-    # Simple formatting: split by tag transitions and add indentation
-    xml_str = re.sub(r'><', '>\n<', xml_str)
-    lines = xml_str.split('\n')
+    return elem
+
+def optimize_path_data(path_str, precision):
+    """Round numeric coordinates in path data to the specified decimal precision."""
+    if not path_str:
+        return ""
+
+    def round_match(match):
+        val = float(match.group(0))
+        # Format float and strip unnecessary trailing zeros/dot
+        formatted = f"{val:.{precision}f}"
+        if '.' in formatted:
+            formatted = formatted.rstrip('0').rstrip('.')
+        return formatted
+
+    # Match float numbers (e.g. 12.3456, -0.5, .25)
+    # Avoid matching commas or command letters
+    path_str = re.sub(r'-?\d*\.\d+|-?\d+\.\d*', round_match, path_str)
     
-    indent = 0
-    formatted = []
-    for line in lines:
-        if not line:
-            continue
-        # If it's a closing tag
-        if line.startswith('</'):
-            indent = max(0, indent - 1)
-            formatted.append('  ' * indent + line)
-        # If it's self-closing or a declaration/doctype
-        elif line.endswith('/>') or line.startswith('<?') or line.startswith('<!'):
-            formatted.append('  ' * indent + line)
-        # If it's an opening tag
-        elif line.startswith('<') and not line.startswith('</'):
-            formatted.append('  ' * indent + line)
-            # Check if there's no closing tag on the same line
-            tag_name = re.match(r'<([a-zA-Z0-9:-]+)', line)
-            if tag_name:
-                close_tag = f'</{tag_name.group(1)}>'
-                if close_tag not in line and not line.endswith('/>'):
-                    indent += 1
-        else:
-            formatted.append('  ' * indent + line)
+    # Compress whitespaces around command characters and clean commas
+    path_str = re.sub(r'\s*([a-zA-Z])\s*', r'\1', path_str) # Spaces around commands
+    path_str = re.sub(r'\s*,\s*', r',', path_str)           # Spaces around commas
+    path_str = re.sub(r'\s+', r' ', path_str)               # Multiple spaces to single space
+    
+    return path_str.strip()
+
+def optimize_points_data(points_str, precision):
+    """Round numeric coordinates in polygon/polyline points data."""
+    if not points_str:
+        return ""
+    
+    # Split by spaces or commas
+    parts = re.split(r'[,\s]+', points_str.strip())
+    rounded = []
+    for part in parts:
+        try:
+            val = float(part)
+            formatted = f"{val:.{precision}f}"
+            if '.' in formatted:
+                formatted = formatted.rstrip('0').rstrip('.')
+            rounded.append(formatted)
+        except ValueError:
+            rounded.append(part)
             
-    return '\n'.join(formatted)
+    # Reassemble: standard is coordinate pairs separated by spaces, x/y separated by comma
+    pairs = []
+    for idx in range(0, len(rounded), 2):
+        if idx + 1 < len(rounded):
+            pairs.append(f"{rounded[idx]},{rounded[idx+1]}")
+        else:
+            pairs.append(rounded[idx])
+            
+    return " ".join(pairs)
+
+def minify_colors(style_str):
+    """Minify color codes inside inline style declarations."""
+    if not style_str:
+        return ""
+    
+    # Optimize hex values: #ffffff -> #fff, #AABBCC -> #abc
+    style_str = re.sub(r'#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3(?=[^a-fA-F0-9]|$)', r'#\1\2\3', style_str)
+    
+    # rgb(r,g,b) to hex if possible (only for simple integer rgb values)
+    def rgb_repl(match):
+        try:
+            r = int(match.group(1))
+            g = int(match.group(2))
+            b = int(match.group(3))
+            if 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255:
+                hex_color = f"#{r:02x}{g:02x}{b:02x}"
+                # Try to compress hex color
+                return re.sub(r'#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3', r'#\1\2\3', hex_color)
+        except Exception:
+            pass
+        return match.group(0)
+
+    style_str = re.sub(r'rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)', rgb_repl, style_str)
+    return style_str
+
+def optimize_element_attributes(elem, precision):
+    """Walk element tree and optimize coordinates/styles in specific attributes."""
+    tag_local = elem.tag.split('}')[-1] if '}' in elem.tag else elem.tag
+    
+    # Optimize paths
+    if tag_local == 'path' and 'd' in elem.attrib:
+        elem.attrib['d'] = optimize_path_data(elem.attrib['d'], precision)
+        
+    # Optimize polygon/polyline points
+    if tag_local in ('polygon', 'polyline') and 'points' in elem.attrib:
+        elem.attrib['points'] = optimize_points_data(elem.attrib['points'], precision)
+        
+    # Optimize numeric fields
+    for attr in ('x', 'y', 'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'r', 'rx', 'ry', 'width', 'height'):
+        if attr in elem.attrib:
+            try:
+                val = float(elem.attrib[attr])
+                formatted = f"{val:.{precision}f}"
+                if '.' in formatted:
+                    formatted = formatted.rstrip('0').rstrip('.')
+                elem.attrib[attr] = formatted
+            except ValueError:
+                pass
+                
+    # Optimize styles & colors
+    if 'style' in elem.attrib:
+        elem.attrib['style'] = minify_colors(elem.attrib['style'])
+    for attr in ('fill', 'stroke'):
+        if attr in elem.attrib:
+            elem.attrib[attr] = minify_colors(elem.attrib[attr])
+
+    for child in elem:
+        optimize_element_attributes(child, precision)
 
 def main():
-    parser = argparse.ArgumentParser(description="SVG Optimizer & Minifier - Shrink SVG files by cleaning editor tags and rounding coordinates.")
-    parser.add_argument('-i', '--input', required=True, help='Path to the input SVG file')
-    parser.add_argument('-o', '--output', help='Path to the output SVG file (prints to stdout if omitted)')
-    parser.add_argument('-p', '--precision', type=int, default=2, help='Decimal precision for rounding coordinates (default: 2, set -1 to disable)')
-    parser.add_argument('--pretty', action='store_true', help='Format and indent output instead of minifying to a single line')
-    parser.add_argument('--no-strip-metadata', action='store_true', help='Do not strip metadata, desc, and title elements')
-    parser.add_argument('--dry-run', action='store_true', help='Simulate optimization and report file size reduction without writing')
+    parser = argparse.ArgumentParser(description="Clean editor metadata and reduce coordinate precision of SVG vector graphics.")
+    parser.add_argument('file', nargs='?', help='Path to SVG file (reads from stdin if omitted)')
+    parser.add_argument('-o', '--output', type=str, help='Output optimized SVG file path')
+    parser.add_argument('-p', '--precision', type=int, default=2, help='Decimal precision for coordinates (default: 2)')
+    parser.add_argument('--no-metadata', action='store_true', help='Do NOT strip metadata tags')
+    parser.add_argument('--no-empty-g', action='store_true', help='Do NOT remove empty group <g> tags')
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.input):
-        print(f"❌ Error: Input file '{args.input}' does not exist.", file=sys.stderr)
-        return 1
-
-    try:
-        with open(args.input, 'r', encoding='utf-8', errors='ignore') as f:
-            original_content = f.read()
-    except Exception as e:
-        print(f"❌ Error reading input file: {e}", file=sys.stderr)
-        return 1
-
-    original_size = len(original_content.encode('utf-8'))
-
-    # Run optimizer
-    optimized = optimize_svg(
-        original_content, 
-        precision=args.precision, 
-        strip_metadata=not args.no_strip-metadata if hasattr(args, 'no_strip_metadata') else not args.no_strip_metadata
-    )
-
-    if args.pretty:
-        optimized = pretty_print_xml(optimized)
-
-    optimized_size = len(optimized.encode('utf-8'))
-    reduction = original_size - optimized_size
-    percent = (reduction / original_size) * 100 if original_size > 0 else 0
-
-    if args.dry_run:
-        print(f"📊 DRY RUN RESULTS for '{args.input}':")
-        print(f"  Original Size  : {original_size:,} bytes")
-        print(f"  Optimized Size : {optimized_size:,} bytes")
-        print(f"  Reduction      : {reduction:,} bytes ({percent:.2f}%)")
-        return 0
-
-    if args.output:
+    # Read SVG content
+    if args.file:
+        if not os.path.exists(args.file):
+            print(f"{COLOR_RED}Error: File '{args.file}' not found.{COLOR_END}", file=sys.stderr)
+            return 1
         try:
-            with open(args.output, 'w', encoding='utf-8') as f:
-                f.write(optimized)
-            print(f"⚡ Optimized SVG saved to: {args.output}")
-            print(f"  Size reduced from {original_size:,} to {optimized_size:,} bytes (-{percent:.1f}%)")
+            with open(args.file, 'r', encoding='utf-8') as f:
+                svg_data = f.read()
         except Exception as e:
-            print(f"❌ Error writing output file: {e}", file=sys.stderr)
+            print(f"{COLOR_RED}Error reading file: {e}{COLOR_END}", file=sys.stderr)
             return 1
     else:
-        sys.stdout.write(optimized)
-        if not optimized.endswith('\n'):
-            sys.stdout.write('\n')
+        if sys.stdin.isatty():
+            print(f"{COLOR_YELLOW}Reading SVG from standard input (Ctrl+D to process)...{COLOR_END}", file=sys.stderr)
+        svg_data = sys.stdin.read()
+
+    if not svg_data.strip():
+        print(f"{COLOR_YELLOW}Warning: Input is empty.{COLOR_END}", file=sys.stderr)
+        return 0
+
+    try:
+        # 1. Parse XML structure
+        # Register standard namespaces to avoid custom prefixes (ns0:svg) in output
+        ET.register_namespace('', 'http://www.w3.org/2000/svg')
+        ET.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
+        
+        # Parse SVG from string
+        root = ET.fromstring(svg_data)
+
+        # 2. Clean namespaces and elements
+        root = clean_element(root, strip_metadata=not args.no_metadata, remove_empty_g=not args.no_empty_g)
+        
+        # 3. Reduce precision and optimize values
+        optimize_element_attributes(root, args.precision)
+
+        # 4. Serialize back to string
+        # XML declarations and namespaces will be formatted
+        out_bytes = ET.tostring(root, encoding='utf-8', method='xml')
+        output_svg = out_bytes.decode('utf-8')
+        
+        # Remove XML declaration if it wasn't in the original to be tidy, or keep standard
+        # Standard SVG is fine without <?xml version="1.0" encoding="utf-8"?>
+        
+        # Minify output spaces between tags
+        output_svg = re.sub(r'>\s+<', '><', output_svg)
+
+        # Write output
+        if args.output:
+            write_mode = 'w'
+            with open(args.output, write_mode, encoding='utf-8') as f:
+                f.write(output_svg)
+            
+            orig_size = len(svg_data)
+            new_size = len(output_svg)
+            diff = orig_size - new_size
+            pct = (diff / orig_size) * 100 if orig_size > 0 else 0
+            
+            print(f"\n{COLOR_GREEN}{COLOR_BOLD}SVG optimization complete!{COLOR_END}")
+            print(f"  Optimized Saved to: {COLOR_YELLOW}{args.output}{COLOR_END}")
+            print(f"  Original Size:      {orig_size} bytes")
+            print(f"  Optimized Size:     {new_size} bytes")
+            print(f"  Size Reduction:     {diff} bytes ({pct:.1f}%)")
+        else:
+            print(output_svg)
+
+    except Exception as e:
+        print(f"{COLOR_RED}Error optimizing SVG: {e}{COLOR_END}", file=sys.stderr)
+        return 1
 
     return 0
 
 if __name__ == "__main__":
     sys.exit(main())
- Maroon
