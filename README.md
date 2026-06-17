@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 195+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 200+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -133,6 +133,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **PyPI Version Checker** (`tools/pypi_version_checker.py`) - Check listed packages against PyPI for newer versions and update availability
 - **Code Duplicate Detector** (`tools/code_duplicate_detector.py`) - Find duplicate or copied code blocks recursively using sliding window hash comparison
 - **Binary Hex Diff** (`tools/binary_diff.py`) - Compare two binary files side-by-side with colored hex differences
+- **Python Import Visualizer** (`tools/python_import_visualizer.py`) - Map internal Python import dependency networks and display module hierarchies or generate Mermaid diagrams
+- **Huffman Text Compressor** (`tools/text_compressor_huffman.py`) - Standalone Huffman Coding text compressor and decompressor that generates a custom binary .huff format
 
 
 ### Data Processing
@@ -159,6 +161,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Text Similarity Detector** (`tools/text_similarity_detector.py`) - Compare documents or code files to compute similarity scores using Jaccard, Cosine, and TF-IDF metrics
 - **Configuration Merger** (`tools/config_merger.py`) - Deep merge multiple JSON, INI, XML, YAML, or TOML configuration files with hierarchical overrides
 - **SQLite Database Schema Visualizer** (`tools/db_schema_visualizer.py`) - Extract SQLite table structures and generate text reports or Mermaid ER diagrams
+- **SQLite Query Profiler** (`tools/sqlite_query_profiler.py`) - Profile SQLite query execution time, explain query plans, and suggest optimization indexes
 
 
 ### Network & Web
@@ -193,6 +196,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Port Listener & Request Dumper** (`tools/request_dumper.py`) - Listen on TCP/UDP ports and dump incoming request payloads, headers, and hex bytes
 - **URL Route Pattern Matcher** (`tools/url_route_matcher.py`) - Parse and test routing patterns (Flask, Express styles) against paths to extract parameters
 - **Web Broken Link Checker** (`tools/web_broken_link_checker.py`) - Recursively crawls a website up to a specified depth and identifies broken links
+- **HTTP Downloader** (`tools/http_downloader.py`) - Download files over HTTP/HTTPS with progress bar, resume support, and checksum checks
+
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -208,6 +213,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Classic Cipher Utility** (`tools/cipher_utility.py`) - Encrypt and decrypt text using classical ciphers (Caesar, Vigenère, ROT13, Atbash, XOR)
 - **CSV PII Anonymizer & Masker** (`tools/csv_anonymizer.py`) - Anonymize and mask sensitive personal identifiers (PII) in structured CSV datasets
 - **Security Log Anomaly Detector** (`tools/log_anomaly_detector.py`) - Scans application logs for SQL injection, XSS, traversals, and volumetric outliers
+- **File Signature Detector** (`tools/file_signature_detector.py`) - Detect file type by checking magic bytes and finding mismatches with file extension
 
 
 ## Usage
