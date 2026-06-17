@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 200+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 260+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -133,6 +133,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **PyPI Version Checker** (`tools/pypi_version_checker.py`) - Check listed packages against PyPI for newer versions and update availability
 - **Code Duplicate Detector** (`tools/code_duplicate_detector.py`) - Find duplicate or copied code blocks recursively using sliding window hash comparison
 - **Binary Hex Diff** (`tools/binary_diff.py`) - Compare two binary files side-by-side with colored hex differences
+- **ANSI Color Explorer** (`tools/ansi_color_explorer.py`) - Visualizer for terminal color support (16-color, 256-color, TrueColor/24-bit) and ANSI escape code generation
+- **Text-to-ASCII Flowchart Generator** (`tools/ascii_flowchart_generator.py`) - Render flowchart diagrams in console using ASCII/Unicode box-drawing characters
+- **Code Snippet Manager** (`tools/code_snippet_manager.py`) - Command-line database utility to save, search, view with syntax highlighting, and copy code snippets
 - **Python Import Visualizer** (`tools/python_import_visualizer.py`) - Map internal Python import dependency networks and display module hierarchies or generate Mermaid diagrams
 - **Huffman Text Compressor** (`tools/text_compressor_huffman.py`) - Standalone Huffman Coding text compressor and decompressor that generates a custom binary .huff format
 
@@ -162,6 +165,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Configuration Merger** (`tools/config_merger.py`) - Deep merge multiple JSON, INI, XML, YAML, or TOML configuration files with hierarchical overrides
 - **SQLite Database Schema Visualizer** (`tools/db_schema_visualizer.py`) - Extract SQLite table structures and generate text reports or Mermaid ER diagrams
 - **SQLite Query Profiler** (`tools/sqlite_query_profiler.py`) - Profile SQLite query execution time, explain query plans, and suggest optimization indexes
+- **CSV/JSON Template Renderer** (`tools/template_renderer.py`) - Merge JSON or CSV data with text templates containing variables, conditionals, loops, and filters
+- **OpenAPI to Markdown Generator** (`tools/openapi_to_markdown.py`) - Parse OpenAPI 3.0/3.1 JSON schemas and produce publication-ready Markdown docs
 
 
 ### Network & Web
