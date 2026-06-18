@@ -74,6 +74,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Directory Syncer** (`tools/directory_syncer.py`) - One-way directory synchronization utility comparing sizes, times, and MD5 checksums
 - **Log Merger** (`tools/log_merger.py`) - Chronologically merge multiple log files with different formats using low-memory merge sort
 - **Text File Sorter** (`tools/text_file_sorter.py`) - Sort lines in text files using alphabetical, numerical, length, or field‑based rules
+- **Terminal Markdown Viewer** (`tools/terminal_markdown_viewer.py`) - Renders Markdown files beautifully in the terminal with color, code highlighting, lists, and blockquotes
+- **Indented Text to Mindmap & Diagram Generator** (`tools/text_to_mindmap.py`) - Converts structured indented outlines or Markdown lists into Unicode trees, Mermaid mindmaps, or interactive HTML files
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -138,6 +140,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Code Snippet Manager** (`tools/code_snippet_manager.py`) - Command-line database utility to save, search, view with syntax highlighting, and copy code snippets
 - **Python Import Visualizer** (`tools/python_import_visualizer.py`) - Map internal Python import dependency networks and display module hierarchies or generate Mermaid diagrams
 - **Huffman Text Compressor** (`tools/text_compressor_huffman.py`) - Standalone Huffman Coding text compressor and decompressor that generates a custom binary .huff format
+- **Python Import Cleaner & Sorter** (`tools/python_import_cleaner.py`) - Parses Python files using AST to safely detect unused imports and generate organized, PEP-8 compliant import blocks
+- **LLM Context Packer** (`tools/llm_context_packer.py`) - Recursively packages a local codebase/directory into a single, clean Markdown context file for LLM prompts
 
 
 ### Data Processing
@@ -219,6 +223,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV PII Anonymizer & Masker** (`tools/csv_anonymizer.py`) - Anonymize and mask sensitive personal identifiers (PII) in structured CSV datasets
 - **Security Log Anomaly Detector** (`tools/log_anomaly_detector.py`) - Scans application logs for SQL injection, XSS, traversals, and volumetric outliers
 - **File Signature Detector** (`tools/file_signature_detector.py`) - Detect file type by checking magic bytes and finding mismatches with file extension
+- **Password Breach Checker** (`tools/password_breach_checker.py`) - Checks if a password has been leaked in data breaches using the HIBP API anonymously (K-anonymity privacy model)
 
 
 ## Usage
