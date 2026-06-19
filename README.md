@@ -142,6 +142,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Huffman Text Compressor** (`tools/text_compressor_huffman.py`) - Standalone Huffman Coding text compressor and decompressor that generates a custom binary .huff format
 - **Python Import Cleaner & Sorter** (`tools/python_import_cleaner.py`) - Parses Python files using AST to safely detect unused imports and generate organized, PEP-8 compliant import blocks
 - **LLM Context Packer** (`tools/llm_context_packer.py`) - Recursively packages a local codebase/directory into a single, clean Markdown context file for LLM prompts
+- **Git Changelog & Release Notes Generator** (`tools/git_changelog_generator.py`) - Parses Git history and groups commits by conventional types into a structured Markdown changelog
+- **Markdown HTML Slide Generator** (`tools/markdown_slide_generator.py`) - Compiles a Markdown file separated by horizontal rules into a standalone, interactive HTML slideshow
+
 
 
 ### Data Processing
@@ -171,6 +174,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Query Profiler** (`tools/sqlite_query_profiler.py`) - Profile SQLite query execution time, explain query plans, and suggest optimization indexes
 - **CSV/JSON Template Renderer** (`tools/template_renderer.py`) - Merge JSON or CSV data with text templates containing variables, conditionals, loops, and filters
 - **OpenAPI to Markdown Generator** (`tools/openapi_to_markdown.py`) - Parse OpenAPI 3.0/3.1 JSON schemas and produce publication-ready Markdown docs
+- **Structured Data Tree Visualizer** (`tools/structured_data_visualizer.py`) - Renders JSON, XML, TOML, or YAML files as interactive-looking, color-coded terminal trees
+
 
 
 ### Network & Web
@@ -206,6 +211,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **URL Route Pattern Matcher** (`tools/url_route_matcher.py`) - Parse and test routing patterns (Flask, Express styles) against paths to extract parameters
 - **Web Broken Link Checker** (`tools/web_broken_link_checker.py`) - Recursively crawls a website up to a specified depth and identifies broken links
 - **HTTP Downloader** (`tools/http_downloader.py`) - Download files over HTTP/HTTPS with progress bar, resume support, and checksum checks
+- **Web Asset Extractor & Downloader** (`tools/web_asset_downloader.py`) - Crawls a webpage, downloads CSS, JS, and image assets into organized local folders, and rewrites the HTML locally
+
 
 
 ### Security & Cryptography
@@ -224,6 +231,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Security Log Anomaly Detector** (`tools/log_anomaly_detector.py`) - Scans application logs for SQL injection, XSS, traversals, and volumetric outliers
 - **File Signature Detector** (`tools/file_signature_detector.py`) - Detect file type by checking magic bytes and finding mismatches with file extension
 - **Password Breach Checker** (`tools/password_breach_checker.py`) - Checks if a password has been leaked in data breaches using the HIBP API anonymously (K-anonymity privacy model)
+- **Source Code Secrets & API Key Scanner** (`tools/secrets_scanner.py`) - Recursively scans files/folders for API keys, tokens, private keys, and high-entropy secret strings with masked reporting
+
 
 
 ## Usage
