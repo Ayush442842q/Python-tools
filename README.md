@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 260+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 280+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -76,6 +76,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Text File Sorter** (`tools/text_file_sorter.py`) - Sort lines in text files using alphabetical, numerical, length, or field‑based rules
 - **Terminal Markdown Viewer** (`tools/terminal_markdown_viewer.py`) - Renders Markdown files beautifully in the terminal with color, code highlighting, lists, and blockquotes
 - **Indented Text to Mindmap & Diagram Generator** (`tools/text_to_mindmap.py`) - Converts structured indented outlines or Markdown lists into Unicode trees, Mermaid mindmaps, or interactive HTML files
+- **Markdown Wiki & Backlink Analyzer** (`tools/markdown_wiki_manager.py`) - Scan a folder of markdown files, resolve wiki and standard links, map tags, trace backlinks, and output Mermaid.js graphs
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -144,6 +145,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **LLM Context Packer** (`tools/llm_context_packer.py`) - Recursively packages a local codebase/directory into a single, clean Markdown context file for LLM prompts
 - **Git Changelog & Release Notes Generator** (`tools/git_changelog_generator.py`) - Parses Git history and groups commits by conventional types into a structured Markdown changelog
 - **Markdown HTML Slide Generator** (`tools/markdown_slide_generator.py`) - Compiles a Markdown file separated by horizontal rules into a standalone, interactive HTML slideshow
+- **Git Commit Heatmap & Stats** (`tools/git_commit_heatmap.py`) - Generate a GitHub-style ASCII/Unicode contribution calendar heatmap for commits, with streaks and detailed activity stats
+- **JSON to Python Dataclass & Pydantic Model Generator** (`tools/json_to_dataclasses.py`) - Converts JSON structures into nested Python dataclasses or Pydantic models with type inference
+- **Python Codebase Documentation Server** (`tools/python_doc_server.py`) - Statically parses Python modules using AST, generates a modern responsive dark-themed documentation website, and hosts it on a local HTTP server
 
 
 
@@ -175,6 +179,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV/JSON Template Renderer** (`tools/template_renderer.py`) - Merge JSON or CSV data with text templates containing variables, conditionals, loops, and filters
 - **OpenAPI to Markdown Generator** (`tools/openapi_to_markdown.py`) - Parse OpenAPI 3.0/3.1 JSON schemas and produce publication-ready Markdown docs
 - **Structured Data Tree Visualizer** (`tools/structured_data_visualizer.py`) - Renders JSON, XML, TOML, or YAML files as interactive-looking, color-coded terminal trees
+- **Markdown to EPUB E-book Compiler** (`tools/markdown_to_epub.py`) - Convert a directory of markdown files or a single markdown document into a standard, fully-validated EPUB e-book using only standard libraries
 
 
 
