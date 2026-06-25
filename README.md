@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 285+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 290+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -78,6 +78,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Indented Text to Mindmap & Diagram Generator** (`tools/text_to_mindmap.py`) - Converts structured indented outlines or Markdown lists into Unicode trees, Mermaid mindmaps, or interactive HTML files
 - **Markdown Wiki & Backlink Analyzer** (`tools/markdown_wiki_manager.py`) - Scan a folder of markdown files, resolve wiki and standard links, map tags, trace backlinks, and output Mermaid.js graphs
 - **Terminal Kanban Board** (`tools/cli_kanban.py`) - A CLI Kanban board manager with visual column layouts in the terminal using Unicode characters
+- **Duplicate File Linker** (`tools/duplicate_file_linker.py`) - Scan for duplicate files recursively and consolidate them using hard links, symlinks, or deletion to save disk space
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -150,8 +151,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON to Python Dataclass & Pydantic Model Generator** (`tools/json_to_dataclasses.py`) - Converts JSON structures into nested Python dataclasses or Pydantic models with type inference
 - **Python Codebase Documentation Server** (`tools/python_doc_server.py`) - Statically parses Python modules using AST, generates a modern responsive dark-themed documentation website, and hosts it on a local HTTP server
 - **SVG Status Badge Generator** (`tools/markdown_badge_generator.py`) - Create custom shields.io style SVG badges locally for use in markdown documents
-
-
+- **System PATH Doctor** (`tools/env_path_doctor.py`) - Diagnose, optimize, and clean system environment PATH variables with safety warnings and shell commands
+- **Python Virtual Environment Inspector** (`tools/venv_inspector.py`) - Scan directories for virtual environments, calculate disk space usage, and list installed packages without running a pip subprocess
+- **Conventional Commit Builder & Gitmoji helper** (`tools/git_commit_builder.py`) - Interactive CLI helper to construct Conventional Commit messages with optional Gitmojis, check formatting constraints, and run git commit
+- **Color Palette Generator & Harmony Visualizer** (`tools/color_palette_generator.py`) - Generate monochromatic, analogous, complementary, triadic, and tetradic color palettes, visualize true colors in terminal, and export to CSS, JSON, or Tailwind
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -184,8 +187,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown to EPUB E-book Compiler** (`tools/markdown_to_epub.py`) - Convert a directory of markdown files or a single markdown document into a standard, fully-validated EPUB e-book using only standard libraries
 - **SQLite Database Dumper** (`tools/sql_dumper.py`) - SQLite database backup/dump utility that exports schema and data as standard SQL statements
 - **CSV Pivot Table Generator** (`tools/csv_pivot_table.py`) - Generate pivot summaries and tables from CSV data without external libraries
-
-
+- **Configuration Path Query Utility** (`tools/config_query.py`) - Query and extract values from JSON, YAML, TOML, XML, and INI configuration files using dot-notation path queries
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -222,8 +224,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Downloader** (`tools/http_downloader.py`) - Download files over HTTP/HTTPS with progress bar, resume support, and checksum checks
 - **Web Asset Extractor & Downloader** (`tools/web_asset_downloader.py`) - Crawls a webpage, downloads CSS, JS, and image assets into organized local folders, and rewrites the HTML locally
 - **DNS over HTTPS Client** (`tools/dns_over_https_client.py`) - Resolve DNS records over HTTPS using Cloudflare or Google DoH endpoints
-
-
+- **Web Performance Analyzer** (`tools/web_performance_analyzer.py`) - Audits HTTP connection latency phases (DNS, TCP, SSL, TTFB, transfer) and lists webpage assets (CSS, JS, images)
+- **Mock SMTP Server** (`tools/mock_smtp_server.py`) - A lightweight, local SMTP mail server for developer testing that displays incoming mails and captures them as .eml files
+- **Web Speed Tester & Request Timeline Analyzer** (`tools/web_speed_tester.py`) - Measure request execution phases (DNS resolution, TCP connection, SSL handshake, TTFB, transfer time) and render an ASCII waterfall timeline chart
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -242,6 +245,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **File Signature Detector** (`tools/file_signature_detector.py`) - Detect file type by checking magic bytes and finding mismatches with file extension
 - **Password Breach Checker** (`tools/password_breach_checker.py`) - Checks if a password has been leaked in data breaches using the HIBP API anonymously (K-anonymity privacy model)
 - **Source Code Secrets & API Key Scanner** (`tools/secrets_scanner.py`) - Recursively scans files/folders for API keys, tokens, private keys, and high-entropy secret strings with masked reporting
+- **Luhn Algorithm Validator & Mock Generator** (`tools/card_validator.py`) - Validate credit cards and IMEIs, identify issuer networks (Visa, Mastercard, Amex, etc.), and generate valid test numbers
 
 
 
