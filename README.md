@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 290+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 295+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -79,6 +79,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Wiki & Backlink Analyzer** (`tools/markdown_wiki_manager.py`) - Scan a folder of markdown files, resolve wiki and standard links, map tags, trace backlinks, and output Mermaid.js graphs
 - **Terminal Kanban Board** (`tools/cli_kanban.py`) - A CLI Kanban board manager with visual column layouts in the terminal using Unicode characters
 - **Duplicate File Linker** (`tools/duplicate_file_linker.py`) - Scan for duplicate files recursively and consolidate them using hard links, symlinks, or deletion to save disk space
+- **CLI Directory Size Browser** (`tools/cli_dir_size_browser.py`) - Interactive command-line directory size browser and disk space cleanup utility with size sorting and deletion capability
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -155,6 +156,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Virtual Environment Inspector** (`tools/venv_inspector.py`) - Scan directories for virtual environments, calculate disk space usage, and list installed packages without running a pip subprocess
 - **Conventional Commit Builder & Gitmoji helper** (`tools/git_commit_builder.py`) - Interactive CLI helper to construct Conventional Commit messages with optional Gitmojis, check formatting constraints, and run git commit
 - **Color Palette Generator & Harmony Visualizer** (`tools/color_palette_generator.py`) - Generate monochromatic, analogous, complementary, triadic, and tetradic color palettes, visualize true colors in terminal, and export to CSS, JSON, or Tailwind
+- **Regex Synthesizer & Pattern Inferrer** (`tools/regex_synthesizer.py`) - Infer and generate regular expressions based on positive and negative string examples using rule-based heuristics
+- **Markdown Resume Compiler** (`tools/markdown_resume_compiler.py`) - Compile plain Markdown resumes to beautiful, responsive, and print-ready HTML documents with built-in design themes
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -227,6 +230,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Performance Analyzer** (`tools/web_performance_analyzer.py`) - Audits HTTP connection latency phases (DNS, TCP, SSL, TTFB, transfer) and lists webpage assets (CSS, JS, images)
 - **Mock SMTP Server** (`tools/mock_smtp_server.py`) - A lightweight, local SMTP mail server for developer testing that displays incoming mails and captures them as .eml files
 - **Web Speed Tester & Request Timeline Analyzer** (`tools/web_speed_tester.py`) - Measure request execution phases (DNS resolution, TCP connection, SSL handshake, TTFB, transfer time) and render an ASCII waterfall timeline chart
+- **Domain WHOIS Expiry Scanner** (`tools/domain_whois_scanner.py`) - Query domain registration records (WHOIS) directly over raw sockets, parsing expiration dates and registrar info
+- **HTTP Proxy Debugger** (`tools/http_proxy_debugger.py`) - A local intercepting and tunneling HTTP/HTTPS proxy server logging requests, headers, and traffic details
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
