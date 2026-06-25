@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 295+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 300+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -158,6 +158,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Color Palette Generator & Harmony Visualizer** (`tools/color_palette_generator.py`) - Generate monochromatic, analogous, complementary, triadic, and tetradic color palettes, visualize true colors in terminal, and export to CSS, JSON, or Tailwind
 - **Regex Synthesizer & Pattern Inferrer** (`tools/regex_synthesizer.py`) - Infer and generate regular expressions based on positive and negative string examples using rule-based heuristics
 - **Markdown Resume Compiler** (`tools/markdown_resume_compiler.py`) - Compile plain Markdown resumes to beautiful, responsive, and print-ready HTML documents with built-in design themes
+- **Brainfuck Interpreter & Debugger** (`tools/brainfuck_interpreter.py`) - Run and trace esoteric Brainfuck code with a visual memory tape representation
+- **Command Benchmarker** (`tools/command_benchmarker.py`) - Benchmark shell command execution times with detailed statistics (min, max, mean, median, stddev)
+- **Glob Pattern Tester** (`tools/glob_tester.py`) - Validate and debug glob patterns interactively or in batch mode against local directories or simulated path files
+- **ISBN Validator & Converter** (`tools/isbn_validator.py`) - Validate and format ISBN-10/13 identifiers, extract book code segments, and convert formats
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -191,6 +195,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Dumper** (`tools/sql_dumper.py`) - SQLite database backup/dump utility that exports schema and data as standard SQL statements
 - **CSV Pivot Table Generator** (`tools/csv_pivot_table.py`) - Generate pivot summaries and tables from CSV data without external libraries
 - **Configuration Path Query Utility** (`tools/config_query.py`) - Query and extract values from JSON, YAML, TOML, XML, and INI configuration files using dot-notation path queries
+- **CSV Validator** (`tools/csv_validator.py`) - Validate CSV structure, column count matches, and verify data types using standard schema rules
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
