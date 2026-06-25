@@ -106,17 +106,20 @@ def main() -> int:
     try:
         # 1. DNS Resolution
         t0 = time.perf_counter()
-        ip_list = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
+        addr_info = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
         t_dns_end = time.perf_counter()
         dns_time = t_dns_end - t0
-        target_ip = ip_list[0][4][0]
+        
+        # Extract connection parameters dynamically to support IPv4 & IPv6
+        family, socktype, proto, _, sockaddr = addr_info[0]
+        target_ip = sockaddr[0]
         print(f"  [+] Resolved {host} to {target_ip} in {format_duration(dns_time)}")
         
         # 2. TCP Handshake
         t1 = time.perf_counter()
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock = socket.socket(family, socktype, proto)
         sock.settimeout(args.timeout)
-        sock.connect((target_ip, port))
+        sock.connect(sockaddr)
         t_tcp_end = time.perf_counter()
         tcp_time = t_tcp_end - t1
         print(f"  [+] TCP Connection established in {format_duration(tcp_time)}")
