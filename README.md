@@ -163,6 +163,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Command Benchmarker** (`tools/command_benchmarker.py`) - Benchmark shell command execution times with detailed statistics (min, max, mean, median, stddev)
 - **Glob Pattern Tester** (`tools/glob_tester.py`) - Validate and debug glob patterns interactively or in batch mode against local directories or simulated path files
 - **ISBN Validator & Converter** (`tools/isbn_validator.py`) - Validate and format ISBN-10/13 identifiers, extract book code segments, and convert formats
+- **Dockerfile Linter & Best Practices Checker** (`tools/dockerfile_linter.py`) - Parse Dockerfiles to validate syntax and identify anti-patterns (unpinned tags, missing package manager cleanups, root usage) with colored suggestions
+- **XML Validator, Beautifier & Minifier** (`tools/xml_formatter.py`) - Validate, pretty-print with configurable indentation, or minify XML payloads with precise syntax error line and column reports
+- **Git Branch Commit Tree Visualizer** (`tools/git_branch_visualizer.py`) - Render local Git repository commit histories as colored ASCII/Unicode graphs with author, relative date, and reference tags
+
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -199,6 +203,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Validator** (`tools/csv_validator.py`) - Validate CSV structure, column count matches, and verify data types using standard schema rules
 - **JSON Lines Query Tool** (`tools/jsonl_query.py`) - Query, filter, slice, and reformat JSON Lines (JSONL / NDJSON) files
 - **SQLite Schema Diff Tool** (`tools/sqlite_schema_diff.py`) - Compare SQLite database schemas and generate migration SQL scripts
+- **CSV Diff & Reconciliation Tool** (`tools/csv_diff.py`) - Perform row-by-row reconciliation between two CSV files using a unique primary key, highlighting added, deleted, and modified columns
+- **Interactive SQL REPL & SQLite Playground** (`tools/sqlite_playground.py`) - Run SQL queries interactively in a SQLite REPL with multi-line input, execution timer, dot commands, schema visualizer, and CSV/JSON exporters
+
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
