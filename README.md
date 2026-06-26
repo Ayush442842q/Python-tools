@@ -80,6 +80,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Kanban Board** (`tools/cli_kanban.py`) - A CLI Kanban board manager with visual column layouts in the terminal using Unicode characters
 - **Duplicate File Linker** (`tools/duplicate_file_linker.py`) - Scan for duplicate files recursively and consolidate them using hard links, symlinks, or deletion to save disk space
 - **CLI Directory Size Browser** (`tools/cli_dir_size_browser.py`) - Interactive command-line directory size browser and disk space cleanup utility with size sorting and deletion capability
+- **Directory Template Generator** (`tools/directory_template_generator.py`) - Generate directories and files from a text outline or tree diagram
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -196,6 +197,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Pivot Table Generator** (`tools/csv_pivot_table.py`) - Generate pivot summaries and tables from CSV data without external libraries
 - **Configuration Path Query Utility** (`tools/config_query.py`) - Query and extract values from JSON, YAML, TOML, XML, and INI configuration files using dot-notation path queries
 - **CSV Validator** (`tools/csv_validator.py`) - Validate CSV structure, column count matches, and verify data types using standard schema rules
+- **JSON Lines Query Tool** (`tools/jsonl_query.py`) - Query, filter, slice, and reformat JSON Lines (JSONL / NDJSON) files
+- **SQLite Schema Diff Tool** (`tools/sqlite_schema_diff.py`) - Compare SQLite database schemas and generate migration SQL scripts
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -237,6 +240,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Speed Tester & Request Timeline Analyzer** (`tools/web_speed_tester.py`) - Measure request execution phases (DNS resolution, TCP connection, SSL handshake, TTFB, transfer time) and render an ASCII waterfall timeline chart
 - **Domain WHOIS Expiry Scanner** (`tools/domain_whois_scanner.py`) - Query domain registration records (WHOIS) directly over raw sockets, parsing expiration dates and registrar info
 - **HTTP Proxy Debugger** (`tools/http_proxy_debugger.py`) - A local intercepting and tunneling HTTP/HTTPS proxy server logging requests, headers, and traffic details
+- **GitHub Folder Downloader** (`tools/github_folder_downloader.py`) - Download specific folders or files from GitHub without cloning the entire repository
+- **Mock S3 Server** (`tools/mock_s3_server.py`) - Launch a lightweight mock Amazon S3 HTTP server locally for testing
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
