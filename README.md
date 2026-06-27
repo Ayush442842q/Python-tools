@@ -166,6 +166,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Dockerfile Linter & Best Practices Checker** (`tools/dockerfile_linter.py`) - Parse Dockerfiles to validate syntax and identify anti-patterns (unpinned tags, missing package manager cleanups, root usage) with colored suggestions
 - **XML Validator, Beautifier & Minifier** (`tools/xml_formatter.py`) - Validate, pretty-print with configurable indentation, or minify XML payloads with precise syntax error line and column reports
 - **Git Branch Commit Tree Visualizer** (`tools/git_branch_visualizer.py`) - Render local Git repository commit histories as colored ASCII/Unicode graphs with author, relative date, and reference tags
+- **CSS Design System & Style Guide Generator** (`tools/css_style_guide_generator.py`) - Parses CSS files to extract color codes, custom properties (variables), typography settings, media queries, and generates a responsive visual design system style guide
+- **Python Script Bundler** (`tools/python_script_bundler.py`) - Trace local import dependencies of a Python script recursively using AST and bundle them into a single executable standalone script
 
 
 ### Data Processing
@@ -249,6 +251,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Proxy Debugger** (`tools/http_proxy_debugger.py`) - A local intercepting and tunneling HTTP/HTTPS proxy server logging requests, headers, and traffic details
 - **GitHub Folder Downloader** (`tools/github_folder_downloader.py`) - Download specific folders or files from GitHub without cloning the entire repository
 - **Mock S3 Server** (`tools/mock_s3_server.py`) - Launch a lightweight mock Amazon S3 HTTP server locally for testing
+- **Mock Redis Server** (`tools/mock_redis_server.py`) - A lightweight, in-memory, TCP-based Redis mock server implementing the RESP protocol for local development and testing
+- **Local SEO & Web Accessibility Auditor** (`tools/seo_auditor.py`) - Audits local HTML files or remote URLs for SEO issues and accessibility standards, generating interactive console summaries and styled HTML reports
+
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -268,6 +273,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Password Breach Checker** (`tools/password_breach_checker.py`) - Checks if a password has been leaked in data breaches using the HIBP API anonymously (K-anonymity privacy model)
 - **Source Code Secrets & API Key Scanner** (`tools/secrets_scanner.py`) - Recursively scans files/folders for API keys, tokens, private keys, and high-entropy secret strings with masked reporting
 - **Luhn Algorithm Validator & Mock Generator** (`tools/card_validator.py`) - Validate credit cards and IMEIs, identify issuer networks (Visa, Mastercard, Amex, etc.), and generate valid test numbers
+- **Mock OIDC / OAuth2 & JWKS Token Server** (`tools/mock_auth_server.py`) - Launch a local OpenID Connect mock identity provider that serves OIDC configuration, JWKS key sets, and signs RS256/HS256 tokens
 
 
 
