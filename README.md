@@ -168,6 +168,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Branch Commit Tree Visualizer** (`tools/git_branch_visualizer.py`) - Render local Git repository commit histories as colored ASCII/Unicode graphs with author, relative date, and reference tags
 - **CSS Design System & Style Guide Generator** (`tools/css_style_guide_generator.py`) - Parses CSS files to extract color codes, custom properties (variables), typography settings, media queries, and generates a responsive visual design system style guide
 - **Python Script Bundler** (`tools/python_script_bundler.py`) - Trace local import dependencies of a Python script recursively using AST and bundle them into a single executable standalone script
+- **Hex & Binary Patch Editor** (`tools/hex_patch_editor.py`) - View, search, and patch binary files using customizable hex dump formats, pattern matching (hex/ASCII), and safe backups
 
 
 ### Data Processing
@@ -207,6 +208,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Schema Diff Tool** (`tools/sqlite_schema_diff.py`) - Compare SQLite database schemas and generate migration SQL scripts
 - **CSV Diff & Reconciliation Tool** (`tools/csv_diff.py`) - Perform row-by-row reconciliation between two CSV files using a unique primary key, highlighting added, deleted, and modified columns
 - **Interactive SQL REPL & SQLite Playground** (`tools/sqlite_playground.py`) - Run SQL queries interactively in a SQLite REPL with multi-line input, execution timer, dot commands, schema visualizer, and CSV/JSON exporters
+- **SQL DDL Dialect Translator** (`tools/sql_schema_converter.py`) - Translate DDL SQL schemas between PostgreSQL, MySQL, SQLite, and Microsoft SQL Server dialects, converting data types, identifier quoting, auto-increments, and table constraints
 
 
 ### Network & Web
@@ -253,6 +255,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock S3 Server** (`tools/mock_s3_server.py`) - Launch a lightweight mock Amazon S3 HTTP server locally for testing
 - **Mock Redis Server** (`tools/mock_redis_server.py`) - A lightweight, in-memory, TCP-based Redis mock server implementing the RESP protocol for local development and testing
 - **Local SEO & Web Accessibility Auditor** (`tools/seo_auditor.py`) - Audits local HTML files or remote URLs for SEO issues and accessibility standards, generating interactive console summaries and styled HTML reports
+- **Frontend Live Reload Server** (`tools/live_reload_server.py`) - Lightweight HTTP development server for static files that injects a Server-Sent Events (SSE) client to auto-reload browsers on file edits
+- **HTTP Traffic Speed Shaper & Rate Limiter Proxy** (`tools/rate_limiter_proxy.py`) - Threaded HTTP/HTTPS proxy to simulate bandwidth throttling, latencies, packet delays, and HTTP 429 rate-limiting responses
+- **Webhook Inspector & Payload Reflector** (`tools/webhook_reflector.py`) - Capture incoming POST webhooks, log request structures, verify HMAC signatures (GitHub, Stripe, Shopify), and replay payloads via an interactive dashboard
 
 
 ### Security & Cryptography
