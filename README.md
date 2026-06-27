@@ -81,6 +81,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Duplicate File Linker** (`tools/duplicate_file_linker.py`) - Scan for duplicate files recursively and consolidate them using hard links, symlinks, or deletion to save disk space
 - **CLI Directory Size Browser** (`tools/cli_dir_size_browser.py`) - Interactive command-line directory size browser and disk space cleanup utility with size sorting and deletion capability
 - **Directory Template Generator** (`tools/directory_template_generator.py`) - Generate directories and files from a text outline or tree diagram
+- **Flashcard CLI Study Tool** (`tools/flashcard_study_tool.py`) - An interactive CLI flashcard system using spaced repetition (Leitner boxes) with progress persistence and Anki export
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -169,6 +170,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Design System & Style Guide Generator** (`tools/css_style_guide_generator.py`) - Parses CSS files to extract color codes, custom properties (variables), typography settings, media queries, and generates a responsive visual design system style guide
 - **Python Script Bundler** (`tools/python_script_bundler.py`) - Trace local import dependencies of a Python script recursively using AST and bundle them into a single executable standalone script
 - **Hex & Binary Patch Editor** (`tools/hex_patch_editor.py`) - View, search, and patch binary files using customizable hex dump formats, pattern matching (hex/ASCII), and safe backups
+- **CSS Unused Selector Scanner** (`tools/css_unused_scanner.py`) - Scan templates and scripts recursively to find dead/unused CSS classes and IDs
 
 
 ### Data Processing
@@ -209,6 +211,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Diff & Reconciliation Tool** (`tools/csv_diff.py`) - Perform row-by-row reconciliation between two CSV files using a unique primary key, highlighting added, deleted, and modified columns
 - **Interactive SQL REPL & SQLite Playground** (`tools/sqlite_playground.py`) - Run SQL queries interactively in a SQLite REPL with multi-line input, execution timer, dot commands, schema visualizer, and CSV/JSON exporters
 - **SQL DDL Dialect Translator** (`tools/sql_schema_converter.py`) - Translate DDL SQL schemas between PostgreSQL, MySQL, SQLite, and Microsoft SQL Server dialects, converting data types, identifier quoting, auto-increments, and table constraints
+- **JSON Schema Mock Data Generator** (`tools/json_schema_mock_generator.py`) - Generate mock data records (supporting emails, dates, numbers, objects) conforming to a JSON Schema draft-07 file
 
 
 ### Network & Web
@@ -258,6 +261,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Frontend Live Reload Server** (`tools/live_reload_server.py`) - Lightweight HTTP development server for static files that injects a Server-Sent Events (SSE) client to auto-reload browsers on file edits
 - **HTTP Traffic Speed Shaper & Rate Limiter Proxy** (`tools/rate_limiter_proxy.py`) - Threaded HTTP/HTTPS proxy to simulate bandwidth throttling, latencies, packet delays, and HTTP 429 rate-limiting responses
 - **Webhook Inspector & Payload Reflector** (`tools/webhook_reflector.py`) - Capture incoming POST webhooks, log request structures, verify HMAC signatures (GitHub, Stripe, Shopify), and replay payloads via an interactive dashboard
+- **API Rate Limit Prober & Analyzer** (`tools/api_rate_limit_analyzer.py`) - Safely probe endpoints to test rate limits and extract key details from response headers (Retry-After, X-RateLimit-*)
 
 
 ### Security & Cryptography
@@ -279,6 +283,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Source Code Secrets & API Key Scanner** (`tools/secrets_scanner.py`) - Recursively scans files/folders for API keys, tokens, private keys, and high-entropy secret strings with masked reporting
 - **Luhn Algorithm Validator & Mock Generator** (`tools/card_validator.py`) - Validate credit cards and IMEIs, identify issuer networks (Visa, Mastercard, Amex, etc.), and generate valid test numbers
 - **Mock OIDC / OAuth2 & JWKS Token Server** (`tools/mock_auth_server.py`) - Launch a local OpenID Connect mock identity provider that serves OIDC configuration, JWKS key sets, and signs RS256/HS256 tokens
+- **Git Commit Signature Auditor** (`tools/git_signature_auditor.py`) - Audit GPG/SSH/S-MIME commit signature compliance and match keys to developers
 
 
 
