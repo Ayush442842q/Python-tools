@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 400+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 405+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -236,6 +236,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML/CSS Inliner** (`tools/css_inliner.py`) - Parses an HTML file and its associated CSS stylesheets, and injects the CSS styles directly into the HTML tags' `style` attributes, optimized for HTML email and newsletter template development.
 - **Git Diff Visualizer** (`tools/git_diff_visualizer.py`) - Renders unified diff outputs with colored lines, side-by-side or inline view adjustments, and character-level inline differences.
 - **Text Encoding Converter** (`tools/text_encoding_converter.py`) - Recursively scans files in a directory to identify current text encodings and safely converts them to standard UTF-8.
+- **Git Stash Manager** (`tools/git_stash_manager.py`) - An advanced CLI utility to inspect, search, pop, apply, drop, and prune Git stashes with detailed diff statistics
+- **Regex Performance Tester & Optimizer** (`tools/regex_performance_tester.py`) - Benchmark regular expression compilation and match operations, statically analyze patterns for catastrophic backtracking risks (ReDoS), and run empirical scaling tests
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -297,6 +299,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Binary Search Log Slicer** (`tools/log_slicer_by_time.py`) - A high-performance log-slicing tool that uses binary search on giant files to extract logs within a specific time window, automatically parsing common timestamp formats (ISO 8601, Apache, syslog, custom)
 - **YAML Configuration Documenter** (`tools/yaml_to_markdown.py`) - Parses nested YAML configuration files (such as Docker Compose files, CI/CD pipelines, or Kubernetes manifests) and compiles them into a structured Markdown document with nested sections, parameter description tables, default values, and schema references
 - **CSV Data Anonymizer & Synthetic Generator** (`tools/csv_anonymizer_pro.py`) - Advanced PII obfuscator and synthetic data generator for CSV datasets, supporting format-preserving encryption and distribution-matching value generation
+- **SQL Dependency Analyzer** (`tools/sql_dependency_analyzer.py`) - Parse SQL schema files to map table and view dependencies, detect circular references, and determine the correct execution order for creation and teardown
+- **TOML Validator & Formatter** (`tools/toml_validator.py`) - Validate TOML files for syntax compliance, format/beautify them cleanly, and convert them to JSON format
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -391,6 +395,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSL/TLS Cipher Suite & Protocol Auditor** (`tools/ssl_cipher_auditor.py`) - Audit remote server SSL/TLS version, negotiated cipher strength, and certificate details
 - **Subdomain Takeover Vulnerability Scanner** (`tools/subdomain_takeover_scanner.py`) - Scan subdomains concurrently for dangling CNAME takeover vulnerabilities using HTTP signatures and CNAME resolution
 - **DNS Security Auditor** (`tools/dns_security_auditor.py`) - Comprehensive DNS configurations auditing mapping SPF, DMARC, DNSSEC, and CAA setups with a security scorecard.
+- **SSL Certificate Chain Analyzer** (`tools/ssl_chain_analyzer.py`) - Audit and visualize SSL/TLS certificate chains, validation status, key sizes, signatures, and host matching compatibility
 
 ## Usage
 
