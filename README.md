@@ -104,6 +104,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Code Block Runner** (`tools/markdown_code_runner.py`) - Finds, executes, and updates the output of code blocks inside Markdown files
 - **HTML/CSS Inline Style Extractor & Consolidator** (`tools/html_style_consolidator.py`) - Extracts inline style attributes from HTML and consolidates them into a clean stylesheet or style block
 - **Git Repository Archive & Space Saver** (`tools/git_repo_archiver.py`) - Cleans build artifacts, runs git gc, and compresses Git repositories with a space-savings report
+- **Directory Flattener** (`tools/directory_flattener.py`) - Recursively flattens nested directory structures into a single destination folder with custom collision resolution and undo rollback mappings
+- **Markdown Unreferenced Assets Cleaner** (`tools/markdown_unreferenced_assets_cleaner.py`) - Scan Markdown documents for local asset links and clean up unused media files on disk with a dry-run safety option
 
 
 ### Development Tools
@@ -289,6 +291,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Churn & Complexity Analyzer** (`tools/git_churn_complexity_analyzer.py`) - Correlates Git commit frequency (churn) with AST-based cyclomatic complexity to identify codebase hotspots and priority refactoring targets
 - **Tailwind CSS Unused Class Purger** (`tools/tailwind_unused_purger.py`) - Scans codebase templates to identify used Tailwind utility classes and purges unused rules from a CSS stylesheet to generate a minified, lightweight output
 - **API Regression & Response Diff Tester** (`tools/api_regression_tester.py`) - Sends HTTP requests concurrently to a reference and test API environment and performs a structural JSON diff of their responses, status codes, and headers to identify regressions
+- **JSON Key Sorter** (`tools/json_key_sorter.py`) - Recursively sorts the keys of JSON files alphabetically, supporting priority sorting (placing key fields like id first) and custom formatting for clean git diffs
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
@@ -365,6 +368,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Schema Form Collector** (`tools/json_schema_form_collector.py`) - Generate dynamic interactive terminal forms from a JSON Schema to collect, validate, and export conforming JSON data
 - **Markdown Table Shaper** (`tools/markdown_table_shaper.py`) - An advanced command-line tool to manipulate, filter, sort, transpose, and re-format Markdown tables
 - **Markdown Table to SQLite Database Converter** (`tools/markdown_table_to_sqlite.py`) - Scans markdown files for tables, parses their headers and rows, dynamically infers columns types (INTEGER, REAL, TEXT), and imports them into a SQLite database
+- **SQLite Static Web Exporter** (`tools/sqlite_static_web_exporter.py`) - Converts any SQLite database file into a single, self-contained, responsive HTML file with search, sorting, pagination, and data export capability
 
 
 
@@ -490,6 +494,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Security Linter** (`tools/python_security_linter.py`) - AST-based security static analysis scanner for Python source code to detect command injections, insecure serialization, insecure APIs, and hardcoded secrets
 - **CORS Security Auditor** (`tools/cors_security_auditor.py`) - Scans HTTP/REST API endpoints for CORS (Cross-Origin Resource Sharing) misconfigurations and vulnerabilities
 - **GitHub Actions Security Auditor** (`tools/github_actions_auditor.py`) - Scan GitHub Actions workflows for security risks like unpinned action versions, dangerous triggers (pull_request_target), inline script injection, and write-all API tokens
+- **Binary File Carver** (`tools/binary_file_carver.py`) - A digital forensics tool that scans raw binary files for known file headers/trailers (PNG, JPEG, GIF, PDF, ZIP, BMP) and carves them out
 
 ## Usage
 
