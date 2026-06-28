@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 445+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 450+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -16,6 +16,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 ### File System & Utilities
 - **Backup Tool** (`tools/backup_tool.py`) - Create timestamped backups of files and directories
+- **Backup Rotator** (`tools/backup_rotator.py`) - Apply Grandfather-Father-Son (GFS) retention policy to keep a mix of daily, weekly, monthly, and yearly backups and prune old archives
 - **Batch File Renamer** (`tools/batch_file_renamer.py`) - Rename multiple files using patterns and rules
 - **Batch Renamer** (`tools/batch_renamer.py`) - Alternative batch renaming utility
 - **Data Cleaner** (`tools/data_cleaner.py`) - Clean and preprocess messy datasets
@@ -259,6 +260,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Lisp Interpreter** (`tools/lisp_interpreter.py`) - A minimal Lisp (Scheme-like) interpreter in Python with a visual REPL, lexical scoping, variables, lambdas, maps, recursion, and arithmetic.
 - **Gitignore Cleaner** (`tools/gitignore_cleaner.py`) - Scan a Git repository for tracked files that match `.gitignore` patterns, generate cleaner commands, and audit `.gitignore` for redundant rules.
 - **Binary Tree Visualizer** (`tools/binary_tree_visualizer.py`) - Construct and visualize standard Binary Search Trees (BST) or self-balancing AVL trees vertically in the terminal using Unicode characters with an interactive tree editor.
+- **Project Scaffolder** (`tools/project_scaffolder.py`) - Scans a template directory containing placeholders, prompts the user for values, and instantiates the project layout and code files
 
 
 ### Data Processing
@@ -409,6 +411,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Self-Hosted Markdown Wiki & Note Server** (`tools/markdown_wiki_server.py`) - Serve and edit a directory of Markdown notes with backlinks, tags, search, and a beautiful editor interface.
 - **Local HTTP API Gateway & Reverse Proxy** (`tools/local_api_gateway.py`) - Route HTTP requests to multiple backend services based on path rules with rate limiting and logging.
 - **Local URL Shortener Server** (`tools/url_shortener_server.py`) - A zero-dependency local URL shortener and analytics server with a premium web dashboard, custom aliases, redirection, and real-time visitor statistics.
+- **WebSocket Client & Echo Server** (`tools/websocket_client_server.py`) - Standard-compliant WebSocket client and echo server in pure Python with support for interactive commands and secure sockets (ws/wss)
+- **Dynamic DNS (DDNS) Updater** (`tools/ddns_updater.py`) - Monitor public IP changes with fallbacks and update A records on Cloudflare, DuckDNS, or trigger custom webhooks
 
 
 ### Security & Cryptography
@@ -443,6 +447,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSL Certificate Chain Analyzer** (`tools/ssl_chain_analyzer.py`) - Audit and visualize SSL/TLS certificate chains, validation status, key sizes, signatures, and host matching compatibility
 - **SSH Key Manager & Auditor** (`tools/ssh_key_manager.py`) - Scans and audits SSH key pairs, calculates SHA256 and MD5 fingerprints natively in Python, and facilitates new key pair generation with security recommendations
 - **Unicode Homoglyph Security Detector** (`tools/unicode_homoglyph_detector.py`) - Scan text, domain names, or source code files for homograph attacks, mixed-script token confusion, invisible characters, and bidirectional overrides
+- **Python Security Linter** (`tools/python_security_linter.py`) - AST-based security static analysis scanner for Python source code to detect command injections, insecure serialization, insecure APIs, and hardcoded secrets
 
 ## Usage
 
