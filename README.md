@@ -91,6 +91,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Duplicate Directory Finder** (`tools/duplicate_dir_finder.py`) - Scans folder hierarchies recursively to identify completely identical folders based on file hashes
 - **CLI Directory Size Treemap** (`tools/directory_size_treemap.py`) - Computes directory sizes recursively and renders a visual nested ASCII/Unicode treemap in the terminal, showing the relative storage proportions of subdirectories and files
 - **System Service Monitor & Restarter** (`tools/system_service_monitor.py`) - Monitors critical background processes and services, automatically attempting restarts or sending alerts if they crash or hang
+- **Hierarchical Process Tree Visualizer** (`tools/process_tree_visualizer.py`) - Gather process data and display running processes in a hierarchical parent-child tree structure with memory statistics and recursive termination capabilities
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -228,6 +229,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Jupyter Notebook Stripper** (`tools/jupyter_notebook_stripper.py`) - Sanitizes Jupyter Notebook (`.ipynb`) files for clean version control by removing outputs, cell execution counts, and workspace-specific metadata
 - **Python Type Hint Coverage Analyzer** (`tools/python_type_hint_analyzer.py`) - Parses Python source files using the `ast` module to scan and report type-hinting coverage statistics (percentage of annotated function arguments and return types), pointing out missing annotations with exact line numbers
 - **HTML/CSS Inliner** (`tools/css_inliner.py`) - Parses an HTML file and its associated CSS stylesheets, and injects the CSS styles directly into the HTML tags' `style` attributes, optimized for HTML email and newsletter template development.
+- **Git Diff Visualizer** (`tools/git_diff_visualizer.py`) - Renders unified diff outputs with colored lines, side-by-side or inline view adjustments, and character-level inline differences.
+- **Text Encoding Converter** (`tools/text_encoding_converter.py`) - Recursively scans files in a directory to identify current text encodings and safely converts them to standard UTF-8.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -347,6 +350,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Webhook Event Replay Utility** (`tools/webhook_replay_tool.py`) - Interactively capture, edit, and re-send HTTP webhook event payloads to local development environments
 - **HTTP Archive (HAR) Analyzer** (`tools/har_analyzer.py`) - Parses browser network capture `.har` files (JSON format) to extract key performance metrics, resource distributions, and lists automated server-side compression and caching optimization recommendations.
 - **Sitemap XML Link Auditor** (`tools/sitemap_link_auditor.py`) - Fetches or reads a website's `sitemap.xml` (recursively scanning sitemap index files) and concurrently audits all URLs for broken links (4xx, 5xx), redirect paths, network connection timeouts, and response latency.
+- **SSH Tunnel Manager** (`tools/ssh_tunnel_manager.py`) - Manage and monitor SSH port forwarding tunnels (local, remote, and dynamic SOCKS5 proxies) with process tracking and health probes.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -376,6 +380,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Nginx Configuration File Parser & Linter** (`tools/nginx_config_linter.py`) - Offline linter to detect security vulnerabilities, path traversal risks, and signature leakage in Nginx configurations
 - **SSL/TLS Cipher Suite & Protocol Auditor** (`tools/ssl_cipher_auditor.py`) - Audit remote server SSL/TLS version, negotiated cipher strength, and certificate details
 - **Subdomain Takeover Vulnerability Scanner** (`tools/subdomain_takeover_scanner.py`) - Scan subdomains concurrently for dangling CNAME takeover vulnerabilities using HTTP signatures and CNAME resolution
+- **DNS Security Auditor** (`tools/dns_security_auditor.py`) - Comprehensive DNS configurations auditing mapping SPF, DMARC, DNSSEC, and CAA setups with a security scorecard.
 
 ## Usage
 
