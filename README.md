@@ -85,6 +85,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Directory Merkle Tree Generator** (`tools/directory_merkle_tree.py`) - Cryptographic directory tree hasher, integrity checker, and fast difference locator
 - **CLI Interactive System Dashboard** (`tools/cli_system_dashboard.py`) - A real-time, terminal-based resource monitor that displays live-updating CPU, memory, disk, and process statistics
 - **Terminal Gantt Chart Generator** (`tools/terminal_gantt_chart.py`) - Generate visual terminal Gantt charts from JSON or text schedules and export them to HTML/CSS timelines or Markdown tables
+- **Terminal File Picker** (`tools/file_picker.py`) - An interactive terminal-based file and directory picker with search and filtering
+- **Batch Image Optimizer** (`tools/image_optimizer.py`) - Compress, resize, and optimize images in batches while preserving directories
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -189,6 +191,16 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML Structural Validator & Linter** (`tools/html_structural_validator.py`) - Validate HTML files for tag balance, structural nesting, duplicate IDs, and basic accessibility issues
 - **Git Profile Manager** (`tools/git_profile_manager.py`) - Manage multiple Git identities (name, email, SSH, GPG) and automatically switch between them using conditional inclusions
 - **JS/TS Dependency Visualizer** (`tools/js_ts_dependency_visualizer.py`) - Scan Javascript/TypeScript imports and exports, detect circular dependencies, and export a visual Mermaid.js chart or interactive HTML graph
+- **Git Hook Manager** (`tools/git_hook_manager.py`) - Inspect, create, activate, deactivate, and test Git hooks locally
+- **Python Docstring Generator** (`tools/python_docstring_generator.py`) - Automatically parse Python files using AST and generate Google-style docstrings
+- **API Schema Generator** (`tools/api_schema_generator.py`) - Fetch API responses and automatically generate JSON Schema definitions
+- **Changelog Generator** (`tools/changelog_generator.py`) - Generate structured Markdown changelogs from project commit histories
+- **Dependency Update Checker** (`tools/dependency_update_checker.py`) - Scan requirements files and check PyPI for available package updates
+- **Environment File Validator** (`tools/env_validator.py`) - Validate .env file variables against a schema or rules
+- **Environment Variable Interactive Editor** (`tools/environment_variable_interactive_editor.py`) - Interactive CLI editor for managing and editing environment variables
+- **Markdown Link Replacer** (`tools/markdown_link_replacer.py`) - Find and replace link patterns across multiple Markdown files
+- **Virtual Environment Manager** (`tools/venv_manager.py`) - Create, activate, delete, and inspect Python virtual environments via CLI
+- **YAML Schema Validator** (`tools/yaml_validator.py`) - Validate YAML configuration files against JSON Schemas
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -234,6 +246,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table SQL Query Tool** (`tools/markdown_table_query_tool.py`) - Parse Markdown tables into an in-memory SQLite database and execute SQL queries on them via CLI or interactive REPL
 - **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
 - **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
+- **Log Pattern Extractor** (`tools/log_pattern_extractor.py`) - Cluster log lines into common templates by masking dynamic variables
 
 
 ### Network & Web
@@ -290,6 +303,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **TUI HTTP Client** (`tools/tui_http_client.py`) - Interactive menu-driven terminal REST API client to construct, configure, send, and save HTTP requests
 - **GitHub Profile & Repository Analyzer** (`tools/github_profile_analyzer.py`) - Fetch user profiles, public repository analytics, and programming language distributions from the GitHub API
 - **LAN Socket-based Directory Syncer** (`tools/lan_directory_syncer.py`) - Synchronize directories recursively over TCP sockets across a local network using MD5 hash verification
+- **TCP Port Ping Utility** (`tools/tcp_ping_tool.py`) - Measure connection latency to a host and port over TCP sockets
+- **Email Address Validator** (`tools/email_validator.py`) - Validate email format, domain MX records, and SMTP availability
 
 
 ### Security & Cryptography
@@ -313,6 +328,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock OIDC / OAuth2 & JWKS Token Server** (`tools/mock_auth_server.py`) - Launch a local OpenID Connect mock identity provider that serves OIDC configuration, JWKS key sets, and signs RS256/HS256 tokens
 - **Git Commit Signature Auditor** (`tools/git_signature_auditor.py`) - Audit GPG/SSH/S-MIME commit signature compliance and match keys to developers
 - **Offline JWT HS256 Secret Cracker** (`tools/jwt_secret_cracker.py`) - Offline dictionary and brute-force cracking tool for HS256 JSON Web Tokens (JWTs)
+- **API Security Fuzzer** (`tools/api_fuzzer.py`) - Perform security fuzzing on API endpoints to find vulnerabilities like SQLi, XSS, and path traversal
+- **Environment File Encryption Tool** (`tools/env_encryption_tool.py`) - Encrypt and decrypt sensitive .env configurations using AES cryptography
 
 
 
