@@ -296,6 +296,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **cURL Command to Python Script Converter** (`tools/curl_to_python.py`) - Parses raw cURL command lines and generates equivalent Python scripts using standard `urllib` or the `requests` library
 - **Kubernetes Manifest Auditor & Linter** (`tools/k8s_manifest_linter.py`) - Audits Kubernetes YAML/JSON manifests for security risks, missing resource constraints, and deployment best practices
 - **Markdown HTML/PDF Document Compiler** (`tools/markdown_to_pdf.py`) - Compiles Markdown documents into styled, responsive HTML and PDF-ready layouts with customized CSS themes and automated Table of Contents
+- **GitHub Gist Manager** (`tools/github_gist_manager.py`) - List, view, create, update, and delete GitHub Gists using the GitHub API with token authentication
+- **Git Branch Compare Tool** (`tools/git_branch_compare_tool.py`) - Compares two local Git branches and generates a detailed report of unique commits, file modifications, and line differences
+- **Python Requirement Optimizer** (`tools/python_requirement_optimizer.py`) - Scans a Python project, extracts imported modules, maps imports to PyPI packages, and generates an optimized requirements.txt
+- **Markdown Link Doctor** (`tools/markdown_link_absolute_to_relative.py`) - Audits links in Markdown documents, converting absolute paths into relative ones and warning about broken links
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -375,9 +379,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table to SQLite Database Converter** (`tools/markdown_table_to_sqlite.py`) - Scans markdown files for tables, parses their headers and rows, dynamically infers columns types (INTEGER, REAL, TEXT), and imports them into a SQLite database
 - **SQLite Static Web Exporter** (`tools/sqlite_static_web_exporter.py`) - Converts any SQLite database file into a single, self-contained, responsive HTML file with search, sorting, pagination, and data export capability
 - **SQL Query Obfuscator & Sanitizer** (`tools/sql_query_obfuscator.py`) - Clean and obfuscate SQL queries by replacing sensitive literal values (strings, numbers) with placeholders (e.g. `?` or `:val`) for logging, performance tuning, and sharing queries safely
-
-
-
+- **CSV Data Synthesizer** (`tools/csv_data_synthesizer.py`) - Scans an input CSV file to analyze column types and distributions, and then generates a synthetic dataset of any size that mimics the original data structure.
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
