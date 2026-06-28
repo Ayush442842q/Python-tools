@@ -173,6 +173,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Hex & Binary Patch Editor** (`tools/hex_patch_editor.py`) - View, search, and patch binary files using customizable hex dump formats, pattern matching (hex/ASCII), and safe backups
 - **CSS Unused Selector Scanner** (`tools/css_unused_scanner.py`) - Scan templates and scripts recursively to find dead/unused CSS classes and IDs
 - **Git Merge Conflict Resolver** (`tools/git_conflict_resolver.py`) - Scans for Git merge conflicts and provides interactive side-by-side comparison and resolution options
+- **Python Dead Code Finder** (`tools/python_dead_code_finder.py`) - Scan Python source files recursively and identify unused functions, classes, and global variables using AST analysis
+- **ASCII & Unicode Sequence Diagram Generator** (`tools/ascii_sequence_diagram.py`) - Compile text-based sequence descriptions (similar to PlantUML) into formatted Unicode or ASCII charts in the console
 
 
 ### Data Processing
@@ -215,6 +217,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL DDL Dialect Translator** (`tools/sql_schema_converter.py`) - Translate DDL SQL schemas between PostgreSQL, MySQL, SQLite, and Microsoft SQL Server dialects, converting data types, identifier quoting, auto-increments, and table constraints
 - **JSON Schema Mock Data Generator** (`tools/json_schema_mock_generator.py`) - Generate mock data records (supporting emails, dates, numbers, objects) conforming to a JSON Schema draft-07 file
 - **SQLite Data Anonymizer** (`tools/sqlite_data_anonymizer.py`) - Detect potential PII in SQLite databases and interactively mask, hash, nullify, or fake the fields
+- **Structured Data to SQL Insert Generator** (`tools/data_to_sql_insert.py`) - Convert CSV, JSON, or JSONL files into SQL INSERT statements with datatype inference, single-quote escaping, and batching
 
 
 ### Network & Web
@@ -266,6 +269,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Webhook Inspector & Payload Reflector** (`tools/webhook_reflector.py`) - Capture incoming POST webhooks, log request structures, verify HMAC signatures (GitHub, Stripe, Shopify), and replay payloads via an interactive dashboard
 - **API Rate Limit Prober & Analyzer** (`tools/api_rate_limit_analyzer.py`) - Safely probe endpoints to test rate limits and extract key details from response headers (Retry-After, X-RateLimit-*)
 - **HTTP Redirect Tracer & Loop Detector** (`tools/http_redirect_tracer.py`) - Trace redirect chains step-by-step, checking status codes, times, cookies, security headers, and open redirects
+- **Network Throughput & Performance Tester** (`tools/network_throughput_tester.py`) - Benchmark network bandwidth, packet loss, and jitter using TCP or UDP sockets (iperf-like client/server)
+- **Web Content Extractor & Reader Mode** (`tools/web_content_extractor.py`) - Extract the core article text from a webpage, omitting navigation, sidebars, and ads using scoring heuristics
 
 
 ### Security & Cryptography
