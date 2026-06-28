@@ -82,6 +82,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CLI Directory Size Browser** (`tools/cli_dir_size_browser.py`) - Interactive command-line directory size browser and disk space cleanup utility with size sorting and deletion capability
 - **Directory Template Generator** (`tools/directory_template_generator.py`) - Generate directories and files from a text outline or tree diagram
 - **Flashcard CLI Study Tool** (`tools/flashcard_study_tool.py`) - An interactive CLI flashcard system using spaced repetition (Leitner boxes) with progress persistence and Anki export
+- **Directory Merkle Tree Generator** (`tools/directory_merkle_tree.py`) - Cryptographic directory tree hasher, integrity checker, and fast difference locator
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -171,6 +172,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Script Bundler** (`tools/python_script_bundler.py`) - Trace local import dependencies of a Python script recursively using AST and bundle them into a single executable standalone script
 - **Hex & Binary Patch Editor** (`tools/hex_patch_editor.py`) - View, search, and patch binary files using customizable hex dump formats, pattern matching (hex/ASCII), and safe backups
 - **CSS Unused Selector Scanner** (`tools/css_unused_scanner.py`) - Scan templates and scripts recursively to find dead/unused CSS classes and IDs
+- **Git Merge Conflict Resolver** (`tools/git_conflict_resolver.py`) - Scans for Git merge conflicts and provides interactive side-by-side comparison and resolution options
 
 
 ### Data Processing
@@ -212,6 +214,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Interactive SQL REPL & SQLite Playground** (`tools/sqlite_playground.py`) - Run SQL queries interactively in a SQLite REPL with multi-line input, execution timer, dot commands, schema visualizer, and CSV/JSON exporters
 - **SQL DDL Dialect Translator** (`tools/sql_schema_converter.py`) - Translate DDL SQL schemas between PostgreSQL, MySQL, SQLite, and Microsoft SQL Server dialects, converting data types, identifier quoting, auto-increments, and table constraints
 - **JSON Schema Mock Data Generator** (`tools/json_schema_mock_generator.py`) - Generate mock data records (supporting emails, dates, numbers, objects) conforming to a JSON Schema draft-07 file
+- **SQLite Data Anonymizer** (`tools/sqlite_data_anonymizer.py`) - Detect potential PII in SQLite databases and interactively mask, hash, nullify, or fake the fields
 
 
 ### Network & Web
@@ -262,6 +265,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Traffic Speed Shaper & Rate Limiter Proxy** (`tools/rate_limiter_proxy.py`) - Threaded HTTP/HTTPS proxy to simulate bandwidth throttling, latencies, packet delays, and HTTP 429 rate-limiting responses
 - **Webhook Inspector & Payload Reflector** (`tools/webhook_reflector.py`) - Capture incoming POST webhooks, log request structures, verify HMAC signatures (GitHub, Stripe, Shopify), and replay payloads via an interactive dashboard
 - **API Rate Limit Prober & Analyzer** (`tools/api_rate_limit_analyzer.py`) - Safely probe endpoints to test rate limits and extract key details from response headers (Retry-After, X-RateLimit-*)
+- **HTTP Redirect Tracer & Loop Detector** (`tools/http_redirect_tracer.py`) - Trace redirect chains step-by-step, checking status codes, times, cookies, security headers, and open redirects
 
 
 ### Security & Cryptography
@@ -284,6 +288,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Luhn Algorithm Validator & Mock Generator** (`tools/card_validator.py`) - Validate credit cards and IMEIs, identify issuer networks (Visa, Mastercard, Amex, etc.), and generate valid test numbers
 - **Mock OIDC / OAuth2 & JWKS Token Server** (`tools/mock_auth_server.py`) - Launch a local OpenID Connect mock identity provider that serves OIDC configuration, JWKS key sets, and signs RS256/HS256 tokens
 - **Git Commit Signature Auditor** (`tools/git_signature_auditor.py`) - Audit GPG/SSH/S-MIME commit signature compliance and match keys to developers
+- **Offline JWT HS256 Secret Cracker** (`tools/jwt_secret_cracker.py`) - Offline dictionary and brute-force cracking tool for HS256 JSON Web Tokens (JWTs)
 
 
 
