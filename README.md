@@ -303,6 +303,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown & Jupyter Notebook Converter** (`tools/markdown_notebook_converter.py`) - Converts between Markdown (.md) and Jupyter Notebook (.ipynb) files, extracting code blocks as code cells and text as markdown cells
 - **Venv Dependency Drift Detector** (`tools/venv_drift_detector.py`) - Detects drift between active virtual environment installed packages and a dependency specification file (e.g. `requirements.txt`)
 - **Git Repo Health & History Analyzer** (`tools/git_repo_health_analyzer.py`) - Scans local Git repository metadata, commit activity, loose objects, and scans history to find largest blobs bloating database
+- **API Response Schema Diff Tool** (`tools/api_schema_diff.py`) - Compare two API responses or JSON Schemas to detect structural changes, type shifts, or breaking contracts
+- **SQL Explain Query Plan Visualizer** (`tools/sql_explain_visualizer.py`) - Runs an SQL query against a SQLite database, parses the EXPLAIN QUERY PLAN output, and generates a visual hierarchical tree diagram of the execution plan
+- **Data Serialization Benchmarker** (`tools/serialization_benchmarker.py`) - Benchmark performance (speed and output size) of various serialization formats like JSON, JSONL, XML, YAML, CSV, and Pickle
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -511,6 +514,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Binary File Carver** (`tools/binary_file_carver.py`) - A digital forensics tool that scans raw binary files for known file headers/trailers (PNG, JPEG, GIF, PDF, ZIP, BMP) and carves them out
 - **Self-Signed SSL/TLS Certificate Generator** (`tools/self_signed_cert_generator.py`) - Generates self-signed SSL/TLS certificates and key pairs locally, with support for domains, IPs, wildcard DNS names, and SAN extensions
 - **Web Shell & Backdoor Scanner** (`tools/webshell_scanner.py`) - Recursively scans web directories for web shells, malicious backdoors, dynamic code execution, and high-entropy obfuscated scripts
+- **Pip License Compliance Auditor** (`tools/pip_license_auditor.py`) - Scan project dependencies, fetch license metadata, and audit them against allowed/prohibited lists to ensure legal compliance
+- **Pip Dependency Vulnerability Scanner** (`tools/pip_vulnerability_scanner.py`) - Audit project Python dependencies against the OSV.dev database to identify known security vulnerabilities (CVEs/GHSAs)
 
 ## Usage
 
