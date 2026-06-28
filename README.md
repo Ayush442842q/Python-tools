@@ -83,6 +83,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Directory Template Generator** (`tools/directory_template_generator.py`) - Generate directories and files from a text outline or tree diagram
 - **Flashcard CLI Study Tool** (`tools/flashcard_study_tool.py`) - An interactive CLI flashcard system using spaced repetition (Leitner boxes) with progress persistence and Anki export
 - **Directory Merkle Tree Generator** (`tools/directory_merkle_tree.py`) - Cryptographic directory tree hasher, integrity checker, and fast difference locator
+- **CLI Interactive System Dashboard** (`tools/cli_system_dashboard.py`) - A real-time, terminal-based resource monitor that displays live-updating CPU, memory, disk, and process statistics
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -226,6 +227,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Schema Mock Data Generator** (`tools/json_schema_mock_generator.py`) - Generate mock data records (supporting emails, dates, numbers, objects) conforming to a JSON Schema draft-07 file
 - **SQLite Data Anonymizer** (`tools/sqlite_data_anonymizer.py`) - Detect potential PII in SQLite databases and interactively mask, hash, nullify, or fake the fields
 - **Structured Data to SQL Insert Generator** (`tools/data_to_sql_insert.py`) - Convert CSV, JSON, or JSONL files into SQL INSERT statements with datatype inference, single-quote escaping, and batching
+- **Markdown Table SQL Query Tool** (`tools/markdown_table_query_tool.py`) - Parse Markdown tables into an in-memory SQLite database and execute SQL queries on them via CLI or interactive REPL
+- **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
 
 
 ### Network & Web
@@ -280,6 +283,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Network Throughput & Performance Tester** (`tools/network_throughput_tester.py`) - Benchmark network bandwidth, packet loss, and jitter using TCP or UDP sockets (iperf-like client/server)
 - **Web Content Extractor & Reader Mode** (`tools/web_content_extractor.py`) - Extract the core article text from a webpage, omitting navigation, sidebars, and ads using scoring heuristics
 - **TUI HTTP Client** (`tools/tui_http_client.py`) - Interactive menu-driven terminal REST API client to construct, configure, send, and save HTTP requests
+- **GitHub Profile & Repository Analyzer** (`tools/github_profile_analyzer.py`) - Fetch user profiles, public repository analytics, and programming language distributions from the GitHub API
+- **LAN Socket-based Directory Syncer** (`tools/lan_directory_syncer.py`) - Synchronize directories recursively over TCP sockets across a local network using MD5 hash verification
 
 
 ### Security & Cryptography
