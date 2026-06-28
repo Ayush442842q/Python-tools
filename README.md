@@ -293,6 +293,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Tailwind CSS Unused Class Purger** (`tools/tailwind_unused_purger.py`) - Scans codebase templates to identify used Tailwind utility classes and purges unused rules from a CSS stylesheet to generate a minified, lightweight output
 - **API Regression & Response Diff Tester** (`tools/api_regression_tester.py`) - Sends HTTP requests concurrently to a reference and test API environment and performs a structural JSON diff of their responses, status codes, and headers to identify regressions
 - **JSON Key Sorter** (`tools/json_key_sorter.py`) - Recursively sorts the keys of JSON files alphabetically, supporting priority sorting (placing key fields like id first) and custom formatting for clean git diffs
+- **cURL Command to Python Script Converter** (`tools/curl_to_python.py`) - Parses raw cURL command lines and generates equivalent Python scripts using standard `urllib` or the `requests` library
+- **Kubernetes Manifest Auditor & Linter** (`tools/k8s_manifest_linter.py`) - Audits Kubernetes YAML/JSON manifests for security risks, missing resource constraints, and deployment best practices
+- **Markdown HTML/PDF Document Compiler** (`tools/markdown_to_pdf.py`) - Compiles Markdown documents into styled, responsive HTML and PDF-ready layouts with customized CSS themes and automated Table of Contents
+
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
@@ -460,6 +464,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Intercepting & Mocking Proxy Server** (`tools/http_mocking_proxy.py`) - Local HTTP proxy server that intercepts requests matching regex patterns to return custom mock responses (status, headers, body, latency) while forwarding other traffic transparently
 - **TCP/UDP Port Knocker & Daemon Simulator** (`tools/tcp_port_knocker.py`) - TCP/UDP port knocking client and daemon simulator tool to secure ports by opening them only after a specific sequence of connection attempts to closed ports
 - **GitHub Issue Backup Tool** (`tools/github_issue_backup.py`) - Downloads issues and comments from GitHub API to local markdown files
+- **HTTP Archive (HAR) to cURL Command Generator** (`tools/har_to_curl.py`) - Parses browser network capture `.har` logs and outputs equivalent, runnable shell cURL command payloads
 
 
 
@@ -500,6 +505,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **GitHub Actions Security Auditor** (`tools/github_actions_auditor.py`) - Scan GitHub Actions workflows for security risks like unpinned action versions, dangerous triggers (pull_request_target), inline script injection, and write-all API tokens
 - **Binary File Carver** (`tools/binary_file_carver.py`) - A digital forensics tool that scans raw binary files for known file headers/trailers (PNG, JPEG, GIF, PDF, ZIP, BMP) and carves them out
 - **Self-Signed SSL/TLS Certificate Generator** (`tools/self_signed_cert_generator.py`) - Generates self-signed SSL/TLS certificates and key pairs locally, with support for domains, IPs, wildcard DNS names, and SAN extensions
+- **Web Shell & Backdoor Scanner** (`tools/webshell_scanner.py`) - Recursively scans web directories for web shells, malicious backdoors, dynamic code execution, and high-entropy obfuscated scripts
 
 ## Usage
 
