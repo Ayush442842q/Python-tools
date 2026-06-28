@@ -282,6 +282,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Shell Script Command & Dependency Validator** (`tools/shell_dependency_checker.py`) - Scans shell scripts recursively, extracts external commands invoked, and verifies if they are available on the current system path
 - **Python Memory Leak Detector & Analyzer** (`tools/python_memory_leak_detector.py`) - Executes a target Python function or code block repeatedly to detect memory growth, unreleased references, and analyze memory allocating hotspots
 - **pip Dependency Tree** (`tools/pip_dependency_tree.py`) - Queries installed Python packages in the current environment to print a complete hierarchical dependency tree with version requirements, highlighting missing or circular dependencies
+- **Python Virtual Environment Dependency Size Analyzer** (`tools/venv_dependency_size_analyzer.py`) - Scans a Python virtual environment's site-packages folder to calculate own and cumulative dependency sizes, and renders a hierarchical tree or sorted list
+- **Tailwind CSS Class Sorter & Deduplicator** (`tools/tailwind_class_sorter.py`) - Parses HTML, JSX, TSX, or Vue files to locate Tailwind CSS class declarations, cleans duplicates, and sorts them according to the official Tailwind CSS class ordering guidelines
+- **Git Repository Code Age and Ownership Analyzer** (`tools/git_code_age_analyzer.py`) - Analyzes line-level age and authorship distribution across tracked files using `git blame`, identifying "zombie code" (untouched for years) and files written by developers no longer active in recent commit history
+
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -358,6 +362,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Data Diff Tool** (`tools/sqlite_data_diff.py`) - Compare rows of matching tables between two SQLite database files based on primary keys, highlighting added, deleted, and modified values
 - **JSON Schema Form Collector** (`tools/json_schema_form_collector.py`) - Generate dynamic interactive terminal forms from a JSON Schema to collect, validate, and export conforming JSON data
 - **Markdown Table Shaper** (`tools/markdown_table_shaper.py`) - An advanced command-line tool to manipulate, filter, sort, transpose, and re-format Markdown tables
+- **Markdown Table to SQLite Database Converter** (`tools/markdown_table_to_sqlite.py`) - Scans markdown files for tables, parses their headers and rows, dynamically infers columns types (INTEGER, REAL, TEXT), and imports them into a SQLite database
+
 
 
 
@@ -443,6 +449,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Multi-threaded Subnet Ping Sweeper** (`tools/subnet_ping_sweeper.py`) - Fast, multi-threaded IP subnet and IP range scanner using system native ping commands with response times and summary analytics
 - **HTTP Cache Analyzer** (`tools/http_cache_analyzer.py`) - Requests a URL and analyzes HTTP response headers (Cache-Control, Expires, ETag, Last-Modified, Vary) to evaluate cacheability, compute TTLs, and audit compression settings
 - **GitHub Release Downloader** (`tools/github_release_downloader.py`) - Downloads files, assets, or source code archives from GitHub Releases for a given repository with progress reporting and download metrics
+- **HTTP Intercepting & Mocking Proxy Server** (`tools/http_mocking_proxy.py`) - Local HTTP proxy server that intercepts requests matching regex patterns to return custom mock responses (status, headers, body, latency) while forwarding other traffic transparently
+
 
 
 ### Security & Cryptography
