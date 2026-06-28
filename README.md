@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 315+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 330+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -89,6 +89,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Batch Image Optimizer** (`tools/image_optimizer.py`) - Compress, resize, and optimize images in batches while preserving directories
 - **Interactive Terminal Paint Studio** (`tools/terminal_paint.py`) - Interactive curses-based console canvas drawing and ANSI art creator
 - **Duplicate Directory Finder** (`tools/duplicate_dir_finder.py`) - Scans folder hierarchies recursively to identify completely identical folders based on file hashes
+- **CLI Directory Size Treemap** (`tools/directory_size_treemap.py`) - Computes directory sizes recursively and renders a visual nested ASCII/Unicode treemap in the terminal, showing the relative storage proportions of subdirectories and files
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -216,6 +217,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Environment Variable Interpolation Tool** (`tools/env_interpolation_tool.py`) - Process .env files and resolve nested variable references and default values
 - **SSH Configuration Manager** (`tools/ssh_config_manager.py`) - Manage and inspect SSH configuration files (`~/.ssh/config`) with host connectivity checks
 - **JSON Schema to Markdown Generator** (`tools/json_schema_to_markdown.py`) - Convert JSON Schema files into clean, structured Markdown documentation
+- **Multi-Git Repository Status Scanner** (`tools/git_multi_repo_status.py`) - Recursively scans a root directory for Git repositories, queries their status (active branch, uncommitted modifications, staged files, untracked files, unpushed commits, and unpulled commits), and displays a colorized CLI dashboard/summary of all repos requiring attention
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -265,6 +267,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
 - **Log Pattern Extractor** (`tools/log_pattern_extractor.py`) - Cluster log lines into common templates by masking dynamic variables
 - **SQLite Database to HTML Report Generator** (`tools/sqlite_html_report.py`) - Generate rich, interactive, and dark-themed HTML documentation of SQLite database schemas and sample data
+- **Binary Search Log Slicer** (`tools/log_slicer_by_time.py`) - A high-performance log-slicing tool that uses binary search on giant files to extract logs within a specific time window, automatically parsing common timestamp formats (ISO 8601, Apache, syslog, custom)
+- **YAML Configuration Documenter** (`tools/yaml_to_markdown.py`) - Parses nested YAML configuration files (such as Docker Compose files, CI/CD pipelines, or Kubernetes manifests) and compiles them into a structured Markdown document with nested sections, parameter description tables, default values, and schema references
 
 
 ### Network & Web
@@ -325,6 +329,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Email Address Validator** (`tools/email_validator.py`) - Validate email format, domain MX records, and SMTP availability
 - **Subreddit Scraper & Media Downloader** (`tools/subreddit_scraper.py`) - Scrapes posts, comments, and media from subreddits using public JSON feeds
 - **CIDR Aggregation, Splitter & Exclusion Utility** (`tools/cidr_utility.py`) - Aggregate, split, and subtract IP subnets, and verify membership using native ipaddress module
+- **CIDR Subnet Grid Visualizer** (`tools/ip_subnet_visualizer.py`) - Maps out IP address allocations of a CIDR block, showing subnets, gateway IPs, broadcast IPs, and rendering a console grid representation of how the IP space is partitioned
 
 
 ### Security & Cryptography
