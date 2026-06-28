@@ -175,7 +175,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Merge Conflict Resolver** (`tools/git_conflict_resolver.py`) - Scans for Git merge conflicts and provides interactive side-by-side comparison and resolution options
 - **Python Dead Code Finder** (`tools/python_dead_code_finder.py`) - Scan Python source files recursively and identify unused functions, classes, and global variables using AST analysis
 - **ASCII & Unicode Sequence Diagram Generator** (`tools/ascii_sequence_diagram.py`) - Compile text-based sequence descriptions (similar to PlantUML) into formatted Unicode or ASCII charts in the console
-
+- **Python Docstring Coverage Analyzer** (`tools/python_docstring_analyzer.py`) - Scan Python files recursively to parse AST and calculate docstring coverage for modules, classes, methods, and functions with detailed reports and letter grades
+- **Git Commit Activity Punchcard Generator** (`tools/git_commit_punchcard.py`) - Generate a visual 7x24 grid punchcard of commit activity by day of week and hour of day, with detailed work-pattern statistics
+- **Markdown Heading & Section Anchor Validator** (`tools/markdown_anchor_validator.py`) - Scan Markdown files recursively to parse headings, generate their slugified anchors, and validate that all internal and cross-file anchor links resolve to valid targets
+- **Python Dependency Cycle Detector** (`tools/python_dependency_cycle_detector.py`) - Scan Python source trees recursively using AST to map module imports and detect circular import dependencies that cause runtime errors
+- **Git Commit Sentiment & Frustration Analyzer** (`tools/git_sentiment_analyzer.py`) - Read git repository logs and run a lightweight sentiment analysis on commit messages to identify overall project mood, keyword trends, and developer frustration hot spots
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
