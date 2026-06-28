@@ -87,6 +87,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Gantt Chart Generator** (`tools/terminal_gantt_chart.py`) - Generate visual terminal Gantt charts from JSON or text schedules and export them to HTML/CSS timelines or Markdown tables
 - **Terminal File Picker** (`tools/file_picker.py`) - An interactive terminal-based file and directory picker with search and filtering
 - **Batch Image Optimizer** (`tools/image_optimizer.py`) - Compress, resize, and optimize images in batches while preserving directories
+- **Interactive Terminal Paint Studio** (`tools/terminal_paint.py`) - Interactive curses-based console canvas drawing and ANSI art creator
+- **Duplicate Directory Finder** (`tools/duplicate_dir_finder.py`) - Scans folder hierarchies recursively to identify completely identical folders based on file hashes
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -201,6 +203,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Link Replacer** (`tools/markdown_link_replacer.py`) - Find and replace link patterns across multiple Markdown files
 - **Virtual Environment Manager** (`tools/venv_manager.py`) - Create, activate, delete, and inspect Python virtual environments via CLI
 - **YAML Schema Validator** (`tools/yaml_validator.py`) - Validate YAML configuration files against JSON Schemas
+- **Interactive CLI Menu Wizard** (`tools/cli_menu_builder.py`) - Build interactive command-line surveys, questionnaires, and option menus
+- **API Documentation Generator** (`tools/api_doc_generator.py`) - Auto-generates REST API documentation from Python Flask/FastAPI code
+- **Environment Variable Interpolation Tool** (`tools/env_interpolation_tool.py`) - Process .env files and resolve nested variable references and default values
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -305,6 +310,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **LAN Socket-based Directory Syncer** (`tools/lan_directory_syncer.py`) - Synchronize directories recursively over TCP sockets across a local network using MD5 hash verification
 - **TCP Port Ping Utility** (`tools/tcp_ping_tool.py`) - Measure connection latency to a host and port over TCP sockets
 - **Email Address Validator** (`tools/email_validator.py`) - Validate email format, domain MX records, and SMTP availability
+- **Subreddit Scraper & Media Downloader** (`tools/subreddit_scraper.py`) - Scrapes posts, comments, and media from subreddits using public JSON feeds
+- **CIDR Aggregation, Splitter & Exclusion Utility** (`tools/cidr_utility.py`) - Aggregate, split, and subtract IP subnets, and verify membership using native ipaddress module
 
 
 ### Security & Cryptography
