@@ -264,6 +264,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Blame & Code Age Analyzer** (`tools/git_blame_analyzer.py`) - Analyze the current codebase lines using 'git blame' to calculate line ownership and the distribution of code age (how long ago lines were authored)
 - **Python Micro-Benchmarker** (`tools/python_micro_benchmarker.py`) - Compare the performance of multiple Python code snippets side-by-side with statistical analysis and ASCII bar charts
 - **Markdown Header Numberer** (`tools/markdown_header_numberer.py`) - Automatically insert, update, or strip sequential section numbering (e.g. 1.1, 1.1.1) in Markdown documents based on hierarchy
+- **Markdown to Jira Wiki Converter** (`tools/markdown_to_jira.py`) - Bidirectional translator that converts files or clipboard text between GitHub Flavored Markdown (GFM) and Jira Wiki markup
+- **Regex Crossword Game** (`tools/regex_crossword_game.py`) - An interactive terminal-based game and tutor to learn and practice regular expressions by solving grid matching puzzles
+
 
 
 ### Data Processing
@@ -339,6 +342,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite FTS Indexer** (`tools/sqlite_fts_indexer.py`) - Configures an FTS5 full-text search index on an existing SQLite database table, sets up automatic sync triggers, and launches a terminal search interface with BM25 ranking
 - **ASCII Venn Diagram Generator** (`tools/ascii_venn_diagram.py`) - Calculate set relationships (intersection, union, relative complement) for 2 or 3 sets and render a beautiful ASCII Venn diagram in the terminal.
 - **SQLite Database Data Diff Tool** (`tools/sqlite_data_diff.py`) - Compare rows of matching tables between two SQLite database files based on primary keys, highlighting added, deleted, and modified values
+- **JSON Schema Form Collector** (`tools/json_schema_form_collector.py`) - Generate dynamic interactive terminal forms from a JSON Schema to collect, validate, and export conforming JSON data
+
 
 
 ### Network & Web
@@ -418,6 +423,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **WebSocket Client & Echo Server** (`tools/websocket_client_server.py`) - Standard-compliant WebSocket client and echo server in pure Python with support for interactive commands and secure sockets (ws/wss)
 - **Dynamic DNS (DDNS) Updater** (`tools/ddns_updater.py`) - Monitor public IP changes with fallbacks and update A records on Cloudflare, DuckDNS, or trigger custom webhooks
 - **Web Page Content Diff Tool** (`tools/web_page_diff.py`) - Fetch and compare the text or HTML content of two URLs or local HTML files, with terminal diff or visual HTML report output
+- **CIDR VLSM Calculator** (`tools/cidr_vlsm_calculator.py`) - Calculate Variable Length Subnet Masking (VLSM) allocations and partitions for IP subnets dynamically with visual terminal layouts
+- **HTTP Traffic Recorder & Replayer** (`tools/http_traffic_recorder.py`) - Record outgoing HTTP client traffic as a Forward/Reverse proxy to a session file, and replay it offline as a local mock API server
+
 
 
 ### Security & Cryptography
