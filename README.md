@@ -261,6 +261,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Gitignore Cleaner** (`tools/gitignore_cleaner.py`) - Scan a Git repository for tracked files that match `.gitignore` patterns, generate cleaner commands, and audit `.gitignore` for redundant rules.
 - **Binary Tree Visualizer** (`tools/binary_tree_visualizer.py`) - Construct and visualize standard Binary Search Trees (BST) or self-balancing AVL trees vertically in the terminal using Unicode characters with an interactive tree editor.
 - **Project Scaffolder** (`tools/project_scaffolder.py`) - Scans a template directory containing placeholders, prompts the user for values, and instantiates the project layout and code files
+- **Git Blame & Code Age Analyzer** (`tools/git_blame_analyzer.py`) - Analyze the current codebase lines using 'git blame' to calculate line ownership and the distribution of code age (how long ago lines were authored)
+- **Python Micro-Benchmarker** (`tools/python_micro_benchmarker.py`) - Compare the performance of multiple Python code snippets side-by-side with statistical analysis and ASCII bar charts
+- **Markdown Header Numberer** (`tools/markdown_header_numberer.py`) - Automatically insert, update, or strip sequential section numbering (e.g. 1.1, 1.1.1) in Markdown documents based on hierarchy
 
 
 ### Data Processing
@@ -335,6 +338,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Merge by Column** (`tools/csv_merge_by_column.py`) - Merges two CSV files based on a shared key column, supporting inner, left, right, and outer joins with custom null values and prefix conflict resolution
 - **SQLite FTS Indexer** (`tools/sqlite_fts_indexer.py`) - Configures an FTS5 full-text search index on an existing SQLite database table, sets up automatic sync triggers, and launches a terminal search interface with BM25 ranking
 - **ASCII Venn Diagram Generator** (`tools/ascii_venn_diagram.py`) - Calculate set relationships (intersection, union, relative complement) for 2 or 3 sets and render a beautiful ASCII Venn diagram in the terminal.
+- **SQLite Database Data Diff Tool** (`tools/sqlite_data_diff.py`) - Compare rows of matching tables between two SQLite database files based on primary keys, highlighting added, deleted, and modified values
 
 
 ### Network & Web
@@ -413,6 +417,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Local URL Shortener Server** (`tools/url_shortener_server.py`) - A zero-dependency local URL shortener and analytics server with a premium web dashboard, custom aliases, redirection, and real-time visitor statistics.
 - **WebSocket Client & Echo Server** (`tools/websocket_client_server.py`) - Standard-compliant WebSocket client and echo server in pure Python with support for interactive commands and secure sockets (ws/wss)
 - **Dynamic DNS (DDNS) Updater** (`tools/ddns_updater.py`) - Monitor public IP changes with fallbacks and update A records on Cloudflare, DuckDNS, or trigger custom webhooks
+- **Web Page Content Diff Tool** (`tools/web_page_diff.py`) - Fetch and compare the text or HTML content of two URLs or local HTML files, with terminal diff or visual HTML report output
 
 
 ### Security & Cryptography
