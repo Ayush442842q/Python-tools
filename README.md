@@ -280,6 +280,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON to Markdown Table** (`tools/json_to_markdown_table.py`) - Convert JSON files, HTTP responses, or piping streams into GitHub-flavored Markdown tables with dot-notation flattening
 - **Python Library API Breaking Change Detector** (`tools/python_api_breaking_change_detector.py`) - Compares two versions of a Python codebase or file using AST analysis to report potential breaking changes in the public API
 - **Shell Script Command & Dependency Validator** (`tools/shell_dependency_checker.py`) - Scans shell scripts recursively, extracts external commands invoked, and verifies if they are available on the current system path
+- **Python Memory Leak Detector & Analyzer** (`tools/python_memory_leak_detector.py`) - Executes a target Python function or code block repeatedly to detect memory growth, unreleased references, and analyze memory allocating hotspots
+- **pip Dependency Tree** (`tools/pip_dependency_tree.py`) - Queries installed Python packages in the current environment to print a complete hierarchical dependency tree with version requirements, highlighting missing or circular dependencies
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -355,6 +357,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **ASCII Venn Diagram Generator** (`tools/ascii_venn_diagram.py`) - Calculate set relationships (intersection, union, relative complement) for 2 or 3 sets and render a beautiful ASCII Venn diagram in the terminal.
 - **SQLite Database Data Diff Tool** (`tools/sqlite_data_diff.py`) - Compare rows of matching tables between two SQLite database files based on primary keys, highlighting added, deleted, and modified values
 - **JSON Schema Form Collector** (`tools/json_schema_form_collector.py`) - Generate dynamic interactive terminal forms from a JSON Schema to collect, validate, and export conforming JSON data
+- **Markdown Table Shaper** (`tools/markdown_table_shaper.py`) - An advanced command-line tool to manipulate, filter, sort, transpose, and re-format Markdown tables
 
 
 
@@ -439,6 +442,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Traffic Recorder & Replayer** (`tools/http_traffic_recorder.py`) - Record outgoing HTTP client traffic as a Forward/Reverse proxy to a session file, and replay it offline as a local mock API server
 - **Multi-threaded Subnet Ping Sweeper** (`tools/subnet_ping_sweeper.py`) - Fast, multi-threaded IP subnet and IP range scanner using system native ping commands with response times and summary analytics
 - **HTTP Cache Analyzer** (`tools/http_cache_analyzer.py`) - Requests a URL and analyzes HTTP response headers (Cache-Control, Expires, ETag, Last-Modified, Vary) to evaluate cacheability, compute TTLs, and audit compression settings
+- **GitHub Release Downloader** (`tools/github_release_downloader.py`) - Downloads files, assets, or source code archives from GitHub Releases for a given repository with progress reporting and download metrics
 
 
 ### Security & Cryptography
@@ -474,6 +478,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSH Key Manager & Auditor** (`tools/ssh_key_manager.py`) - Scans and audits SSH key pairs, calculates SHA256 and MD5 fingerprints natively in Python, and facilitates new key pair generation with security recommendations
 - **Unicode Homoglyph Security Detector** (`tools/unicode_homoglyph_detector.py`) - Scan text, domain names, or source code files for homograph attacks, mixed-script token confusion, invisible characters, and bidirectional overrides
 - **Python Security Linter** (`tools/python_security_linter.py`) - AST-based security static analysis scanner for Python source code to detect command injections, insecure serialization, insecure APIs, and hardcoded secrets
+- **CORS Security Auditor** (`tools/cors_security_auditor.py`) - Scans HTTP/REST API endpoints for CORS (Cross-Origin Resource Sharing) misconfigurations and vulnerabilities
 
 ## Usage
 
