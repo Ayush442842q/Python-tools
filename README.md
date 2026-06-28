@@ -132,6 +132,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Churn Analyzer** (`tools/git_churn_analyzer.py`) - Measure and rank code churn of files in a Git repository to identify development hotspots
 - **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Convert HTML documents or snippets into clean, structured Markdown
 - **HTML Formatter & Minifier** (`tools/html_formatter.py`) - Format, beautify, or minify HTML documents using standard parser
+- **JavaScript Minifier** (`tools/javascript_minifier.py`) - Minifies JavaScript files by stripping comments and compressing whitespace
 - **HTML Accessibility Checker** (`tools/html_accessibility_checker.py`) - Analyze HTML files for WCAG accessibility standards, tag structures, and form labels
 - **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Scan markdown files for broken local and external links
 - **Markdown Linter** (`tools/markdown_linter.py`) - Scan and validate Markdown file formatting and structure
@@ -191,6 +192,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML Validator, Beautifier & Minifier** (`tools/xml_formatter.py`) - Validate, pretty-print with configurable indentation, or minify XML payloads with precise syntax error line and column reports
 - **Git Branch Commit Tree Visualizer** (`tools/git_branch_visualizer.py`) - Render local Git repository commit histories as colored ASCII/Unicode graphs with author, relative date, and reference tags
 - **CSS Design System & Style Guide Generator** (`tools/css_style_guide_generator.py`) - Parses CSS files to extract color codes, custom properties (variables), typography settings, media queries, and generates a responsive visual design system style guide
+- **CSS Color Extractor** (`tools/css_color_extractor.py`) - Extracts and de-duplicates colors from CSS files, with options to export CSS variables
 - **Python Script Bundler** (`tools/python_script_bundler.py`) - Trace local import dependencies of a Python script recursively using AST and bundle them into a single executable standalone script
 - **Hex & Binary Patch Editor** (`tools/hex_patch_editor.py`) - View, search, and patch binary files using customizable hex dump formats, pattern matching (hex/ASCII), and safe backups
 - **CSS Unused Selector Scanner** (`tools/css_unused_scanner.py`) - Scan templates and scripts recursively to find dead/unused CSS classes and IDs
@@ -235,6 +237,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Config Format Converter** (`tools/config_converter.py`) - Convert configuration files between JSON, INI, XML, YAML, and TOML
 - **JSON Schema Generator** (`tools/json_schema_generator.py`) - Infer Draft-07 JSON Schema from a sample JSON data payload
 - **JSON Flattener & Unflattener** (`tools/json_flattener.py`) - Flatten nested JSON objects or unflatten them back using dotted-key paths
+- **JSON to XML Converter** (`tools/json_to_xml.py`) - Converts structured JSON data into formatted XML
 - **Mock Data Generator** (`tools/mock_data_generator.py`) - Generate mock user profiles in JSON, CSV, or XML format
 - **Markdown Table Generator** (`tools/markdown_table_generator.py`) - Convert CSV, JSON, or delimited text into clean, aligned Markdown tables
 - **Markdown Table Parser** (`tools/markdown_table_parser.py`) - Parse Markdown tables and convert them to CSV, TSV, or JSON formats
@@ -243,6 +246,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Sentiment Analyzer** (`tools/sentiment_analyzer.py`) - Standalone lexicon-based text sentiment analyzer that computes sentiment scores and classifications
 - **Log Visualizer** (`tools/log_visualizer.py`) - Parse log files (JSON-Lines, CSV, or raw text), aggregate metrics, and print a horizontal progress/severity histogram in the terminal
 - **Structured JSON Log Viewer** (`tools/json_log_viewer.py`) - Read, filter, and pretty-print JSON-structured logs in the terminal with ANSI colors
+- **Log Session Tracer** (`tools/log_session_tracer.py`) - Traces specific session tokens, IPs, or request IDs chronologically across log files
 - **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
 - **CSV SQL Query Runner** (`tools/csv_sql_query.py`) - Run standard SQL queries directly against one or more CSV files in memory using SQLite
 - **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
@@ -344,6 +348,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
 - **EXIF Metadata Inspector & Cleaner** (`tools/exif_cleaner.py`) - Inspect and strip EXIF metadata from images to preserve privacy
 - **Offline JWT Debugger** (`tools/jwt_debugger.py`) - Decode, inspect, verify, and encode HS256 JSON Web Tokens locally and offline
+- **JWT Generator & Signer** (`tools/jwt_generator.py`) - Generates and signs JSON Web Tokens (JWT) with custom claims using HMAC-SHA algorithms
 - **HTTP Cookie Security Analyzer** (`tools/http_cookie_analyzer.py`) - Parse HTTP Cookie/Set-Cookie headers, Netscape text formats, or JSON arrays, and check flag security (HttpOnly, Secure, SameSite) with scorecards
 - **Log Anonymizer & PII Masker** (`tools/log_anonymizer.py`) - Scrub sensitive PII, credentials, and IP addresses from logs and text files
 - **Time-based One-Time Password (TOTP) Generator** (`tools/totp_generator.py`) - Secure, offline multi-factor authentication (MFA) client with visual countdown progress bars
