@@ -225,6 +225,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Multi-Git Repository Status Scanner** (`tools/git_multi_repo_status.py`) - Recursively scans a root directory for Git repositories, queries their status (active branch, uncommitted modifications, staged files, untracked files, unpushed commits, and unpulled commits), and displays a colorized CLI dashboard/summary of all repos requiring attention
 - **Python AST-based Code Search & Replace** (`tools/ast_code_modifier.py`) - Perform precise refactoring or code injection by searching and modifying Python source files via AST patterns
 - **Project Structure Visualizer** (`tools/project_structure_viz.py`) - Recursively map project directories and generate tree-based ASCII representations or Mermaid.js folder structure diagrams
+- **Jupyter Notebook Stripper** (`tools/jupyter_notebook_stripper.py`) - Sanitizes Jupyter Notebook (`.ipynb`) files for clean version control by removing outputs, cell execution counts, and workspace-specific metadata
+- **Python Type Hint Coverage Analyzer** (`tools/python_type_hint_analyzer.py`) - Parses Python source files using the `ast` module to scan and report type-hinting coverage statistics (percentage of annotated function arguments and return types), pointing out missing annotations with exact line numbers
+- **HTML/CSS Inliner** (`tools/css_inliner.py`) - Parses an HTML file and its associated CSS stylesheets, and injects the CSS styles directly into the HTML tags' `style` attributes, optimized for HTML email and newsletter template development.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -342,6 +345,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CIDR Aggregation, Splitter & Exclusion Utility** (`tools/cidr_utility.py`) - Aggregate, split, and subtract IP subnets, and verify membership using native ipaddress module
 - **CIDR Subnet Grid Visualizer** (`tools/ip_subnet_visualizer.py`) - Maps out IP address allocations of a CIDR block, showing subnets, gateway IPs, broadcast IPs, and rendering a console grid representation of how the IP space is partitioned
 - **Webhook Event Replay Utility** (`tools/webhook_replay_tool.py`) - Interactively capture, edit, and re-send HTTP webhook event payloads to local development environments
+- **HTTP Archive (HAR) Analyzer** (`tools/har_analyzer.py`) - Parses browser network capture `.har` files (JSON format) to extract key performance metrics, resource distributions, and lists automated server-side compression and caching optimization recommendations.
+- **Sitemap XML Link Auditor** (`tools/sitemap_link_auditor.py`) - Fetches or reads a website's `sitemap.xml` (recursively scanning sitemap index files) and concurrently audits all URLs for broken links (4xx, 5xx), redirect paths, network connection timeouts, and response latency.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
