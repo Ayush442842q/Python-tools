@@ -300,6 +300,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Branch Compare Tool** (`tools/git_branch_compare_tool.py`) - Compares two local Git branches and generates a detailed report of unique commits, file modifications, and line differences
 - **Python Requirement Optimizer** (`tools/python_requirement_optimizer.py`) - Scans a Python project, extracts imported modules, maps imports to PyPI packages, and generates an optimized requirements.txt
 - **Markdown Link Doctor** (`tools/markdown_link_absolute_to_relative.py`) - Audits links in Markdown documents, converting absolute paths into relative ones and warning about broken links
+- **Markdown & Jupyter Notebook Converter** (`tools/markdown_notebook_converter.py`) - Converts between Markdown (.md) and Jupyter Notebook (.ipynb) files, extracting code blocks as code cells and text as markdown cells
+- **Venv Dependency Drift Detector** (`tools/venv_drift_detector.py`) - Detects drift between active virtual environment installed packages and a dependency specification file (e.g. `requirements.txt`)
+- **Git Repo Health & History Analyzer** (`tools/git_repo_health_analyzer.py`) - Scans local Git repository metadata, commit activity, loose objects, and scans history to find largest blobs bloating database
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -380,6 +383,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Static Web Exporter** (`tools/sqlite_static_web_exporter.py`) - Converts any SQLite database file into a single, self-contained, responsive HTML file with search, sorting, pagination, and data export capability
 - **SQL Query Obfuscator & Sanitizer** (`tools/sql_query_obfuscator.py`) - Clean and obfuscate SQL queries by replacing sensitive literal values (strings, numbers) with placeholders (e.g. `?` or `:val`) for logging, performance tuning, and sharing queries safely
 - **CSV Data Synthesizer** (`tools/csv_data_synthesizer.py`) - Scans an input CSV file to analyze column types and distributions, and then generates a synthetic dataset of any size that mimics the original data structure.
+- **SQLite Database Index Advisor** (`tools/sqlite_index_advisor.py`) - Analyzes SQLite database schemas for missing primary keys, unindexed foreign keys, redundant indexes, and runs execution plans on queries to recommend performance-boosting indexes
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -467,8 +471,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **TCP/UDP Port Knocker & Daemon Simulator** (`tools/tcp_port_knocker.py`) - TCP/UDP port knocking client and daemon simulator tool to secure ports by opening them only after a specific sequence of connection attempts to closed ports
 - **GitHub Issue Backup Tool** (`tools/github_issue_backup.py`) - Downloads issues and comments from GitHub API to local markdown files
 - **HTTP Archive (HAR) to cURL Command Generator** (`tools/har_to_curl.py`) - Parses browser network capture `.har` logs and outputs equivalent, runnable shell cURL command payloads
-
-
+- **URL Parameter Comparator** (`tools/url_parameter_comparator.py`) - Compares component properties and query parameters of multiple URLs side-by-side to highlight differences and decode nested values
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
