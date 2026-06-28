@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 430+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 435+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -180,6 +180,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown HTML Slide Generator** (`tools/markdown_slide_generator.py`) - Compiles a Markdown file separated by horizontal rules into a standalone, interactive HTML slideshow
 - **Git Commit Heatmap & Stats** (`tools/git_commit_heatmap.py`) - Generate a GitHub-style ASCII/Unicode contribution calendar heatmap for commits, with streaks and detailed activity stats
 - **JSON to Python Dataclass & Pydantic Model Generator** (`tools/json_to_dataclasses.py`) - Converts JSON structures into nested Python dataclasses or Pydantic models with type inference
+- **JSON Schema to TypeScript Converter** (`tools/json_schema_to_typescript.py`) - Compiles JSON Schema structures into clean, readable TypeScript interface and type definitions
 - **Python Codebase Documentation Server** (`tools/python_doc_server.py`) - Statically parses Python modules using AST, generates a modern responsive dark-themed documentation website, and hosts it on a local HTTP server
 - **SVG Status Badge Generator** (`tools/markdown_badge_generator.py`) - Create custom shields.io style SVG badges locally for use in markdown documents
 - **System PATH Doctor** (`tools/env_path_doctor.py`) - Diagnose, optimize, and clean system environment PATH variables with safety warnings and shell commands
@@ -206,6 +207,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Dead Code Finder** (`tools/python_dead_code_finder.py`) - Scan Python source files recursively and identify unused functions, classes, and global variables using AST analysis
 - **ASCII & Unicode Sequence Diagram Generator** (`tools/ascii_sequence_diagram.py`) - Compile text-based sequence descriptions (similar to PlantUML) into formatted Unicode or ASCII charts in the console
 - **Python Docstring Coverage Analyzer** (`tools/python_docstring_analyzer.py`) - Scan Python files recursively to parse AST and calculate docstring coverage for modules, classes, methods, and functions with detailed reports and letter grades
+- **Code Comment Density Analyzer** (`tools/code_comment_density_analyzer.py`) - Recursively scan directories to analyze lines of code, comments, blank lines, and density percentage across multiple programming languages
 - **Git Commit Activity Punchcard Generator** (`tools/git_commit_punchcard.py`) - Generate a visual 7x24 grid punchcard of commit activity by day of week and hour of day, with detailed work-pattern statistics
 - **Markdown Heading & Section Anchor Validator** (`tools/markdown_anchor_validator.py`) - Scan Markdown files recursively to parse headings, generate their slugified anchors, and validate that all internal and cross-file anchor links resolve to valid targets
 - **Python Dependency Cycle Detector** (`tools/python_dependency_cycle_detector.py`) - Scan Python source trees recursively using AST to map module imports and detect circular import dependencies that cause runtime errors
@@ -250,6 +252,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 - **Markdown Link Reference Converter** (`tools/markdown_reference_converter.py`) - Converts inline links to reference-style links (or vice versa), cleans up unused reference definitions, and sorts references at the end of the document
 - **Regex NFA/DFA State Machine Builder & Visualizer** (`tools/regex_state_machine.py`) - Parses basic regular expressions and compiles them into an NFA using Thompson's construction and to a DFA using subset construction, outputting transition tables and Mermaid.js diagrams
+- **Project Structure Linter** (`tools/project_structure_linter.py`) - Validate directory layouts, naming conventions, and file rules against a custom schema or built-in standard templates
+- **Shell Script Quality Linter** (`tools/shell_script_linter.py`) - A lightweight static analyzer for Bash/Shell scripts that scans for shebang issues, unquoted variables, unchecked cd/commands, deprecated backticks, and missing error handling settings
 
 
 ### Data Processing
@@ -271,6 +275,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Extractive Text Summarizer** (`tools/text_summarizer.py`) - Generate concise summaries and compute text analytics/reading metrics from documents or standard input
 - **Sentiment Analyzer** (`tools/sentiment_analyzer.py`) - Standalone lexicon-based text sentiment analyzer that computes sentiment scores and classifications
 - **Log Visualizer** (`tools/log_visualizer.py`) - Parse log files (JSON-Lines, CSV, or raw text), aggregate metrics, and print a horizontal progress/severity histogram in the terminal
+- **Log Rate Analyzer** (`tools/log_rate_analyzer.py`) - Parse log files to identify timestamps, aggregate log rates over time, and visualize volume via interactive ASCII bar charts
 - **Structured JSON Log Viewer** (`tools/json_log_viewer.py`) - Read, filter, and pretty-print JSON-structured logs in the terminal with ANSI colors
 - **Log Session Tracer** (`tools/log_session_tracer.py`) - Traces specific session tokens, IPs, or request IDs chronologically across log files
 - **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
@@ -278,6 +283,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
 - **Word Frequency Analyzer** (`tools/word_frequency_analyzer.py`) - Calculate word frequencies, filter stop words, compute text metrics, and render terminal bar charts or tag clouds
 - **CSV Data Profiler** (`tools/csv_profiler.py`) - Profile CSV file columns to infer data types and compute detailed statistics without pandas
+- **CSV Schema Inferrer & Profile Generator** (`tools/csv_schema_inferrer.py`) - Profile columns in a CSV file to infer SQL-friendly data types, record statistical metrics, and autogenerate SQL DDL and JSON Schemas
 - **JSON Schema Validator** (`tools/json_schema_validator.py`) - Validate JSON data payloads against JSON Schema draft-07 specifications
 - **Text Similarity Detector** (`tools/text_similarity_detector.py`) - Compare documents or code files to compute similarity scores using Jaccard, Cosine, and TF-IDF metrics
 - **Configuration Merger** (`tools/config_merger.py`) - Deep merge multiple JSON, INI, XML, YAML, or TOML configuration files with hierarchical overrides
@@ -331,6 +337,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Email Automation** (`tools/email_automation.py`) - Automate sending emails with attachments
 - **Hosts File Manager** (`tools/hosts_manager.py`) - List, add, remove, enable, or disable domain resolution mappings in the system hosts file
 - **HTML Link Extractor** (`tools/html_link_extractor.py`) - Parse HTML to extract and export hyperlinks, images, stylesheets, and scripts
+- **PDF Hyperlink Extractor & Validator** (`tools/pdf_link_extractor.py`) - Scans a PDF file to extract embedded hyperlinks and optionally validate their HTTP status
 - **HTML Table Extractor** (`tools/html_table_extractor.py`) - Extract tables from HTML files, raw HTML, or URLs and format them as CSV, JSON, or Markdown
 - **HTTP Load Tester** (`tools/http_load_tester.py`) - Benchmark web servers and APIs with concurrent HTTP requests
 - **IP Geolocation Finder** (`tools/ip_geolocation_finder.py`) - Find geographic details of an IP address or domain name
@@ -389,6 +396,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Request Repeater & Latency Analyzer** (`tools/http_request_repeater.py`) - Execute HTTP requests repeatedly, analyze response latency statistics (min, max, average, median, stddev), and display a terminal ASCII histogram
 
 - **PyPI Offline Package Downloader** (`tools/pypi_downloader.py`) - Recursively downloads packages and their dependencies from the PyPI JSON API to create an offline bundle with batch and shell installers for air-gapped setups
+- **PCAP Packet Analyzer** (`tools/pcap_analyzer.py`) - A pure-Python packet capture analyzer that dissects Ethernet, IPv4, TCP, UDP, ICMP, and DNS to output detailed traffic statistics, top talkers, and visual terminal charts
+- **API Response Schema & Diff Comparator** (`tools/api_diff_comparator.py`) - Compare HTTP response payloads or local JSON files recursively to highlight schema changes, type mismatches, and value differences
+
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -421,6 +431,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS Security Auditor** (`tools/dns_security_auditor.py`) - Comprehensive DNS configurations auditing mapping SPF, DMARC, DNSSEC, and CAA setups with a security scorecard.
 - **SSL Certificate Chain Analyzer** (`tools/ssl_chain_analyzer.py`) - Audit and visualize SSL/TLS certificate chains, validation status, key sizes, signatures, and host matching compatibility
 - **SSH Key Manager & Auditor** (`tools/ssh_key_manager.py`) - Scans and audits SSH key pairs, calculates SHA256 and MD5 fingerprints natively in Python, and facilitates new key pair generation with security recommendations
+- **Unicode Homoglyph Security Detector** (`tools/unicode_homoglyph_detector.py`) - Scan text, domain names, or source code files for homograph attacks, mixed-script token confusion, invisible characters, and bidirectional overrides
 
 ## Usage
 
