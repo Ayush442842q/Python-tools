@@ -306,14 +306,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Data Anonymizer** (`tools/sqlite_data_anonymizer.py`) - Detect potential PII in SQLite databases and interactively mask, hash, nullify, or fake the fields
 - **Structured Data to SQL Insert Generator** (`tools/data_to_sql_insert.py`) - Convert CSV, JSON, or JSONL files into SQL INSERT statements with datatype inference, single-quote escaping, and batching
 - **Markdown Table SQL Query Tool** (`tools/markdown_table_query_tool.py`) - Parse Markdown tables into an in-memory SQLite database and execute SQL queries on them via CLI or interactive REPL
-|- **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
-|- **Calendar Event Parser & ICS Generator** (`tools/calendar_generator.py`) - Parse event descriptions and generate ICS calendar files with support for recurring events and multiple attendees
-|- **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
-|- **Audio File Metadata Editor & Tagger** (`tools/audio_tagger.py`) - Edit ID3 tags, metadata, and cover art for audio files (MP3, FLAC, OGG, M4A)
-|- **Video Metadata Extractor** (`tools/video_metadata_extractor.py`) - Extract and display metadata from video files (duration, codec, resolution, bitrate, etc.) using FFmpeg/ffprobe
-|- **QR Code Reader & Scanner** (`tools/qr_code_reader.py`) - Decode QR codes from image files or webcam with position detection and multiple output formats
-|- **Barcode Generator & Scanner** (`tools/barcode_generator.py`) - Generate and scan 1D barcodes (EAN, UPC, Code 128, Code 39, etc.) with support for multiple formats
-|- **Log Pattern Extractor** (`tools/log_pattern_extractor.py`) - Cluster log lines into common templates by masking dynamic variables
+- **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
+- **Calendar Event Parser & ICS Generator** (`tools/calendar_generator.py`) - Parse event descriptions and generate ICS calendar files with support for recurring events and multiple attendees
+- **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
+- **Audio File Metadata Editor & Tagger** (`tools/audio_tagger.py`) - Edit ID3 tags, metadata, and cover art for audio files (MP3, FLAC, OGG, M4A)
+- **Video Metadata Extractor** (`tools/video_metadata_extractor.py`) - Extract and display metadata from video files (duration, codec, resolution, bitrate, etc.) using FFmpeg/ffprobe
+- **QR Code Reader & Scanner** (`tools/qr_code_reader.py`) - Decode QR codes from image files or webcam with position detection and multiple output formats
+- **Barcode Generator & Scanner** (`tools/barcode_generator.py`) - Generate and scan 1D barcodes (EAN, UPC, Code 128, Code 39, etc.) with support for multiple formats
+- **Log Pattern Extractor** (`tools/log_pattern_extractor.py`) - Cluster log lines into common templates by masking dynamic variables
 - **SQLite Database to HTML Report Generator** (`tools/sqlite_html_report.py`) - Generate rich, interactive, and dark-themed HTML documentation of SQLite database schemas and sample data
 - **Binary Search Log Slicer** (`tools/log_slicer_by_time.py`) - A high-performance log-slicing tool that uses binary search on giant files to extract logs within a specific time window, automatically parsing common timestamp formats (ISO 8601, Apache, syslog, custom)
 - **YAML Configuration Documenter** (`tools/yaml_to_markdown.py`) - Parses nested YAML configuration files (such as Docker Compose files, CI/CD pipelines, or Kubernetes manifests) and compiles them into a structured Markdown document with nested sections, parameter description tables, default values, and schema references
@@ -324,8 +324,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Key Path Finder** (`tools/json_key_path_finder.py`) - Scan nested JSON files recursively and return the exact key paths where a specific key or value query is found
 - **Markdown Frontmatter Extractor** (`tools/markdown_frontmatter_extractor.py`) - Recursively scan Markdown files, extract YAML frontmatter metadata, and generate a summary, markdown table, JSON, or CSV report
 - **SQLite Backup Tool** (`tools/sqlite_backup_tool.py`) - Perform online, lock-free, timestamped backups of a SQLite database with automatic rotation
-
 - **SQLite REST API Server & Web Dashboard** (`tools/sqlite_api_server.py`) - Exposes a fully functional REST API (GET, POST, PUT, DELETE) and a clean, responsive dark-themed HTML/web dashboard console for any SQLite database file
+- **CSV Merge by Column** (`tools/csv_merge_by_column.py`) - Merges two CSV files based on a shared key column, supporting inner, left, right, and outer joins with custom null values and prefix conflict resolution
+- **SQLite FTS Indexer** (`tools/sqlite_fts_indexer.py`) - Configures an FTS5 full-text search index on an existing SQLite database table, sets up automatic sync triggers, and launches a terminal search interface with BM25 ranking
 
 
 ### Network & Web
