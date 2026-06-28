@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 435+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 440+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -97,6 +97,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Calendar Event Parser & ICS Generator** (`tools/calendar_generator.py`) - Parse event descriptions and generate ICS calendar files
 - **QR Code Reader & Scanner Tool** (`tools/qr_code_reader.py`) - Reads and decodes QR codes from image files or webcam
 - **Video Metadata Extractor** (`tools/video_metadata_extractor.py`) - Extract and display metadata from video files (duration, codec, resolution, bitrate, etc.)
+- **Self-Extracting Code Packer** (`tools/self_extracting_packer.py`) - Recursively packages a directory tree into a single, standalone Python script that self-extracts on execution.
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -254,6 +255,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Regex NFA/DFA State Machine Builder & Visualizer** (`tools/regex_state_machine.py`) - Parses basic regular expressions and compiles them into an NFA using Thompson's construction and to a DFA using subset construction, outputting transition tables and Mermaid.js diagrams
 - **Project Structure Linter** (`tools/project_structure_linter.py`) - Validate directory layouts, naming conventions, and file rules against a custom schema or built-in standard templates
 - **Shell Script Quality Linter** (`tools/shell_script_linter.py`) - A lightweight static analyzer for Bash/Shell scripts that scans for shebang issues, unquoted variables, unchecked cd/commands, deprecated backticks, and missing error handling settings
+- **Image to ASCII Art & ANSI Color Converter** (`tools/image_to_ascii.py`) - Convert images (BMP natively, or JPG/PNG if Pillow is installed) into ASCII art or ANSI-colored terminal text with scale and contrast adjustments.
 
 
 ### Data Processing
@@ -399,6 +401,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **PyPI Offline Package Downloader** (`tools/pypi_downloader.py`) - Recursively downloads packages and their dependencies from the PyPI JSON API to create an offline bundle with batch and shell installers for air-gapped setups
 - **PCAP Packet Analyzer** (`tools/pcap_analyzer.py`) - A pure-Python packet capture analyzer that dissects Ethernet, IPv4, TCP, UDP, ICMP, and DNS to output detailed traffic statistics, top talkers, and visual terminal charts
 - **API Response Schema & Diff Comparator** (`tools/api_diff_comparator.py`) - Compare HTTP response payloads or local JSON files recursively to highlight schema changes, type mismatches, and value differences
+- **Local Pastebin & Code Snippet Server** (`tools/local_pastebin_server.py`) - Host a local web server to save, search, and share code snippets with Prism.js syntax highlighting.
+- **Self-Hosted Markdown Wiki & Note Server** (`tools/markdown_wiki_server.py`) - Serve and edit a directory of Markdown notes with backlinks, tags, search, and a beautiful editor interface.
+- **Local HTTP API Gateway & Reverse Proxy** (`tools/local_api_gateway.py`) - Route HTTP requests to multiple backend services based on path rules with rate limiting and logging.
 
 
 ### Security & Cryptography
