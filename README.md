@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 410+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 430+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -241,6 +241,16 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Docker Compose Network Mapper & Port Collision Auditor** (`tools/docker_compose_mapper.py`) - Parse docker-compose.yml files recursively, check for duplicate host port bindings, and generate a Mermaid.js network and service dependency diagram
 - **Python Function Call Graph Generator** (`tools/python_call_graph.py`) - Analyze Python code using AST parsing to trace local function call hierarchies and generate textual trees or Mermaid.js flowcharts
 - **CSS Specificity Calculator & Selector Auditor** (`tools/css_specificity_calculator.py`) - Parse CSS stylesheets to calculate specificity metrics for every selector, flag high specificity hotspots, and detect duplicate declarations
+- **Dotenv Diff** (`tools/dotenv_diff.py`) - Compare two `.env` files, identifying missing variables in either file and highlighting value differences
+- **Git Worktree Manager** (`tools/git_worktree_manager.py`) - A CLI tool to list, add, remove, and prune Git worktrees for concurrent branch checkouts
+- **Python Dependency Validator** (`tools/python_dependency_validator.py`) - Compare Python code imports against `requirements.txt` to find missing or unused dependencies
+- **Git Branches by Date** (`tools/git_branches_by_date.py`) - List Git branches sorted by last commit date, showing the author, last commit subject, and merge status
+- **Markdown Frontmatter Validator** (`tools/markdown_frontmatter_validator.py`) - Validate YAML frontmatter headers in Markdown files recursively against custom schemas or key/type rules
+- **Git Line Contribution Analyzer** (`tools/git_line_contribution_analyzer.py`) - Parses git log to calculate and visualize lines of code added and deleted per contributor and file extension
+
+- **Markdown Link Reference Converter** (`tools/markdown_reference_converter.py`) - Converts inline links to reference-style links (or vice versa), cleans up unused reference definitions, and sorts references at the end of the document
+- **Regex NFA/DFA State Machine Builder & Visualizer** (`tools/regex_state_machine.py`) - Parses basic regular expressions and compiles them into an NFA using Thompson's construction and to a DFA using subset construction, outputting transition tables and Mermaid.js diagrams
+
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -305,6 +315,12 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Dependency Analyzer** (`tools/sql_dependency_analyzer.py`) - Parse SQL schema files to map table and view dependencies, detect circular references, and determine the correct execution order for creation and teardown
 - **TOML Validator & Formatter** (`tools/toml_validator.py`) - Validate TOML files for syntax compliance, format/beautify them cleanly, and convert them to JSON format
 - **JSON Patch & Merge Patch Utility** (`tools/json_patch_utility.py`) - Apply and generate JSON Patch (RFC 6902) and JSON Merge Patch (RFC 7396) files to modify or compare JSON documents
+- **JSON Key Path Finder** (`tools/json_key_path_finder.py`) - Scan nested JSON files recursively and return the exact key paths where a specific key or value query is found
+- **Markdown Frontmatter Extractor** (`tools/markdown_frontmatter_extractor.py`) - Recursively scan Markdown files, extract YAML frontmatter metadata, and generate a summary, markdown table, JSON, or CSV report
+- **SQLite Backup Tool** (`tools/sqlite_backup_tool.py`) - Perform online, lock-free, timestamped backups of a SQLite database with automatic rotation
+
+- **SQLite REST API Server & Web Dashboard** (`tools/sqlite_api_server.py`) - Exposes a fully functional REST API (GET, POST, PUT, DELETE) and a clean, responsive dark-themed HTML/web dashboard console for any SQLite database file
+
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -370,6 +386,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Sitemap XML Link Auditor** (`tools/sitemap_link_auditor.py`) - Fetches or reads a website's `sitemap.xml` (recursively scanning sitemap index files) and concurrently audits all URLs for broken links (4xx, 5xx), redirect paths, network connection timeouts, and response latency.
 - **SSH Tunnel Manager** (`tools/ssh_tunnel_manager.py`) - Manage and monitor SSH port forwarding tunnels (local, remote, and dynamic SOCKS5 proxies) with process tracking and health probes.
 - **XPath Query Evaluator & HTML Parser CLI** (`tools/xpath_evaluator.py`) - Parse and evaluate XPath queries against local XML/HTML files or remote URLs using Python's standard library
+- **HTTP Request Repeater & Latency Analyzer** (`tools/http_request_repeater.py`) - Execute HTTP requests repeatedly, analyze response latency statistics (min, max, average, median, stddev), and display a terminal ASCII histogram
+
+- **PyPI Offline Package Downloader** (`tools/pypi_downloader.py`) - Recursively downloads packages and their dependencies from the PyPI JSON API to create an offline bundle with batch and shell installers for air-gapped setups
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -401,6 +420,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Subdomain Takeover Vulnerability Scanner** (`tools/subdomain_takeover_scanner.py`) - Scan subdomains concurrently for dangling CNAME takeover vulnerabilities using HTTP signatures and CNAME resolution
 - **DNS Security Auditor** (`tools/dns_security_auditor.py`) - Comprehensive DNS configurations auditing mapping SPF, DMARC, DNSSEC, and CAA setups with a security scorecard.
 - **SSL Certificate Chain Analyzer** (`tools/ssl_chain_analyzer.py`) - Audit and visualize SSL/TLS certificate chains, validation status, key sizes, signatures, and host matching compatibility
+- **SSH Key Manager & Auditor** (`tools/ssh_key_manager.py`) - Scans and audits SSH key pairs, calculates SHA256 and MD5 fingerprints natively in Python, and facilitates new key pair generation with security recommendations
 
 ## Usage
 
