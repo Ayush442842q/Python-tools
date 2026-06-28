@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 450+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 500+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -266,7 +266,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Header Numberer** (`tools/markdown_header_numberer.py`) - Automatically insert, update, or strip sequential section numbering (e.g. 1.1, 1.1.1) in Markdown documents based on hierarchy
 - **Markdown to Jira Wiki Converter** (`tools/markdown_to_jira.py`) - Bidirectional translator that converts files or clipboard text between GitHub Flavored Markdown (GFM) and Jira Wiki markup
 - **Regex Crossword Game** (`tools/regex_crossword_game.py`) - An interactive terminal-based game and tutor to learn and practice regular expressions by solving grid matching puzzles
-
+- **Environment Variable Documentation Generator** (`tools/env_var_doc_generator.py`) - Scans codebase directories recursively for environment variable references (Python, JS/TS, Go, Shell) and generates a structured Markdown documentation table
+- **Command Retry Runner** (`tools/command_retry_runner.py`) - Executes shell commands with configurable retries, delays, exponential backoff, jitter, timeouts, and custom retry triggers based on exit codes or output patterns
+- **Markdown Stats & Readability Analyzer** (`tools/markdown_stats_analyzer.py`) - Analyzes Markdown files for readability metrics (Flesch Reading Ease, Grade Level) and counts words, sentences, and structure layout excluding Markdown syntax
+- **Systemd Unit Configuration Generator** (`tools/systemd_unit_generator.py`) - Interactive wizard and CLI utility to generate compliant Linux systemd service, timer, or path unit configuration files with validation checks
 
 
 ### Data Processing
@@ -425,7 +428,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Page Content Diff Tool** (`tools/web_page_diff.py`) - Fetch and compare the text or HTML content of two URLs or local HTML files, with terminal diff or visual HTML report output
 - **CIDR VLSM Calculator** (`tools/cidr_vlsm_calculator.py`) - Calculate Variable Length Subnet Masking (VLSM) allocations and partitions for IP subnets dynamically with visual terminal layouts
 - **HTTP Traffic Recorder & Replayer** (`tools/http_traffic_recorder.py`) - Record outgoing HTTP client traffic as a Forward/Reverse proxy to a session file, and replay it offline as a local mock API server
-
+- **Multi-threaded Subnet Ping Sweeper** (`tools/subnet_ping_sweeper.py`) - Fast, multi-threaded IP subnet and IP range scanner using system native ping commands with response times and summary analytics
 
 
 ### Security & Cryptography
