@@ -99,6 +99,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **QR Code Reader & Scanner Tool** (`tools/qr_code_reader.py`) - Reads and decodes QR codes from image files or webcam
 - **Video Metadata Extractor** (`tools/video_metadata_extractor.py`) - Extract and display metadata from video files (duration, codec, resolution, bitrate, etc.)
 - **Self-Extracting Code Packer** (`tools/self_extracting_packer.py`) - Recursively packages a directory tree into a single, standalone Python script that self-extracts on execution.
+- **PDF Text Searcher** (`tools/pdf_text_searcher.py`) - Recursively search for text or regex patterns in PDFs with zero-dependency fallback
+- **Text File Chunker** (`tools/text_file_chunker.py`) - Split text files and codebases by logical block types with context annotations for LLM/RAG pipelines
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -270,6 +272,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Command Retry Runner** (`tools/command_retry_runner.py`) - Executes shell commands with configurable retries, delays, exponential backoff, jitter, timeouts, and custom retry triggers based on exit codes or output patterns
 - **Markdown Stats & Readability Analyzer** (`tools/markdown_stats_analyzer.py`) - Analyzes Markdown files for readability metrics (Flesch Reading Ease, Grade Level) and counts words, sentences, and structure layout excluding Markdown syntax
 - **Systemd Unit Configuration Generator** (`tools/systemd_unit_generator.py`) - Interactive wizard and CLI utility to generate compliant Linux systemd service, timer, or path unit configuration files with validation checks
+- **Cron Timeline Visualizer** (`tools/cron_timeline_visualizer.py`) - Parse cron expressions and generate a beautiful 24-hour visual terminal timeline of scheduled jobs, highlighting hotspots and overlaps
+- **JSON to Markdown Table** (`tools/json_to_markdown_table.py`) - Convert JSON files, HTTP responses, or piping streams into GitHub-flavored Markdown tables with dot-notation flattening
 
 
 ### Data Processing
@@ -429,6 +433,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CIDR VLSM Calculator** (`tools/cidr_vlsm_calculator.py`) - Calculate Variable Length Subnet Masking (VLSM) allocations and partitions for IP subnets dynamically with visual terminal layouts
 - **HTTP Traffic Recorder & Replayer** (`tools/http_traffic_recorder.py`) - Record outgoing HTTP client traffic as a Forward/Reverse proxy to a session file, and replay it offline as a local mock API server
 - **Multi-threaded Subnet Ping Sweeper** (`tools/subnet_ping_sweeper.py`) - Fast, multi-threaded IP subnet and IP range scanner using system native ping commands with response times and summary analytics
+- **HTTP Cache Analyzer** (`tools/http_cache_analyzer.py`) - Requests a URL and analyzes HTTP response headers (Cache-Control, Expires, ETag, Last-Modified, Vary) to evaluate cacheability, compute TTLs, and audit compression settings
 
 
 ### Security & Cryptography
