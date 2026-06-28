@@ -84,6 +84,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Flashcard CLI Study Tool** (`tools/flashcard_study_tool.py`) - An interactive CLI flashcard system using spaced repetition (Leitner boxes) with progress persistence and Anki export
 - **Directory Merkle Tree Generator** (`tools/directory_merkle_tree.py`) - Cryptographic directory tree hasher, integrity checker, and fast difference locator
 - **CLI Interactive System Dashboard** (`tools/cli_system_dashboard.py`) - A real-time, terminal-based resource monitor that displays live-updating CPU, memory, disk, and process statistics
+- **Terminal Gantt Chart Generator** (`tools/terminal_gantt_chart.py`) - Generate visual terminal Gantt charts from JSON or text schedules and export them to HTML/CSS timelines or Markdown tables
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -185,6 +186,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Heading & Section Anchor Validator** (`tools/markdown_anchor_validator.py`) - Scan Markdown files recursively to parse headings, generate their slugified anchors, and validate that all internal and cross-file anchor links resolve to valid targets
 - **Python Dependency Cycle Detector** (`tools/python_dependency_cycle_detector.py`) - Scan Python source trees recursively using AST to map module imports and detect circular import dependencies that cause runtime errors
 - **Git Commit Sentiment & Frustration Analyzer** (`tools/git_sentiment_analyzer.py`) - Read git repository logs and run a lightweight sentiment analysis on commit messages to identify overall project mood, keyword trends, and developer frustration hot spots
+- **HTML Structural Validator & Linter** (`tools/html_structural_validator.py`) - Validate HTML files for tag balance, structural nesting, duplicate IDs, and basic accessibility issues
+- **Git Profile Manager** (`tools/git_profile_manager.py`) - Manage multiple Git identities (name, email, SSH, GPG) and automatically switch between them using conditional inclusions
+- **JS/TS Dependency Visualizer** (`tools/js_ts_dependency_visualizer.py`) - Scan Javascript/TypeScript imports and exports, detect circular dependencies, and export a visual Mermaid.js chart or interactive HTML graph
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -229,6 +233,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Structured Data to SQL Insert Generator** (`tools/data_to_sql_insert.py`) - Convert CSV, JSON, or JSONL files into SQL INSERT statements with datatype inference, single-quote escaping, and batching
 - **Markdown Table SQL Query Tool** (`tools/markdown_table_query_tool.py`) - Parse Markdown tables into an in-memory SQLite database and execute SQL queries on them via CLI or interactive REPL
 - **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
+- **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
 
 
 ### Network & Web
