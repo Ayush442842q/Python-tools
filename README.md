@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 330+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 400+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -90,6 +90,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Interactive Terminal Paint Studio** (`tools/terminal_paint.py`) - Interactive curses-based console canvas drawing and ANSI art creator
 - **Duplicate Directory Finder** (`tools/duplicate_dir_finder.py`) - Scans folder hierarchies recursively to identify completely identical folders based on file hashes
 - **CLI Directory Size Treemap** (`tools/directory_size_treemap.py`) - Computes directory sizes recursively and renders a visual nested ASCII/Unicode treemap in the terminal, showing the relative storage proportions of subdirectories and files
+- **System Service Monitor & Restarter** (`tools/system_service_monitor.py`) - Monitors critical background processes and services, automatically attempting restarts or sending alerts if they crash or hang
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -115,6 +116,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Color Converter & Contrast Checker** (`tools/color_converter.py`) - Convert colors (HEX, RGB, HSL, CMYK) and check WCAG contrast compliance
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parse cron schedule expressions and list next run times
 - **Interactive Cron Expression Generator** (`tools/cron_generator.py`) - Interactive CLI wizard that helps users construct valid 5-field cron expressions, explains them, and projects next execution times
+- **Cron Schedule Collision Finder & Timeline Analyzer** (`tools/cron_collision_finder.py`) - Analyze multiple cron expressions or crontab files for timing collisions and visualize concurrency timelines
 - **Changelog Generator** (`tools/changelog_generator.py`) - Auto-generate CHANGELOG.md from Git commit history with conventional commits support and issue linking
 - **Environment Variable Manager** (`tools/env_manager.py`) - Check consistency and sync environment files (.env vs .env.example)
 - **Environment Variable Interpolation Tool** (`tools/env_interpolation_tool.py`) - Resolve ${VAR} references in .env files with defaults and circular reference detection
@@ -176,6 +178,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **System PATH Doctor** (`tools/env_path_doctor.py`) - Diagnose, optimize, and clean system environment PATH variables with safety warnings and shell commands
 - **Python Virtual Environment Inspector** (`tools/venv_inspector.py`) - Scan directories for virtual environments, calculate disk space usage, and list installed packages without running a pip subprocess
 - **Virtual Environment Dependency Auditor** (`tools/venv_dependency_auditor.py`) - Scan codebase imports against virtual environment packages to find active, orphaned, or missing dependencies
+- **Python Virtual Environment Cleaner** (`tools/venv_cleaner.py`) - Analyze space consumption of virtual environments, list package sizes, and clean up pycache, compiled pyc, and empty folders
 - **Conventional Commit Builder & Gitmoji helper** (`tools/git_commit_builder.py`) - Interactive CLI helper to construct Conventional Commit messages with optional Gitmojis, check formatting constraints, and run git commit
 - **Color Palette Generator & Harmony Visualizer** (`tools/color_palette_generator.py`) - Generate monochromatic, analogous, complementary, triadic, and tetradic color palettes, visualize true colors in terminal, and export to CSS, JSON, or Tailwind
 - **Regex Synthesizer & Pattern Inferrer** (`tools/regex_synthesizer.py`) - Infer and generate regular expressions based on positive and negative string examples using rule-based heuristics
@@ -218,6 +221,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSH Configuration Manager** (`tools/ssh_config_manager.py`) - Manage and inspect SSH configuration files (`~/.ssh/config`) with host connectivity checks
 - **JSON Schema to Markdown Generator** (`tools/json_schema_to_markdown.py`) - Convert JSON Schema files into clean, structured Markdown documentation
 - **Multi-Git Repository Status Scanner** (`tools/git_multi_repo_status.py`) - Recursively scans a root directory for Git repositories, queries their status (active branch, uncommitted modifications, staged files, untracked files, unpushed commits, and unpulled commits), and displays a colorized CLI dashboard/summary of all repos requiring attention
+- **Python AST-based Code Search & Replace** (`tools/ast_code_modifier.py`) - Perform precise refactoring or code injection by searching and modifying Python source files via AST patterns
+- **Project Structure Visualizer** (`tools/project_structure_viz.py`) - Recursively map project directories and generate tree-based ASCII representations or Mermaid.js folder structure diagrams
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -237,7 +242,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Extractive Text Summarizer** (`tools/text_summarizer.py`) - Generate concise summaries and compute text analytics/reading metrics from documents or standard input
 - **Sentiment Analyzer** (`tools/sentiment_analyzer.py`) - Standalone lexicon-based text sentiment analyzer that computes sentiment scores and classifications
 - **Log Visualizer** (`tools/log_visualizer.py`) - Parse log files (JSON-Lines, CSV, or raw text), aggregate metrics, and print a horizontal progress/severity histogram in the terminal
+- **Structured JSON Log Viewer** (`tools/json_log_viewer.py`) - Read, filter, and pretty-print JSON-structured logs in the terminal with ANSI colors
 - **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
+- **CSV SQL Query Runner** (`tools/csv_sql_query.py`) - Run standard SQL queries directly against one or more CSV files in memory using SQLite
 - **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
 - **Word Frequency Analyzer** (`tools/word_frequency_analyzer.py`) - Calculate word frequencies, filter stop words, compute text metrics, and render terminal bar charts or tag clouds
 - **CSV Data Profiler** (`tools/csv_profiler.py`) - Profile CSV file columns to infer data types and compute detailed statistics without pandas
@@ -269,7 +276,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database to HTML Report Generator** (`tools/sqlite_html_report.py`) - Generate rich, interactive, and dark-themed HTML documentation of SQLite database schemas and sample data
 - **Binary Search Log Slicer** (`tools/log_slicer_by_time.py`) - A high-performance log-slicing tool that uses binary search on giant files to extract logs within a specific time window, automatically parsing common timestamp formats (ISO 8601, Apache, syslog, custom)
 - **YAML Configuration Documenter** (`tools/yaml_to_markdown.py`) - Parses nested YAML configuration files (such as Docker Compose files, CI/CD pipelines, or Kubernetes manifests) and compiles them into a structured Markdown document with nested sections, parameter description tables, default values, and schema references
-
+- **CSV Data Anonymizer & Synthetic Generator** (`tools/csv_anonymizer_pro.py`) - Advanced PII obfuscator and synthetic data generator for CSV datasets, supporting format-preserving encryption and distribution-matching value generation
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -330,7 +337,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Subreddit Scraper & Media Downloader** (`tools/subreddit_scraper.py`) - Scrapes posts, comments, and media from subreddits using public JSON feeds
 - **CIDR Aggregation, Splitter & Exclusion Utility** (`tools/cidr_utility.py`) - Aggregate, split, and subtract IP subnets, and verify membership using native ipaddress module
 - **CIDR Subnet Grid Visualizer** (`tools/ip_subnet_visualizer.py`) - Maps out IP address allocations of a CIDR block, showing subnets, gateway IPs, broadcast IPs, and rendering a console grid representation of how the IP space is partitioned
-
+- **Webhook Event Replay Utility** (`tools/webhook_replay_tool.py`) - Interactively capture, edit, and re-send HTTP webhook event payloads to local development environments
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -358,8 +365,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Environment File Encryption Tool** (`tools/env_encryption_tool.py`) - Encrypt and decrypt sensitive .env configurations using AES cryptography
 - **Nginx Configuration File Parser & Linter** (`tools/nginx_config_linter.py`) - Offline linter to detect security vulnerabilities, path traversal risks, and signature leakage in Nginx configurations
 - **SSL/TLS Cipher Suite & Protocol Auditor** (`tools/ssl_cipher_auditor.py`) - Audit remote server SSL/TLS version, negotiated cipher strength, and certificate details
-
-
+- **Subdomain Takeover Vulnerability Scanner** (`tools/subdomain_takeover_scanner.py`) - Scan subdomains concurrently for dangling CNAME takeover vulnerabilities using HTTP signatures and CNAME resolution
 
 ## Usage
 
