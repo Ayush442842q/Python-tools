@@ -106,6 +106,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Repository Archive & Space Saver** (`tools/git_repo_archiver.py`) - Cleans build artifacts, runs git gc, and compresses Git repositories with a space-savings report
 - **Directory Flattener** (`tools/directory_flattener.py`) - Recursively flattens nested directory structures into a single destination folder with custom collision resolution and undo rollback mappings
 - **Markdown Unreferenced Assets Cleaner** (`tools/markdown_unreferenced_assets_cleaner.py`) - Scan Markdown documents for local asset links and clean up unused media files on disk with a dry-run safety option
+- **Image Dominant Color Extractor** (`tools/image_dominant_color_extractor.py`) - Extract the dominant color palette from an image (Pillow/BMP) and display it in the terminal with colored blocks and hex/RGB values
 
 
 ### Development Tools
@@ -369,6 +370,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table Shaper** (`tools/markdown_table_shaper.py`) - An advanced command-line tool to manipulate, filter, sort, transpose, and re-format Markdown tables
 - **Markdown Table to SQLite Database Converter** (`tools/markdown_table_to_sqlite.py`) - Scans markdown files for tables, parses their headers and rows, dynamically infers columns types (INTEGER, REAL, TEXT), and imports them into a SQLite database
 - **SQLite Static Web Exporter** (`tools/sqlite_static_web_exporter.py`) - Converts any SQLite database file into a single, self-contained, responsive HTML file with search, sorting, pagination, and data export capability
+- **SQL Query Obfuscator & Sanitizer** (`tools/sql_query_obfuscator.py`) - Clean and obfuscate SQL queries by replacing sensitive literal values (strings, numbers) with placeholders (e.g. `?` or `:val`) for logging, performance tuning, and sharing queries safely
 
 
 
@@ -456,6 +458,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Cache Analyzer** (`tools/http_cache_analyzer.py`) - Requests a URL and analyzes HTTP response headers (Cache-Control, Expires, ETag, Last-Modified, Vary) to evaluate cacheability, compute TTLs, and audit compression settings
 - **GitHub Release Downloader** (`tools/github_release_downloader.py`) - Downloads files, assets, or source code archives from GitHub Releases for a given repository with progress reporting and download metrics
 - **HTTP Intercepting & Mocking Proxy Server** (`tools/http_mocking_proxy.py`) - Local HTTP proxy server that intercepts requests matching regex patterns to return custom mock responses (status, headers, body, latency) while forwarding other traffic transparently
+- **TCP/UDP Port Knocker & Daemon Simulator** (`tools/tcp_port_knocker.py`) - TCP/UDP port knocking client and daemon simulator tool to secure ports by opening them only after a specific sequence of connection attempts to closed ports
+- **GitHub Issue Backup Tool** (`tools/github_issue_backup.py`) - Downloads issues and comments from GitHub API to local markdown files
 
 
 
@@ -495,6 +499,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CORS Security Auditor** (`tools/cors_security_auditor.py`) - Scans HTTP/REST API endpoints for CORS (Cross-Origin Resource Sharing) misconfigurations and vulnerabilities
 - **GitHub Actions Security Auditor** (`tools/github_actions_auditor.py`) - Scan GitHub Actions workflows for security risks like unpinned action versions, dangerous triggers (pull_request_target), inline script injection, and write-all API tokens
 - **Binary File Carver** (`tools/binary_file_carver.py`) - A digital forensics tool that scans raw binary files for known file headers/trailers (PNG, JPEG, GIF, PDF, ZIP, BMP) and carves them out
+- **Self-Signed SSL/TLS Certificate Generator** (`tools/self_signed_cert_generator.py`) - Generates self-signed SSL/TLS certificates and key pairs locally, with support for domains, IPs, wildcard DNS names, and SAN extensions
 
 ## Usage
 
