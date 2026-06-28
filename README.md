@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 300+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 315+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -101,6 +101,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Binary File Analyzer** (`tools/binary_analyzer.py`) - Generate hex dumps, calculate entropy, and extract printable ASCII strings
 - **API Tester** (`tools/api_tester.py`) - Test and validate REST APIs
 - **API Request Snippet Generator** (`tools/api_code_generator.py`) - Generate copy-pasteable HTTP client request snippets for curl, Python, JavaScript, and Go
+- **API Documentation Generator** (`tools/api_doc_generator.py`) - Auto-generate REST API documentation from Flask/FastAPI route decorators with Markdown and HTML output
 - **ASCII Art Generator** (`tools/ascii_art_generator.py`) - Create terminal text banners in various font styles
 - **Text Case Converter** (`tools/case_converter.py`) - Convert text casing between common programmer formats
 - **Interactive CLI Cheat Sheet** (`tools/cli_cheat_sheet.py`) - Local interactive search tool and guide for command lines (Git, Docker, Bash, etc.)
@@ -108,14 +109,19 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Code Line Counter** (`tools/code_line_counter.py`) - Count lines of code, comments, and blank lines grouped by language in a directory
 - **Code Quality Checker** (`tools/code_quality_checker.py`) - Analyze code quality and suggest improvements
 - **Code Spell Checker** (`tools/code_spell_checker.py`) - Scan source code comments and string literals for typos using split identifier checks
+- **Code Snippet Manager** (`tools/code_snippet_manager.py`) - Command-line database utility to save, search, view with syntax highlighting, and copy code snippets
 - **Codec Utility** (`tools/codec_utility.py`) - Encode and decode data using Base64, URL, Hex, Binary, and HTML formats
 - **Color Converter & Contrast Checker** (`tools/color_converter.py`) - Convert colors (HEX, RGB, HSL, CMYK) and check WCAG contrast compliance
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parse cron schedule expressions and list next run times
 - **Interactive Cron Expression Generator** (`tools/cron_generator.py`) - Interactive CLI wizard that helps users construct valid 5-field cron expressions, explains them, and projects next execution times
+- **Changelog Generator** (`tools/changelog_generator.py`) - Auto-generate CHANGELOG.md from Git commit history with conventional commits support and issue linking
 - **Environment Variable Manager** (`tools/env_manager.py`) - Check consistency and sync environment files (.env vs .env.example)
+- **Environment Variable Interpolation Tool** (`tools/env_interpolation_tool.py`) - Resolve ${VAR} references in .env files with defaults and circular reference detection
+- **Environment Encryption Tool** (`tools/env_encryption_tool.py`) - Encrypt and decrypt .env files using AES-256-GCM with password or key-file protection
 - **File Diff Tool** (`tools/file_diff_tool.py`) - Compare files line by line with colored console outputs or interactive HTML diff reports
 - **File Patch Applicator & Diff Generator** (`tools/file_patcher.py`) - Generate unified diff patches and apply them to base files with dry-run and backup options
 - **File Regex Replacer** (`tools/file_regex_replacer.py`) - Search and replace text in multiple files using regular expressions
+- **Interactive TUI File Picker** (`tools/file_picker.py`) - Terminal-based file browser with keyboard navigation, multi-select, filtering, and preview
 - **Git Commit Message Linter** (`tools/git_commit_linter.py`) - Lint git commit messages for Conventional Commits compliance
 - **Git Repository Summarizer** (`tools/git_repo_summarizer.py`) - Generate activity and contribution reports for a local Git repository
 - **Git Branch Cleaner** (`tools/git_branch_cleaner.py`) - Clean up local Git branches that have been merged or whose upstream tracking branches have been deleted
@@ -123,6 +129,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Churn Analyzer** (`tools/git_churn_analyzer.py`) - Measure and rank code churn of files in a Git repository to identify development hotspots
 - **HTML to Markdown Converter** (`tools/html_to_markdown.py`) - Convert HTML documents or snippets into clean, structured Markdown
 - **HTML Formatter & Minifier** (`tools/html_formatter.py`) - Format, beautify, or minify HTML documents using standard parser
+- **HTML Accessibility Checker** (`tools/html_accessibility_checker.py`) - Analyze HTML files for WCAG accessibility standards, tag structures, and form labels
 - **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Scan markdown files for broken local and external links
 - **Markdown Linter** (`tools/markdown_linter.py`) - Scan and validate Markdown file formatting and structure
 - **Markdown Auto-Formatter** (`tools/markdown_formatter.py`) - Automatically format and fix Markdown files to ensure clean and consistent structure
@@ -130,6 +137,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table of Contents Generator** (`tools/markdown_toc_generator.py`) - Generate tables of contents with anchor links for Markdown files
 - **Regex Tester & Matcher** (`tools/regex_tester.py`) - Test regex patterns against text or files with colored highlights
 - **Regex Data Extractor** (`tools/regex_extractor.py`) - Extract pattern matches (emails, URLs, IPs, dates, UUIDs) and custom regexes from files or directories
+- **Regex AST Visualizer & Describer** (`tools/regex_visualizer.py`) - Parse regular expressions using sre_parse AST and generate hierarchical trees with step-by-step explanations
 - **Terminal Slideshow Player** (`tools/terminal_slideshow.py`) - Render Markdown files as interactive console slides with colors and navigation controls
 - **Python Code Complexity Analyzer** (`tools/code_complexity_analyzer.py`) - Compute cyclomatic complexity and structural metrics of Python source files using AST parsing
 - **Python Performance Profiler** (`tools/python_performance_profiler.py`) - Profile CPU execution time and memory allocations of a Python script using standard libraries
@@ -206,6 +214,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Interactive CLI Menu Wizard** (`tools/cli_menu_builder.py`) - Build interactive command-line surveys, questionnaires, and option menus
 - **API Documentation Generator** (`tools/api_doc_generator.py`) - Auto-generates REST API documentation from Python Flask/FastAPI code
 - **Environment Variable Interpolation Tool** (`tools/env_interpolation_tool.py`) - Process .env files and resolve nested variable references and default values
+- **SSH Configuration Manager** (`tools/ssh_config_manager.py`) - Manage and inspect SSH configuration files (`~/.ssh/config`) with host connectivity checks
+- **JSON Schema to Markdown Generator** (`tools/json_schema_to_markdown.py`) - Convert JSON Schema files into clean, structured Markdown documentation
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -213,6 +223,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
 - **SQLite Database Explorer** (`tools/sqlite_explorer.py`) - Inspect database schemas, tables, and execute queries in tabular format
 - **SQL Formatter** (`tools/sql_formatter.py`) - Standardize, format, and beautify SQL queries
+- **SQL Linter & Formatter** (`tools/sql_linter.py`) - Analyze SQL queries for syntax errors, missing WHERE clauses, casing inconsistencies, and format them
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
 - **Config Format Converter** (`tools/config_converter.py`) - Convert configuration files between JSON, INI, XML, YAML, and TOML
 - **JSON Schema Generator** (`tools/json_schema_generator.py`) - Infer Draft-07 JSON Schema from a sample JSON data payload
@@ -220,6 +231,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock Data Generator** (`tools/mock_data_generator.py`) - Generate mock user profiles in JSON, CSV, or XML format
 - **Markdown Table Generator** (`tools/markdown_table_generator.py`) - Convert CSV, JSON, or delimited text into clean, aligned Markdown tables
 - **Markdown Table Parser** (`tools/markdown_table_parser.py`) - Parse Markdown tables and convert them to CSV, TSV, or JSON formats
+- **CSV/TSV to Markdown Table Converter** (`tools/csv_to_markdown.py`) - Bidirectional converter between CSV/TSV and Markdown tables with alignment auto-detection
 - **Extractive Text Summarizer** (`tools/text_summarizer.py`) - Generate concise summaries and compute text analytics/reading metrics from documents or standard input
 - **Sentiment Analyzer** (`tools/sentiment_analyzer.py`) - Standalone lexicon-based text sentiment analyzer that computes sentiment scores and classifications
 - **Log Visualizer** (`tools/log_visualizer.py`) - Parse log files (JSON-Lines, CSV, or raw text), aggregate metrics, and print a horizontal progress/severity histogram in the terminal
@@ -252,6 +264,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Migration Manager** (`tools/sqlite_migration_manager.py`) - Lightweight database schema migration system for SQLite, supporting UP/DOWN migrations
 - **Photo GPS Map Generator** (`tools/photo_gps_map_generator.py`) - Scan image directories for GPS EXIF tags and compile them into an interactive, visual LeafletJS HTML map with photo previews
 - **Log Pattern Extractor** (`tools/log_pattern_extractor.py`) - Cluster log lines into common templates by masking dynamic variables
+- **SQLite Database to HTML Report Generator** (`tools/sqlite_html_report.py`) - Generate rich, interactive, and dark-themed HTML documentation of SQLite database schemas and sample data
 
 
 ### Network & Web
@@ -319,6 +332,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
 - **EXIF Metadata Inspector & Cleaner** (`tools/exif_cleaner.py`) - Inspect and strip EXIF metadata from images to preserve privacy
 - **Offline JWT Debugger** (`tools/jwt_debugger.py`) - Decode, inspect, verify, and encode HS256 JSON Web Tokens locally and offline
+- **HTTP Cookie Security Analyzer** (`tools/http_cookie_analyzer.py`) - Parse HTTP Cookie/Set-Cookie headers, Netscape text formats, or JSON arrays, and check flag security (HttpOnly, Secure, SameSite) with scorecards
 - **Log Anonymizer & PII Masker** (`tools/log_anonymizer.py`) - Scrub sensitive PII, credentials, and IP addresses from logs and text files
 - **Time-based One-Time Password (TOTP) Generator** (`tools/totp_generator.py`) - Secure, offline multi-factor authentication (MFA) client with visual countdown progress bars
 - **Hash Generator & Verifier** (`tools/hash_generator.py`) - Generate cryptographic hashes (MD5, SHA-1, SHA-256, etc.) for text strings or files, and verify them against expected values
@@ -337,6 +351,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Offline JWT HS256 Secret Cracker** (`tools/jwt_secret_cracker.py`) - Offline dictionary and brute-force cracking tool for HS256 JSON Web Tokens (JWTs)
 - **API Security Fuzzer** (`tools/api_fuzzer.py`) - Perform security fuzzing on API endpoints to find vulnerabilities like SQLi, XSS, and path traversal
 - **Environment File Encryption Tool** (`tools/env_encryption_tool.py`) - Encrypt and decrypt sensitive .env configurations using AES cryptography
+- **Nginx Configuration File Parser & Linter** (`tools/nginx_config_linter.py`) - Offline linter to detect security vulnerabilities, path traversal risks, and signature leakage in Nginx configurations
+- **SSL/TLS Cipher Suite & Protocol Auditor** (`tools/ssl_cipher_auditor.py`) - Audit remote server SSL/TLS version, negotiated cipher strength, and certificate details
 
 
 
