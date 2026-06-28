@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 405+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 410+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -238,6 +238,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Text Encoding Converter** (`tools/text_encoding_converter.py`) - Recursively scans files in a directory to identify current text encodings and safely converts them to standard UTF-8.
 - **Git Stash Manager** (`tools/git_stash_manager.py`) - An advanced CLI utility to inspect, search, pop, apply, drop, and prune Git stashes with detailed diff statistics
 - **Regex Performance Tester & Optimizer** (`tools/regex_performance_tester.py`) - Benchmark regular expression compilation and match operations, statically analyze patterns for catastrophic backtracking risks (ReDoS), and run empirical scaling tests
+- **Docker Compose Network Mapper & Port Collision Auditor** (`tools/docker_compose_mapper.py`) - Parse docker-compose.yml files recursively, check for duplicate host port bindings, and generate a Mermaid.js network and service dependency diagram
+- **Python Function Call Graph Generator** (`tools/python_call_graph.py`) - Analyze Python code using AST parsing to trace local function call hierarchies and generate textual trees or Mermaid.js flowcharts
+- **CSS Specificity Calculator & Selector Auditor** (`tools/css_specificity_calculator.py`) - Parse CSS stylesheets to calculate specificity metrics for every selector, flag high specificity hotspots, and detect duplicate declarations
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -301,6 +304,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Data Anonymizer & Synthetic Generator** (`tools/csv_anonymizer_pro.py`) - Advanced PII obfuscator and synthetic data generator for CSV datasets, supporting format-preserving encryption and distribution-matching value generation
 - **SQL Dependency Analyzer** (`tools/sql_dependency_analyzer.py`) - Parse SQL schema files to map table and view dependencies, detect circular references, and determine the correct execution order for creation and teardown
 - **TOML Validator & Formatter** (`tools/toml_validator.py`) - Validate TOML files for syntax compliance, format/beautify them cleanly, and convert them to JSON format
+- **JSON Patch & Merge Patch Utility** (`tools/json_patch_utility.py`) - Apply and generate JSON Patch (RFC 6902) and JSON Merge Patch (RFC 7396) files to modify or compare JSON documents
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -365,6 +369,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Archive (HAR) Analyzer** (`tools/har_analyzer.py`) - Parses browser network capture `.har` files (JSON format) to extract key performance metrics, resource distributions, and lists automated server-side compression and caching optimization recommendations.
 - **Sitemap XML Link Auditor** (`tools/sitemap_link_auditor.py`) - Fetches or reads a website's `sitemap.xml` (recursively scanning sitemap index files) and concurrently audits all URLs for broken links (4xx, 5xx), redirect paths, network connection timeouts, and response latency.
 - **SSH Tunnel Manager** (`tools/ssh_tunnel_manager.py`) - Manage and monitor SSH port forwarding tunnels (local, remote, and dynamic SOCKS5 proxies) with process tracking and health probes.
+- **XPath Query Evaluator & HTML Parser CLI** (`tools/xpath_evaluator.py`) - Parse and evaluate XPath queries against local XML/HTML files or remote URLs using Python's standard library
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
