@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 440+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 445+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -256,6 +256,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Project Structure Linter** (`tools/project_structure_linter.py`) - Validate directory layouts, naming conventions, and file rules against a custom schema or built-in standard templates
 - **Shell Script Quality Linter** (`tools/shell_script_linter.py`) - A lightweight static analyzer for Bash/Shell scripts that scans for shebang issues, unquoted variables, unchecked cd/commands, deprecated backticks, and missing error handling settings
 - **Image to ASCII Art & ANSI Color Converter** (`tools/image_to_ascii.py`) - Convert images (BMP natively, or JPG/PNG if Pillow is installed) into ASCII art or ANSI-colored terminal text with scale and contrast adjustments.
+- **Lisp Interpreter** (`tools/lisp_interpreter.py`) - A minimal Lisp (Scheme-like) interpreter in Python with a visual REPL, lexical scoping, variables, lambdas, maps, recursion, and arithmetic.
+- **Gitignore Cleaner** (`tools/gitignore_cleaner.py`) - Scan a Git repository for tracked files that match `.gitignore` patterns, generate cleaner commands, and audit `.gitignore` for redundant rules.
+- **Binary Tree Visualizer** (`tools/binary_tree_visualizer.py`) - Construct and visualize standard Binary Search Trees (BST) or self-balancing AVL trees vertically in the terminal using Unicode characters with an interactive tree editor.
 
 
 ### Data Processing
@@ -329,6 +332,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite REST API Server & Web Dashboard** (`tools/sqlite_api_server.py`) - Exposes a fully functional REST API (GET, POST, PUT, DELETE) and a clean, responsive dark-themed HTML/web dashboard console for any SQLite database file
 - **CSV Merge by Column** (`tools/csv_merge_by_column.py`) - Merges two CSV files based on a shared key column, supporting inner, left, right, and outer joins with custom null values and prefix conflict resolution
 - **SQLite FTS Indexer** (`tools/sqlite_fts_indexer.py`) - Configures an FTS5 full-text search index on an existing SQLite database table, sets up automatic sync triggers, and launches a terminal search interface with BM25 ranking
+- **ASCII Venn Diagram Generator** (`tools/ascii_venn_diagram.py`) - Calculate set relationships (intersection, union, relative complement) for 2 or 3 sets and render a beautiful ASCII Venn diagram in the terminal.
 
 
 ### Network & Web
@@ -404,6 +408,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Local Pastebin & Code Snippet Server** (`tools/local_pastebin_server.py`) - Host a local web server to save, search, and share code snippets with Prism.js syntax highlighting.
 - **Self-Hosted Markdown Wiki & Note Server** (`tools/markdown_wiki_server.py`) - Serve and edit a directory of Markdown notes with backlinks, tags, search, and a beautiful editor interface.
 - **Local HTTP API Gateway & Reverse Proxy** (`tools/local_api_gateway.py`) - Route HTTP requests to multiple backend services based on path rules with rate limiting and logging.
+- **Local URL Shortener Server** (`tools/url_shortener_server.py`) - A zero-dependency local URL shortener and analytics server with a premium web dashboard, custom aliases, redirection, and real-time visitor statistics.
 
 
 ### Security & Cryptography
