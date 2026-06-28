@@ -105,6 +105,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Codec Utility** (`tools/codec_utility.py`) - Encode and decode data using Base64, URL, Hex, Binary, and HTML formats
 - **Color Converter & Contrast Checker** (`tools/color_converter.py`) - Convert colors (HEX, RGB, HSL, CMYK) and check WCAG contrast compliance
 - **Cron Expression Parser** (`tools/cron_parser.py`) - Parse cron schedule expressions and list next run times
+- **Interactive Cron Expression Generator** (`tools/cron_generator.py`) - Interactive CLI wizard that helps users construct valid 5-field cron expressions, explains them, and projects next execution times
 - **Environment Variable Manager** (`tools/env_manager.py`) - Check consistency and sync environment files (.env vs .env.example)
 - **File Diff Tool** (`tools/file_diff_tool.py`) - Compare files line by line with colored console outputs or interactive HTML diff reports
 - **File Patch Applicator & Diff Generator** (`tools/file_patcher.py`) - Generate unified diff patches and apply them to base files with dry-run and backup options
@@ -118,6 +119,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML Formatter & Minifier** (`tools/html_formatter.py`) - Format, beautify, or minify HTML documents using standard parser
 - **Markdown Link Checker** (`tools/markdown_link_checker.py`) - Scan markdown files for broken local and external links
 - **Markdown Linter** (`tools/markdown_linter.py`) - Scan and validate Markdown file formatting and structure
+- **Markdown Auto-Formatter** (`tools/markdown_formatter.py`) - Automatically format and fix Markdown files to ensure clean and consistent structure
 - **Markdown to HTML Converter** (`tools/markdown_to_html.py`) - Compiles Markdown documents into styled, responsive standalone HTML pages
 - **Markdown Table of Contents Generator** (`tools/markdown_toc_generator.py`) - Generate tables of contents with anchor links for Markdown files
 - **Regex Tester & Matcher** (`tools/regex_tester.py`) - Test regex patterns against text or files with colored highlights
@@ -146,6 +148,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Text-to-ASCII Flowchart Generator** (`tools/ascii_flowchart_generator.py`) - Render flowchart diagrams in console using ASCII/Unicode box-drawing characters
 - **Code Snippet Manager** (`tools/code_snippet_manager.py`) - Command-line database utility to save, search, view with syntax highlighting, and copy code snippets
 - **Python Import Visualizer** (`tools/python_import_visualizer.py`) - Map internal Python import dependency networks and display module hierarchies or generate Mermaid diagrams
+- **Python Class to Mermaid Generator** (`tools/python_class_to_mermaid.py`) - Parses Python files using AST and generates Mermaid.js class diagrams of inheritance and method signatures
 - **Huffman Text Compressor** (`tools/text_compressor_huffman.py`) - Standalone Huffman Coding text compressor and decompressor that generates a custom binary .huff format
 - **Python Import Cleaner & Sorter** (`tools/python_import_cleaner.py`) - Parses Python files using AST to safely detect unused imports and generate organized, PEP-8 compliant import blocks
 - **LLM Context Packer** (`tools/llm_context_packer.py`) - Recursively packages a local codebase/directory into a single, clean Markdown context file for LLM prompts
@@ -157,6 +160,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SVG Status Badge Generator** (`tools/markdown_badge_generator.py`) - Create custom shields.io style SVG badges locally for use in markdown documents
 - **System PATH Doctor** (`tools/env_path_doctor.py`) - Diagnose, optimize, and clean system environment PATH variables with safety warnings and shell commands
 - **Python Virtual Environment Inspector** (`tools/venv_inspector.py`) - Scan directories for virtual environments, calculate disk space usage, and list installed packages without running a pip subprocess
+- **Virtual Environment Dependency Auditor** (`tools/venv_dependency_auditor.py`) - Scan codebase imports against virtual environment packages to find active, orphaned, or missing dependencies
 - **Conventional Commit Builder & Gitmoji helper** (`tools/git_commit_builder.py`) - Interactive CLI helper to construct Conventional Commit messages with optional Gitmojis, check formatting constraints, and run git commit
 - **Color Palette Generator & Harmony Visualizer** (`tools/color_palette_generator.py`) - Generate monochromatic, analogous, complementary, triadic, and tetradic color palettes, visualize true colors in terminal, and export to CSS, JSON, or Tailwind
 - **Regex Synthesizer & Pattern Inferrer** (`tools/regex_synthesizer.py`) - Infer and generate regular expressions based on positive and negative string examples using rule-based heuristics
@@ -275,6 +279,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Redirect Tracer & Loop Detector** (`tools/http_redirect_tracer.py`) - Trace redirect chains step-by-step, checking status codes, times, cookies, security headers, and open redirects
 - **Network Throughput & Performance Tester** (`tools/network_throughput_tester.py`) - Benchmark network bandwidth, packet loss, and jitter using TCP or UDP sockets (iperf-like client/server)
 - **Web Content Extractor & Reader Mode** (`tools/web_content_extractor.py`) - Extract the core article text from a webpage, omitting navigation, sidebars, and ads using scoring heuristics
+- **TUI HTTP Client** (`tools/tui_http_client.py`) - Interactive menu-driven terminal REST API client to construct, configure, send, and save HTTP requests
 
 
 ### Security & Cryptography
