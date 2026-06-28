@@ -101,6 +101,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Self-Extracting Code Packer** (`tools/self_extracting_packer.py`) - Recursively packages a directory tree into a single, standalone Python script that self-extracts on execution.
 - **PDF Text Searcher** (`tools/pdf_text_searcher.py`) - Recursively search for text or regex patterns in PDFs with zero-dependency fallback
 - **Text File Chunker** (`tools/text_file_chunker.py`) - Split text files and codebases by logical block types with context annotations for LLM/RAG pipelines
+- **Markdown Code Block Runner** (`tools/markdown_code_runner.py`) - Finds, executes, and updates the output of code blocks inside Markdown files
+- **HTML/CSS Inline Style Extractor & Consolidator** (`tools/html_style_consolidator.py`) - Extracts inline style attributes from HTML and consolidates them into a clean stylesheet or style block
+- **Git Repository Archive & Space Saver** (`tools/git_repo_archiver.py`) - Cleans build artifacts, runs git gc, and compresses Git repositories with a space-savings report
+
 
 ### Development Tools
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
@@ -274,7 +278,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Systemd Unit Configuration Generator** (`tools/systemd_unit_generator.py`) - Interactive wizard and CLI utility to generate compliant Linux systemd service, timer, or path unit configuration files with validation checks
 - **Cron Timeline Visualizer** (`tools/cron_timeline_visualizer.py`) - Parse cron expressions and generate a beautiful 24-hour visual terminal timeline of scheduled jobs, highlighting hotspots and overlaps
 - **JSON to Markdown Table** (`tools/json_to_markdown_table.py`) - Convert JSON files, HTTP responses, or piping streams into GitHub-flavored Markdown tables with dot-notation flattening
-
+- **Python Library API Breaking Change Detector** (`tools/python_api_breaking_change_detector.py`) - Compares two versions of a Python codebase or file using AST analysis to report potential breaking changes in the public API
+- **Shell Script Command & Dependency Validator** (`tools/shell_dependency_checker.py`) - Scans shell scripts recursively, extracts external commands invoked, and verifies if they are available on the current system path
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
