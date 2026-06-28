@@ -108,6 +108,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Unreferenced Assets Cleaner** (`tools/markdown_unreferenced_assets_cleaner.py`) - Scan Markdown documents for local asset links and clean up unused media files on disk with a dry-run safety option
 - **Image Dominant Color Extractor** (`tools/image_dominant_color_extractor.py`) - Extract the dominant color palette from an image (Pillow/BMP) and display it in the terminal with colored blocks and hex/RGB values
 - **Markdown Document Compiler** (`tools/markdown_document_compiler.py`) - Compile multiple markdown files recursively into a single master document with automatic header shifting, internal anchor resolution, and table of contents generation
+- **Real-Time Log Tail Monitor & Alert Trigger** (`tools/log_tail_alert_monitor.py`) - Tails log files continuously and monitors for specified regex patterns, executing actions like command running, webhook calls, and alert logs with rate-limiting
 
 
 ### Development Tools
@@ -309,6 +310,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Data Serialization Benchmarker** (`tools/serialization_benchmarker.py`) - Benchmark performance (speed and output size) of various serialization formats like JSON, JSONL, XML, YAML, CSV, and Pickle
 - **Windows Batch Script Linter & Advisor** (`tools/batch_script_linter.py`) - Audit Windows batch scripts (.bat/.cmd) for common bugs, unquoted variables, unsafe errorlevel logic, and interactive commands
 - **Python Docstring Signature Matcher & Linter** (`tools/python_docstring_validator.py`) - Parse Python code AST to verify that docstrings match the actual function signature (arguments and return types) in Google, Sphinx, or NumPy styles
+- **Binary Pattern Heatmap Visualizer** (`tools/binary_pattern_visualizer.py`) - Reads binary files and renders an ANSI color-coded pattern grid in the terminal to visually identify headers, structures, and entropy
+- **GitHub Actions Workflow Dependency Visualizer** (`tools/github_workflow_visualizer.py`) - Parses GitHub Actions workflow YAML files and visualizes job dependencies and triggers as ASCII/Unicode structures or Mermaid.js diagrams
+- **Python Function Property-Based Fuzzer** (`tools/python_function_fuzzer.py`) - Zero-dependency, property-based function testing tool that infers type signatures and fuzzes arguments with boundary and edge-case values to catch crashes
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -391,6 +395,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Data Synthesizer** (`tools/csv_data_synthesizer.py`) - Scans an input CSV file to analyze column types and distributions, and then generates a synthetic dataset of any size that mimics the original data structure.
 - **SQLite Database Index Advisor** (`tools/sqlite_index_advisor.py`) - Analyzes SQLite database schemas for missing primary keys, unindexed foreign keys, redundant indexes, and runs execution plans on queries to recommend performance-boosting indexes
 - **SQLite Database Health & Optimization Tool** (`tools/sqlite_db_optimizer.py`) - Run database checks, vacuuming, re-indexing, analysis of query statistics, and generate health/tuning reports for SQLite databases
+- **JSON Schema to SQL DDL Generator** (`tools/json_schema_to_sql.py`) - Converts Draft-07 JSON Schema files or raw JSON files into database table creation SQL DDL statements for SQLite, MySQL, and PostgreSQL with relational mapping support
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
