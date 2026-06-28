@@ -107,6 +107,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Directory Flattener** (`tools/directory_flattener.py`) - Recursively flattens nested directory structures into a single destination folder with custom collision resolution and undo rollback mappings
 - **Markdown Unreferenced Assets Cleaner** (`tools/markdown_unreferenced_assets_cleaner.py`) - Scan Markdown documents for local asset links and clean up unused media files on disk with a dry-run safety option
 - **Image Dominant Color Extractor** (`tools/image_dominant_color_extractor.py`) - Extract the dominant color palette from an image (Pillow/BMP) and display it in the terminal with colored blocks and hex/RGB values
+- **Markdown Document Compiler** (`tools/markdown_document_compiler.py`) - Compile multiple markdown files recursively into a single master document with automatic header shifting, internal anchor resolution, and table of contents generation
 
 
 ### Development Tools
@@ -306,6 +307,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **API Response Schema Diff Tool** (`tools/api_schema_diff.py`) - Compare two API responses or JSON Schemas to detect structural changes, type shifts, or breaking contracts
 - **SQL Explain Query Plan Visualizer** (`tools/sql_explain_visualizer.py`) - Runs an SQL query against a SQLite database, parses the EXPLAIN QUERY PLAN output, and generates a visual hierarchical tree diagram of the execution plan
 - **Data Serialization Benchmarker** (`tools/serialization_benchmarker.py`) - Benchmark performance (speed and output size) of various serialization formats like JSON, JSONL, XML, YAML, CSV, and Pickle
+- **Windows Batch Script Linter & Advisor** (`tools/batch_script_linter.py`) - Audit Windows batch scripts (.bat/.cmd) for common bugs, unquoted variables, unsafe errorlevel logic, and interactive commands
+- **Python Docstring Signature Matcher & Linter** (`tools/python_docstring_validator.py`) - Parse Python code AST to verify that docstrings match the actual function signature (arguments and return types) in Google, Sphinx, or NumPy styles
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -387,6 +390,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Query Obfuscator & Sanitizer** (`tools/sql_query_obfuscator.py`) - Clean and obfuscate SQL queries by replacing sensitive literal values (strings, numbers) with placeholders (e.g. `?` or `:val`) for logging, performance tuning, and sharing queries safely
 - **CSV Data Synthesizer** (`tools/csv_data_synthesizer.py`) - Scans an input CSV file to analyze column types and distributions, and then generates a synthetic dataset of any size that mimics the original data structure.
 - **SQLite Database Index Advisor** (`tools/sqlite_index_advisor.py`) - Analyzes SQLite database schemas for missing primary keys, unindexed foreign keys, redundant indexes, and runs execution plans on queries to recommend performance-boosting indexes
+- **SQLite Database Health & Optimization Tool** (`tools/sqlite_db_optimizer.py`) - Run database checks, vacuuming, re-indexing, analysis of query statistics, and generate health/tuning reports for SQLite databases
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -516,6 +520,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Web Shell & Backdoor Scanner** (`tools/webshell_scanner.py`) - Recursively scans web directories for web shells, malicious backdoors, dynamic code execution, and high-entropy obfuscated scripts
 - **Pip License Compliance Auditor** (`tools/pip_license_auditor.py`) - Scan project dependencies, fetch license metadata, and audit them against allowed/prohibited lists to ensure legal compliance
 - **Pip Dependency Vulnerability Scanner** (`tools/pip_vulnerability_scanner.py`) - Audit project Python dependencies against the OSV.dev database to identify known security vulnerabilities (CVEs/GHSAs)
+- **Content Security Policy (CSP) Generator & Validator** (`tools/csp_generator.py`) - Audits HTML files/folders/URLs, extracts asset domains, constructs a tailored CSP, and validates existing policies for security vulnerabilities
 
 ## Usage
 
