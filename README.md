@@ -285,8 +285,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Virtual Environment Dependency Size Analyzer** (`tools/venv_dependency_size_analyzer.py`) - Scans a Python virtual environment's site-packages folder to calculate own and cumulative dependency sizes, and renders a hierarchical tree or sorted list
 - **Tailwind CSS Class Sorter & Deduplicator** (`tools/tailwind_class_sorter.py`) - Parses HTML, JSX, TSX, or Vue files to locate Tailwind CSS class declarations, cleans duplicates, and sorts them according to the official Tailwind CSS class ordering guidelines
 - **Git Repository Code Age and Ownership Analyzer** (`tools/git_code_age_analyzer.py`) - Analyzes line-level age and authorship distribution across tracked files using `git blame`, identifying "zombie code" (untouched for years) and files written by developers no longer active in recent commit history
-
-
+- **Jupyter Notebook Diff Tool** (`tools/jupyter_notebook_diff.py`) - Performs cell-by-cell structural comparison between two Jupyter Notebook (.ipynb) files, highlighting additions, deletions, code changes, and markdown edits while ignoring metadata
+- **Git Churn & Complexity Analyzer** (`tools/git_churn_complexity_analyzer.py`) - Correlates Git commit frequency (churn) with AST-based cyclomatic complexity to identify codebase hotspots and priority refactoring targets
+- **Tailwind CSS Unused Class Purger** (`tools/tailwind_unused_purger.py`) - Scans codebase templates to identify used Tailwind utility classes and purges unused rules from a CSS stylesheet to generate a minified, lightweight output
+- **API Regression & Response Diff Tester** (`tools/api_regression_tester.py`) - Sends HTTP requests concurrently to a reference and test API environment and performs a structural JSON diff of their responses, status codes, and headers to identify regressions
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
@@ -487,6 +489,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Unicode Homoglyph Security Detector** (`tools/unicode_homoglyph_detector.py`) - Scan text, domain names, or source code files for homograph attacks, mixed-script token confusion, invisible characters, and bidirectional overrides
 - **Python Security Linter** (`tools/python_security_linter.py`) - AST-based security static analysis scanner for Python source code to detect command injections, insecure serialization, insecure APIs, and hardcoded secrets
 - **CORS Security Auditor** (`tools/cors_security_auditor.py`) - Scans HTTP/REST API endpoints for CORS (Cross-Origin Resource Sharing) misconfigurations and vulnerabilities
+- **GitHub Actions Security Auditor** (`tools/github_actions_auditor.py`) - Scan GitHub Actions workflows for security risks like unpinned action versions, dangerous triggers (pull_request_target), inline script injection, and write-all API tokens
 
 ## Usage
 
