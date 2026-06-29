@@ -45,6 +45,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Password Generator** (`tools/password_generator.py`) - Generate secure passwords
 - **Password Manager** (`tools/password_manager.py`) - Secure password generation and management tool
 - **PDF Toolkit** (`tools/pdf_toolkit.py`) - Extract text, merge, split, and manipulate PDF files
+- **PDF Page Editor** (`tools/pdf_page_editor.py`) - Edit PDF files (extract ranges, delete pages, rotate pages, or merge multiple files) with a command-line interface or interactive wizard
 - **Pomodoro Timer** (`tools/pomodoro_timer.py`) - Terminal-based productivity timer with custom work/break intervals, live progress bar, sound alerts, and session logging
 - **Price Comparison Scraper** (`tools/price_comparison_scraper.py`) - Compare product prices across e-commerce websites
 - **Process Manager** (`tools/process_manager.py`) - Manage and monitor system processes
@@ -502,6 +503,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **GitHub Issue Backup Tool** (`tools/github_issue_backup.py`) - Downloads issues and comments from GitHub API to local markdown files
 - **HTTP Archive (HAR) to cURL Command Generator** (`tools/har_to_curl.py`) - Parses browser network capture `.har` logs and outputs equivalent, runnable shell cURL command payloads
 - **URL Parameter Comparator** (`tools/url_parameter_comparator.py`) - Compares component properties and query parameters of multiple URLs side-by-side to highlight differences and decode nested values
+- **Port-to-Process Mapper** (`tools/port_process_mapper.py`) - Cross-platform tool to map network ports to PIDs and process names with an interactive interface to terminate processes
+- **Markdown External Link Archiver** (`tools/markdown_link_archiver.py`) - Scan Markdown files for external links, verify status, and archive them locally or via the Wayback Machine
+- **Network Bandwidth Monitor** (`tools/network_bandwidth_monitor.py`) - Real-time terminal network traffic monitor displaying live upload/download speeds and ASCII graphs
+- **Source Code Link Auditor** (`tools/source_code_link_auditor.py`) - Scan source code files recursively for HTTP/HTTPS URLs and audit their status in parallel using threads
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
