@@ -110,10 +110,6 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Document Compiler** (`tools/markdown_document_compiler.py`) - Compile multiple markdown files recursively into a single master document with automatic header shifting, internal anchor resolution, and table of contents generation
 - **Real-Time Log Tail Monitor & Alert Trigger** (`tools/log_tail_alert_monitor.py`) - Tails log files continuously and monitors for specified regex patterns, executing actions like command running, webhook calls, and alert logs with rate-limiting
 - **CLI Habit Tracker** (`tools/cli_habit_tracker.py`) - An interactive terminal-based habit and streak tracker with visual Unicode monthly calendars and local JSON persistence
-- **CLI Wordle Game & Solver** (`tools/cli_wordle_solver.py`) - An interactive terminal-based Wordle game and helper solver featuring color-coded feedback and a built-in list of common 5-letter words
-- **Terminal ASCII Clock, Stopwatch & Timer** (`tools/terminal_ascii_clock.py`) - An interactive digital clock, stopwatch (with split/lap logging), and countdown timer utility that displays large digital numbers in ASCII format in the terminal
-- **CLI Chess Game** (`tools/cli_chess.py`) - A terminal-based Chess game featuring standard movement rules, a Unicode board with ANSI colored squares, split capture trackers, and options for PvP or playing against a computer bot
-- **CLI Eisenhower Matrix Task Planner** (`tools/cli_eisenhower_matrix.py`) - A terminal-based Eisenhower Matrix productivity planner that stores tasks in a JSON database and displays a 2x2 color-coded quadrant grid
 
 
 ### Development Tools
@@ -322,7 +318,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Type Hint Remover** (`tools/python_type_hint_remover.py`) - An AST-based code refactoring utility to strip type annotations and clean up typing imports from Python source files
 - **Python Unittest to Pytest Converter** (`tools/python_unittest_to_pytest.py`) - An AST-based migration tool to refactor standard unittest.TestCase test suites, assertions, and setups to modern pytest syntax
 - **CLI Timezone Meeting Scheduler** (`tools/cli_timezone_scheduler.py`) - A terminal-based meeting planner helper that displays overlapping business hours across multiple timezones in a color-coded 24-hour visual grid
-- **Python Bytecode Visualizer** (`tools/python_bytecode_visualizer.py`) - A developer tool that compiles and disassembles Python code or scripts, showing the underlying bytecode instructions in a formatted, color-coded terminal table along with descriptions for each instruction
+- **JSON-LD Schema Generator & Validator** (`tools/json_ld_generator.py`) - A CLI tool to interactively generate Schema.org JSON-LD scripts (Article, LocalBusiness, FAQPage, Product) or validate existing schemas
+- **Git Commit History Author Rewriter** (`tools/git_author_rewriter.py`) - Safely rewrite author names and emails in local Git commit history with automatic backup and safety validation checks
+- **YAML/TOML Configuration Diff Tool** (`tools/yaml_toml_diff.py`) - Structural diff tool that recursively compares nested keys and values in YAML and TOML configuration files, displaying a color-coded CLI diff
+- **CSS to Tailwind Utility Class Converter** (`tools/css_to_tailwind.py`) - Parse CSS style rules and convert them into the closest corresponding Tailwind CSS utility classes, with fallback to arbitrary value syntax
+- **Git Merge Conflict Predictor** (`tools/git_conflict_predictor.py`) - Predict potential merge conflicts between two branches/commits without modifying the working tree
+- **Python Magic Number Detector** (`tools/python_magic_number_detector.py`) - Scan Python files recursively to find hardcoded magic numbers and suggest module-level constants
+- **CSS Variable Optimizer & Linter** (`tools/css_variable_optimizer.py`) - Audit CSS files for unused, undefined, and circular custom properties (CSS variables)
+- **HTML Form Auditor** (`tools/html_form_auditor.py`) - Scan HTML files to audit all <form> elements for accessibility, usability, and security issues
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -406,6 +409,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Index Advisor** (`tools/sqlite_index_advisor.py`) - Analyzes SQLite database schemas for missing primary keys, unindexed foreign keys, redundant indexes, and runs execution plans on queries to recommend performance-boosting indexes
 - **SQLite Database Health & Optimization Tool** (`tools/sqlite_db_optimizer.py`) - Run database checks, vacuuming, re-indexing, analysis of query statistics, and generate health/tuning reports for SQLite databases
 - **JSON Schema to SQL DDL Generator** (`tools/json_schema_to_sql.py`) - Converts Draft-07 JSON Schema files or raw JSON files into database table creation SQL DDL statements for SQLite, MySQL, and PostgreSQL with relational mapping support
+- **SQLite Database Schema Seeder & Faker** (`tools/sqlite_schema_seeder.py`) - Inspects a SQLite database, maps table foreign keys to perform topological sort insertion, and seeds tables with referentially-valid mock data
+- **SQL Query Lineage Extractor** (`tools/sql_query_lineage_extractor.py`) - Parse SQL queries to extract data lineage mapping (source tables, target tables, and column dependencies)
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
