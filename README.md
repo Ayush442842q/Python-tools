@@ -112,6 +112,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Real-Time Log Tail Monitor & Alert Trigger** (`tools/log_tail_alert_monitor.py`) - Tails log files continuously and monitors for specified regex patterns, executing actions like command running, webhook calls, and alert logs with rate-limiting
 - **CLI Habit Tracker** (`tools/cli_habit_tracker.py`) - An interactive terminal-based habit and streak tracker with visual Unicode monthly calendars and local JSON persistence
 - **Log Time-Series Event Visualizer** (`tools/log_time_series_visualizer.py`) - Auto-detect log timestamp formats, filter by patterns, aggregate events over custom time buckets, and render an ASCII/Unicode line or bar chart in the terminal
+- **Audio Tone Generator & Melody Compiler** (`tools/audio_tone_generator.py`) - Zero-dependency WAV audio synthesizer to generate waveforms, frequency sweeps, ADSR envelopes, panning, and compile text-based melodies.
+- **CLI Personal Finance Tracker** (`tools/cli_personal_finance_tracker.py`) - Interactive terminal double-entry bookkeeping and personal finance manager supporting transaction logging, budgets, and ASCII expense charts.
 
 
 ### Development Tools
@@ -520,6 +522,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Network Bandwidth Monitor** (`tools/network_bandwidth_monitor.py`) - Real-time terminal network traffic monitor displaying live upload/download speeds and ASCII graphs
 - **Source Code Link Auditor** (`tools/source_code_link_auditor.py`) - Scan source code files recursively for HTTP/HTTPS URLs and audit their status in parallel using threads
 - **Network Latency & Jitter Tester** (`tools/network_latency_jitter_tester.py`) - Measures round-trip time (RTT), latency jitter, and packet loss using TCP handshakes or ICMP pings, displaying statistics and an ASCII latency distribution histogram.
+- **DNS Spoofing & Hijacking Detector** (`tools/dns_spoof_detector.py`) - Compares local DNS resolution against encrypted DNS-over-HTTPS (DoH) queries to Cloudflare and Google to detect local hijacking or captive portals.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -566,6 +569,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Email Header Analyzer & Hop Tracer** (`tools/email_header_analyzer.py`) - Parses raw email headers to map hop-by-hop relay paths, computes transit latency between servers, extracts SPF/DKIM/DMARC statuses, and lists security warnings
 - **SQL Injection Static Detector** (`tools/sql_injection_detector.py`) - Statically analyzes Python source code using Abstract Syntax Trees (AST) to identify potential SQL injection vulnerabilities from dynamic string building in database execution statements.
 - **SSH Config Analyzer & Auditor** (`tools/ssh_config_analyzer.py`) - Parse and audit local SSH client configuration files, resolve host aliases, visualize host inheritance trees, and check for weak security configurations
+- **Base64 Padding Steganography** (`tools/base64_steganography.py`) - Hide secret messages within the unused padding bits of standard Base64 encoded files (PEM files, base64 images, or custom encoded lines) that remains fully decodable.
+- **Python Environment Security Auditor** (`tools/python_sys_security_auditor.py`) - Runtime security auditor scanning search paths, environment variable leaks, site-packages directory write rights, and default SSL settings.
 
 ## Usage
 
