@@ -109,6 +109,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Image Dominant Color Extractor** (`tools/image_dominant_color_extractor.py`) - Extract the dominant color palette from an image (Pillow/BMP) and display it in the terminal with colored blocks and hex/RGB values
 - **Markdown Document Compiler** (`tools/markdown_document_compiler.py`) - Compile multiple markdown files recursively into a single master document with automatic header shifting, internal anchor resolution, and table of contents generation
 - **Real-Time Log Tail Monitor & Alert Trigger** (`tools/log_tail_alert_monitor.py`) - Tails log files continuously and monitors for specified regex patterns, executing actions like command running, webhook calls, and alert logs with rate-limiting
+- **CLI Habit Tracker** (`tools/cli_habit_tracker.py`) - An interactive terminal-based habit and streak tracker with visual Unicode monthly calendars and local JSON persistence
+- **CLI Wordle Game & Solver** (`tools/cli_wordle_solver.py`) - An interactive terminal-based Wordle game and helper solver featuring color-coded feedback and a built-in list of common 5-letter words
+- **Terminal ASCII Clock, Stopwatch & Timer** (`tools/terminal_ascii_clock.py`) - An interactive digital clock, stopwatch (with split/lap logging), and countdown timer utility that displays large digital numbers in ASCII format in the terminal
+- **CLI Chess Game** (`tools/cli_chess.py`) - A terminal-based Chess game featuring standard movement rules, a Unicode board with ANSI colored squares, split capture trackers, and options for PvP or playing against a computer bot
+- **CLI Eisenhower Matrix Task Planner** (`tools/cli_eisenhower_matrix.py`) - A terminal-based Eisenhower Matrix productivity planner that stores tasks in a JSON database and displays a 2x2 color-coded quadrant grid
 
 
 ### Development Tools
@@ -313,6 +318,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Binary Pattern Heatmap Visualizer** (`tools/binary_pattern_visualizer.py`) - Reads binary files and renders an ANSI color-coded pattern grid in the terminal to visually identify headers, structures, and entropy
 - **GitHub Actions Workflow Dependency Visualizer** (`tools/github_workflow_visualizer.py`) - Parses GitHub Actions workflow YAML files and visualizes job dependencies and triggers as ASCII/Unicode structures or Mermaid.js diagrams
 - **Python Function Property-Based Fuzzer** (`tools/python_function_fuzzer.py`) - Zero-dependency, property-based function testing tool that infers type signatures and fuzzes arguments with boundary and edge-case values to catch crashes
+- **Terminal Keyboard Event Tester** (`tools/terminal_keyboard_tester.py`) - An interactive cross-platform terminal utility to capture, decode, and print keyboard events, scan codes, hex values, and ANSI escape sequences in real-time
+- **Python Type Hint Remover** (`tools/python_type_hint_remover.py`) - An AST-based code refactoring utility to strip type annotations and clean up typing imports from Python source files
+- **Python Unittest to Pytest Converter** (`tools/python_unittest_to_pytest.py`) - An AST-based migration tool to refactor standard unittest.TestCase test suites, assertions, and setups to modern pytest syntax
+- **CLI Timezone Meeting Scheduler** (`tools/cli_timezone_scheduler.py`) - A terminal-based meeting planner helper that displays overlapping business hours across multiple timezones in a color-coded 24-hour visual grid
+- **Python Bytecode Visualizer** (`tools/python_bytecode_visualizer.py`) - A developer tool that compiles and disassembles Python code or scripts, showing the underlying bytecode instructions in a formatted, color-coded terminal table along with descriptions for each instruction
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
