@@ -265,6 +265,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Branches by Date** (`tools/git_branches_by_date.py`) - List Git branches sorted by last commit date, showing the author, last commit subject, and merge status
 - **Markdown Frontmatter Validator** (`tools/markdown_frontmatter_validator.py`) - Validate YAML frontmatter headers in Markdown files recursively against custom schemas or key/type rules
 - **Git Line Contribution Analyzer** (`tools/git_line_contribution_analyzer.py`) - Parses git log to calculate and visualize lines of code added and deleted per contributor and file extension
+- **Git Email Domain Analyzer** (`tools/git_email_domain_analyzer.py`) - Scans the git commit history of a repository and analyzes contributions grouped by author email domains, displaying an ASCII bar chart dashboard in the terminal
 
 - **Markdown Link Reference Converter** (`tools/markdown_reference_converter.py`) - Converts inline links to reference-style links (or vice versa), cleans up unused reference definitions, and sorts references at the end of the document
 - **Regex NFA/DFA State Machine Builder & Visualizer** (`tools/regex_state_machine.py`) - Parses basic regular expressions and compiles them into an NFA using Thompson's construction and to a DFA using subset construction, outputting transition tables and Mermaid.js diagrams
@@ -334,6 +335,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Branch Activity Dashboard** (`tools/git_branch_activity_dashboard.py`) - Aggregates activity metrics across all local git branches, ranks them by stale status, calculates ahead/behind statistics, and renders horizontal ASCII charts of commit volume.
 - **Python Runtime Type Inferrer** (`tools/python_runtime_type_inferrer.py`) - Trace a Python script's execution at runtime using sys.settrace to inspect and generate PEP 484 type annotations and stub (.pyi) files
 - **Python Function Call Tracer** (`tools/python_function_call_tracer.py`) - Run a Python script and print a hierarchical, tree-structured visual log of function calls, parameters, return values, exceptions, and execution duration
+- **Python Global Variable Auditor** (`tools/python_global_variable_auditor.py`) - Statically analyzes Python source files to identify global variables, track their mutations, and warn about potential thread-safety or race conditions
+- **Jinja Template Linter** (`tools/jinja_template_linter.py`) - Audits Jinja2 and Django-style HTML template files to find template block imbalances, unbalanced expression braces, and unbalanced HTML tags
+- **CSS Grid Layout Generator** (`tools/css_grid_generator.py`) - Interactively design CSS Grid layouts via CLI, visualize layout structures in the terminal, and export standalone preview files
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -422,6 +426,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **WAV Audio Waveform Visualizer** (`tools/audio_waveform_visualizer.py`) - Natively processes PCM WAV audio files using standard libraries, rendering a symmetrical Unicode waveform in the terminal, and exporting vector SVGs with gradient color themes
 - **Data Outlier Detector** (`tools/data_outlier_detector.py`) - Parses CSV or JSON datasets, identifies numerical columns, scans for statistical anomalies using IQR and Z-score methods, and renders horizontal ASCII box-and-whisker plots.
 - **SQLite Database Schema Documenter** (`tools/sqlite_schema_documenter.py`) - Generate comprehensive schema documentation reports for SQLite databases in Markdown or interactive, searchable HTML files
+- **Log Timestamp Normalizer** (`tools/log_timestamp_normalizer.py`) - Parses, shifts timezone offsets, and normalizes log timestamps of varying formats to standard formats, with chronological sorting and merging
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
