@@ -326,6 +326,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Magic Number Detector** (`tools/python_magic_number_detector.py`) - Scan Python files recursively to find hardcoded magic numbers and suggest module-level constants
 - **CSS Variable Optimizer & Linter** (`tools/css_variable_optimizer.py`) - Audit CSS files for unused, undefined, and circular custom properties (CSS variables)
 - **HTML Form Auditor** (`tools/html_form_auditor.py`) - Scan HTML files to audit all <form> elements for accessibility, usability, and security issues
+- **Git Co-authorship & Collaboration Analyzer** (`tools/git_collaboration_analyzer.py`) - Traces Git logs to map out developer collaboration networks, overlap matrices, and compute the estimated bus factor, exporting a beautiful interactive HTML dashboard
+- **Interactive SVG Flamegraph Profiler** (`tools/python_flamegraph_profiler.py`) - Profiles Python scripts or statements using tracing hooks and generates a self-contained, interactive SVG flamegraph with zooming, hovering, and search
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -411,6 +413,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Schema to SQL DDL Generator** (`tools/json_schema_to_sql.py`) - Converts Draft-07 JSON Schema files or raw JSON files into database table creation SQL DDL statements for SQLite, MySQL, and PostgreSQL with relational mapping support
 - **SQLite Database Schema Seeder & Faker** (`tools/sqlite_schema_seeder.py`) - Inspects a SQLite database, maps table foreign keys to perform topological sort insertion, and seeds tables with referentially-valid mock data
 - **SQL Query Lineage Extractor** (`tools/sql_query_lineage_extractor.py`) - Parse SQL queries to extract data lineage mapping (source tables, target tables, and column dependencies)
+- **WAV Audio Waveform Visualizer** (`tools/audio_waveform_visualizer.py`) - Natively processes PCM WAV audio files using standard libraries, rendering a symmetrical Unicode waveform in the terminal, and exporting vector SVGs with gradient color themes
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -541,6 +544,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Pip License Compliance Auditor** (`tools/pip_license_auditor.py`) - Scan project dependencies, fetch license metadata, and audit them against allowed/prohibited lists to ensure legal compliance
 - **Pip Dependency Vulnerability Scanner** (`tools/pip_vulnerability_scanner.py`) - Audit project Python dependencies against the OSV.dev database to identify known security vulnerabilities (CVEs/GHSAs)
 - **Content Security Policy (CSP) Generator & Validator** (`tools/csp_generator.py`) - Audits HTML files/folders/URLs, extracts asset domains, constructs a tailored CSP, and validates existing policies for security vulnerabilities
+- **Security Indicator of Compromise (IOC) Defanger & Refanger** (`tools/security_ioc_defanger.py`) - Defangs and refangs URLs, domain names, IP addresses, and email addresses in bulk, highlighting modifications using ANSI terminal colors
+- **Email Header Analyzer & Hop Tracer** (`tools/email_header_analyzer.py`) - Parses raw email headers to map hop-by-hop relay paths, computes transit latency between servers, extracts SPF/DKIM/DMARC statuses, and lists security warnings
 
 ## Usage
 
