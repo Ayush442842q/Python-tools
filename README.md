@@ -111,6 +111,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Document Compiler** (`tools/markdown_document_compiler.py`) - Compile multiple markdown files recursively into a single master document with automatic header shifting, internal anchor resolution, and table of contents generation
 - **Real-Time Log Tail Monitor & Alert Trigger** (`tools/log_tail_alert_monitor.py`) - Tails log files continuously and monitors for specified regex patterns, executing actions like command running, webhook calls, and alert logs with rate-limiting
 - **CLI Habit Tracker** (`tools/cli_habit_tracker.py`) - An interactive terminal-based habit and streak tracker with visual Unicode monthly calendars and local JSON persistence
+- **Log Time-Series Event Visualizer** (`tools/log_time_series_visualizer.py`) - Auto-detect log timestamp formats, filter by patterns, aggregate events over custom time buckets, and render an ASCII/Unicode line or bar chart in the terminal
 
 
 ### Development Tools
@@ -331,6 +332,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Interactive SVG Flamegraph Profiler** (`tools/python_flamegraph_profiler.py`) - Profiles Python scripts or statements using tracing hooks and generates a self-contained, interactive SVG flamegraph with zooming, hovering, and search
 - **Python Runtime Complexity Estimator** (`tools/python_runtime_complexity_estimator.py`) - Estimates the Big-O asymptotic complexity of a Python function by measuring execution runtimes over varying input sizes, fitting them to standard models, and rendering an ASCII graph of results.
 - **Git Branch Activity Dashboard** (`tools/git_branch_activity_dashboard.py`) - Aggregates activity metrics across all local git branches, ranks them by stale status, calculates ahead/behind statistics, and renders horizontal ASCII charts of commit volume.
+- **Python Runtime Type Inferrer** (`tools/python_runtime_type_inferrer.py`) - Trace a Python script's execution at runtime using sys.settrace to inspect and generate PEP 484 type annotations and stub (.pyi) files
+- **Python Function Call Tracer** (`tools/python_function_call_tracer.py`) - Run a Python script and print a hierarchical, tree-structured visual log of function calls, parameters, return values, exceptions, and execution duration
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -418,6 +421,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Query Lineage Extractor** (`tools/sql_query_lineage_extractor.py`) - Parse SQL queries to extract data lineage mapping (source tables, target tables, and column dependencies)
 - **WAV Audio Waveform Visualizer** (`tools/audio_waveform_visualizer.py`) - Natively processes PCM WAV audio files using standard libraries, rendering a symmetrical Unicode waveform in the terminal, and exporting vector SVGs with gradient color themes
 - **Data Outlier Detector** (`tools/data_outlier_detector.py`) - Parses CSV or JSON datasets, identifies numerical columns, scans for statistical anomalies using IQR and Z-score methods, and renders horizontal ASCII box-and-whisker plots.
+- **SQLite Database Schema Documenter** (`tools/sqlite_schema_documenter.py`) - Generate comprehensive schema documentation reports for SQLite databases in Markdown or interactive, searchable HTML files
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -556,6 +560,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Security Indicator of Compromise (IOC) Defanger & Refanger** (`tools/security_ioc_defanger.py`) - Defangs and refangs URLs, domain names, IP addresses, and email addresses in bulk, highlighting modifications using ANSI terminal colors
 - **Email Header Analyzer & Hop Tracer** (`tools/email_header_analyzer.py`) - Parses raw email headers to map hop-by-hop relay paths, computes transit latency between servers, extracts SPF/DKIM/DMARC statuses, and lists security warnings
 - **SQL Injection Static Detector** (`tools/sql_injection_detector.py`) - Statically analyzes Python source code using Abstract Syntax Trees (AST) to identify potential SQL injection vulnerabilities from dynamic string building in database execution statements.
+- **SSH Config Analyzer & Auditor** (`tools/ssh_config_analyzer.py`) - Parse and audit local SSH client configuration files, resolve host aliases, visualize host inheritance trees, and check for weak security configurations
 
 ## Usage
 
