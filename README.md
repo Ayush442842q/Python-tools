@@ -340,6 +340,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Global Variable Auditor** (`tools/python_global_variable_auditor.py`) - Statically analyzes Python source files to identify global variables, track their mutations, and warn about potential thread-safety or race conditions
 - **Jinja Template Linter** (`tools/jinja_template_linter.py`) - Audits Jinja2 and Django-style HTML template files to find template block imbalances, unbalanced expression braces, and unbalanced HTML tags
 - **CSS Grid Layout Generator** (`tools/css_grid_generator.py`) - Interactively design CSS Grid layouts via CLI, visualize layout structures in the terminal, and export standalone preview files
+- **Git Commit Timezone Analyzer** (`tools/git_commit_timezone_analyzer.py`) - Analyze git history for contributor timezone offsets and working hour distributions with visual ASCII graphs
+- **CSS Responsive Breakpoint Analyzer** (`tools/css_responsive_breakpoint_analyzer.py`) - Scan stylesheets to extract @media breakpoints, check for overlapping width queries, and render a visual ASCII timeline
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -429,6 +431,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Data Outlier Detector** (`tools/data_outlier_detector.py`) - Parses CSV or JSON datasets, identifies numerical columns, scans for statistical anomalies using IQR and Z-score methods, and renders horizontal ASCII box-and-whisker plots.
 - **SQLite Database Schema Documenter** (`tools/sqlite_schema_documenter.py`) - Generate comprehensive schema documentation reports for SQLite databases in Markdown or interactive, searchable HTML files
 - **Log Timestamp Normalizer** (`tools/log_timestamp_normalizer.py`) - Parses, shifts timezone offsets, and normalizes log timestamps of varying formats to standard formats, with chronological sorting and merging
+- **CSV/Table Transpose Utility** (`tools/csv_transpose_utility.py`) - Transpose rows and columns in CSV, TSV, or Markdown tables, with custom delimiter, padding, and output formatting support
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -571,6 +574,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSH Config Analyzer & Auditor** (`tools/ssh_config_analyzer.py`) - Parse and audit local SSH client configuration files, resolve host aliases, visualize host inheritance trees, and check for weak security configurations
 - **Base64 Padding Steganography** (`tools/base64_steganography.py`) - Hide secret messages within the unused padding bits of standard Base64 encoded files (PEM files, base64 images, or custom encoded lines) that remains fully decodable.
 - **Python Environment Security Auditor** (`tools/python_sys_security_auditor.py`) - Runtime security auditor scanning search paths, environment variable leaks, site-packages directory write rights, and default SSL settings.
+- **File Shannon Entropy Analyzer** (`tools/file_entropy_analyzer.py`) - Calculates Shannon entropy of files or block chunks to detect compiled binaries, encryption, compression, or packed payloads with an ASCII visual heatmap
+- **JSON Sensitive Data Redactor** (`tools/json_redactor.py`) - Recursively redact, mask, hash, or remove sensitive keys (passwords, tokens) and values matching patterns (emails, credit cards) in JSON structures
 
 ## Usage
 
