@@ -114,6 +114,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log Time-Series Event Visualizer** (`tools/log_time_series_visualizer.py`) - Auto-detect log timestamp formats, filter by patterns, aggregate events over custom time buckets, and render an ASCII/Unicode line or bar chart in the terminal
 - **Audio Tone Generator & Melody Compiler** (`tools/audio_tone_generator.py`) - Zero-dependency WAV audio synthesizer to generate waveforms, frequency sweeps, ADSR envelopes, panning, and compile text-based melodies.
 - **CLI Personal Finance Tracker** (`tools/cli_personal_finance_tracker.py`) - Interactive terminal double-entry bookkeeping and personal finance manager supporting transaction logging, budgets, and ASCII expense charts.
+- **CLI Typing Tutor & Speed Tester** (`tools/cli_typing_tutor.py`) - Interactive terminal-based typing speed test and training tool with real-time statistics (WPM, accuracy) and custom text support.
+- **Directory Disk Space Compare Tool** (`tools/directory_space_compare.py`) - Recursively compare two directories and report file/folder size changes, added items, and deleted items side-by-side.
 
 
 ### Development Tools
@@ -342,6 +344,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Grid Layout Generator** (`tools/css_grid_generator.py`) - Interactively design CSS Grid layouts via CLI, visualize layout structures in the terminal, and export standalone preview files
 - **Git Commit Timezone Analyzer** (`tools/git_commit_timezone_analyzer.py`) - Analyze git history for contributor timezone offsets and working hour distributions with visual ASCII graphs
 - **CSS Responsive Breakpoint Analyzer** (`tools/css_responsive_breakpoint_analyzer.py`) - Scan stylesheets to extract @media breakpoints, check for overlapping width queries, and render a visual ASCII timeline
+- **CLI Matrix Calculator** (`tools/cli_matrix_calculator.py`) - Interactive terminal-based matrix algebra calculator (determinant, inverse, rank, trace, powers, and matrix multiplication) in pure Python.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -432,6 +435,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Schema Documenter** (`tools/sqlite_schema_documenter.py`) - Generate comprehensive schema documentation reports for SQLite databases in Markdown or interactive, searchable HTML files
 - **Log Timestamp Normalizer** (`tools/log_timestamp_normalizer.py`) - Parses, shifts timezone offsets, and normalizes log timestamps of varying formats to standard formats, with chronological sorting and merging
 - **CSV/Table Transpose Utility** (`tools/csv_transpose_utility.py`) - Transpose rows and columns in CSV, TSV, or Markdown tables, with custom delimiter, padding, and output formatting support
+- **XML to CSV Converter** (`tools/xml_to_csv.py`) - Flatten structured, nested XML files into clean CSV or TSV files with automatic path layout flattening.
+- **JSON Schema to CSV Template Generator** (`tools/json_schema_to_csv_template.py`) - Generate flat CSV templates and schema documentation files from a JSON Schema file.
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
