@@ -116,6 +116,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CLI Personal Finance Tracker** (`tools/cli_personal_finance_tracker.py`) - Interactive terminal double-entry bookkeeping and personal finance manager supporting transaction logging, budgets, and ASCII expense charts.
 - **CLI Typing Tutor & Speed Tester** (`tools/cli_typing_tutor.py`) - Interactive terminal-based typing speed test and training tool with real-time statistics (WPM, accuracy) and custom text support.
 - **Directory Disk Space Compare Tool** (`tools/directory_space_compare.py`) - Recursively compare two directories and report file/folder size changes, added items, and deleted items side-by-side.
+- **MIDI Audio Generator** (`tools/midi_generator.py`) - Convert simple text-based musical notation and chords into standard, playable MIDI files without external dependencies
+- **Symbolic Link Doctor** (`tools/symlink_doctor.py`) - Recursively scan directories to diagnose broken, cyclic, or absolute symlinks and provide options to prune or convert them to relative paths
 
 
 ### Development Tools
@@ -347,6 +349,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CLI Matrix Calculator** (`tools/cli_matrix_calculator.py`) - Interactive terminal-based matrix algebra calculator (determinant, inverse, rank, trace, powers, and matrix multiplication) in pure Python.
 - **Git Commit Summarizer** (`tools/git_commit_summarizer.py`) - Parses staged file changes and diffs via `git diff --cached` to generate a structured summary of additions, deletions, modified functions, and lists recommended conventional commit messages.
 - **CSS Flexbox Layout Generator** (`tools/css_flexbox_generator.py`) - An interactive terminal utility to configure flexbox container and item properties (flex-direction, justify-content, align-items, etc.) and render a live ASCII visualization of the layout in the terminal, exporting valid HTML/CSS.
+- **Protobuf Mock Data Generator** (`tools/protobuf_mock_generator.py`) - Parse Protocol Buffer (.proto) schema files and generate mock JSON datasets conforming to the messages and enums
+- **Python f-string Refactorer** (`tools/python_fstring_converter.py`) - Statically analyze Python source files and refactor old-style string formatting (% and .format()) into modern, pythonic f-strings using AST splicing
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -586,6 +590,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **File Shannon Entropy Analyzer** (`tools/file_entropy_analyzer.py`) - Calculates Shannon entropy of files or block chunks to detect compiled binaries, encryption, compression, or packed payloads with an ASCII visual heatmap
 - **JSON Sensitive Data Redactor** (`tools/json_redactor.py`) - Recursively redact, mask, hash, or remove sensitive keys (passwords, tokens) and values matching patterns (emails, credit cards) in JSON structures
 - **CSV/JSON Mutation Fuzzer** (`tools/csv_json_fuzzer.py`) - Performs mutation fuzz testing on data-parsing applications by taking a valid JSON or CSV payload and generating structured mutated test cases (e.g. boundary numeric values, extreme string lengths, format violations, SQLi/XSS insertions).
+- **RSA Cryptography Key Wizard** (`tools/rsa_key_wizard.py`) - Generate keypairs and perform text encryption/decryption using a pure Python mathematical implementation of the RSA algorithm
 
 ## Usage
 
