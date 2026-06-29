@@ -329,6 +329,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML Form Auditor** (`tools/html_form_auditor.py`) - Scan HTML files to audit all <form> elements for accessibility, usability, and security issues
 - **Git Co-authorship & Collaboration Analyzer** (`tools/git_collaboration_analyzer.py`) - Traces Git logs to map out developer collaboration networks, overlap matrices, and compute the estimated bus factor, exporting a beautiful interactive HTML dashboard
 - **Interactive SVG Flamegraph Profiler** (`tools/python_flamegraph_profiler.py`) - Profiles Python scripts or statements using tracing hooks and generates a self-contained, interactive SVG flamegraph with zooming, hovering, and search
+- **Python Runtime Complexity Estimator** (`tools/python_runtime_complexity_estimator.py`) - Estimates the Big-O asymptotic complexity of a Python function by measuring execution runtimes over varying input sizes, fitting them to standard models, and rendering an ASCII graph of results.
+- **Git Branch Activity Dashboard** (`tools/git_branch_activity_dashboard.py`) - Aggregates activity metrics across all local git branches, ranks them by stale status, calculates ahead/behind statistics, and renders horizontal ASCII charts of commit volume.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -415,6 +417,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Schema Seeder & Faker** (`tools/sqlite_schema_seeder.py`) - Inspects a SQLite database, maps table foreign keys to perform topological sort insertion, and seeds tables with referentially-valid mock data
 - **SQL Query Lineage Extractor** (`tools/sql_query_lineage_extractor.py`) - Parse SQL queries to extract data lineage mapping (source tables, target tables, and column dependencies)
 - **WAV Audio Waveform Visualizer** (`tools/audio_waveform_visualizer.py`) - Natively processes PCM WAV audio files using standard libraries, rendering a symmetrical Unicode waveform in the terminal, and exporting vector SVGs with gradient color themes
+- **Data Outlier Detector** (`tools/data_outlier_detector.py`) - Parses CSV or JSON datasets, identifies numerical columns, scans for statistical anomalies using IQR and Z-score methods, and renders horizontal ASCII box-and-whisker plots.
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -507,6 +510,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown External Link Archiver** (`tools/markdown_link_archiver.py`) - Scan Markdown files for external links, verify status, and archive them locally or via the Wayback Machine
 - **Network Bandwidth Monitor** (`tools/network_bandwidth_monitor.py`) - Real-time terminal network traffic monitor displaying live upload/download speeds and ASCII graphs
 - **Source Code Link Auditor** (`tools/source_code_link_auditor.py`) - Scan source code files recursively for HTTP/HTTPS URLs and audit their status in parallel using threads
+- **Network Latency & Jitter Tester** (`tools/network_latency_jitter_tester.py`) - Measures round-trip time (RTT), latency jitter, and packet loss using TCP handshakes or ICMP pings, displaying statistics and an ASCII latency distribution histogram.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -551,6 +555,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Content Security Policy (CSP) Generator & Validator** (`tools/csp_generator.py`) - Audits HTML files/folders/URLs, extracts asset domains, constructs a tailored CSP, and validates existing policies for security vulnerabilities
 - **Security Indicator of Compromise (IOC) Defanger & Refanger** (`tools/security_ioc_defanger.py`) - Defangs and refangs URLs, domain names, IP addresses, and email addresses in bulk, highlighting modifications using ANSI terminal colors
 - **Email Header Analyzer & Hop Tracer** (`tools/email_header_analyzer.py`) - Parses raw email headers to map hop-by-hop relay paths, computes transit latency between servers, extracts SPF/DKIM/DMARC statuses, and lists security warnings
+- **SQL Injection Static Detector** (`tools/sql_injection_detector.py`) - Statically analyzes Python source code using Abstract Syntax Trees (AST) to identify potential SQL injection vulnerabilities from dynamic string building in database execution statements.
 
 ## Usage
 
