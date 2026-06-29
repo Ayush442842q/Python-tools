@@ -345,6 +345,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Timezone Analyzer** (`tools/git_commit_timezone_analyzer.py`) - Analyze git history for contributor timezone offsets and working hour distributions with visual ASCII graphs
 - **CSS Responsive Breakpoint Analyzer** (`tools/css_responsive_breakpoint_analyzer.py`) - Scan stylesheets to extract @media breakpoints, check for overlapping width queries, and render a visual ASCII timeline
 - **CLI Matrix Calculator** (`tools/cli_matrix_calculator.py`) - Interactive terminal-based matrix algebra calculator (determinant, inverse, rank, trace, powers, and matrix multiplication) in pure Python.
+- **Git Commit Summarizer** (`tools/git_commit_summarizer.py`) - Parses staged file changes and diffs via `git diff --cached` to generate a structured summary of additions, deletions, modified functions, and lists recommended conventional commit messages.
+- **CSS Flexbox Layout Generator** (`tools/css_flexbox_generator.py`) - An interactive terminal utility to configure flexbox container and item properties (flex-direction, justify-content, align-items, etc.) and render a live ASCII visualization of the layout in the terminal, exporting valid HTML/CSS.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -531,6 +533,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Source Code Link Auditor** (`tools/source_code_link_auditor.py`) - Scan source code files recursively for HTTP/HTTPS URLs and audit their status in parallel using threads
 - **Network Latency & Jitter Tester** (`tools/network_latency_jitter_tester.py`) - Measures round-trip time (RTT), latency jitter, and packet loss using TCP handshakes or ICMP pings, displaying statistics and an ASCII latency distribution histogram.
 - **DNS Spoofing & Hijacking Detector** (`tools/dns_spoof_detector.py`) - Compares local DNS resolution against encrypted DNS-over-HTTPS (DoH) queries to Cloudflare and Google to detect local hijacking or captive portals.
+- **Website Link Network Mapper** (`tools/website_link_mapper.py`) - Recursively crawls local or remote web pages up to a given depth, identifies internal hyperlinks, and maps page relationships by generating a Mermaid.js diagram or an interactive HTML graph.
+- **GitHub Star History Visualizer** (`tools/github_star_history.py`) - Fetches star history for a GitHub repository using standard libraries and displays cumulative star growth over time in the terminal using ASCII/Unicode bar charts, with options to export to an SVG/HTML line chart.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -581,6 +585,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Environment Security Auditor** (`tools/python_sys_security_auditor.py`) - Runtime security auditor scanning search paths, environment variable leaks, site-packages directory write rights, and default SSL settings.
 - **File Shannon Entropy Analyzer** (`tools/file_entropy_analyzer.py`) - Calculates Shannon entropy of files or block chunks to detect compiled binaries, encryption, compression, or packed payloads with an ASCII visual heatmap
 - **JSON Sensitive Data Redactor** (`tools/json_redactor.py`) - Recursively redact, mask, hash, or remove sensitive keys (passwords, tokens) and values matching patterns (emails, credit cards) in JSON structures
+- **CSV/JSON Mutation Fuzzer** (`tools/csv_json_fuzzer.py`) - Performs mutation fuzz testing on data-parsing applications by taking a valid JSON or CSV payload and generating structured mutated test cases (e.g. boundary numeric values, extreme string lengths, format violations, SQLi/XSS insertions).
 
 ## Usage
 
