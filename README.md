@@ -118,6 +118,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Directory Disk Space Compare Tool** (`tools/directory_space_compare.py`) - Recursively compare two directories and report file/folder size changes, added items, and deleted items side-by-side.
 - **MIDI Audio Generator** (`tools/midi_generator.py`) - Convert simple text-based musical notation and chords into standard, playable MIDI files without external dependencies
 - **Symbolic Link Doctor** (`tools/symlink_doctor.py`) - Recursively scan directories to diagnose broken, cyclic, or absolute symlinks and provide options to prune or convert them to relative paths
+- **DOCX to Markdown Converter** (`tools/docx_to_markdown.py`) - Zero-dependency utility to convert Microsoft Word (.docx) files into clean, styled Markdown (.md) documents including tables, headings, formatting, and extracted media
 
 
 ### Development Tools
@@ -353,6 +354,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python f-string Refactorer** (`tools/python_fstring_converter.py`) - Statically analyze Python source files and refactor old-style string formatting (% and .format()) into modern, pythonic f-strings using AST splicing
 - **Jupyter Notebook Execution & Style Linter** (`tools/jupyter_notebook_linter.py`) - Parses Jupyter Notebook (.ipynb) files to identify syntax errors, out-of-order cell execution, unused imports, and style violations
 - **Markdown to Slack & Teams Payload Converter** (`tools/markdown_to_slack_teams.py`) - Parses markdown and converts it to JSON payloads for Slack Block Kit or Microsoft Teams Adaptive Cards
+- **Makefile Linter & Analyzer** (`tools/makefile_analyzer.py`) - Analyze and lint Makefiles for syntax issues (spaces in recipes), circular dependencies, undefined variables, and missing .PHONY declarations
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -448,6 +450,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML Schema & Syntax Validator** (`tools/xml_validator.py`) - Parses and validates XML files for well-formedness and schema compliance using XSD schemas
 - **SQLite Database Storage & Space Analyzer** (`tools/sqlite_storage_analyzer.py`) - Analyzes SQLite databases for page allocations, table and index space consumption, freelists, and fragmentation statistics
 - **XML to Markdown Document Converter** (`tools/xml_to_markdown.py`) - Converts XML tree structures into readable, hierarchical Markdown documents, using collapsible HTML tags for nested elements
+- **Terminal Mathematical Function Grapher** (`tools/terminal_function_plotter.py`) - Plot mathematical functions (e.g. sin(x), x**2) in a 2D grid in the terminal using ASCII/Unicode characters with safe AST-based formula parsing
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -544,6 +547,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS Spoofing & Hijacking Detector** (`tools/dns_spoof_detector.py`) - Compares local DNS resolution against encrypted DNS-over-HTTPS (DoH) queries to Cloudflare and Google to detect local hijacking or captive portals.
 - **Website Link Network Mapper** (`tools/website_link_mapper.py`) - Recursively crawls local or remote web pages up to a given depth, identifies internal hyperlinks, and maps page relationships by generating a Mermaid.js diagram or an interactive HTML graph.
 - **GitHub Star History Visualizer** (`tools/github_star_history.py`) - Fetches star history for a GitHub repository using standard libraries and displays cumulative star growth over time in the terminal using ASCII/Unicode bar charts, with options to export to an SVG/HTML line chart.
+- **Robots.txt Tester & Analyzer** (`tools/robots_txt_analyzer.py`) - Fetch, parse, and analyze robots.txt files to verify path permissions and crawl delay parameters for specific user-agent crawlers
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -596,6 +600,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Sensitive Data Redactor** (`tools/json_redactor.py`) - Recursively redact, mask, hash, or remove sensitive keys (passwords, tokens) and values matching patterns (emails, credit cards) in JSON structures
 - **CSV/JSON Mutation Fuzzer** (`tools/csv_json_fuzzer.py`) - Performs mutation fuzz testing on data-parsing applications by taking a valid JSON or CSV payload and generating structured mutated test cases (e.g. boundary numeric values, extreme string lengths, format violations, SQLi/XSS insertions).
 - **RSA Cryptography Key Wizard** (`tools/rsa_key_wizard.py`) - Generate keypairs and perform text encryption/decryption using a pure Python mathematical implementation of the RSA algorithm
+- **Diceware Passphrase Generator** (`tools/diceware_passphrase_generator.py`) - Generate memorable, cryptographically secure passphrases using simulated or physical dice rolls mapped to a custom embedded wordlist
 
 ## Usage
 
