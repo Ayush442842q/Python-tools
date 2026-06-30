@@ -351,6 +351,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Flexbox Layout Generator** (`tools/css_flexbox_generator.py`) - An interactive terminal utility to configure flexbox container and item properties (flex-direction, justify-content, align-items, etc.) and render a live ASCII visualization of the layout in the terminal, exporting valid HTML/CSS.
 - **Protobuf Mock Data Generator** (`tools/protobuf_mock_generator.py`) - Parse Protocol Buffer (.proto) schema files and generate mock JSON datasets conforming to the messages and enums
 - **Python f-string Refactorer** (`tools/python_fstring_converter.py`) - Statically analyze Python source files and refactor old-style string formatting (% and .format()) into modern, pythonic f-strings using AST splicing
+- **Jupyter Notebook Execution & Style Linter** (`tools/jupyter_notebook_linter.py`) - Parses Jupyter Notebook (.ipynb) files to identify syntax errors, out-of-order cell execution, unused imports, and style violations
+- **Markdown to Slack & Teams Payload Converter** (`tools/markdown_to_slack_teams.py`) - Parses markdown and converts it to JSON payloads for Slack Block Kit or Microsoft Teams Adaptive Cards
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -443,6 +445,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV/Table Transpose Utility** (`tools/csv_transpose_utility.py`) - Transpose rows and columns in CSV, TSV, or Markdown tables, with custom delimiter, padding, and output formatting support
 - **XML to CSV Converter** (`tools/xml_to_csv.py`) - Flatten structured, nested XML files into clean CSV or TSV files with automatic path layout flattening.
 - **JSON Schema to CSV Template Generator** (`tools/json_schema_to_csv_template.py`) - Generate flat CSV templates and schema documentation files from a JSON Schema file.
+- **XML Schema & Syntax Validator** (`tools/xml_validator.py`) - Parses and validates XML files for well-formedness and schema compliance using XSD schemas
+- **SQLite Database Storage & Space Analyzer** (`tools/sqlite_storage_analyzer.py`) - Analyzes SQLite databases for page allocations, table and index space consumption, freelists, and fragmentation statistics
+- **XML to Markdown Document Converter** (`tools/xml_to_markdown.py`) - Converts XML tree structures into readable, hierarchical Markdown documents, using collapsible HTML tags for nested elements
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
