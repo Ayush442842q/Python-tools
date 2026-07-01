@@ -355,6 +355,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Jupyter Notebook Execution & Style Linter** (`tools/jupyter_notebook_linter.py`) - Parses Jupyter Notebook (.ipynb) files to identify syntax errors, out-of-order cell execution, unused imports, and style violations
 - **Markdown to Slack & Teams Payload Converter** (`tools/markdown_to_slack_teams.py`) - Parses markdown and converts it to JSON payloads for Slack Block Kit or Microsoft Teams Adaptive Cards
 - **Makefile Linter & Analyzer** (`tools/makefile_analyzer.py`) - Analyze and lint Makefiles for syntax issues (spaces in recipes), circular dependencies, undefined variables, and missing .PHONY declarations
+- **JSON to Pydantic Model Generator** (`tools/json_to_pydantic.py`) - Generate Pydantic V2 models recursively from raw JSON payloads or file inputs, with support for nested models, lists of mixed types, and Python keyword safety
+- **Git Branch Name Validator & Linter** (`tools/git_branch_name_validator.py`) - Audit local and remote Git branches against naming conventions, with interactive renaming, custom regex config, and Git hooks compliance
+- **SQL Schema to JSON Schema & Pydantic Converter** (`tools/sql_to_json_schema.py`) - Parse SQL CREATE TABLE statements and translate them into JSON Schema DDLs or Pydantic V2 class models
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -451,6 +454,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Storage & Space Analyzer** (`tools/sqlite_storage_analyzer.py`) - Analyzes SQLite databases for page allocations, table and index space consumption, freelists, and fragmentation statistics
 - **XML to Markdown Document Converter** (`tools/xml_to_markdown.py`) - Converts XML tree structures into readable, hierarchical Markdown documents, using collapsible HTML tags for nested elements
 - **Terminal Mathematical Function Grapher** (`tools/terminal_function_plotter.py`) - Plot mathematical functions (e.g. sin(x), x**2) in a 2D grid in the terminal using ASCII/Unicode characters with safe AST-based formula parsing
+- **JSONPath Evaluator & Query Tool** (`tools/json_path_evaluator.py`) - Query and slice JSON structures using standard JSONPath expressions with support for dot/bracket selectors, wildcards, slices, and recursive descent
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -548,6 +552,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Website Link Network Mapper** (`tools/website_link_mapper.py`) - Recursively crawls local or remote web pages up to a given depth, identifies internal hyperlinks, and maps page relationships by generating a Mermaid.js diagram or an interactive HTML graph.
 - **GitHub Star History Visualizer** (`tools/github_star_history.py`) - Fetches star history for a GitHub repository using standard libraries and displays cumulative star growth over time in the terminal using ASCII/Unicode bar charts, with options to export to an SVG/HTML line chart.
 - **Robots.txt Tester & Analyzer** (`tools/robots_txt_analyzer.py`) - Fetch, parse, and analyze robots.txt files to verify path permissions and crawl delay parameters for specific user-agent crawlers
+- **HTTP Capabilities & Protocol Auditor** (`tools/http_capabilities_auditor.py`) - Probes a target web server to audit transport capabilities, detecting HTTP/2 support, compression encodings (Brotli, Gzip, Zstd), connection persistence, and security headers
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
