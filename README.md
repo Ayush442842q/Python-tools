@@ -361,6 +361,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Schema to JSON Schema & Pydantic Converter** (`tools/sql_to_json_schema.py`) - Parse SQL CREATE TABLE statements and translate them into JSON Schema DDLs or Pydantic V2 class models
 - **Regex Code Generator** (`tools/regex_code_generator.py`) - Generate ready-to-run regular expression parsing, matching, and replacement code snippets in 8 programming languages
 - **Git Submodule Manager & Auditor** (`tools/git_submodule_auditor.py`) - Recursively scan Git submodules, check out-of-sync commits, identify detached HEADs, audit upstream tracking, and report config warnings
+- **Python Import Shadowing & Namespace Conflict Auditor** (`tools/python_import_shadow_auditor.py`) - Audit a directory for local files/packages that shadow standard library modules and built-ins
+- **Markdown Image Alt-Text & Accessibility Auditor** (`tools/markdown_image_alt_checker.py`) - Audit Markdown files for missing alt text, poor descriptions, or broken local image links, with an interactive fix wizard
+- **SVG Color Palette Extractor & Theme Replacer** (`tools/svg_color_theme_replacer.py`) - Extract hex/RGB/named colors from SVG files and replace them in bulk or invert them for light/dark theme swaps
+- **Configuration Drift Auditor** (`tools/config_drift_auditor.py`) - Compare JSON, YAML, TOML, and .env configuration structures recursively for missing keys, extra keys, and data type mismatches
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -558,6 +562,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Robots.txt Tester & Analyzer** (`tools/robots_txt_analyzer.py`) - Fetch, parse, and analyze robots.txt files to verify path permissions and crawl delay parameters for specific user-agent crawlers
 - **HTTP Capabilities & Protocol Auditor** (`tools/http_capabilities_auditor.py`) - Probes a target web server to audit transport capabilities, detecting HTTP/2 support, compression encodings (Brotli, Gzip, Zstd), connection persistence, and security headers
 - **HTTP Server Sent Events (SSE) Tester & Client** (`tools/sse_client_tester.py`) - Stream real-time Server-Sent Events (SSE) from HTTP endpoints in the console and host local mock streaming servers
+- **Mock GraphQL Server & Schema Explorer** (`tools/graphql_mock_server.py`) - Starts a local mock GraphQL server with a built-in relational database schema and hosts an interactive browser-based query explorer dashboard
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
