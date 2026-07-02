@@ -379,6 +379,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Code Minifier** (`tools/python_code_minifier.py`) - Minify Python scripts by stripping comments, docstrings, and excess spaces using the native tokenize parser
 - **Python Decorator Explorer & Analyzer** (`tools/python_decorator_explorer.py`) - Scan Python files recursively to map, visualize decorator stacking chains, and audit decorators for best practices (such as verifying custom wrapper functions use `@functools.wraps`)
 - **Regex Flavor & Dialect Translator** (`tools/regex_flavor_translator.py`) - Analyze regex patterns, evaluate compatibility scores for Python, JavaScript, PCRE, Rust, and Go, and translate patterns across dialects while flagging unsupported engine features
+- **Python Exception Flow Auditor** (`tools/python_exception_flow_auditor.py`) - Parse Python files using AST to extract defined custom exceptions, raised exceptions, and caught exceptions, checking for broad exception catches and silent handlers
+- **Git Branch Divergence Auditor & Conflict Predictor** (`tools/git_branch_divergence_auditor.py`) - Compare two Git branches to map divergent commits, identify overlapping file changes, and calculate line-collision risk scores
+- **CSS Critical Style Extractor** (`tools/css_critical_extractor.py`) - Parse HTML and CSS files to extract and bundle only the CSS rules that match elements present in the HTML files
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -483,6 +486,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **EPUB to Markdown Converter** (`tools/epub_to_markdown.py`) - Standalone utility to parse EPUB archives and convert chapters in the spine order into a single clean Markdown document with optional image extraction
 - **XML Minifier & Compressor** (`tools/xml_minifier.py`) - Minify and compress XML files by recursively cleaning and stripping spacing, comments, and empty lines while keeping namespace prefix mappings
 - **CSV Dataset Drift & Schema Auditor** (`tools/csv_drift_auditor.py`) - Compare structural schema changes (column additions/removals/type shifts) and statistical data distribution drift (null rates, summary stats, categorical frequencies) between reference and target CSV datasets
+- **Markdown Table to SVG Chart Compiler** (`tools/markdown_table_to_chart.py`) - Parse Markdown files for numerical data tables and compile beautiful, responsive, and styled SVG charts (bar, line, or pie)
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -641,6 +645,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV/JSON Mutation Fuzzer** (`tools/csv_json_fuzzer.py`) - Performs mutation fuzz testing on data-parsing applications by taking a valid JSON or CSV payload and generating structured mutated test cases (e.g. boundary numeric values, extreme string lengths, format violations, SQLi/XSS insertions).
 - **RSA Cryptography Key Wizard** (`tools/rsa_key_wizard.py`) - Generate keypairs and perform text encryption/decryption using a pure Python mathematical implementation of the RSA algorithm
 - **Diceware Passphrase Generator** (`tools/diceware_passphrase_generator.py`) - Generate memorable, cryptographically secure passphrases using simulated or physical dice rolls mapped to a custom embedded wordlist
+- **Cryptographic KDF Parameter Optimizer** (`tools/kdf_parameter_optimizer.py`) - Benchmark standard library KDFs (PBKDF2, Scrypt) to calculate optimal, hardware-tailored iterations and parameters targeting specific processing time budgets
 
 ## Usage
 
