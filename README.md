@@ -375,6 +375,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Merge Conflict Simulator** (`tools/git_conflict_simulator.py`) - Educational tool simulating git merge conflicts and guiding developers step-by-step through resolving markers, checking status, staging, and committing
 - **Python Regex Auditor** (`tools/python_regex_auditor.py`) - A static analysis tool parsing Python AST to extract regular expressions and audit them for ReDoS risks or syntax errors
 - **Git Snapshot Manager** (`tools/git_snapshot_manager.py`) - A command-line utility to save and restore lightweight, named workspace snapshots (staged, unstaged, and untracked files) to share or backup
+- **PWA Web Manifest Generator** (`tools/webmanifest_generator.py`) - Generate standard-compliant Progressive Web App (PWA) manifest.json configurations and recommended HTML header meta tags
+- **Python Code Minifier** (`tools/python_code_minifier.py`) - Minify Python scripts by stripping comments, docstrings, and excess spaces using the native tokenize parser
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -476,6 +478,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Apple Property List Converter** (`tools/plist_converter.py`) - Convert Apple Property List (.plist) files (XML and Binary format) to/from JSON or YAML
 - **Data Schema Mapper & Migrator** (`tools/data_schema_mapper.py`) - Interactive CSV/JSON schema mapper and translator supporting field mapping, type-casting, string concatenation, date formats, and defaults
 - **SQLite Database Merger** (`tools/sqlite_db_merger.py`) - A schema-aware SQLite merging utility that resolves integer primary key collisions on auto-increment tables and automatically updates corresponding foreign key references
+- **EPUB to Markdown Converter** (`tools/epub_to_markdown.py`) - Standalone utility to parse EPUB archives and convert chapters in the spine order into a single clean Markdown document with optional image extraction
+- **XML Minifier & Compressor** (`tools/xml_minifier.py`) - Minify and compress XML files by recursively cleaning and stripping spacing, comments, and empty lines while keeping namespace prefix mappings
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -578,6 +582,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock GraphQL Server & Schema Explorer** (`tools/graphql_mock_server.py`) - Starts a local mock GraphQL server with a built-in relational database schema and hosts an interactive browser-based query explorer dashboard
 - **Mock FTP Server** (`tools/mock_ftp_server.py`) - Lightweight zero-dependency FTP server for local script and integration testing
 - **Port Scanner & Service Detector** (`tools/port_scanner_service_detector.py`) - Multi-threaded TCP port scanner with protocol banner parsing (HTTP, SSH, FTP, SMTP, Redis) and service version detection
+- **Log IP Geolocation Map Generator** (`tools/log_ip_map_generator.py`) - Scan access logs, extract public IP addresses, geolocate them with local JSON caching, and generate interactive Leaflet.js HTML maps
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
