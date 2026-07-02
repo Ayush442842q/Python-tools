@@ -377,6 +377,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Snapshot Manager** (`tools/git_snapshot_manager.py`) - A command-line utility to save and restore lightweight, named workspace snapshots (staged, unstaged, and untracked files) to share or backup
 - **PWA Web Manifest Generator** (`tools/webmanifest_generator.py`) - Generate standard-compliant Progressive Web App (PWA) manifest.json configurations and recommended HTML header meta tags
 - **Python Code Minifier** (`tools/python_code_minifier.py`) - Minify Python scripts by stripping comments, docstrings, and excess spaces using the native tokenize parser
+- **Python Decorator Explorer & Analyzer** (`tools/python_decorator_explorer.py`) - Scan Python files recursively to map, visualize decorator stacking chains, and audit decorators for best practices (such as verifying custom wrapper functions use `@functools.wraps`)
+- **Regex Flavor & Dialect Translator** (`tools/regex_flavor_translator.py`) - Analyze regex patterns, evaluate compatibility scores for Python, JavaScript, PCRE, Rust, and Go, and translate patterns across dialects while flagging unsupported engine features
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -480,6 +482,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Merger** (`tools/sqlite_db_merger.py`) - A schema-aware SQLite merging utility that resolves integer primary key collisions on auto-increment tables and automatically updates corresponding foreign key references
 - **EPUB to Markdown Converter** (`tools/epub_to_markdown.py`) - Standalone utility to parse EPUB archives and convert chapters in the spine order into a single clean Markdown document with optional image extraction
 - **XML Minifier & Compressor** (`tools/xml_minifier.py`) - Minify and compress XML files by recursively cleaning and stripping spacing, comments, and empty lines while keeping namespace prefix mappings
+- **CSV Dataset Drift & Schema Auditor** (`tools/csv_drift_auditor.py`) - Compare structural schema changes (column additions/removals/type shifts) and statistical data distribution drift (null rates, summary stats, categorical frequencies) between reference and target CSV datasets
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -583,6 +586,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock FTP Server** (`tools/mock_ftp_server.py`) - Lightweight zero-dependency FTP server for local script and integration testing
 - **Port Scanner & Service Detector** (`tools/port_scanner_service_detector.py`) - Multi-threaded TCP port scanner with protocol banner parsing (HTTP, SSH, FTP, SMTP, Redis) and service version detection
 - **Log IP Geolocation Map Generator** (`tools/log_ip_map_generator.py`) - Scan access logs, extract public IP addresses, geolocate them with local JSON caching, and generate interactive Leaflet.js HTML maps
+- **CLI Network Hop Tracer & Path Visualizer** (`tools/network_path_tracer.py`) - Trace network routing hops to a target host in a beautiful visual ASCII/Unicode tree diagram, showing round-trip times and reverse DNS without requiring root/admin permissions
+- **JSON-RPC Server Mock & Envelope Validator** (`tools/jsonrpc_tester.py`) - Spin up a mock HTTP JSON-RPC 1.0/2.0 server with custom method handlers and use the CLI client to send batch requests/notifications and validate envelope compliance with standard specifications
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
