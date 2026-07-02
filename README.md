@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 500+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 600+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -125,6 +125,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cron Job Execution Monitor & Alerting Wrapper** (`tools/cron_job_monitor.py`) - Wraps execution of system scripts to track run duration, enforce timeouts, and dispatch alerts via JSON webhooks or write files on failure
 - **CLI File Tagger** (`tools/cli_file_tagger.py`) - A lightweight command-line database utility to tag files and folders anywhere on disk, search/filter by tags, and execute batch commands
 - **Image Diff Tool** (`tools/image_diff_tool.py`) - A command-line utility to compare two images pixel-by-pixel, calculate similarity metrics (MSE, PSNR), and generate a visual difference overlay
+- **SVG to ASCII Vector Art Renderer** (`tools/svg_to_ascii_art.py`) - Parses vector geometric primitives (lines, circles, rectangles, polygons) from an SVG file and renders them into crisp ASCII/Unicode character grids using Bresenham's algorithms
+- **Log Event Correlator & Chronological Timeline Builder** (`tools/log_event_correlator.py`) - Normalizes timestamps across different log files, filters by a correlation key, and outputs a unified chronological timeline with latency tracking
 
 
 ### Development Tools
@@ -382,6 +384,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Exception Flow Auditor** (`tools/python_exception_flow_auditor.py`) - Parse Python files using AST to extract defined custom exceptions, raised exceptions, and caught exceptions, checking for broad exception catches and silent handlers
 - **Git Branch Divergence Auditor & Conflict Predictor** (`tools/git_branch_divergence_auditor.py`) - Compare two Git branches to map divergent commits, identify overlapping file changes, and calculate line-collision risk scores
 - **CSS Critical Style Extractor** (`tools/css_critical_extractor.py`) - Parse HTML and CSS files to extract and bundle only the CSS rules that match elements present in the HTML files
+- **Python Bytecode Disassembler & Compiler Explorer** (`tools/python_bytecode_disassembler.py`) - A utility to compile Python source code into bytecode and disassemble it, providing a side-by-side visual mapping of source code to VM instructions
+- **Interactive Git Squash Helper** (`tools/git_squash_helper.py`) - A CLI utility to safely squash local commits on the current branch using git soft-reset without encountering rebase conflicts
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -592,6 +596,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log IP Geolocation Map Generator** (`tools/log_ip_map_generator.py`) - Scan access logs, extract public IP addresses, geolocate them with local JSON caching, and generate interactive Leaflet.js HTML maps
 - **CLI Network Hop Tracer & Path Visualizer** (`tools/network_path_tracer.py`) - Trace network routing hops to a target host in a beautiful visual ASCII/Unicode tree diagram, showing round-trip times and reverse DNS without requiring root/admin permissions
 - **JSON-RPC Server Mock & Envelope Validator** (`tools/jsonrpc_tester.py`) - Spin up a mock HTTP JSON-RPC 1.0/2.0 server with custom method handlers and use the CLI client to send batch requests/notifications and validate envelope compliance with standard specifications
+- **API Shadow & Zombie Endpoint Detector** (`tools/api_endpoint_shadow_detector.py`) - Statically extracts declared API endpoints (from OpenAPI specifications or source code) and audits them against web server access logs to locate undocumented (shadow) and unused (zombie) routes
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
