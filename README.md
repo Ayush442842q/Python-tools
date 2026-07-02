@@ -127,6 +127,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Image Diff Tool** (`tools/image_diff_tool.py`) - A command-line utility to compare two images pixel-by-pixel, calculate similarity metrics (MSE, PSNR), and generate a visual difference overlay
 - **SVG to ASCII Vector Art Renderer** (`tools/svg_to_ascii_art.py`) - Parses vector geometric primitives (lines, circles, rectangles, polygons) from an SVG file and renders them into crisp ASCII/Unicode character grids using Bresenham's algorithms
 - **Log Event Correlator & Chronological Timeline Builder** (`tools/log_event_correlator.py`) - Normalizes timestamps across different log files, filters by a correlation key, and outputs a unified chronological timeline with latency tracking
+- **Cron Execution Monitor & Logger** (`tools/cron_execution_logger.py`) - Run commands as subprocesses, log durations, statuses, exit codes, and trigger failure alerts
 
 
 ### Development Tools
@@ -393,6 +394,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Time-Traveler** (`tools/git_commit_time_traveler.py`) - Modify author and committer dates of commits in a Git repository using commit-tree rebuilds, supporting shifts, randomization, and schedules
 - **SQL-to-Python Models Generator** (`tools/sql_to_python_models.py`) - Parse SQL CREATE TABLE DDL schemas and auto-generate class definitions for SQLAlchemy models, Django models, Pydantic schemas, or standard Python dataclasses
 - **Python Complexity Heatmap Generator** (`tools/python_complexity_heatmap.py`) - Scan Python files to calculate McCabe cyclomatic complexity and lines of code (LOC), generating colored terminal heatmaps and visual HTML dashboards
+- **AST-Based Python Source Code Grepper** (`tools/python_ast_grepper.py`) - Semantic source code finder using Python Abstract Syntax Trees (AST)
+- **ASCII/Unicode Art to SVG Converter** (`tools/ascii_to_svg.py`) - Convert text-based diagrams, flowcharts, or ASCII art into styled, scalable vector graphics
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -661,6 +664,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **RSA Cryptography Key Wizard** (`tools/rsa_key_wizard.py`) - Generate keypairs and perform text encryption/decryption using a pure Python mathematical implementation of the RSA algorithm
 - **Diceware Passphrase Generator** (`tools/diceware_passphrase_generator.py`) - Generate memorable, cryptographically secure passphrases using simulated or physical dice rolls mapped to a custom embedded wordlist
 - **Cryptographic KDF Parameter Optimizer** (`tools/kdf_parameter_optimizer.py`) - Benchmark standard library KDFs (PBKDF2, Scrypt) to calculate optimal, hardware-tailored iterations and parameters targeting specific processing time budgets
+- **Offline JWT Security Auditor & Vulnerability Scanner** (`tools/jwt_vulnerability_scanner.py`) - Offline scanner that audits JWTs for weak HMAC secrets, "none" algorithm bypasses, key confusion, and expired/missing time claims
+- **ZIP Archive Steganography Tool** (`tools/zip_steganography.py`) - Conceal and extract hidden messages or file payloads inside standard ZIP archives without corrupting them
 
 ## Usage
 
