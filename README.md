@@ -386,6 +386,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Critical Style Extractor** (`tools/css_critical_extractor.py`) - Parse HTML and CSS files to extract and bundle only the CSS rules that match elements present in the HTML files
 - **Python Bytecode Disassembler & Compiler Explorer** (`tools/python_bytecode_disassembler.py`) - A utility to compile Python source code into bytecode and disassemble it, providing a side-by-side visual mapping of source code to VM instructions
 - **Interactive Git Squash Helper** (`tools/git_squash_helper.py`) - A CLI utility to safely squash local commits on the current branch using git soft-reset without encountering rebase conflicts
+- **Python Logging Auditor** (`tools/python_logging_auditor.py`) - Scans Python source files to locate bare `print()` statements and audits logging coverage, offering reports and structured logging readiness checks
+- **Markdown Glossary Generator & Indexer** (`tools/markdown_glossary_generator.py`) - Scans markdown documents for terms defined in a central glossary list, generating a master `GLOSSARY.md` file with back-references and optionally auto-linking term occurrences
+- **Python Import Overhead Profiler** (`tools/python_import_overhead_profiler.py`) - Profiles Python import performance using the `-X importtime` runtime flag, parsing outputs to build a visual tree of import overhead, self/cumulative times, and highlighting bottlenecks
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -491,6 +494,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML Minifier & Compressor** (`tools/xml_minifier.py`) - Minify and compress XML files by recursively cleaning and stripping spacing, comments, and empty lines while keeping namespace prefix mappings
 - **CSV Dataset Drift & Schema Auditor** (`tools/csv_drift_auditor.py`) - Compare structural schema changes (column additions/removals/type shifts) and statistical data distribution drift (null rates, summary stats, categorical frequencies) between reference and target CSV datasets
 - **Markdown Table to SVG Chart Compiler** (`tools/markdown_table_to_chart.py`) - Parse Markdown files for numerical data tables and compile beautiful, responsive, and styled SVG charts (bar, line, or pie)
+- **SQLite Database Integrity & Schema Auditor** (`tools/sqlite_integrity_checker.py`) - Runs comprehensive integrity audits on SQLite database files, executing pragmas for schema, index, and foreign key verification, and reporting detailed structural issues
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -597,6 +601,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CLI Network Hop Tracer & Path Visualizer** (`tools/network_path_tracer.py`) - Trace network routing hops to a target host in a beautiful visual ASCII/Unicode tree diagram, showing round-trip times and reverse DNS without requiring root/admin permissions
 - **JSON-RPC Server Mock & Envelope Validator** (`tools/jsonrpc_tester.py`) - Spin up a mock HTTP JSON-RPC 1.0/2.0 server with custom method handlers and use the CLI client to send batch requests/notifications and validate envelope compliance with standard specifications
 - **API Shadow & Zombie Endpoint Detector** (`tools/api_endpoint_shadow_detector.py`) - Statically extracts declared API endpoints (from OpenAPI specifications or source code) and audits them against web server access logs to locate undocumented (shadow) and unused (zombie) routes
+- **HTML Image Tag Optimizer** (`tools/html_image_tag_optimizer.py`) - Parses HTML documents to find image tags, ensures they have `loading="lazy"`, checks/adds missing `alt` tags, and automatically populates local image dimensions to prevent Cumulative Layout Shift (CLS)
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
