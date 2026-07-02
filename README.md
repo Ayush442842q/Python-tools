@@ -119,6 +119,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **MIDI Audio Generator** (`tools/midi_generator.py`) - Convert simple text-based musical notation and chords into standard, playable MIDI files without external dependencies
 - **Symbolic Link Doctor** (`tools/symlink_doctor.py`) - Recursively scan directories to diagnose broken, cyclic, or absolute symlinks and provide options to prune or convert them to relative paths
 - **DOCX to Markdown Converter** (`tools/docx_to_markdown.py`) - Zero-dependency utility to convert Microsoft Word (.docx) files into clean, styled Markdown (.md) documents including tables, headings, formatting, and extracted media
+- **Intel HEX / Motorola S-Record Utility** (`tools/hex_srec_converter.py`) - Natively parse, validate checksums, map memory layouts, and convert firmware binaries between Intel HEX (.hex) and Motorola S-Record (.srec) formats
 
 
 ### Development Tools
@@ -358,6 +359,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON to Pydantic Model Generator** (`tools/json_to_pydantic.py`) - Generate Pydantic V2 models recursively from raw JSON payloads or file inputs, with support for nested models, lists of mixed types, and Python keyword safety
 - **Git Branch Name Validator & Linter** (`tools/git_branch_name_validator.py`) - Audit local and remote Git branches against naming conventions, with interactive renaming, custom regex config, and Git hooks compliance
 - **SQL Schema to JSON Schema & Pydantic Converter** (`tools/sql_to_json_schema.py`) - Parse SQL CREATE TABLE statements and translate them into JSON Schema DDLs or Pydantic V2 class models
+- **Regex Code Generator** (`tools/regex_code_generator.py`) - Generate ready-to-run regular expression parsing, matching, and replacement code snippets in 8 programming languages
+- **Git Submodule Manager & Auditor** (`tools/git_submodule_auditor.py`) - Recursively scan Git submodules, check out-of-sync commits, identify detached HEADs, audit upstream tracking, and report config warnings
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -455,6 +458,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML to Markdown Document Converter** (`tools/xml_to_markdown.py`) - Converts XML tree structures into readable, hierarchical Markdown documents, using collapsible HTML tags for nested elements
 - **Terminal Mathematical Function Grapher** (`tools/terminal_function_plotter.py`) - Plot mathematical functions (e.g. sin(x), x**2) in a 2D grid in the terminal using ASCII/Unicode characters with safe AST-based formula parsing
 - **JSONPath Evaluator & Query Tool** (`tools/json_path_evaluator.py`) - Query and slice JSON structures using standard JSONPath expressions with support for dot/bracket selectors, wildcards, slices, and recursive descent
+- **DICOM Metadata Dump & Parser** (`tools/dicom_metadata_dump.py`) - Standalone binary parser for DICOM (.dcm) files to inspect and output patient, study, and image structure metadata
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -553,6 +557,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **GitHub Star History Visualizer** (`tools/github_star_history.py`) - Fetches star history for a GitHub repository using standard libraries and displays cumulative star growth over time in the terminal using ASCII/Unicode bar charts, with options to export to an SVG/HTML line chart.
 - **Robots.txt Tester & Analyzer** (`tools/robots_txt_analyzer.py`) - Fetch, parse, and analyze robots.txt files to verify path permissions and crawl delay parameters for specific user-agent crawlers
 - **HTTP Capabilities & Protocol Auditor** (`tools/http_capabilities_auditor.py`) - Probes a target web server to audit transport capabilities, detecting HTTP/2 support, compression encodings (Brotli, Gzip, Zstd), connection persistence, and security headers
+- **HTTP Server Sent Events (SSE) Tester & Client** (`tools/sse_client_tester.py`) - Stream real-time Server-Sent Events (SSE) from HTTP endpoints in the console and host local mock streaming servers
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
