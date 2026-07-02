@@ -128,6 +128,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SVG to ASCII Vector Art Renderer** (`tools/svg_to_ascii_art.py`) - Parses vector geometric primitives (lines, circles, rectangles, polygons) from an SVG file and renders them into crisp ASCII/Unicode character grids using Bresenham's algorithms
 - **Log Event Correlator & Chronological Timeline Builder** (`tools/log_event_correlator.py`) - Normalizes timestamps across different log files, filters by a correlation key, and outputs a unified chronological timeline with latency tracking
 - **Cron Execution Monitor & Logger** (`tools/cron_execution_logger.py`) - Run commands as subprocesses, log durations, statuses, exit codes, and trigger failure alerts
+- **PDF Form Field Extractor** (`tools/pdf_form_extractor.py`) - Zero-dependency PDF parser to extract interactive form fields (Text inputs, Checkboxes, Dropdowns, etc.) and generate structured reports
 
 
 ### Development Tools
@@ -396,6 +397,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Complexity Heatmap Generator** (`tools/python_complexity_heatmap.py`) - Scan Python files to calculate McCabe cyclomatic complexity and lines of code (LOC), generating colored terminal heatmaps and visual HTML dashboards
 - **AST-Based Python Source Code Grepper** (`tools/python_ast_grepper.py`) - Semantic source code finder using Python Abstract Syntax Trees (AST)
 - **ASCII/Unicode Art to SVG Converter** (`tools/ascii_to_svg.py`) - Convert text-based diagrams, flowcharts, or ASCII art into styled, scalable vector graphics
+- **Shell Alias & Function Manager** (`tools/shell_alias_manager.py`) - Parse, analyze, check, and optimize shell aliases and functions across bash/zsh and PowerShell profiles
+- **Python Class Hierarchy Visualizer** (`tools/python_class_hierarchy_visualizer.py`) - Scan Python codebases and generate hierarchical class inheritance trees and Mermaid class diagrams via AST parsing
+- **Binary Structure Layout Parser** (`tools/binary_struct_parser.py`) - Parse arbitrary binary files using C-style or JSON struct definitions and generate detailed visual structure reports
+- **Git Commit Word Cloud Generator** (`tools/git_commit_word_cloud.py`) - Analyze Git repositories to calculate commit message word frequencies and output color-coded ASCII/Unicode word clouds
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
