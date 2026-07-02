@@ -130,6 +130,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cron Execution Monitor & Logger** (`tools/cron_execution_logger.py`) - Run commands as subprocesses, log durations, statuses, exit codes, and trigger failure alerts
 - **PDF Form Field Extractor** (`tools/pdf_form_extractor.py`) - Zero-dependency PDF parser to extract interactive form fields (Text inputs, Checkboxes, Dropdowns, etc.) and generate structured reports
 - **Markdown to Plain Text Converter** (`tools/markdown_to_plain_text.py`) - Strips Markdown formatting elements like headers, bullet points, links, images, blockquotes, and tables, returning clean, pure text
+- **Markdown Todo Archiver** (`tools/markdown_todo_archiver.py`) - Clean and archive completed tasks from markdown checklists to a completed tasks section or separate archive file
 
 
 ### Development Tools
@@ -137,6 +138,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **File Hash Tool** (`tools/file_hash.py`) - Computes SHA256 hash of a file
 - **JSON Validate Tool** (`tools/json_validate.py`) - Validates JSON file and pretty‑prints if valid
 - **JSON Diff Tool** (`tools/json_diff_tool.py`) - Compare two JSON files recursively and display key-by-key changes
+- **JSON Malformed Repairer** (`tools/json_malformed_repairer.py`) - Scan, repair, and format malformed JSON files by fixing quotes, unquoted keys, trailing commas, and Javascript comments
 - **Ping Tool** (`tools/ping_tool.py`) - Simple wrapper around system ping
 - **Banner Tool** (`tools/banner.py`) - Prints text with optional ANSI color
 - **Base64 Image Encoder/Decoder** (`tools/base64_image_tool.py`) - Encode images to Base64/Data URIs and decode Base64 strings back to image files
@@ -406,8 +408,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Sys Path Doctor** (`tools/python_sys_path_doctor.py`) - Diagnoses Python sys.path problems, finds duplicate or dangling paths, detects if local scripts shadow standard library modules, and traces package import resolution order
 - **SQL Query Optimizer & Refactoring Advisor** (`tools/sql_query_optimizer.py`) - Statically analyzes SQL queries (SELECT, UPDATE, DELETE) for common performance bottlenecks (sargability, leading wildcards in LIKE, implicit joins, OR clauses, missing LIMITs) and dynamically evaluates SQLite explain plans.
 - **Git Reflog & Orphaned Commit Recoverer** (`tools/git_reflog_recoverer.py`) - Scans the Git reflog to locate dangling or orphaned commits (commits that are no longer reachable by any active branch or tag) and provides an interactive CLI to inspect diffs and recover them.
-- **Mock Memcached Server** (`tools/mock_memcached_server.py`) - A pure Python mock implementation of the Memcached ASCII protocol, handling storage/retrieval commands, TTL key expirations, stats, and live operation logging.
+- **Mock Memcached Server** (`tools/mock_memcached_server.py`) - A pure Python mock implementation of the Memcached ASCII protocol, handling storage/retrieval commands, TTL key expirations, stats, and live operation logging
 - **Python Code Coverage Tracer** (`tools/python_coverage_tracer.py`) - Execute a target Python script and trace line-level coverage using `sys.settrace` to generate colorized coverage reports.
+- **Git Change Coupling Analyzer** (`tools/git_change_coupling_analyzer.py`) - Analyze commit history to calculate logical coupling between files, identifying modules that change together
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -583,7 +586,6 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SSH Tunnel Manager** (`tools/ssh_tunnel_manager.py`) - Manage and monitor SSH port forwarding tunnels (local, remote, and dynamic SOCKS5 proxies) with process tracking and health probes.
 - **XPath Query Evaluator & HTML Parser CLI** (`tools/xpath_evaluator.py`) - Parse and evaluate XPath queries against local XML/HTML files or remote URLs using Python's standard library
 - **HTTP Request Repeater & Latency Analyzer** (`tools/http_request_repeater.py`) - Execute HTTP requests repeatedly, analyze response latency statistics (min, max, average, median, stddev), and display a terminal ASCII histogram
-
 - **PyPI Offline Package Downloader** (`tools/pypi_downloader.py`) - Recursively downloads packages and their dependencies from the PyPI JSON API to create an offline bundle with batch and shell installers for air-gapped setups
 - **PCAP Packet Analyzer** (`tools/pcap_analyzer.py`) - A pure-Python packet capture analyzer that dissects Ethernet, IPv4, TCP, UDP, ICMP, and DNS to output detailed traffic statistics, top talkers, and visual terminal charts
 - **API Response Schema & Diff Comparator** (`tools/api_diff_comparator.py`) - Compare HTTP response payloads or local JSON files recursively to highlight schema changes, type mismatches, and value differences
@@ -624,8 +626,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **API Shadow & Zombie Endpoint Detector** (`tools/api_endpoint_shadow_detector.py`) - Statically extracts declared API endpoints (from OpenAPI specifications or source code) and audits them against web server access logs to locate undocumented (shadow) and unused (zombie) routes
 - **HTML Image Tag Optimizer** (`tools/html_image_tag_optimizer.py`) - Parses HTML documents to find image tags, ensures they have `loading="lazy"`, checks/adds missing `alt` tags, and automatically populates local image dimensions to prevent Cumulative Layout Shift (CLS)
 - **DNS Blacklist (DNSBL) Checker** (`tools/dns_blacklist_checker.py`) - Query multiple spam and reputation blocklists for an IP or domain in parallel using sockets
-- **Subresource Integrity (SRI) Hash Generator & Auditor** (`tools/sri_hash_generator.py`) - Scans HTML files to extract scripts and stylesheets, calculates cryptographic SRI hashes (SHA-256, SHA-384, SHA-512), and checks or injects 'integrity' and 'crossorigin' attributes.
+- **Subresource Integrity (SRI) Hash Generator & Auditor** (`tools/sri_hash_generator.py`) - Scans HTML files to extract scripts and stylesheets, calculates cryptographic SRI hashes (SHA-256, SHA-384, SHA-512), and checks or injects 'integrity' and 'crossorigin' attributes
 - **DNS Tunneling Client & Server Daemon Simulator** (`tools/dns_tunnel_tool.py`) - Tunnel text or files over DNS TXT queries using raw standard socket UDP packets.
+- **Web App Manifest Validator** (`tools/webmanifest_validator.py`) - Validate Web App Manifest files for syntax, PWA installability requirements, and recommended practices
+- **Cookie Format Converter** (`tools/cookie_format_converter.py`) - Convert cookie files between Netscape/curl format and JSON, with option to clean expired cookies
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
