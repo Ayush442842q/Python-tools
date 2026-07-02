@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 600+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 700+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -407,6 +407,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL Query Optimizer & Refactoring Advisor** (`tools/sql_query_optimizer.py`) - Statically analyzes SQL queries (SELECT, UPDATE, DELETE) for common performance bottlenecks (sargability, leading wildcards in LIKE, implicit joins, OR clauses, missing LIMITs) and dynamically evaluates SQLite explain plans.
 - **Git Reflog & Orphaned Commit Recoverer** (`tools/git_reflog_recoverer.py`) - Scans the Git reflog to locate dangling or orphaned commits (commits that are no longer reachable by any active branch or tag) and provides an interactive CLI to inspect diffs and recover them.
 - **Mock Memcached Server** (`tools/mock_memcached_server.py`) - A pure Python mock implementation of the Memcached ASCII protocol, handling storage/retrieval commands, TTL key expirations, stats, and live operation logging.
+- **Python Code Coverage Tracer** (`tools/python_coverage_tracer.py`) - Execute a target Python script and trace line-level coverage using `sys.settrace` to generate colorized coverage reports.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -514,6 +515,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table to SVG Chart Compiler** (`tools/markdown_table_to_chart.py`) - Parse Markdown files for numerical data tables and compile beautiful, responsive, and styled SVG charts (bar, line, or pie)
 - **SQLite Database Integrity & Schema Auditor** (`tools/sqlite_integrity_checker.py`) - Runs comprehensive integrity audits on SQLite database files, executing pragmas for schema, index, and foreign key verification, and reporting detailed structural issues
 - **Log-to-CSV Converter** (`tools/log_to_csv_converter.py`) - Auto-detect and convert arbitrary raw log formats (such as Web server CLF, combined, syslog, and custom patterns) to clean, structured CSV or JSON files
+- **Zero-Dependency Excel to CSV Converter** (`tools/xlsx_to_csv_converter.py`) - Native Excel (.xlsx) file parser and converter to CSV, TSV, or JSON formats using standard zip and xml libraries.
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -623,6 +625,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML Image Tag Optimizer** (`tools/html_image_tag_optimizer.py`) - Parses HTML documents to find image tags, ensures they have `loading="lazy"`, checks/adds missing `alt` tags, and automatically populates local image dimensions to prevent Cumulative Layout Shift (CLS)
 - **DNS Blacklist (DNSBL) Checker** (`tools/dns_blacklist_checker.py`) - Query multiple spam and reputation blocklists for an IP or domain in parallel using sockets
 - **Subresource Integrity (SRI) Hash Generator & Auditor** (`tools/sri_hash_generator.py`) - Scans HTML files to extract scripts and stylesheets, calculates cryptographic SRI hashes (SHA-256, SHA-384, SHA-512), and checks or injects 'integrity' and 'crossorigin' attributes.
+- **DNS Tunneling Client & Server Daemon Simulator** (`tools/dns_tunnel_tool.py`) - Tunnel text or files over DNS TXT queries using raw standard socket UDP packets.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -681,6 +684,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **ZIP Archive Steganography Tool** (`tools/zip_steganography.py`) - Conceal and extract hidden messages or file payloads inside standard ZIP archives without corrupting them
 - **Content Security Policy (CSP) Evaluator** (`tools/csp_evaluator.py`) - Parse and audit CSP configurations or headers of a URL/file for security vulnerabilities, weak sources, and bypass vectors
 - **ZIP Password Recovery Tool** (`tools/zip_password_recovery.py`) - Performs multi-threaded dictionary-based and brute-force password recovery on encrypted ZIP archives, optimizing verification speed by checking single-byte decryption.
+- **Shamir's Secret Sharing Utility** (`tools/shamir_secret_sharer.py`) - Split a secret or file into N shares, requiring at least K threshold shares to reconstruct using Lagrange interpolation over GF(2^256-189).
+- **PCM WAV Audio Steganography Tool** (`tools/wav_steganography.py`) - Hide and extract secret text or files inside PCM WAV audio files using LSB steganography with optional SHA-256 XOR encryption.
 
 ## Usage
 
