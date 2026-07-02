@@ -121,6 +121,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DOCX to Markdown Converter** (`tools/docx_to_markdown.py`) - Zero-dependency utility to convert Microsoft Word (.docx) files into clean, styled Markdown (.md) documents including tables, headings, formatting, and extracted media
 - **Intel HEX / Motorola S-Record Utility** (`tools/hex_srec_converter.py`) - Natively parse, validate checksums, map memory layouts, and convert firmware binaries between Intel HEX (.hex) and Motorola S-Record (.srec) formats
 - **Log Structural & Chronological Diff Tool** (`tools/log_diff.py`) - Compare two log files structurally and identify additions, deletions, or parameter changes
+- **Conway's Game of Life** (`tools/conways_game_of_life.py`) - Interactive terminal simulator with a custom grid cell editor, speed controls, step debugging, and multiple built-in presets (Glider, Pulsar, Glider Gun)
+- **Cron Job Execution Monitor & Alerting Wrapper** (`tools/cron_job_monitor.py`) - Wraps execution of system scripts to track run duration, enforce timeouts, and dispatch alerts via JSON webhooks or write files on failure
+- **CLI File Tagger** (`tools/cli_file_tagger.py`) - A lightweight command-line database utility to tag files and folders anywhere on disk, search/filter by tags, and execute batch commands
+- **Image Diff Tool** (`tools/image_diff_tool.py`) - A command-line utility to compare two images pixel-by-pixel, calculate similarity metrics (MSE, PSNR), and generate a visual difference overlay
 
 
 ### Development Tools
@@ -368,6 +372,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Configuration Drift Auditor** (`tools/config_drift_auditor.py`) - Compare JSON, YAML, TOML, and .env configuration structures recursively for missing keys, extra keys, and data type mismatches
 - **Protocol Buffer Style Linter** (`tools/protobuf_linter.py`) - Scans Protocol Buffer (.proto) files for style guide violations, duplicate tags, and formatting bugs
 - **Structural XML Comparator** (`tools/xml_diff_tool.py`) - Compares two XML documents structurally, ignoring attribute ordering, formatting, or comments
+- **Git Merge Conflict Simulator** (`tools/git_conflict_simulator.py`) - Educational tool simulating git merge conflicts and guiding developers step-by-step through resolving markers, checking status, staging, and committing
+- **Python Regex Auditor** (`tools/python_regex_auditor.py`) - A static analysis tool parsing Python AST to extract regular expressions and audit them for ReDoS risks or syntax errors
+- **Git Snapshot Manager** (`tools/git_snapshot_manager.py`) - A command-line utility to save and restore lightweight, named workspace snapshots (staged, unstaged, and untracked files) to share or backup
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -467,6 +474,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSONPath Evaluator & Query Tool** (`tools/json_path_evaluator.py`) - Query and slice JSON structures using standard JSONPath expressions with support for dot/bracket selectors, wildcards, slices, and recursive descent
 - **DICOM Metadata Dump & Parser** (`tools/dicom_metadata_dump.py`) - Standalone binary parser for DICOM (.dcm) files to inspect and output patient, study, and image structure metadata
 - **Apple Property List Converter** (`tools/plist_converter.py`) - Convert Apple Property List (.plist) files (XML and Binary format) to/from JSON or YAML
+- **Data Schema Mapper & Migrator** (`tools/data_schema_mapper.py`) - Interactive CSV/JSON schema mapper and translator supporting field mapping, type-casting, string concatenation, date formats, and defaults
+- **SQLite Database Merger** (`tools/sqlite_db_merger.py`) - A schema-aware SQLite merging utility that resolves integer primary key collisions on auto-increment tables and automatically updates corresponding foreign key references
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -568,6 +577,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Server Sent Events (SSE) Tester & Client** (`tools/sse_client_tester.py`) - Stream real-time Server-Sent Events (SSE) from HTTP endpoints in the console and host local mock streaming servers
 - **Mock GraphQL Server & Schema Explorer** (`tools/graphql_mock_server.py`) - Starts a local mock GraphQL server with a built-in relational database schema and hosts an interactive browser-based query explorer dashboard
 - **Mock FTP Server** (`tools/mock_ftp_server.py`) - Lightweight zero-dependency FTP server for local script and integration testing
+- **Port Scanner & Service Detector** (`tools/port_scanner_service_detector.py`) - Multi-threaded TCP port scanner with protocol banner parsing (HTTP, SSH, FTP, SMTP, Redis) and service version detection
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
