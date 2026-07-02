@@ -120,6 +120,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Symbolic Link Doctor** (`tools/symlink_doctor.py`) - Recursively scan directories to diagnose broken, cyclic, or absolute symlinks and provide options to prune or convert them to relative paths
 - **DOCX to Markdown Converter** (`tools/docx_to_markdown.py`) - Zero-dependency utility to convert Microsoft Word (.docx) files into clean, styled Markdown (.md) documents including tables, headings, formatting, and extracted media
 - **Intel HEX / Motorola S-Record Utility** (`tools/hex_srec_converter.py`) - Natively parse, validate checksums, map memory layouts, and convert firmware binaries between Intel HEX (.hex) and Motorola S-Record (.srec) formats
+- **Log Structural & Chronological Diff Tool** (`tools/log_diff.py`) - Compare two log files structurally and identify additions, deletions, or parameter changes
 
 
 ### Development Tools
@@ -365,6 +366,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Image Alt-Text & Accessibility Auditor** (`tools/markdown_image_alt_checker.py`) - Audit Markdown files for missing alt text, poor descriptions, or broken local image links, with an interactive fix wizard
 - **SVG Color Palette Extractor & Theme Replacer** (`tools/svg_color_theme_replacer.py`) - Extract hex/RGB/named colors from SVG files and replace them in bulk or invert them for light/dark theme swaps
 - **Configuration Drift Auditor** (`tools/config_drift_auditor.py`) - Compare JSON, YAML, TOML, and .env configuration structures recursively for missing keys, extra keys, and data type mismatches
+- **Protocol Buffer Style Linter** (`tools/protobuf_linter.py`) - Scans Protocol Buffer (.proto) files for style guide violations, duplicate tags, and formatting bugs
+- **Structural XML Comparator** (`tools/xml_diff_tool.py`) - Compares two XML documents structurally, ignoring attribute ordering, formatting, or comments
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -463,6 +466,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Mathematical Function Grapher** (`tools/terminal_function_plotter.py`) - Plot mathematical functions (e.g. sin(x), x**2) in a 2D grid in the terminal using ASCII/Unicode characters with safe AST-based formula parsing
 - **JSONPath Evaluator & Query Tool** (`tools/json_path_evaluator.py`) - Query and slice JSON structures using standard JSONPath expressions with support for dot/bracket selectors, wildcards, slices, and recursive descent
 - **DICOM Metadata Dump & Parser** (`tools/dicom_metadata_dump.py`) - Standalone binary parser for DICOM (.dcm) files to inspect and output patient, study, and image structure metadata
+- **Apple Property List Converter** (`tools/plist_converter.py`) - Convert Apple Property List (.plist) files (XML and Binary format) to/from JSON or YAML
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -563,6 +567,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Capabilities & Protocol Auditor** (`tools/http_capabilities_auditor.py`) - Probes a target web server to audit transport capabilities, detecting HTTP/2 support, compression encodings (Brotli, Gzip, Zstd), connection persistence, and security headers
 - **HTTP Server Sent Events (SSE) Tester & Client** (`tools/sse_client_tester.py`) - Stream real-time Server-Sent Events (SSE) from HTTP endpoints in the console and host local mock streaming servers
 - **Mock GraphQL Server & Schema Explorer** (`tools/graphql_mock_server.py`) - Starts a local mock GraphQL server with a built-in relational database schema and hosts an interactive browser-based query explorer dashboard
+- **Mock FTP Server** (`tools/mock_ftp_server.py`) - Lightweight zero-dependency FTP server for local script and integration testing
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
