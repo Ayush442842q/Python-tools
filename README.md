@@ -389,6 +389,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Logging Auditor** (`tools/python_logging_auditor.py`) - Scans Python source files to locate bare `print()` statements and audits logging coverage, offering reports and structured logging readiness checks
 - **Markdown Glossary Generator & Indexer** (`tools/markdown_glossary_generator.py`) - Scans markdown documents for terms defined in a central glossary list, generating a master `GLOSSARY.md` file with back-references and optionally auto-linking term occurrences
 - **Python Import Overhead Profiler** (`tools/python_import_overhead_profiler.py`) - Profiles Python import performance using the `-X importtime` runtime flag, parsing outputs to build a visual tree of import overhead, self/cumulative times, and highlighting bottlenecks
+- **Python Dependency Harmonizer** (`tools/python_dependency_harmonizer.py`) - Scan, merge, and harmonize version constraints from multiple requirements.txt or pyproject.toml files, resolving conflicts
+- **Git Commit Time-Traveler** (`tools/git_commit_time_traveler.py`) - Modify author and committer dates of commits in a Git repository using commit-tree rebuilds, supporting shifts, randomization, and schedules
+- **SQL-to-Python Models Generator** (`tools/sql_to_python_models.py`) - Parse SQL CREATE TABLE DDL schemas and auto-generate class definitions for SQLAlchemy models, Django models, Pydantic schemas, or standard Python dataclasses
+- **Python Complexity Heatmap Generator** (`tools/python_complexity_heatmap.py`) - Scan Python files to calculate McCabe cyclomatic complexity and lines of code (LOC), generating colored terminal heatmaps and visual HTML dashboards
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -495,6 +499,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Dataset Drift & Schema Auditor** (`tools/csv_drift_auditor.py`) - Compare structural schema changes (column additions/removals/type shifts) and statistical data distribution drift (null rates, summary stats, categorical frequencies) between reference and target CSV datasets
 - **Markdown Table to SVG Chart Compiler** (`tools/markdown_table_to_chart.py`) - Parse Markdown files for numerical data tables and compile beautiful, responsive, and styled SVG charts (bar, line, or pie)
 - **SQLite Database Integrity & Schema Auditor** (`tools/sqlite_integrity_checker.py`) - Runs comprehensive integrity audits on SQLite database files, executing pragmas for schema, index, and foreign key verification, and reporting detailed structural issues
+- **Log-to-CSV Converter** (`tools/log_to_csv_converter.py`) - Auto-detect and convert arbitrary raw log formats (such as Web server CLF, combined, syslog, and custom patterns) to clean, structured CSV or JSON files
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
