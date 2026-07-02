@@ -129,6 +129,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log Event Correlator & Chronological Timeline Builder** (`tools/log_event_correlator.py`) - Normalizes timestamps across different log files, filters by a correlation key, and outputs a unified chronological timeline with latency tracking
 - **Cron Execution Monitor & Logger** (`tools/cron_execution_logger.py`) - Run commands as subprocesses, log durations, statuses, exit codes, and trigger failure alerts
 - **PDF Form Field Extractor** (`tools/pdf_form_extractor.py`) - Zero-dependency PDF parser to extract interactive form fields (Text inputs, Checkboxes, Dropdowns, etc.) and generate structured reports
+- **Markdown to Plain Text Converter** (`tools/markdown_to_plain_text.py`) - Strips Markdown formatting elements like headers, bullet points, links, images, blockquotes, and tables, returning clean, pure text
 
 
 ### Development Tools
@@ -401,6 +402,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Class Hierarchy Visualizer** (`tools/python_class_hierarchy_visualizer.py`) - Scan Python codebases and generate hierarchical class inheritance trees and Mermaid class diagrams via AST parsing
 - **Binary Structure Layout Parser** (`tools/binary_struct_parser.py`) - Parse arbitrary binary files using C-style or JSON struct definitions and generate detailed visual structure reports
 - **Git Commit Word Cloud Generator** (`tools/git_commit_word_cloud.py`) - Analyze Git repositories to calculate commit message word frequencies and output color-coded ASCII/Unicode word clouds
+- **Conventional Commits Semantic Version Releaser** (`tools/git_semantic_version_releaser.py`) - Parses git log commit headers using Conventional Commits patterns to calculate the next Semantic Version (major, minor, patch) and outputs formatted release notes
+- **Python Sys Path Doctor** (`tools/python_sys_path_doctor.py`) - Diagnoses Python sys.path problems, finds duplicate or dangling paths, detects if local scripts shadow standard library modules, and traces package import resolution order
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -615,6 +618,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON-RPC Server Mock & Envelope Validator** (`tools/jsonrpc_tester.py`) - Spin up a mock HTTP JSON-RPC 1.0/2.0 server with custom method handlers and use the CLI client to send batch requests/notifications and validate envelope compliance with standard specifications
 - **API Shadow & Zombie Endpoint Detector** (`tools/api_endpoint_shadow_detector.py`) - Statically extracts declared API endpoints (from OpenAPI specifications or source code) and audits them against web server access logs to locate undocumented (shadow) and unused (zombie) routes
 - **HTML Image Tag Optimizer** (`tools/html_image_tag_optimizer.py`) - Parses HTML documents to find image tags, ensures they have `loading="lazy"`, checks/adds missing `alt` tags, and automatically populates local image dimensions to prevent Cumulative Layout Shift (CLS)
+- **DNS Blacklist (DNSBL) Checker** (`tools/dns_blacklist_checker.py`) - Query multiple spam and reputation blocklists for an IP or domain in parallel using sockets
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -671,6 +675,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cryptographic KDF Parameter Optimizer** (`tools/kdf_parameter_optimizer.py`) - Benchmark standard library KDFs (PBKDF2, Scrypt) to calculate optimal, hardware-tailored iterations and parameters targeting specific processing time budgets
 - **Offline JWT Security Auditor & Vulnerability Scanner** (`tools/jwt_vulnerability_scanner.py`) - Offline scanner that audits JWTs for weak HMAC secrets, "none" algorithm bypasses, key confusion, and expired/missing time claims
 - **ZIP Archive Steganography Tool** (`tools/zip_steganography.py`) - Conceal and extract hidden messages or file payloads inside standard ZIP archives without corrupting them
+- **Content Security Policy (CSP) Evaluator** (`tools/csp_evaluator.py`) - Parse and audit CSP configurations or headers of a URL/file for security vulnerabilities, weak sources, and bypass vectors
 
 ## Usage
 
