@@ -404,6 +404,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Word Cloud Generator** (`tools/git_commit_word_cloud.py`) - Analyze Git repositories to calculate commit message word frequencies and output color-coded ASCII/Unicode word clouds
 - **Conventional Commits Semantic Version Releaser** (`tools/git_semantic_version_releaser.py`) - Parses git log commit headers using Conventional Commits patterns to calculate the next Semantic Version (major, minor, patch) and outputs formatted release notes
 - **Python Sys Path Doctor** (`tools/python_sys_path_doctor.py`) - Diagnoses Python sys.path problems, finds duplicate or dangling paths, detects if local scripts shadow standard library modules, and traces package import resolution order
+- **SQL Query Optimizer & Refactoring Advisor** (`tools/sql_query_optimizer.py`) - Statically analyzes SQL queries (SELECT, UPDATE, DELETE) for common performance bottlenecks (sargability, leading wildcards in LIKE, implicit joins, OR clauses, missing LIMITs) and dynamically evaluates SQLite explain plans.
+- **Git Reflog & Orphaned Commit Recoverer** (`tools/git_reflog_recoverer.py`) - Scans the Git reflog to locate dangling or orphaned commits (commits that are no longer reachable by any active branch or tag) and provides an interactive CLI to inspect diffs and recover them.
+- **Mock Memcached Server** (`tools/mock_memcached_server.py`) - A pure Python mock implementation of the Memcached ASCII protocol, handling storage/retrieval commands, TTL key expirations, stats, and live operation logging.
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -619,6 +622,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **API Shadow & Zombie Endpoint Detector** (`tools/api_endpoint_shadow_detector.py`) - Statically extracts declared API endpoints (from OpenAPI specifications or source code) and audits them against web server access logs to locate undocumented (shadow) and unused (zombie) routes
 - **HTML Image Tag Optimizer** (`tools/html_image_tag_optimizer.py`) - Parses HTML documents to find image tags, ensures they have `loading="lazy"`, checks/adds missing `alt` tags, and automatically populates local image dimensions to prevent Cumulative Layout Shift (CLS)
 - **DNS Blacklist (DNSBL) Checker** (`tools/dns_blacklist_checker.py`) - Query multiple spam and reputation blocklists for an IP or domain in parallel using sockets
+- **Subresource Integrity (SRI) Hash Generator & Auditor** (`tools/sri_hash_generator.py`) - Scans HTML files to extract scripts and stylesheets, calculates cryptographic SRI hashes (SHA-256, SHA-384, SHA-512), and checks or injects 'integrity' and 'crossorigin' attributes.
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -676,6 +680,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Offline JWT Security Auditor & Vulnerability Scanner** (`tools/jwt_vulnerability_scanner.py`) - Offline scanner that audits JWTs for weak HMAC secrets, "none" algorithm bypasses, key confusion, and expired/missing time claims
 - **ZIP Archive Steganography Tool** (`tools/zip_steganography.py`) - Conceal and extract hidden messages or file payloads inside standard ZIP archives without corrupting them
 - **Content Security Policy (CSP) Evaluator** (`tools/csp_evaluator.py`) - Parse and audit CSP configurations or headers of a URL/file for security vulnerabilities, weak sources, and bypass vectors
+- **ZIP Password Recovery Tool** (`tools/zip_password_recovery.py`) - Performs multi-threaded dictionary-based and brute-force password recovery on encrypted ZIP archives, optimizing verification speed by checking single-byte decryption.
 
 ## Usage
 
