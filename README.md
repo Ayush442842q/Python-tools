@@ -415,6 +415,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock Memcached Server** (`tools/mock_memcached_server.py`) - A pure Python mock implementation of the Memcached ASCII protocol, handling storage/retrieval commands, TTL key expirations, stats, and live operation logging
 - **Python Code Coverage Tracer** (`tools/python_coverage_tracer.py`) - Execute a target Python script and trace line-level coverage using `sys.settrace` to generate colorized coverage reports.
 - **Git Change Coupling Analyzer** (`tools/git_change_coupling_analyzer.py`) - Analyze commit history to calculate logical coupling between files, identifying modules that change together
+- **Mock LDAP Directory Server** (`tools/mock_ldap_server.py`) - Spin up a lightweight, local mock LDAP directory server in pure Python to test Bind authentication and Search requests
+- **Mock AWS SQS Server** (`tools/mock_sqs_server.py`) - Expose a local HTTP server mimicking basic AWS SQS endpoints (CreateQueue, SendMessage, ReceiveMessage, DeleteMessage) for offline development
+
 
 ### Data Processing
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
@@ -635,6 +638,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS Tunneling Client & Server Daemon Simulator** (`tools/dns_tunnel_tool.py`) - Tunnel text or files over DNS TXT queries using raw standard socket UDP packets.
 - **Web App Manifest Validator** (`tools/webmanifest_validator.py`) - Validate Web App Manifest files for syntax, PWA installability requirements, and recommended practices
 - **Cookie Format Converter** (`tools/cookie_format_converter.py`) - Convert cookie files between Netscape/curl format and JSON, with option to clean expired cookies
+- **HTML Semantic Outline & Heading Auditor** (`tools/html_semantic_outline.py`) - Parse local HTML files or remote URLs using standard libraries to map headings and structural containers, auditing them for accessibility and SEO best practices
+- **TCP Socket Proxy & Traffic Monitor** (`tools/tcp_proxy_monitor.py`) - Intercept raw TCP traffic between a client and server, log bidirectional hex dumps, and optionally simulate network latency or packet drops
+
 
 ### Security & Cryptography
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
@@ -695,6 +701,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **ZIP Password Recovery Tool** (`tools/zip_password_recovery.py`) - Performs multi-threaded dictionary-based and brute-force password recovery on encrypted ZIP archives, optimizing verification speed by checking single-byte decryption.
 - **Shamir's Secret Sharing Utility** (`tools/shamir_secret_sharer.py`) - Split a secret or file into N shares, requiring at least K threshold shares to reconstruct using Lagrange interpolation over GF(2^256-189).
 - **PCM WAV Audio Steganography Tool** (`tools/wav_steganography.py`) - Hide and extract secret text or files inside PCM WAV audio files using LSB steganography with optional SHA-256 XOR encryption.
+- **JWKS Generator & Inspector** (`tools/jwks_generator.py`) - Generate RSA/EC public and private key pairs, format public keys as JSON Web Key Sets (JWKS), and inspect local or remote JWKS endpoints
+
 
 ## Usage
 
