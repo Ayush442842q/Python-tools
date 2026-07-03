@@ -89,6 +89,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Gantt Chart Generator** (`tools/terminal_gantt_chart.py`) - Generate visual terminal Gantt charts from JSON or text schedules and export them to HTML/CSS timelines or Markdown tables
 - **Terminal File Picker** (`tools/file_picker.py`) - An interactive terminal-based file and directory picker with search and filtering
 - **Batch Image Optimizer** (`tools/image_optimizer.py`) - Compress, resize, and optimize images in batches while preserving directories
+- **Batch Image Watermark Tool** (`tools/image_watermark_tool.py`) - Batch adds text or image watermarks to image files in a directory with customizable opacity, scaling, and positioning.
 - **Interactive Terminal Paint Studio** (`tools/terminal_paint.py`) - Interactive curses-based console canvas drawing and ANSI art creator
 - **Duplicate Directory Finder** (`tools/duplicate_dir_finder.py`) - Scans folder hierarchies recursively to identify completely identical folders based on file hashes
 - **CLI Directory Size Treemap** (`tools/directory_size_treemap.py`) - Computes directory sizes recursively and renders a visual nested ASCII/Unicode treemap in the terminal, showing the relative storage proportions of subdirectories and files
@@ -254,6 +255,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Hook Manager** (`tools/git_hook_manager.py`) - Inspect, create, activate, deactivate, and test Git hooks locally
 - **Python Docstring Generator** (`tools/python_docstring_generator.py`) - Automatically parse Python files using AST and generate Google-style docstrings
 - **API Schema Generator** (`tools/api_schema_generator.py`) - Fetch API responses and automatically generate JSON Schema definitions
+- **OpenAPI Client SDK Generator** (`tools/openapi_client_generator.py`) - Auto-generate a standalone, type-hinted Python API client SDK using only standard libraries from an OpenAPI/Swagger spec file.
 - **Changelog Generator** (`tools/changelog_generator.py`) - Generate structured Markdown changelogs from project commit histories
 - **Dependency Update Checker** (`tools/dependency_update_checker.py`) - Scan requirements files and check PyPI for available package updates
 - **Environment File Validator** (`tools/env_validator.py`) - Validate .env file variables against a schema or rules
@@ -282,6 +284,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Dotenv Diff** (`tools/dotenv_diff.py`) - Compare two `.env` files, identifying missing variables in either file and highlighting value differences
 - **Git Worktree Manager** (`tools/git_worktree_manager.py`) - A CLI tool to list, add, remove, and prune Git worktrees for concurrent branch checkouts
 - **Python Dependency Validator** (`tools/python_dependency_validator.py`) - Compare Python code imports against `requirements.txt` to find missing or unused dependencies
+- **Python pyproject.toml Package Generator** (`tools/pyproject_generator.py`) - Scan Python source files recursively, analyze dependency imports, identify scripts, and auto-generate standard PEP 621 packaging configurations.
 - **Git Branches by Date** (`tools/git_branches_by_date.py`) - List Git branches sorted by last commit date, showing the author, last commit subject, and merge status
 - **Markdown Frontmatter Validator** (`tools/markdown_frontmatter_validator.py`) - Validate YAML frontmatter headers in Markdown files recursively against custom schemas or key/type rules
 - **Git Line Contribution Analyzer** (`tools/git_line_contribution_analyzer.py`) - Parses git log to calculate and visualize lines of code added and deleted per contributor and file extension
@@ -367,6 +370,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python f-string Refactorer** (`tools/python_fstring_converter.py`) - Statically analyze Python source files and refactor old-style string formatting (% and .format()) into modern, pythonic f-strings using AST splicing
 - **Jupyter Notebook Execution & Style Linter** (`tools/jupyter_notebook_linter.py`) - Parses Jupyter Notebook (.ipynb) files to identify syntax errors, out-of-order cell execution, unused imports, and style violations
 - **Markdown to Slack & Teams Payload Converter** (`tools/markdown_to_slack_teams.py`) - Parses markdown and converts it to JSON payloads for Slack Block Kit or Microsoft Teams Adaptive Cards
+- **Markdown to Confluence Storage Format Converter** (`tools/markdown_to_confluence.py`) - Convert standard Markdown files into Confluence Storage Format (XHTML) with support for headings, code blocks, tables, panels/alerts, lists, and links.
 - **Makefile Linter & Analyzer** (`tools/makefile_analyzer.py`) - Analyze and lint Makefiles for syntax issues (spaces in recipes), circular dependencies, undefined variables, and missing .PHONY declarations
 - **JSON to Pydantic Model Generator** (`tools/json_to_pydantic.py`) - Generate Pydantic V2 models recursively from raw JSON payloads or file inputs, with support for nested models, lists of mixed types, and Python keyword safety
 - **Git Branch Name Validator & Linter** (`tools/git_branch_name_validator.py`) - Audit local and remote Git branches against naming conventions, with interactive renaming, custom regex config, and Git hooks compliance
@@ -435,6 +439,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Structured JSON Log Viewer** (`tools/json_log_viewer.py`) - Read, filter, and pretty-print JSON-structured logs in the terminal with ANSI colors
 - **Log Session Tracer** (`tools/log_session_tracer.py`) - Traces specific session tokens, IPs, or request IDs chronologically across log files
 - **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
+- **JSON to SQLite Database Converter** (`tools/json_to_sqlite.py`) - Convert standard JSON and JSON Lines (JSONL) data files into SQLite databases with automatic table creation, type inference, and indexing.
 - **CSV SQL Query Runner** (`tools/csv_sql_query.py`) - Run standard SQL queries directly against one or more CSV files in memory using SQLite
 - **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
 - **Word Frequency Analyzer** (`tools/word_frequency_analyzer.py`) - Calculate word frequencies, filter stop words, compute text metrics, and render terminal bar charts or tag clouds
