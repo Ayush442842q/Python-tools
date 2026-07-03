@@ -42,6 +42,45 @@ python file_organizer.py ~/Downloads --dry-run --verbose
 - **Code**: py, js, html, css, java, cpp, c, h, cs, php, rb, go, rs, swift, kt, scala, pl, sh, bash, zsh, fish, sql, xml, json, yaml, yml, toml, ini, cfg, conf
 - **Executables**: exe, msi, deb, rpm, dmg, app, bin, run
 - **Fonts**: ttf, otf, woff, woff2, eot, pfb, pfm
+### Markdown Image Inliner (`markdown_image_inliner.py`)
+A utility to scan Markdown files and inline local/remote images as Base64 Data URIs to make files fully self-contained.
+
+#### Usage:
+```bash
+python tools/markdown_image_inliner.py /path/to/markdown_or_dir --remote --backup
+```
+
+### Code Refactoring Candidate Finder (`code_refactoring_candidate_finder.py`)
+Analyzes Python codebases recursively using AST parsing to compute cyclomatic complexity, nesting depth, and document/TODO coverage to rank files needing refactoring.
+
+#### Usage:
+```bash
+python tools/code_refactoring_candidate_finder.py /path/to/project --limit 10
+```
+
+### CLI Financial Projection Calculator (`cli_financial_projection_calculator.py`)
+Simulates long-term compound growth with custom event schedules, inflation adjustments, tax rates, and outputs a visual ASCII/Unicode chart.
+
+#### Usage:
+```bash
+python tools/cli_financial_projection_calculator.py --start 10000 --contrib 500 --years 20 --details
+```
+
+### Git Developer Pace Analyzer (`git_developer_pace_analyzer.py`)
+Analyzes commit pacing, active hours, weekend workloads, path entropy, and burnout risk metrics, rendering a daily velocity timeline.
+
+#### Usage:
+```bash
+python tools/git_developer_pace_analyzer.py --days 90
+```
+
+### DNS Zone File Generator (`dns_zone_file_generator.py`)
+Generates standardized BIND zone files from a simple JSON configuration, with automatic serial incrementing and record validation.
+
+#### Usage:
+```bash
+python tools/dns_zone_file_generator.py config.json -o example.com.zone --increment
+```
 
 #### Requirements:
 - Python 3.6+

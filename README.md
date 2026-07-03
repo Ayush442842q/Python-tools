@@ -132,6 +132,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **PDF Form Field Extractor** (`tools/pdf_form_extractor.py`) - Zero-dependency PDF parser to extract interactive form fields (Text inputs, Checkboxes, Dropdowns, etc.) and generate structured reports
 - **Markdown to Plain Text Converter** (`tools/markdown_to_plain_text.py`) - Strips Markdown formatting elements like headers, bullet points, links, images, blockquotes, and tables, returning clean, pure text
 - **Markdown Todo Archiver** (`tools/markdown_todo_archiver.py`) - Clean and archive completed tasks from markdown checklists to a completed tasks section or separate archive file
+- **Markdown Image Inliner** (`tools/markdown_image_inliner.py`) - Scan Markdown documents to convert local and remote image links into inline Base64 data URIs, making the files self-contained
+- **CLI Financial Projection Calculator** (`tools/cli_financial_projection_calculator.py`) - Simulate long-term compound growth with custom financial events, inflation adjustment, tax rates, and a visual ASCII/Unicode chart
 
 
 ### Development Tools
@@ -640,6 +642,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cookie Format Converter** (`tools/cookie_format_converter.py`) - Convert cookie files between Netscape/curl format and JSON, with option to clean expired cookies
 - **HTML Semantic Outline & Heading Auditor** (`tools/html_semantic_outline.py`) - Parse local HTML files or remote URLs using standard libraries to map headings and structural containers, auditing them for accessibility and SEO best practices
 - **TCP Socket Proxy & Traffic Monitor** (`tools/tcp_proxy_monitor.py`) - Intercept raw TCP traffic between a client and server, log bidirectional hex dumps, and optionally simulate network latency or packet drops
+- **Code Refactoring Candidate Finder** (`tools/code_refactoring_candidate_finder.py`) - Analyze Python codebases recursively using AST parsing to compute cyclomatic complexity, nesting depth, comment density, and TODOs to rank files needing refactoring
+- **Git Developer Pace Analyzer** (`tools/git_developer_pace_analyzer.py`) - Analyze Git commit pacing, temporal distributions (active hours, weekend workload), time gaps between commits, path entropy, and burnout risk metrics with an ASCII daily velocity timeline
+- **DNS Zone File Generator** (`tools/dns_zone_file_generator.py`) - Generate RFC 1035 compliant DNS zone files from JSON configurations with automatic SOA serial number incrementing and record validation
 
 
 ### Security & Cryptography
