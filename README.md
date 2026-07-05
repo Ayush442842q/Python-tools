@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 776+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 781+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -138,6 +138,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log Sampling Filter & Rate Limiter** (`tools/log_sampling_filter.py`) - Filters large log streams or log files using deterministic sampling, reservoir sampling, stride sampling, or rate-limiting per log level
 - **Environment Variable & Secret Masker** (`tools/env_secret_masker.py`) - Scans configuration/log files, detects credentials, API keys, tokens, and high-entropy strings, redacting them with customizable placeholders
 - **ENV File Sorter & Formatter** (`tools/env_file_sorter.py`) - Sorts and reorganizes `.env` configuration files by variable name or key prefix, grouping entries under section headers, deduplicating keys, and aligning values.
+- **Log File Shannon Entropy & Anomaly Analyzer** (`tools/log_entropy_analyzer.py`) - Measures character entropy across sliding windows of log files to pinpoint obfuscated payloads, memory dumps, stack traces, and security anomalies with terminal sparklines
 
 
 ### Development Tools
@@ -148,6 +149,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Malformed Repairer** (`tools/json_malformed_repairer.py`) - Scan, repair, and format malformed JSON files by fixing quotes, unquoted keys, trailing commas, and Javascript comments
 - **Java .properties Converter & Manager** (`tools/java_properties_converter.py`) - Parse Java `.properties` files (handling unicode escape sequences and multi-line values), converting bi-directionally between `.properties`, JSON, YAML, and `.env` formats
 - **Python Cognitive Complexity Calculator** (`tools/code_cognitive_complexity_calculator.py`) - Calculate SonarSource-style Cognitive Complexity scores for Python functions and modules to identify code that is difficult to comprehend
+- **Python Unused Argument & Variable Detector** (`tools/python_unused_arg_detector.py`) - Static AST analyzer to scan Python files and directories for unused function parameters, method arguments, and loop control variables
+- **Markdown Table Diff & Comparator** (`tools/markdown_table_diff.py`) - Compares GFM Markdown tables row-by-row and column-by-column, highlighting added, removed, or modified cells with side-by-side ANSI diff output
+- **SQL Schema & Migration Drift Detector** (`tools/sql_migration_drift_detector.py`) - Scans SQL migration files and compares expected schema against an active SQLite database or dump to flag missing tables, column mismatches, and index drift
 - **Markdown Footnote Validator & Auto-Formatter** (`tools/markdown_footnote_referencer.py`) - Validate, re-number inline references, and re-order footnote definitions at the end of Markdown documents
 - **Ping Tool** (`tools/ping_tool.py`) - Simple wrapper around system ping
 - **Banner Tool** (`tools/banner.py`) - Prints text with optional ANSI color
@@ -444,6 +448,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Excel Automation** (`tools/excel_automation.py`) - Automate Excel file operations and data extraction
 - **Config Format Converter** (`tools/config_converter.py`) - Convert configuration files between JSON, INI, XML, YAML, and TOML
 - **JSON Schema Generator** (`tools/json_schema_generator.py`) - Infer Draft-07 JSON Schema from a sample JSON data payload
+- **JSON Structure & Schema Tree Visualizer** (`tools/json_structure_visualizer.py`) - Parses nested JSON and JSONL documents to render visual ASCII/Unicode structural trees displaying data types, element counts, and key metrics
 - **JSON Flattener & Unflattener** (`tools/json_flattener.py`) - Flatten nested JSON objects or unflatten them back using dotted-key paths
 - **JSON to XML Converter** (`tools/json_to_xml.py`) - Converts structured JSON data into formatted XML
 - **Mock Data Generator** (`tools/mock_data_generator.py`) - Generate mock user profiles in JSON, CSV, or XML format
