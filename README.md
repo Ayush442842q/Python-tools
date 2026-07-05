@@ -268,6 +268,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Environment Variable Interactive Editor** (`tools/environment_variable_interactive_editor.py`) - Interactive CLI editor for managing and editing environment variables
 - **Markdown Link Replacer** (`tools/markdown_link_replacer.py`) - Find and replace link patterns across multiple Markdown files
 - **Virtual Environment Manager** (`tools/venv_manager.py`) - Create, activate, delete, and inspect Python virtual environments via CLI
+- **Conventional Commits Template Generator & Validator** (`tools/git_commit_template_generator.py`) - Interactive CLI tool for generating standard Conventional Commit templates, validating commit messages, and installing git commit templates
+- **Python Docstring Coverage & Quality Inspector** (`tools/python_docstring_coverage_analyzer.py`) - Scans Python source files or directories using AST to calculate docstring coverage metrics for modules, classes, and functions, auditing parameter documentation and docstring formatting
 - **YAML Schema Validator** (`tools/yaml_validator.py`) - Validate YAML configuration files against JSON Schemas
 - **Interactive CLI Menu Wizard** (`tools/cli_menu_builder.py`) - Build interactive command-line surveys, questionnaires, and option menus
 - **API Documentation Generator** (`tools/api_doc_generator.py`) - Auto-generates REST API documentation from Python Flask/FastAPI code
@@ -533,6 +535,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Database Integrity & Schema Auditor** (`tools/sqlite_integrity_checker.py`) - Runs comprehensive integrity audits on SQLite database files, executing pragmas for schema, index, and foreign key verification, and reporting detailed structural issues
 - **Log-to-CSV Converter** (`tools/log_to_csv_converter.py`) - Auto-detect and convert arbitrary raw log formats (such as Web server CLF, combined, syslog, and custom patterns) to clean, structured CSV or JSON files
 - **Zero-Dependency Excel to CSV Converter** (`tools/xlsx_to_csv_converter.py`) - Native Excel (.xlsx) file parser and converter to CSV, TSV, or JSON formats using standard zip and xml libraries.
+- **TOML to .Env Converter & Diff Tool** (`tools/toml_env_converter.py`) - Converts TOML configuration files into .env environment files and vice versa with key flattening, custom prefixing, and bi-directional diff comparison
+- **CSS Length Unit Converter & Transformer** (`tools/css_unit_converter.py`) - Parses CSS files or declarations and converts length units (px, rem, em, %, vh, vw, pt) based on customizable root font size or viewport dimensions
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -712,6 +716,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **PCM WAV Audio Steganography Tool** (`tools/wav_steganography.py`) - Hide and extract secret text or files inside PCM WAV audio files using LSB steganography with optional SHA-256 XOR encryption.
 - **JWKS Generator & Inspector** (`tools/jwks_generator.py`) - Generate RSA/EC public and private key pairs, format public keys as JSON Web Key Sets (JWKS), and inspect local or remote JWKS endpoints
 - **DNS CAA Record Validator & Policy Generator** (`tools/dns_caa_record_validator.py`) - Validate DNS Certification Authority Authorization (CAA) records, evaluate security posture against major CAs, and generate compliant CAA policies
+- **DNS SPF & DMARC Policy Inspector** (`tools/dns_spf_dmarc_validator.py`) - Parses, validates, and audits SPF and DMARC DNS records for syntax compliance, 10-lookup SPF limit violations, weak policies, and generates compliant policy records
 
 
 ## Usage
