@@ -722,6 +722,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JWKS Generator & Inspector** (`tools/jwks_generator.py`) - Generate RSA/EC public and private key pairs, format public keys as JSON Web Key Sets (JWKS), and inspect local or remote JWKS endpoints
 - **DNS CAA Record Validator & Policy Generator** (`tools/dns_caa_record_validator.py`) - Validate DNS Certification Authority Authorization (CAA) records, evaluate security posture against major CAs, and generate compliant CAA policies
 - **DNS SPF & DMARC Policy Inspector** (`tools/dns_spf_dmarc_validator.py`) - Parses, validates, and audits SPF and DMARC DNS records for syntax compliance, 10-lookup SPF limit violations, weak policies, and generates compliant policy records
+- **HTTP HSTS Preload & Security Header Checker** (`tools/http_hsts_preload_checker.py`) - Audits domain HTTP Strict Transport Security (HSTS) headers, evaluates max-age/subdomains/preload directives, and checks HTTPS redirection and SSL readiness for HSTS Preload List submission
+- **JWT Key Rotation & Key-Ring Simulator** (`tools/jwt_key_rotation_simulator.py`) - Simulates JWT key rotation lifecycles, dual-key verification rings, grace period expirations, and key revocation policies
+- **Python Context Manager & Resource Leak Auditor** (`tools/python_context_manager_auditor.py`) - Static AST analysis tool scanning Python code for unclosed files, sockets, database connections, and locks allocated outside of `with` context manager blocks
+- **CSV Column Data Type Cast & Schema Validator** (`tools/csv_column_type_cast_validator.py`) - Audits CSV files against explicit or inferred column data types (int, float, bool, date, email, uuid, IP), pinpoints invalid cell coordinates, and generates cleaned datasets
+- **Markdown Embedded Code Block Syntax Linter** (`tools/markdown_code_block_linter.py`) - Scans Markdown files, extracts embedded code snippets (Python, JSON, HTML, XML, YAML), and lints their syntax with line-number precision
 
 
 ## Usage
