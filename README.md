@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 760+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 765+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -137,6 +137,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Systemd Journal & Service Log Analyzer** (`tools/systemd_journal_analyzer.py`) - Parse systemd journal logs (JSON export or syslog), compute per-service statistics, error timelines, OOM killer events, and restart loops with terminal bar charts
 - **Log Sampling Filter & Rate Limiter** (`tools/log_sampling_filter.py`) - Filters large log streams or log files using deterministic sampling, reservoir sampling, stride sampling, or rate-limiting per log level
 - **Environment Variable & Secret Masker** (`tools/env_secret_masker.py`) - Scans configuration/log files, detects credentials, API keys, tokens, and high-entropy strings, redacting them with customizable placeholders
+- **ENV File Sorter & Formatter** (`tools/env_file_sorter.py`) - Sorts and reorganizes `.env` configuration files by variable name or key prefix, grouping entries under section headers, deduplicating keys, and aligning values.
 
 
 ### Development Tools
@@ -429,6 +430,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Mock AWS SQS Server** (`tools/mock_sqs_server.py`) - Expose a local HTTP server mimicking basic AWS SQS endpoints (CreateQueue, SendMessage, ReceiveMessage, DeleteMessage) for offline development
 - **YAML Schema Validator** (`tools/yaml_schema_validator.py`) - Validates YAML configuration files against structural schema specifications, checking field types, required fields, allowed values, regex patterns, and nested keys
 - **Multi-Language Source Code Dependency Grapher** (`tools/code_file_dependency_graph.py`) - Extracts module import and include dependency relationships across Python, JavaScript, HTML, C/C++, and Go files to render ASCII trees, Mermaid.js diagrams, or DOT graphs
+- **cURL Command Sanitizer & Formatter** (`tools/curl_command_sanitizer.py`) - Redacts sensitive headers, auth tokens, and URL parameters from cURL commands, normalizes flags, and formats multi-line requests for clean documentation.
+- **Markdown Callout & Alert Converter** (`tools/markdown_callout_converter.py`) - Converts callout and alert blocks across Markdown formats including GitHub Alerts (`> [!NOTE]`), Obsidian callouts, HTML alert boxes, and classic blockquotes.
 
 
 ### Data Processing
@@ -541,6 +544,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Zero-Dependency Excel to CSV Converter** (`tools/xlsx_to_csv_converter.py`) - Native Excel (.xlsx) file parser and converter to CSV, TSV, or JSON formats using standard zip and xml libraries.
 - **TOML to .Env Converter & Diff Tool** (`tools/toml_env_converter.py`) - Converts TOML configuration files into .env environment files and vice versa with key flattening, custom prefixing, and bi-directional diff comparison
 - **CSS Length Unit Converter & Transformer** (`tools/css_unit_converter.py`) - Parses CSS files or declarations and converts length units (px, rem, em, %, vh, vw, pt) based on customizable root font size or viewport dimensions
+- **SQLite BLOB Extractor & Magic Byte Detector** (`tools/sqlite_blob_extractor.py`) - Scans SQLite database tables for binary/BLOB columns, auto-identifies file formats (PNG, JPEG, PDF, ZIP, MP3, etc.) using magic signatures, and exports them into organized folders.
+- **CSV Header Normalizer** (`tools/csv_header_normalizer.py`) - Standardizes column header names across CSV datasets, converting casing (`snake_case`, `camelCase`, etc.), stripping special characters, deduplicating collisions, and logging audit maps.
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
