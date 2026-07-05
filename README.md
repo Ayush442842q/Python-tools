@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 765+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 776+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -737,7 +737,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Context Manager & Resource Leak Auditor** (`tools/python_context_manager_auditor.py`) - Static AST analysis tool scanning Python code for unclosed files, sockets, database connections, and locks allocated outside of `with` context manager blocks
 - **CSV Column Data Type Cast & Schema Validator** (`tools/csv_column_type_cast_validator.py`) - Audits CSV files against explicit or inferred column data types (int, float, bool, date, email, uuid, IP), pinpoints invalid cell coordinates, and generates cleaned datasets
 - **Markdown Embedded Code Block Syntax Linter** (`tools/markdown_code_block_linter.py`) - Scans Markdown files, extracts embedded code snippets (Python, JSON, HTML, XML, YAML), and lints their syntax with line-number precision
-
+- **Markdown Table Transposer** (`tools/markdown_table_transposer.py`) - Transpose rows and columns in Markdown tables, align column widths, and handle alignment specifiers
+- **SemVer Range Checker & Calculator** (`tools/semver_range_checker.py`) - Parses SemVer 2.0.0 strings, bumps version components, evaluates range expressions (^, ~, >=, <=), and sorts lists of versions
+- **Cron Human Explainer** (`tools/cron_human_explainer.py`) - Translates standard 5-field and 6-field cron expressions into natural English and calculates upcoming execution timestamps with relative time countdowns
+- **Gitignore Rule Tester** (`tools/gitignore_rule_tester.py`) - Tests file paths against .gitignore rules recursively, explaining exact pattern matches, source file line numbers, and negation rules
+- **Text Diff HTML Reporter** (`tools/text_diff_html_reporter.py`) - Generates a standalone, visual HTML diff report comparing text files or strings with side-by-side or unified views and change statistics
 
 ## Usage
 
