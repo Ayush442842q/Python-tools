@@ -134,6 +134,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Todo Archiver** (`tools/markdown_todo_archiver.py`) - Clean and archive completed tasks from markdown checklists to a completed tasks section or separate archive file
 - **Markdown Image Inliner** (`tools/markdown_image_inliner.py`) - Scan Markdown documents to convert local and remote image links into inline Base64 data URIs, making the files self-contained
 - **CLI Financial Projection Calculator** (`tools/cli_financial_projection_calculator.py`) - Simulate long-term compound growth with custom financial events, inflation adjustment, tax rates, and a visual ASCII/Unicode chart
+- **Systemd Journal & Service Log Analyzer** (`tools/systemd_journal_analyzer.py`) - Parse systemd journal logs (JSON export or syslog), compute per-service statistics, error timelines, OOM killer events, and restart loops with terminal bar charts
 
 
 ### Development Tools
@@ -142,6 +143,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **JSON Validate Tool** (`tools/json_validate.py`) - Validates JSON file and pretty‑prints if valid
 - **JSON Diff Tool** (`tools/json_diff_tool.py`) - Compare two JSON files recursively and display key-by-key changes
 - **JSON Malformed Repairer** (`tools/json_malformed_repairer.py`) - Scan, repair, and format malformed JSON files by fixing quotes, unquoted keys, trailing commas, and Javascript comments
+- **Java .properties Converter & Manager** (`tools/java_properties_converter.py`) - Parse Java `.properties` files (handling unicode escape sequences and multi-line values), converting bi-directionally between `.properties`, JSON, YAML, and `.env` formats
+- **Python Cognitive Complexity Calculator** (`tools/code_cognitive_complexity_calculator.py`) - Calculate SonarSource-style Cognitive Complexity scores for Python functions and modules to identify code that is difficult to comprehend
+- **Markdown Footnote Validator & Auto-Formatter** (`tools/markdown_footnote_referencer.py`) - Validate, re-number inline references, and re-order footnote definitions at the end of Markdown documents
 - **Ping Tool** (`tools/ping_tool.py`) - Simple wrapper around system ping
 - **Banner Tool** (`tools/banner.py`) - Prints text with optional ANSI color
 - **Base64 Image Encoder/Decoder** (`tools/base64_image_tool.py`) - Encode images to Base64/Data URIs and decode Base64 strings back to image files
@@ -707,6 +711,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Shamir's Secret Sharing Utility** (`tools/shamir_secret_sharer.py`) - Split a secret or file into N shares, requiring at least K threshold shares to reconstruct using Lagrange interpolation over GF(2^256-189).
 - **PCM WAV Audio Steganography Tool** (`tools/wav_steganography.py`) - Hide and extract secret text or files inside PCM WAV audio files using LSB steganography with optional SHA-256 XOR encryption.
 - **JWKS Generator & Inspector** (`tools/jwks_generator.py`) - Generate RSA/EC public and private key pairs, format public keys as JSON Web Key Sets (JWKS), and inspect local or remote JWKS endpoints
+- **DNS CAA Record Validator & Policy Generator** (`tools/dns_caa_record_validator.py`) - Validate DNS Certification Authority Authorization (CAA) records, evaluate security posture against major CAs, and generate compliant CAA policies
 
 
 ## Usage
