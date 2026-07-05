@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 806+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 811+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -773,6 +773,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Size Distribution Analyzer** (`tools/git_commit_size_distribution.py`) - Analyze Git commit history to categorize commits into size distribution buckets, compute line delta percentiles (P50-P99), detect monster commit outliers, and render ASCII histograms
 - **Python Constant Naming Linter** (`tools/python_constant_naming_linter.py`) - AST-based static analyzer that audits Python files for module-level and class-level constant definitions, verifying UPPER_CASE naming conventions and type annotations
 - **Log Timestamp Gap Detector** (`tools/log_timestamp_gap_detector.py`) - Analyze timestamped log files to detect unexpected time gaps or execution delay spikes exceeding a configured threshold, with contextual log snippet reporting
+- **Python Module Coupling Metrics & Architecture Analyzer** (`tools/python_module_coupling_metrics.py`) - Computes software design coupling metrics (Ca, Ce, Instability, Abstractness, Distance from Main Sequence) across Python packages using AST import analysis
+- **Log Format Auto-Detector & Parser Generator** (`tools/log_format_auto_detector.py`) - Auto-detects log file line structures (Common Log Format, Syslog, JSON, Key-Value pairs), infers named regex capture groups, and generates Python parser scripts
+- **CSV Data Reconciler & Financial Audit Tool** (`tools/csv_data_reconciler.py`) - Reconciles two CSV datasets by key column matching, evaluates numeric tolerances, identifies source/target missing records, and outputs HTML audit reports
+- **Environment Variable Cross-Reference Auditor** (`tools/env_var_cross_reference_auditor.py`) - Scans codebase files (.py, .js, .ts, .sh, Dockerfile) for environment variable usages and cross-references them against definition files (.env, .env.example) to find missing or dead variables
+- **Markdown Heading Hierarchy & Structural Validator** (`tools/markdown_heading_hierarchy_validator.py`) - Audits Markdown files for heading hierarchy errors (skipped levels, duplicate section titles, multiple H1s) with visual ASCII outline trees and auto-fix capabilities
 
 ## Usage
 
