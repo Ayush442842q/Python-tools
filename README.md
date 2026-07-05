@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 791+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 796+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -758,6 +758,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Dotenv to YAML / JSON Converter** (`tools/dotenv_to_yaml_converter.py`) - Converts flat `.env` environment files into structured, nested YAML or JSON configurations with type inference and secret masking
 - **Syslog UDP Receiver & Log Parser Server** (`tools/syslog_udp_receiver_server.py`) - Lightweight UDP Syslog server and log packet analyzer (RFC 3164 / RFC 5424) with facility/severity parsing, colored terminal output, and log file logging
 - **Git Commit Co-Author Manager** (`tools/git_commit_coauthor_manager.py`) - CLI utility to manage, store, search, and format Git co-author commit message trailers (`Co-authored-by: Name <email>`) and integrate with Git hooks
+- **CLI Eisenhower Matrix Task Planner** (`tools/cli_todo_matrix_planner.py`) - Visual 2x2 Eisenhower Matrix task manager in terminal with Urgent/Important prioritization, categories, deadlines, and JSON persistence
+- **Text Readability Metrics & Prose Analyzer** (`tools/text_readability_metrics_analyzer.py`) - Multi-formula prose readability analyzer computing Flesch-Kincaid, Gunning Fog, SMOG, Coleman-Liau, ARI, LIX, and consensus grade level
+- **CSV Time-Series Resampler & Aggregator** (`tools/csv_time_series_resampler.py`) - Resamples and aggregates time series CSV datasets across uniform time buckets (hourly, daily, weekly, monthly) with ASCII sparkline visualization
+- **DNS Record Drift & Multi-Resolver Auditor** (`tools/dns_record_drift_checker.py`) - Audits DNS records across DoH providers (Cloudflare, Google, Quad9, AdGuard) to detect propagation drift and inconsistent answers
+- **Markdown Quiz & Self-Assessment Generator** (`tools/markdown_quiz_generator.py`) - Converts Markdown notes, Q&As, definitions, and flashcards into interactive CLI quizzes or standalone single-file HTML web quizzes
 
 ## Usage
 
