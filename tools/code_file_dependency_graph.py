@@ -126,6 +126,11 @@ class DependencyGraph:
 
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        try:
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
     parser = argparse.ArgumentParser(description="Extract source code dependencies and render module graphs.")
     parser.add_argument("project_dir", nargs="?", default=".", help="Root directory of project codebase (default: current dir)")
     parser.add_argument("--format", choices=["ascii", "mermaid", "dot", "json"], default="ascii",

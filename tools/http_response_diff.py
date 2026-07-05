@@ -135,6 +135,11 @@ def compare_responses(target_a: str, target_b: str, ignore_headers: List[str], t
 
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        try:
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
     parser = argparse.ArgumentParser(description="Compare two HTTP API endpoints or saved HTTP response files.")
     parser.add_argument("target_a", help="First URL or local file path")
     parser.add_argument("target_b", help="Second URL or local file path")

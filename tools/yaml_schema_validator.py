@@ -212,8 +212,13 @@ def generate_sample_schema() -> Dict[str, Any]:
 
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        try:
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
     parser = argparse.ArgumentParser(description="Validate YAML or JSON configuration files against a structural schema.")
-    parser.add_argument("yaml_file", help="Path to the YAML file to validate")
+    parser.add_argument("yaml_file", nargs="?", help="Path to the YAML file to validate")
     parser.add_argument("-s", "--schema", help="Path to schema file (JSON or YAML format)")
     parser.add_argument("--generate-sample-schema", action="store_true", help="Print sample schema JSON and exit")
 
@@ -222,6 +227,9 @@ def main():
     if args.generate_sample_schema:
         print(json.dumps(generate_sample_schema(), indent=2))
         sys.exit(0)
+
+    if not args.yaml_file:
+        parser.error("the following arguments are required: yaml_file (unless --generate-sample-schema is used)")
 
     try:
         yaml_data = load_yaml_file(args.yaml_file)

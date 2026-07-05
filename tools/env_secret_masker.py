@@ -104,6 +104,11 @@ class SecretMasker:
 
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        try:
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
     parser = argparse.ArgumentParser(description="Scan and redact sensitive secrets from configuration/log files.")
     parser.add_argument("files", nargs="+", help="File(s) or directory paths to process")
     parser.add_argument("-i", "--in-place", action="store_true", help="Modify files in-place with redacted output")
