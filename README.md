@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 750+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 760+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -658,9 +658,14 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Developer Pace Analyzer** (`tools/git_developer_pace_analyzer.py`) - Analyze Git commit pacing, temporal distributions (active hours, weekend workload), time gaps between commits, path entropy, and burnout risk metrics with an ASCII daily velocity timeline
 - **DNS Zone File Generator** (`tools/dns_zone_file_generator.py`) - Generate RFC 1035 compliant DNS zone files from JSON configurations with automatic SOA serial number incrementing and record validation
 - **HTTP Response & API Endpoint Comparator** (`tools/http_response_diff.py`) - Compares two HTTP API endpoints or saved response files (headers, status codes, latency, and JSON payload structures), rendering side-by-side diffs
+- **Python Variable Scope & Shadowing Analyzer** (`tools/python_variable_scope_analyzer.py`) - Scan Python files or projects using AST to detect scope anomalies, variable shadowing of built-in functions or outer scope variables, unused local variables, and global/nonlocal state modifications
+- **Git Commit Streak Tracker** (`tools/git_commit_streak_tracker.py`) - Analyze Git repository log history to calculate daily commit streaks, longest streak, active days, and render a terminal GitHub-style ASCII contribution activity calendar
+- **Markdown Math Formula Extractor & Validator** (`tools/markdown_math_formula_extractor.py`) - Scan Markdown files to extract, validate bracket symmetry, and catalog embedded TeX/LaTeX math expressions ($...$, $$...$$, environments), exporting as JSON or compiled LaTeX documents
+- **Multi-Log Event Correlation Engine** (`tools/log_correlation_engine.py`) - Parse multiple log files from different microservices, correlate events by trace IDs or request IDs, and generate unified multi-service causal timelines
 
 
 ### Security & Cryptography
+- **Environment File Security Linter** (`tools/env_file_security_linter.py`) - Lint `.env` and configuration files for security vulnerabilities, hardcoded secrets, weak passwords, duplicate keys, unquoted values, and naming conventions
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
 - **EXIF Metadata Inspector & Cleaner** (`tools/exif_cleaner.py`) - Inspect and strip EXIF metadata from images to preserve privacy
