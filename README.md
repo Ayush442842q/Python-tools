@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 796+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 801+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -139,6 +139,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Environment Variable & Secret Masker** (`tools/env_secret_masker.py`) - Scans configuration/log files, detects credentials, API keys, tokens, and high-entropy strings, redacting them with customizable placeholders
 - **ENV File Sorter & Formatter** (`tools/env_file_sorter.py`) - Sorts and reorganizes `.env` configuration files by variable name or key prefix, grouping entries under section headers, deduplicating keys, and aligning values.
 - **Log File Shannon Entropy & Anomaly Analyzer** (`tools/log_entropy_analyzer.py`) - Measures character entropy across sliding windows of log files to pinpoint obfuscated payloads, memory dumps, stack traces, and security anomalies with terminal sparklines
+- **File Naming Convention Linter** (`tools/file_naming_convention_linter.py`) - Audit file and directory names in a directory hierarchy against customizable naming rules and conventions with auto-fix capabilities
 
 
 ### Development Tools
@@ -436,6 +437,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Multi-Language Source Code Dependency Grapher** (`tools/code_file_dependency_graph.py`) - Extracts module import and include dependency relationships across Python, JavaScript, HTML, C/C++, and Go files to render ASCII trees, Mermaid.js diagrams, or DOT graphs
 - **cURL Command Sanitizer & Formatter** (`tools/curl_command_sanitizer.py`) - Redacts sensitive headers, auth tokens, and URL parameters from cURL commands, normalizes flags, and formats multi-line requests for clean documentation.
 - **Markdown Callout & Alert Converter** (`tools/markdown_callout_converter.py`) - Converts callout and alert blocks across Markdown formats including GitHub Alerts (`> [!NOTE]`), Obsidian callouts, HTML alert boxes, and classic blockquotes.
+- **Python Exception Hierarchy Visualizer** (`tools/python_exception_hierarchy_visualizer.py`) - Discover custom Python exception hierarchies and trace raise locations using AST parsing to render ASCII or Mermaid diagrams
 
 
 ### Data Processing
@@ -551,6 +553,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Length Unit Converter & Transformer** (`tools/css_unit_converter.py`) - Parses CSS files or declarations and converts length units (px, rem, em, %, vh, vw, pt) based on customizable root font size or viewport dimensions
 - **SQLite BLOB Extractor & Magic Byte Detector** (`tools/sqlite_blob_extractor.py`) - Scans SQLite database tables for binary/BLOB columns, auto-identifies file formats (PNG, JPEG, PDF, ZIP, MP3, etc.) using magic signatures, and exports them into organized folders.
 - **CSV Header Normalizer** (`tools/csv_header_normalizer.py`) - Standardizes column header names across CSV datasets, converting casing (`snake_case`, `camelCase`, etc.), stripping special characters, deduplicating collisions, and logging audit maps.
+- **CSV Correlation Matrix Calculator** (`tools/csv_correlation_matrix_calculator.py`) - Computes Pearson or Spearman rank correlation matrices for numerical columns in CSV files and displays ASCII heatmaps or formatted tables
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -672,6 +675,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Streak Tracker** (`tools/git_commit_streak_tracker.py`) - Analyze Git repository log history to calculate daily commit streaks, longest streak, active days, and render a terminal GitHub-style ASCII contribution activity calendar
 - **Markdown Math Formula Extractor & Validator** (`tools/markdown_math_formula_extractor.py`) - Scan Markdown files to extract, validate bracket symmetry, and catalog embedded TeX/LaTeX math expressions ($...$, $$...$$, environments), exporting as JSON or compiled LaTeX documents
 - **Multi-Log Event Correlation Engine** (`tools/log_correlation_engine.py`) - Parse multiple log files from different microservices, correlate events by trace IDs or request IDs, and generate unified multi-service causal timelines
+- **HTTP Response Replay Server** (`tools/http_response_replay_server.py`) - Replay recorded HTTP traffic dumps or HAR files using a local mock HTTP server matching request paths and headers
 
 
 ### Security & Cryptography
@@ -763,6 +767,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Time-Series Resampler & Aggregator** (`tools/csv_time_series_resampler.py`) - Resamples and aggregates time series CSV datasets across uniform time buckets (hourly, daily, weekly, monthly) with ASCII sparkline visualization
 - **DNS Record Drift & Multi-Resolver Auditor** (`tools/dns_record_drift_checker.py`) - Audits DNS records across DoH providers (Cloudflare, Google, Quad9, AdGuard) to detect propagation drift and inconsistent answers
 - **Markdown Quiz & Self-Assessment Generator** (`tools/markdown_quiz_generator.py`) - Converts Markdown notes, Q&As, definitions, and flashcards into interactive CLI quizzes or standalone single-file HTML web quizzes
+- **SSH Authorized Keys Auditor** (`tools/ssh_authorized_keys_auditor.py`) - Audit SSH authorized_keys files for weak keys, deprecated algorithms, duplicates, and security risks
 
 ## Usage
 
