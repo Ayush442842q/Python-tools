@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 801+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 806+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -768,6 +768,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS Record Drift & Multi-Resolver Auditor** (`tools/dns_record_drift_checker.py`) - Audits DNS records across DoH providers (Cloudflare, Google, Quad9, AdGuard) to detect propagation drift and inconsistent answers
 - **Markdown Quiz & Self-Assessment Generator** (`tools/markdown_quiz_generator.py`) - Converts Markdown notes, Q&As, definitions, and flashcards into interactive CLI quizzes or standalone single-file HTML web quizzes
 - **SSH Authorized Keys Auditor** (`tools/ssh_authorized_keys_auditor.py`) - Audit SSH authorized_keys files for weak keys, deprecated algorithms, duplicates, and security risks
+- **JSON to .env Converter** (`tools/json_to_env_converter.py`) - Convert nested or flat JSON configuration files into standard .env environment variable files with custom delimiters, secret masking, and array formatting
+- **Markdown Task Progress Calculator** (`tools/markdown_task_progress_calculator.py`) - Calculate task list completion statistics across Markdown files and heading sections with terminal visual progress bars and JSON export
+- **Git Commit Size Distribution Analyzer** (`tools/git_commit_size_distribution.py`) - Analyze Git commit history to categorize commits into size distribution buckets, compute line delta percentiles (P50-P99), detect monster commit outliers, and render ASCII histograms
+- **Python Constant Naming Linter** (`tools/python_constant_naming_linter.py`) - AST-based static analyzer that audits Python files for module-level and class-level constant definitions, verifying UPPER_CASE naming conventions and type annotations
+- **Log Timestamp Gap Detector** (`tools/log_timestamp_gap_detector.py`) - Analyze timestamped log files to detect unexpected time gaps or execution delay spikes exceeding a configured threshold, with contextual log snippet reporting
 
 ## Usage
 
