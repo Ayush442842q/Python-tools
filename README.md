@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 781+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 786+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -747,6 +747,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Cron Human Explainer** (`tools/cron_human_explainer.py`) - Translates standard 5-field and 6-field cron expressions into natural English and calculates upcoming execution timestamps with relative time countdowns
 - **Gitignore Rule Tester** (`tools/gitignore_rule_tester.py`) - Tests file paths against .gitignore rules recursively, explaining exact pattern matches, source file line numbers, and negation rules
 - **Text Diff HTML Reporter** (`tools/text_diff_html_reporter.py`) - Generates a standalone, visual HTML diff report comparing text files or strings with side-by-side or unified views and change statistics
+- **Python Deprecated API Scanner** (`tools/python_deprecated_api_scanner.py`) - Static analysis scanner searching Python codebases for deprecated modules, functions, methods, and syntax across Python 3.8 - 3.14 deprecation timelines
+- **Terraform Configuration Linter & Security Auditor** (`tools/terraform_config_linter.py`) - Audits Terraform (.tf) HCL configuration files for hardcoded secrets, open security groups (0.0.0.0/0), unencrypted storage resources, and wildcard IAM policies
+- **Gitignore Coverage & Audit Analyzer** (`tools/gitignore_coverage_analyzer.py`) - Evaluates .gitignore rules against workspace files, calculates ignore coverage percentage, and flags unignored sensitive files or temporary build artifacts
+- **Python Docstring Style Converter** (`tools/python_docstring_style_converter.py`) - Analyzes and converts Python docstrings between Google, NumPy, and reStructuredText (reST) formats using AST and regex parsing
+- **INI & CFG Configuration Linter** (`tools/ini_config_linter.py`) - Lints, security-audits, and converts standard INI/CFG configuration files for duplicate keys, syntax errors, insecure URLs, and plain-text credentials
 
 ## Usage
 
