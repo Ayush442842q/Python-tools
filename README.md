@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 786+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 791+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -752,6 +752,12 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Gitignore Coverage & Audit Analyzer** (`tools/gitignore_coverage_analyzer.py`) - Evaluates .gitignore rules against workspace files, calculates ignore coverage percentage, and flags unignored sensitive files or temporary build artifacts
 - **Python Docstring Style Converter** (`tools/python_docstring_style_converter.py`) - Analyzes and converts Python docstrings between Google, NumPy, and reStructuredText (reST) formats using AST and regex parsing
 - **INI & CFG Configuration Linter** (`tools/ini_config_linter.py`) - Lints, security-audits, and converts standard INI/CFG configuration files for duplicate keys, syntax errors, insecure URLs, and plain-text credentials
+
+- **Markdown Table to CSV Exporter** (`tools/markdown_table_to_csv_exporter.py`) - Extracts tables from Markdown files or text, cleans formatting tags (links, bold, code), and exports to CSV, TSV, or JSON
+- **Text Column Aligner** (`tools/text_column_aligner.py`) - Aligns tabular plain text, log columns, or space-separated data into neat, padded columns with custom alignment and border separators
+- **Dotenv to YAML / JSON Converter** (`tools/dotenv_to_yaml_converter.py`) - Converts flat `.env` environment files into structured, nested YAML or JSON configurations with type inference and secret masking
+- **Syslog UDP Receiver & Log Parser Server** (`tools/syslog_udp_receiver_server.py`) - Lightweight UDP Syslog server and log packet analyzer (RFC 3164 / RFC 5424) with facility/severity parsing, colored terminal output, and log file logging
+- **Git Commit Co-Author Manager** (`tools/git_commit_coauthor_manager.py`) - CLI utility to manage, store, search, and format Git co-author commit message trailers (`Co-authored-by: Name <email>`) and integrate with Git hooks
 
 ## Usage
 
