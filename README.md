@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 700+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 750+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -135,6 +135,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Image Inliner** (`tools/markdown_image_inliner.py`) - Scan Markdown documents to convert local and remote image links into inline Base64 data URIs, making the files self-contained
 - **CLI Financial Projection Calculator** (`tools/cli_financial_projection_calculator.py`) - Simulate long-term compound growth with custom financial events, inflation adjustment, tax rates, and a visual ASCII/Unicode chart
 - **Systemd Journal & Service Log Analyzer** (`tools/systemd_journal_analyzer.py`) - Parse systemd journal logs (JSON export or syslog), compute per-service statistics, error timelines, OOM killer events, and restart loops with terminal bar charts
+- **Log Sampling Filter & Rate Limiter** (`tools/log_sampling_filter.py`) - Filters large log streams or log files using deterministic sampling, reservoir sampling, stride sampling, or rate-limiting per log level
+- **Environment Variable & Secret Masker** (`tools/env_secret_masker.py`) - Scans configuration/log files, detects credentials, API keys, tokens, and high-entropy strings, redacting them with customizable placeholders
 
 
 ### Development Tools
@@ -425,6 +427,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Change Coupling Analyzer** (`tools/git_change_coupling_analyzer.py`) - Analyze commit history to calculate logical coupling between files, identifying modules that change together
 - **Mock LDAP Directory Server** (`tools/mock_ldap_server.py`) - Spin up a lightweight, local mock LDAP directory server in pure Python to test Bind authentication and Search requests
 - **Mock AWS SQS Server** (`tools/mock_sqs_server.py`) - Expose a local HTTP server mimicking basic AWS SQS endpoints (CreateQueue, SendMessage, ReceiveMessage, DeleteMessage) for offline development
+- **YAML Schema Validator** (`tools/yaml_schema_validator.py`) - Validates YAML configuration files against structural schema specifications, checking field types, required fields, allowed values, regex patterns, and nested keys
+- **Multi-Language Source Code Dependency Grapher** (`tools/code_file_dependency_graph.py`) - Extracts module import and include dependency relationships across Python, JavaScript, HTML, C/C++, and Go files to render ASCII trees, Mermaid.js diagrams, or DOT graphs
 
 
 ### Data Processing
@@ -653,6 +657,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Code Refactoring Candidate Finder** (`tools/code_refactoring_candidate_finder.py`) - Analyze Python codebases recursively using AST parsing to compute cyclomatic complexity, nesting depth, comment density, and TODOs to rank files needing refactoring
 - **Git Developer Pace Analyzer** (`tools/git_developer_pace_analyzer.py`) - Analyze Git commit pacing, temporal distributions (active hours, weekend workload), time gaps between commits, path entropy, and burnout risk metrics with an ASCII daily velocity timeline
 - **DNS Zone File Generator** (`tools/dns_zone_file_generator.py`) - Generate RFC 1035 compliant DNS zone files from JSON configurations with automatic SOA serial number incrementing and record validation
+- **HTTP Response & API Endpoint Comparator** (`tools/http_response_diff.py`) - Compares two HTTP API endpoints or saved response files (headers, status codes, latency, and JSON payload structures), rendering side-by-side diffs
 
 
 ### Security & Cryptography
