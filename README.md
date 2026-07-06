@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 846+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 851+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -444,6 +444,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Exception Hierarchy Visualizer** (`tools/python_exception_hierarchy_visualizer.py`) - Discover custom Python exception hierarchies and trace raise locations using AST parsing to render ASCII or Mermaid diagrams
 - **Docker Compose Override Generator** (`tools/docker_compose_override_generator.py`) - Generates environment-specific Docker Compose override files (docker-compose.override.yml) for local development, debugging, and testing without modifying base configurations
 - **Python Structural Pattern Matching Linter** (`tools/python_pattern_matching_linter.py`) - Analyzes Python 3.10+ match/case pattern matching statements for unreachable cases after wildcards, duplicate literal patterns, and missing default handlers
+- **Markdown to LaTeX Converter** (`tools/markdown_to_latex.py`) - Converts Markdown documents to LaTeX (.tex) files with support for headings, lists, tables, code blocks, and text styling
+- **Markdown to OPML Converter** (`tools/markdown_to_opml.py`) - Converts Markdown headings and lists into OPML 2.0 outline hierarchy files for mind-mapping tools and outliners
+- **SQL DDL Mock Data Generator** (`tools/sql_ddl_mock_generator.py`) - Parses SQL CREATE TABLE statements and generates realistic mock SQL INSERT statements mapping column types and names to mock values
+- **Git Branch Lifetime & Merge Latency Analyzer** (`tools/git_branch_lifetime_analyzer.py`) - Analyzes local Git repositories to compute development lifetime, commit volume, contributor count, and review/merge latency from merge history
+- **Shell to Batch Script Converter** (`tools/shell_to_batch_converter.py`) - Transpiles basic Bash shell scripts (.sh) to Windows Command Prompt Batch files (.bat) translating commands, comments, variables, and conditions
 
 
 ### Data Processing
