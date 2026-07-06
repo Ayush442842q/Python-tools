@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 841+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 846+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -809,6 +809,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Collapsible Section Generator** (`tools/markdown_collapsible_section_generator.py`) - Automatically converts designated Markdown headings or long sections into HTML `<details><summary>` collapsible dropdowns
 - **Dockerfile Size & Layer Optimizer** (`tools/dockerfile_size_optimizer.py`) - Analyzes Dockerfile instructions to detect layer inflation anti-patterns, missing cache cleanups, unoptimized package installs, and unnecessary file additions
 - **JSON Schema Backward & Forward Compatibility Checker** (`tools/json_schema_compatibility_checker.py`) - Compares two JSON Schema definitions (Old Schema vs New Schema) to detect breaking API changes, contract violations, type alterations, and backwards-incompatible schema evolution
+- **Python AST-based Recursion Analyzer & Safety Guard** (`tools/python_recursion_analyzer.py`) - Statically parses Python source files using AST to identify recursive functions, analyze their base cases and recursive steps, flag potential infinite recursion risks, and suggest optimizations like memoization
+- **Markdown Table Relational Joiner & Union Utility** (`tools/markdown_table_joiner.py`) - Performs relational SQL-like joins (INNER, LEFT, RIGHT, FULL OUTER) and UNION operations on two Markdown tables directly from the command line, generating a perfectly aligned merged Markdown table
+- **Python Class Magic Method Contract Auditor** (`tools/python_magic_method_auditor.py`) - Statically analyzes Python source files to ensure class magic methods (like `__eq__`, `__hash__`, `__enter__`, `__exit__`, `__init__`, and comparisons) strictly adhere to Python's structural contracts, helping developers prevent runtime protocol bugs
+- **Jinja2 Template Variable Extractor & JSON Schema Generator** (`tools/jinja_template_schema_generator.py`) - Statically parses Jinja2 templates to extract variables, loop structures, and conditionals, and then infers the expected data types and structural hierarchy to generate a complete JSON Schema
+- **SQL SELECT Query Mock Data Generator** (`tools/sql_query_mock_generator.py`) - Parses SQL SELECT queries, identifies columns and WHERE clause conditions/constraints (such as equal, greater than, less than, or matching patterns), and generates a corresponding mock dataset formatted in JSON, CSV, or SQL INSERT statements
 
 ## Usage
 
