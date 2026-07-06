@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 851+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 856+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -142,6 +142,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log File Shannon Entropy & Anomaly Analyzer** (`tools/log_entropy_analyzer.py`) - Measures character entropy across sliding windows of log files to pinpoint obfuscated payloads, memory dumps, stack traces, and security anomalies with terminal sparklines
 - **File Naming Convention Linter** (`tools/file_naming_convention_linter.py`) - Audit file and directory names in a directory hierarchy against customizable naming rules and conventions with auto-fix capabilities
 - **Markdown Table Math Evaluator** (`tools/markdown_table_math_evaluator.py`) - Parses Markdown tables, evaluates embedded math formulas (=SUM, =AVG, =A1*B1), updates cell values and summary footer rows, and formats tables with clean alignment
+- **Local Markdown Search Engine & TF-IDF Indexer** (`tools/markdown_search_engine.py`) - Recursively indexes a directory of Markdown files, computes TF-IDF scores, and provides an interactive search interface with ranked results and highlighted context snippets in the terminal
 
 
 ### Development Tools
@@ -449,6 +450,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL DDL Mock Data Generator** (`tools/sql_ddl_mock_generator.py`) - Parses SQL CREATE TABLE statements and generates realistic mock SQL INSERT statements mapping column types and names to mock values
 - **Git Branch Lifetime & Merge Latency Analyzer** (`tools/git_branch_lifetime_analyzer.py`) - Analyzes local Git repositories to compute development lifetime, commit volume, contributor count, and review/merge latency from merge history
 - **Shell to Batch Script Converter** (`tools/shell_to_batch_converter.py`) - Transpiles basic Bash shell scripts (.sh) to Windows Command Prompt Batch files (.bat) translating commands, comments, variables, and conditions
+- **Python Side-Effect & Impurity Auditor** (`tools/python_ast_side_effect_auditor.py`) - An AST-based scanner that recursively parses Python files to check if functions/methods are pure or impure, detecting global/nonlocal mutations, parameter alterations, and stateful library side-effects
 
 
 ### Data Processing
@@ -568,6 +570,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Header Normalizer** (`tools/csv_header_normalizer.py`) - Standardizes column header names across CSV datasets, converting casing (`snake_case`, `camelCase`, etc.), stripping special characters, deduplicating collisions, and logging audit maps.
 - **CSV Correlation Matrix Calculator** (`tools/csv_correlation_matrix_calculator.py`) - Computes Pearson or Spearman rank correlation matrices for numerical columns in CSV files and displays ASCII heatmaps or formatted tables
 - **SQLite Table Pivot Generator** (`tools/sqlite_table_pivot_generator.py`) - Dynamically generates and executes SQL CASE-WHEN cross-tabulation pivot queries on SQLite database tables or custom queries without external libraries
+- **SQLite JSON Document Store Wrapper** (`tools/sqlite_document_store.py`) - A command-line utility implementing a MongoDB-like document-store interface (collections, insert, find, update, delete, indexing) on top of standard SQLite using native JSON capabilities
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -690,6 +693,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Math Formula Extractor & Validator** (`tools/markdown_math_formula_extractor.py`) - Scan Markdown files to extract, validate bracket symmetry, and catalog embedded TeX/LaTeX math expressions ($...$, $$...$$, environments), exporting as JSON or compiled LaTeX documents
 - **Multi-Log Event Correlation Engine** (`tools/log_correlation_engine.py`) - Parse multiple log files from different microservices, correlate events by trace IDs or request IDs, and generate unified multi-service causal timelines
 - **HTTP Response Replay Server** (`tools/http_response_replay_server.py`) - Replay recorded HTTP traffic dumps or HAR files using a local mock HTTP server matching request paths and headers
+- **CLI Network Packet Builder & HEX Simulator** (`tools/cli_network_packet_generator.py`) - An educational interactive tool to construct custom network packets (Ethernet, IPv4, TCP, UDP, ICMP) step-by-step, compute internet checksums, and display Hex Dumps and structural byte layouts
 
 
 ### Security & Cryptography
@@ -819,6 +823,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Class Magic Method Contract Auditor** (`tools/python_magic_method_auditor.py`) - Statically analyzes Python source files to ensure class magic methods (like `__eq__`, `__hash__`, `__enter__`, `__exit__`, `__init__`, and comparisons) strictly adhere to Python's structural contracts, helping developers prevent runtime protocol bugs
 - **Jinja2 Template Variable Extractor & JSON Schema Generator** (`tools/jinja_template_schema_generator.py`) - Statically parses Jinja2 templates to extract variables, loop structures, and conditionals, and then infers the expected data types and structural hierarchy to generate a complete JSON Schema
 - **SQL SELECT Query Mock Data Generator** (`tools/sql_query_mock_generator.py`) - Parses SQL SELECT queries, identifies columns and WHERE clause conditions/constraints (such as equal, greater than, less than, or matching patterns), and generates a corresponding mock dataset formatted in JSON, CSV, or SQL INSERT statements
+- **Diffie-Hellman Key Exchange Simulator & Educational Visualizer** (`tools/diffie_hellman_simulator.py`) - An interactive CLI simulator of the Diffie-Hellman key exchange protocol, including parameter verification, step-by-step key calculations, eavesdropper analysis, and brute-force scaling benchmarks
 
 ## Usage
 
