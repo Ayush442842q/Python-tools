@@ -122,6 +122,46 @@ Statically analyzes GraphQL query files (.graphql, .txt, or JSON payloads) to me
 python tools/graphql_query_analyzer.py query.graphql --max-depth 8 --max-complexity 300.0
 ```
 
+### Tailwind CSS Conflict Detector & Optimizer (`tailwind_conflict_detector.py`)
+Statically audits HTML, JSX, TSX, JS, TS, and Vue files for conflicting Tailwind CSS utility classes (e.g. `p-4 p-5`, `text-red-500 text-blue-500`, `flex block`) within the same element and groups them by responsive breakpoints or state modifiers.
+
+#### Usage:
+```bash
+python tools/tailwind_conflict_detector.py /path/to/project/src --verbose
+```
+
+### HTML DOM Depth & Payload Size Analyzer (`html_dom_depth_analyzer.py`)
+Statically parses HTML files to measure DOM complexity, maximum nesting depth, total node count, and payload size (inline script/style bytes and SVG paths), providing warnings and performance recommendations.
+
+#### Usage:
+```bash
+python tools/html_dom_depth_analyzer.py index.html --threshold 20 --verbose
+```
+
+### Python Exception Shadowing & Dead Catch Detector (`python_dead_catch_detector.py`)
+Statically parses Python source code using AST to detect exception handling errors, including shadowed/dead catch blocks (catching a subclass exception after a parent class), duplicate catch blocks, and overly broad exceptions.
+
+#### Usage:
+```bash
+python tools/python_dead_catch_detector.py /path/to/project
+```
+
+### SQL Schema Circular Dependency Detector (`sql_circular_dependency_detector.py`)
+Parses SQL DDL schema files to extract table relationships and FOREIGN KEY constraints, builds a directed dependency graph, identifies circular reference cycles, and outputs cycle paths and Mermaid diagrams.
+
+#### Usage:
+```bash
+python tools/sql_circular_dependency_detector.py schema.sql --mermaid
+```
+
+### Markdown API Sync & Specification Auditor (`markdown_api_sync_checker.py`)
+Cross-references Python web server route configurations (FastAPI, Flask) with Markdown API documentation, identifying missing documentation, obsolete docs, or HTTP method mismatches.
+
+#### Usage:
+```bash
+python tools/markdown_api_sync_checker.py src/ docs/
+```
+
 #### Requirements:
 - Python 3.6+
 

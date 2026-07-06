@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 861+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 866+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -146,6 +146,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Development Tools
+- **Tailwind CSS Conflict Detector & Optimizer** (`tools/tailwind_conflict_detector.py`) - Audits HTML/JS/TS/Vue files for conflicting Tailwind CSS utility classes within the same element, grouped by media/state modifiers
+- **HTML DOM Depth & Payload Size Analyzer** (`tools/html_dom_depth_analyzer.py`) - Parses HTML files to measure DOM complexity, maximum nesting depth, total node count, and inline script/style/SVG payload sizes
+- **Python Exception Shadowing & Dead Catch Detector** (`tools/python_dead_catch_detector.py`) - Statically parses Python files using AST to identify dead/shadowed exception handlers and duplicate catch blocks
+- **Markdown API Sync & Endpoint Specification Auditor** (`tools/markdown_api_sync_checker.py`) - Cross-references Python web server routes (FastAPI/Flask) with Markdown documentation to detect missing or obsolete API docs
 - **API Contract Compatibility Checker** (`tools/api_contract_compatibility_checker.py`) - Compares OpenAPI/Swagger specs to detect breaking API changes, parameter removals, type alterations, and response schema shifts
 - **NPM Dependency Auditor** (`tools/npm_dependency_auditor.py`) - Audits Node.js projects for licensing, version drifts, and structure with whitelist/blacklist support
 - **Git Ownership Entropy & Fragmentation Analyzer** (`tools/git_ownership_entropy_analyzer.py`) - Calculates the ownership entropy (Shannon Entropy) and contribution inequality (Gini Coefficient) on a per-file basis using Git history to identify code hotspots with fragmented developer ownership
@@ -456,6 +460,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Data Processing
+- **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
 - **CSV Data Quality & Health Auditor** (`tools/csv_data_quality_auditor.py`) - Audits CSV datasets for overall quality score, completeness, outliers, duplicate records, and formatting anomalies
 - **JSON Schema Structural Diff & Compatibility Tool** (`tools/json_schema_diff_tool.py`) - Compares JSON Schemas for additions, removals, type changes, and constraint modifications (required fields, min/max bounds, regex patterns)
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
