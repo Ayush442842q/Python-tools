@@ -1,6 +1,7 @@
 # Python Tools Collection
 
-A comprehensive collection of 831+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 836+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -144,6 +145,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Development Tools
+- **API Contract Compatibility Checker** (`tools/api_contract_compatibility_checker.py`) - Compares OpenAPI/Swagger specs to detect breaking API changes, parameter removals, type alterations, and response schema shifts
+- **Code Refactoring Impact & Risk Analyzer** (`tools/code_refactoring_impact_analyzer.py`) - AST-based dependency and blast radius analyzer for Python codebases to evaluate the risk rating of modifying symbols
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
 - **File Hash Tool** (`tools/file_hash.py`) - Computes SHA256 hash of a file
 - **JSON Validate Tool** (`tools/json_validate.py`) - Validates JSON file and pretty‑prints if valid
@@ -444,6 +447,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Data Processing
+- **CSV Data Quality & Health Auditor** (`tools/csv_data_quality_auditor.py`) - Audits CSV datasets for overall quality score, completeness, outliers, duplicate records, and formatting anomalies
+- **JSON Schema Structural Diff & Compatibility Tool** (`tools/json_schema_diff_tool.py`) - Compares JSON Schemas for additions, removals, type changes, and constraint modifications (required fields, min/max bounds, regex patterns)
 - **CSV Processor** (`tools/csv_processor.py`) - Process and manipulate CSV files with various operations
 - **Data Entry Automation** (`tools/data_entry_automation.py`) - Automate repetitive data entry tasks
 - **Database Tool** (`tools/database_tool.py`) - Utility for database operations and migrations
@@ -683,6 +688,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Security & Cryptography
+- **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
 - **Environment File Security Linter** (`tools/env_file_security_linter.py`) - Lint `.env` and configuration files for security vulnerabilities, hardcoded secrets, weak passwords, duplicate keys, unquoted values, and naming conventions
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
