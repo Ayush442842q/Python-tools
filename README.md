@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 866+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 871+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -143,6 +143,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **File Naming Convention Linter** (`tools/file_naming_convention_linter.py`) - Audit file and directory names in a directory hierarchy against customizable naming rules and conventions with auto-fix capabilities
 - **Markdown Table Math Evaluator** (`tools/markdown_table_math_evaluator.py`) - Parses Markdown tables, evaluates embedded math formulas (=SUM, =AVG, =A1*B1), updates cell values and summary footer rows, and formats tables with clean alignment
 - **Local Markdown Search Engine & TF-IDF Indexer** (`tools/markdown_search_engine.py`) - Recursively indexes a directory of Markdown files, computes TF-IDF scores, and provides an interactive search interface with ranked results and highlighted context snippets in the terminal
+- **File Extension Distribution Analyzer** (`tools/file_extension_analyzer.py`) - Recursively scans a directory to analyze the distribution of file extensions (counts, total size, average size) and displays a beautiful ASCII/Unicode bar chart and summary table
 
 
 ### Development Tools
@@ -457,6 +458,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Branch Lifetime & Merge Latency Analyzer** (`tools/git_branch_lifetime_analyzer.py`) - Analyzes local Git repositories to compute development lifetime, commit volume, contributor count, and review/merge latency from merge history
 - **Shell to Batch Script Converter** (`tools/shell_to_batch_converter.py`) - Transpiles basic Bash shell scripts (.sh) to Windows Command Prompt Batch files (.bat) translating commands, comments, variables, and conditions
 - **Python Side-Effect & Impurity Auditor** (`tools/python_ast_side_effect_auditor.py`) - An AST-based scanner that recursively parses Python files to check if functions/methods are pure or impure, detecting global/nonlocal mutations, parameter alterations, and stateful library side-effects
+- **Python AST Constant Folder & Optimizer** (`tools/python_constant_folder.py`) - Statically parses Python source files into an AST, performs constant folding on literal expressions (arithmetic, string concatenation, boolean logic), and writes back the simplified/optimized code
 
 
 ### Data Processing
@@ -578,6 +580,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Correlation Matrix Calculator** (`tools/csv_correlation_matrix_calculator.py`) - Computes Pearson or Spearman rank correlation matrices for numerical columns in CSV files and displays ASCII heatmaps or formatted tables
 - **SQLite Table Pivot Generator** (`tools/sqlite_table_pivot_generator.py`) - Dynamically generates and executes SQL CASE-WHEN cross-tabulation pivot queries on SQLite database tables or custom queries without external libraries
 - **SQLite JSON Document Store Wrapper** (`tools/sqlite_document_store.py`) - A command-line utility implementing a MongoDB-like document-store interface (collections, insert, find, update, delete, indexing) on top of standard SQLite using native JSON capabilities
+- **CSV to Hierarchical JSON Converter** (`tools/csv_to_hierarchical_json.py`) - Converts a flat CSV with dot-notated headers (e.g. user.name.first, user.roles.0) into a nested hierarchical JSON, and vice versa
+
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
@@ -702,6 +706,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Multi-Log Event Correlation Engine** (`tools/log_correlation_engine.py`) - Parse multiple log files from different microservices, correlate events by trace IDs or request IDs, and generate unified multi-service causal timelines
 - **HTTP Response Replay Server** (`tools/http_response_replay_server.py`) - Replay recorded HTTP traffic dumps or HAR files using a local mock HTTP server matching request paths and headers
 - **CLI Network Packet Builder & HEX Simulator** (`tools/cli_network_packet_generator.py`) - An educational interactive tool to construct custom network packets (Ethernet, IPv4, TCP, UDP, ICMP) step-by-step, compute internet checksums, and display Hex Dumps and structural byte layouts
+- **MAC Address Vendor Lookup Tool** (`tools/mac_vendor_lookup.py`) - Parses and checks MAC addresses against an offline database of popular OUIs (Organizationally Unique Identifier) with a fallback to a free public API for online lookups
 
 
 ### Security & Cryptography
@@ -834,6 +839,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Jinja2 Template Variable Extractor & JSON Schema Generator** (`tools/jinja_template_schema_generator.py`) - Statically parses Jinja2 templates to extract variables, loop structures, and conditionals, and then infers the expected data types and structural hierarchy to generate a complete JSON Schema
 - **SQL SELECT Query Mock Data Generator** (`tools/sql_query_mock_generator.py`) - Parses SQL SELECT queries, identifies columns and WHERE clause conditions/constraints (such as equal, greater than, less than, or matching patterns), and generates a corresponding mock dataset formatted in JSON, CSV, or SQL INSERT statements
 - **Diffie-Hellman Key Exchange Simulator & Educational Visualizer** (`tools/diffie_hellman_simulator.py`) - An interactive CLI simulator of the Diffie-Hellman key exchange protocol, including parameter verification, step-by-step key calculations, eavesdropper analysis, and brute-force scaling benchmarks
+- **CVSS Score Calculator & Vector Parser** (`tools/cvss_calculator.py`) - Calculates CVSS v3.1 base score, impact, and exploitability sub-scores from a vector string or interactive CLI menu
 
 ## Usage
 
