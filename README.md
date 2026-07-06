@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 821+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 826+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -788,6 +788,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSS Utility Class & Selector Purger** (`tools/css_utility_class_purger.py`) - Audits CSS stylesheets against HTML, JS/TS/JSX, and Markdown templates to discover used selectors, purges unused CSS rules, and reports file size reduction statistics
 - **JSON Schema to OpenAPI 3.0/3.1 Converter** (`tools/json_schema_to_openapi.py`) - Converts JSON Schema definitions (draft-04, draft-07, 2020-12) into valid OpenAPI 3.0/3.1 components and endpoint path definitions with JSON and YAML formatting
 - **JWT Claim Diff Analyzer** (`tools/jwt_claim_diff_analyzer.py`) - Decodes and compares two JSON Web Tokens (JWTs), identifying claim discrepancies, algorithm changes, token lifetime variations, and security risk flags
+- **Python Module Dependency Matrix & Visualizer** (`tools/python_module_dependency_matrix.py`) - Computes module dependency matrices, instability metrics, circular dependency cycles, and exports to table, JSON, CSV, or Mermaid diagrams
+- **Markdown Table of Contents (TOC) Validator & Auto-Fixer** (`tools/markdown_toc_validator.py`) - Validates Markdown document TOC blocks against actual section headings, detects missing or broken anchors, and auto-updates TOCs in place
+- **CSV Sensitive Data & PII Scanner** (`tools/csv_pii_scanner.py`) - Scans CSV datasets to detect PII patterns (Emails, SSNs, Credit Cards, API keys, IPs), computes column risk scores, and generates masked/anonymized output
+- **Git Uncommitted Changes Snapshot & Archive Utility** (`tools/git_uncommitted_changes_archiver.py`) - Captures staged changes, unstaged diffs, and untracked files into a standalone ZIP snapshot with git metadata and restore capability
+- **RFC 8785 JSON Canonicalization Scheme (JCS) & Digest Tool** (`tools/json_canonicalizer.py`) - Canonicalizes JSON structures according to RFC 8785 standards, computes SHA-256 digests, and performs structural diffing and hash verification
 
 ## Usage
 
