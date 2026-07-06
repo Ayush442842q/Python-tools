@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 836+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 841+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -804,6 +804,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Docstring to Markdown Generator** (`tools/python_docstring_to_markdown.py`) - Statically parses Python source files using AST to extract docstrings, class hierarchies, function signatures, and type annotations into clean Markdown API documentation
 - **Markdown Frontmatter Merger & Metadata Manager** (`tools/markdown_frontmatter_merger.py`) - Merges, updates, and sorts YAML frontmatter metadata in Markdown files without affecting document content, with batch processing and dry-run diff support
 - **Cron Schedule Heatmap & Density Visualizer** (`tools/cron_schedule_heatmap.py`) - Simulates 5-field cron job schedules over time and renders terminal ASCII/Unicode heatmaps of execution density, identifying peak loads and task collisions
+- **CSV Fuzzy Record Deduplicator** (`tools/csv_fuzzy_deduplicator.py`) - Finds, groups, and merges near-duplicate records in CSV datasets using customizable string similarity algorithms (Levenshtein distance, SequenceMatcher, or Jaccard index) across specified columns
+- **Python Type Annotation Coverage Analyzer** (`tools/python_type_coverage_analyzer.py`) - Scans Python source files or entire directories using AST parsing to compute type hint coverage metrics across function parameters, return values, and variable assignments
+- **Markdown Collapsible Section Generator** (`tools/markdown_collapsible_section_generator.py`) - Automatically converts designated Markdown headings or long sections into HTML `<details><summary>` collapsible dropdowns
+- **Dockerfile Size & Layer Optimizer** (`tools/dockerfile_size_optimizer.py`) - Analyzes Dockerfile instructions to detect layer inflation anti-patterns, missing cache cleanups, unoptimized package installs, and unnecessary file additions
+- **JSON Schema Backward & Forward Compatibility Checker** (`tools/json_schema_compatibility_checker.py`) - Compares two JSON Schema definitions (Old Schema vs New Schema) to detect breaking API changes, contract violations, type alterations, and backwards-incompatible schema evolution
 
 ## Usage
 
