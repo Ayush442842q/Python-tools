@@ -82,6 +82,46 @@ Generates standardized BIND zone files from a simple JSON configuration, with au
 python tools/dns_zone_file_generator.py config.json -o example.com.zone --increment
 ```
 
+### NPM Dependency Auditor (`npm_dependency_auditor.py`)
+Audits `package.json` and `package-lock.json` files for dependency trees, outdated packages, license compliance, and security advisories with zero third-party dependencies.
+
+#### Usage:
+```bash
+python tools/npm_dependency_auditor.py /path/to/project --online --json
+```
+
+### Web Bundle Size Auditor (`web_bundle_size_auditor.py`)
+Scans production build folders (e.g., `dist/`, `build/`) to analyze file sizes (raw and gzipped), evaluate minification, check for source map exposures, and flag assets that exceed configurable size budgets.
+
+#### Usage:
+```bash
+python tools/web_bundle_size_auditor.py /path/to/dist --js-budget 200 --css-budget 50
+```
+
+### Kubernetes Pod Security Standards Linter (`k8s_security_standards_linter.py`)
+Parses Kubernetes manifests (YAML or JSON) recursively and audits them against official Kubernetes Pod Security Standards (Privileged, Baseline, Restricted).
+
+#### Usage:
+```bash
+python tools/k8s_security_standards_linter.py /path/to/manifests/ --json
+```
+
+### Git Ownership Entropy & Fragmentation Analyzer (`git_ownership_entropy_analyzer.py`)
+Calculates the ownership entropy (Shannon Entropy) and contribution inequality (Gini Coefficient) on a per-file basis using Git history to identify code hotspots with fragmented developer ownership.
+
+#### Usage:
+```bash
+python tools/git_ownership_entropy_analyzer.py /path/to/repo --limit 10
+```
+
+### GraphQL Query Complexity & Depth Analyzer (`graphql_query_analyzer.py`)
+Statically analyzes GraphQL query files (.graphql, .txt, or JSON payloads) to measure selection nesting depth, field counts, fragment spreads, and overall execution complexity to prevent Denial of Service (DoS) attacks.
+
+#### Usage:
+```bash
+python tools/graphql_query_analyzer.py query.graphql --max-depth 8 --max-complexity 300.0
+```
+
 #### Requirements:
 - Python 3.6+
 

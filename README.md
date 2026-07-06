@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 856+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 861+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -147,6 +147,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 ### Development Tools
 - **API Contract Compatibility Checker** (`tools/api_contract_compatibility_checker.py`) - Compares OpenAPI/Swagger specs to detect breaking API changes, parameter removals, type alterations, and response schema shifts
+- **NPM Dependency Auditor** (`tools/npm_dependency_auditor.py`) - Audits Node.js projects for licensing, version drifts, and structure with whitelist/blacklist support
+- **Git Ownership Entropy & Fragmentation Analyzer** (`tools/git_ownership_entropy_analyzer.py`) - Calculates the ownership entropy (Shannon Entropy) and contribution inequality (Gini Coefficient) on a per-file basis using Git history to identify code hotspots with fragmented developer ownership
 - **Code Refactoring Impact & Risk Analyzer** (`tools/code_refactoring_impact_analyzer.py`) - AST-based dependency and blast radius analyzer for Python codebases to evaluate the risk rating of modifying symbols
 - **Time Tool** (`tools/time.py`) - Displays current local time in ISO format
 - **File Hash Tool** (`tools/file_hash.py`) - Computes SHA256 hash of a file
@@ -574,6 +576,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
+- **Web Bundle Size Auditor** (`tools/web_bundle_size_auditor.py`) - Scans build output folders (e.g., `dist/`, `build/`) to analyze file sizes (raw/gzip), check budgets, minification, and source map exposures
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
 - **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
 - **DNS Propagation Checker** (`tools/dns_propagation_checker.py`) - Query multiple DNS providers for domain records to check propagation
@@ -698,6 +701,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
+- **Kubernetes Pod Security Standards Linter** (`tools/k8s_security_standards_linter.py`) - Parses Kubernetes manifests (YAML or JSON) recursively and audits them against official Kubernetes Pod Security Standards (Privileged, Baseline, Restricted)
+- **GraphQL Query Complexity & Depth Analyzer** (`tools/graphql_query_analyzer.py`) - Statically analyzes GraphQL queries to calculate selection nesting depth, field counts, and execution complexity to mitigate Denial of Service (DoS) attacks
 - **Environment File Security Linter** (`tools/env_file_security_linter.py`) - Lint `.env` and configuration files for security vulnerabilities, hardcoded secrets, weak passwords, duplicate keys, unquoted values, and naming conventions
 - **Password Strength Checker** (`tools/password_strength_checker.py`) - Check password strength and generate secure passwords
 - **Password Analyzer** (`tools/password_analyzer.py`) - Analyze and evaluate password strength with detailed feedback
