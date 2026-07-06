@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 811+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 816+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -778,6 +778,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Data Reconciler & Financial Audit Tool** (`tools/csv_data_reconciler.py`) - Reconciles two CSV datasets by key column matching, evaluates numeric tolerances, identifies source/target missing records, and outputs HTML audit reports
 - **Environment Variable Cross-Reference Auditor** (`tools/env_var_cross_reference_auditor.py`) - Scans codebase files (.py, .js, .ts, .sh, Dockerfile) for environment variable usages and cross-references them against definition files (.env, .env.example) to find missing or dead variables
 - **Markdown Heading Hierarchy & Structural Validator** (`tools/markdown_heading_hierarchy_validator.py`) - Audits Markdown files for heading hierarchy errors (skipped levels, duplicate section titles, multiple H1s) with visual ASCII outline trees and auto-fix capabilities
+- **Markdown Table Column Statistics & Aggregator** (`tools/markdown_table_column_stats.py`) - Computes descriptive statistics (count, min, max, mean, median, std dev, top frequencies) for columns in GFM Markdown tables with Markdown, JSON, and CSV report formatting
+- **Python Doctest Coverage Analyzer & Test Runner** (`tools/python_doctest_coverage_analyzer.py`) - AST-based scanner and execution engine analyzing Python source files for docstrings and embedded doctests (`>>>`), computing doctest coverage metrics and test pass/fail results
+- **Git Tag & Release Notes Auto-Generator** (`tools/git_tag_release_notes_generator.py`) - Analyzes Git commit history between tags or ranges, categorizes commits by Conventional Commit standards, detects breaking changes and issue references, and formats release notes in Markdown, HTML, or JSON
+- **CSS Utility Class & Selector Purger** (`tools/css_utility_class_purger.py`) - Audits CSS stylesheets against HTML, JS/TS/JSX, and Markdown templates to discover used selectors, purges unused CSS rules, and reports file size reduction statistics
+- **JSON Schema to OpenAPI 3.0/3.1 Converter** (`tools/json_schema_to_openapi.py`) - Converts JSON Schema definitions (draft-04, draft-07, 2020-12) into valid OpenAPI 3.0/3.1 components and endpoint path definitions with JSON and YAML formatting
 
 ## Usage
 
