@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 826+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 831+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
 
@@ -793,6 +793,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV Sensitive Data & PII Scanner** (`tools/csv_pii_scanner.py`) - Scans CSV datasets to detect PII patterns (Emails, SSNs, Credit Cards, API keys, IPs), computes column risk scores, and generates masked/anonymized output
 - **Git Uncommitted Changes Snapshot & Archive Utility** (`tools/git_uncommitted_changes_archiver.py`) - Captures staged changes, unstaged diffs, and untracked files into a standalone ZIP snapshot with git metadata and restore capability
 - **RFC 8785 JSON Canonicalization Scheme (JCS) & Digest Tool** (`tools/json_canonicalizer.py`) - Canonicalizes JSON structures according to RFC 8785 standards, computes SHA-256 digests, and performs structural diffing and hash verification
+- **CSV Split by Column Value Utility** (`tools/csv_split_by_column.py`) - Splits a CSV file into separate CSV files based on unique values in a specified column, with filename sanitization, filtering, and optional ZIP packaging
+- **JSON Key Rename & Transformation Utility** (`tools/json_key_rename_utility.py`) - Batch renames, transforms casing (snake_case, camelCase, kebab-case, etc.), applies regex rules, and attaches affixes to JSON keys with dry-run diff previews
+- **Python Docstring to Markdown Generator** (`tools/python_docstring_to_markdown.py`) - Statically parses Python source files using AST to extract docstrings, class hierarchies, function signatures, and type annotations into clean Markdown API documentation
+- **Markdown Frontmatter Merger & Metadata Manager** (`tools/markdown_frontmatter_merger.py`) - Merges, updates, and sorts YAML frontmatter metadata in Markdown files without affecting document content, with batch processing and dry-run diff support
+- **Cron Schedule Heatmap & Density Visualizer** (`tools/cron_schedule_heatmap.py`) - Simulates 5-field cron job schedules over time and renders terminal ASCII/Unicode heatmaps of execution density, identifying peak loads and task collisions
 
 ## Usage
 
