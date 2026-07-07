@@ -147,6 +147,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Development Tools
+- **GitHub Actions Workflow Matrix & Cache Optimizer** (`tools/github_workflow_matrix_optimizer.py`) - Statically analyzes GitHub Actions workflow files to optimize matrix setups, configure dependency caching, set job timeouts, and audit security permissions
+- **JSON Schema to TypeScript Zod Schema Converter** (`tools/json_schema_to_zod.py`) - Converts JSON Schema definitions into type-safe Zod validation schemas for modern TypeScript web applications
+- **Python PEP 8 Naming Style Auditor** (`tools/python_pep8_naming_auditor.py`) - Statically inspects Python files using AST parsing to verify that class, function, method, variable, parameter, and constant names strictly comply with PEP 8 styling conventions
+- **SQL Schema Normalization & Quality Auditor** (`tools/sql_normalization_auditor.py`) - Audits database SQL DDL schemas for relational normalization violations (1NF/2NF/3NF) and database schema design anti-patterns
 - **Tailwind CSS Conflict Detector & Optimizer** (`tools/tailwind_conflict_detector.py`) - Audits HTML/JS/TS/Vue files for conflicting Tailwind CSS utility classes within the same element, grouped by media/state modifiers
 - **HTML DOM Depth & Payload Size Analyzer** (`tools/html_dom_depth_analyzer.py`) - Parses HTML files to measure DOM complexity, maximum nesting depth, total node count, and inline script/style/SVG payload sizes
 - **Python Exception Shadowing & Dead Catch Detector** (`tools/python_dead_catch_detector.py`) - Statically parses Python files using AST to identify dead/shadowed exception handlers and duplicate catch blocks
@@ -586,6 +590,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 ### Network & Web
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
 - **Web Bundle Size Auditor** (`tools/web_bundle_size_auditor.py`) - Scans build output folders (e.g., `dist/`, `build/`) to analyze file sizes (raw/gzip), check budgets, minification, and source map exposures
+- **HTTP Connection Pool & Keep-Alive Latency Analyzer** (`tools/http_connection_pool_analyzer.py`) - Measures and compares request latency differences between connection pooling (HTTP Keep-Alive reuse) and fresh TCP/TLS connection creation for each request
 - **Clipboard Manager** (`tools/clipboard_manager.py`) - Enhanced clipboard management with history
 - **DNS Lookup Tool** (`tools/dns_lookup_tool.py`) - Perform DNS lookups and network diagnostics
 - **DNS Propagation Checker** (`tools/dns_propagation_checker.py`) - Query multiple DNS providers for domain records to check propagation

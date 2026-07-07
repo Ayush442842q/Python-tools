@@ -162,6 +162,46 @@ Cross-references Python web server route configurations (FastAPI, Flask) with Ma
 python tools/markdown_api_sync_checker.py src/ docs/
 ```
 
+### GitHub Actions Workflow Matrix & Cache Optimizer (`github_workflow_matrix_optimizer.py`)
+Statically analyzes GitHub Actions workflow files to optimize matrix setups, configure dependency caching, set job timeouts, and audit security permissions.
+
+#### Usage:
+```bash
+python tools/github_workflow_matrix_optimizer.py .github/workflows/
+```
+
+### JSON Schema to TypeScript Zod Schema Converter (`json_schema_to_zod.py`)
+Converts standard JSON Schema definitions into TypeScript Zod validation schemas.
+
+#### Usage:
+```bash
+python tools/json_schema_to_zod.py schema.json -o schema.ts
+```
+
+### HTTP Connection Pool & Keep-Alive Latency Analyzer (`http_connection_pool_analyzer.py`)
+Measures and compares request latency differences between connection pooling (HTTP Keep-Alive reuse) and fresh TCP/TLS connection creation for each request.
+
+#### Usage:
+```bash
+python tools/http_connection_pool_analyzer.py https://httpbin.org/status/200 --count 10
+```
+
+### Python PEP 8 Naming Style Auditor (`python_pep8_naming_auditor.py`)
+Statically inspects Python files using AST parsing to verify that class, function, method, variable, parameter, and constant names strictly comply with PEP 8 styling conventions.
+
+#### Usage:
+```bash
+python tools/python_pep8_naming_auditor.py /path/to/python/file.py
+```
+
+### SQL Schema Normalization & Quality Auditor (`sql_normalization_auditor.py`)
+Audits database SQL DDL schemas for relational normalization violations (1NF/2NF/3NF) and database schema design anti-patterns.
+
+#### Usage:
+```bash
+python tools/sql_normalization_auditor.py schema.sql
+```
+
 #### Requirements:
 - Python 3.6+
 
