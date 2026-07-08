@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 871+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 876+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -150,6 +150,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **GitHub Actions Workflow Matrix & Cache Optimizer** (`tools/github_workflow_matrix_optimizer.py`) - Statically analyzes GitHub Actions workflow files to optimize matrix setups, configure dependency caching, set job timeouts, and audit security permissions
 - **JSON Schema to TypeScript Zod Schema Converter** (`tools/json_schema_to_zod.py`) - Converts JSON Schema definitions into type-safe Zod validation schemas for modern TypeScript web applications
 - **Python PEP 8 Naming Style Auditor** (`tools/python_pep8_naming_auditor.py`) - Statically inspects Python files using AST parsing to verify that class, function, method, variable, parameter, and constant names strictly comply with PEP 8 styling conventions
+- **Python Mutable Default Arguments Linter** (`tools/python_mutable_defaults_linter.py`) - Statically audits Python files using AST parsing to detect mutable default arguments in function and method definitions
 - **SQL Schema Normalization & Quality Auditor** (`tools/sql_normalization_auditor.py`) - Audits database SQL DDL schemas for relational normalization violations (1NF/2NF/3NF) and database schema design anti-patterns
 - **Tailwind CSS Conflict Detector & Optimizer** (`tools/tailwind_conflict_detector.py`) - Audits HTML/JS/TS/Vue files for conflicting Tailwind CSS utility classes within the same element, grouped by media/state modifiers
 - **HTML DOM Depth & Payload Size Analyzer** (`tools/html_dom_depth_analyzer.py`) - Parses HTML files to measure DOM complexity, maximum nesting depth, total node count, and inline script/style/SVG payload sizes
@@ -221,6 +222,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Terminal Chart Generator** (`tools/terminal_chart_generator.py`) - Generate visual charts in the terminal using Unicode blocks and ANSI colors
 - **Markdown Checklist Tracker** (`tools/markdown_todo_tracker.py`) - Scan a Markdown file for task checklists, compute completion statistics, and print a progress report grouped by section
 - **UUID/GUID Generator** (`tools/uuid_generator.py`) - Generate secure and standardized UUIDs (v1, v3, v4, v5) with various formatting options
+- **UUIDv7 Generator & Utility** (`tools/uuid_v7_utility.py`) - Generate, parse, validate, and benchmark time-ordered UUIDv7 identifiers (RFC 9562) with monotonic sorting checks
 - **Log Colorizer & Highlight Tool** (`tools/log_colorizer.py`) - Colorize log levels and highlight custom regex patterns in stdin or log files
 - **Developer's Unit Converter** (`tools/unit_converter.py`) - Convert digital storage sizes, network speeds, base systems, and epoch timestamps
 - **.gitignore Generator** (`tools/gitignore_generator.py`) - Generate standard .gitignore files from gitignore.io or offline templates
@@ -248,6 +250,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git Commit Heatmap & Stats** (`tools/git_commit_heatmap.py`) - Generate a GitHub-style ASCII/Unicode contribution calendar heatmap for commits, with streaks and detailed activity stats
 - **JSON to Python Dataclass & Pydantic Model Generator** (`tools/json_to_dataclasses.py`) - Converts JSON structures into nested Python dataclasses or Pydantic models with type inference
 - **JSON Schema to TypeScript Converter** (`tools/json_schema_to_typescript.py`) - Compiles JSON Schema structures into clean, readable TypeScript interface and type definitions
+- **JSON Schema to Pydantic v2 Compiler** (`tools/json_schema_to_pydantic.py`) - Compiles JSON Schema specifications into type-annotated Python code using Pydantic v2 BaseModel classes with validation constraints
 - **Python Codebase Documentation Server** (`tools/python_doc_server.py`) - Statically parses Python modules using AST, generates a modern responsive dark-themed documentation website, and hosts it on a local HTTP server
 - **SVG Status Badge Generator** (`tools/markdown_badge_generator.py`) - Create custom shields.io style SVG badges locally for use in markdown documents
 - **System PATH Doctor** (`tools/env_path_doctor.py`) - Diagnose, optimize, and clean system environment PATH variables with safety warnings and shell commands
@@ -493,6 +496,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Log Session Tracer** (`tools/log_session_tracer.py`) - Traces specific session tokens, IPs, or request IDs chronologically across log files
 - **CSV to SQLite Converter** (`tools/csv_to_sqlite.py`) - Convert CSV files into SQLite databases with automatic type inference and run SQL queries
 - **JSON to SQLite Database Converter** (`tools/json_to_sqlite.py`) - Convert standard JSON and JSON Lines (JSONL) data files into SQLite databases with automatic table creation, type inference, and indexing.
+- **XML to SQLite Relational Converter** (`tools/xml_to_sqlite.py`) - Parse XML files, dynamically infer a relational database schema, create corresponding SQLite tables, and import hierarchical data preserving node relationships
 - **CSV SQL Query Runner** (`tools/csv_sql_query.py`) - Run standard SQL queries directly against one or more CSV files in memory using SQLite
 - **GPX Route Analyzer** (`tools/gpx_analyzer.py`) - Parse GPX tracks and calculate route distance, duration, elevation profile, and speeds
 - **Word Frequency Analyzer** (`tools/word_frequency_analyzer.py`) - Calculate word frequencies, filter stop words, compute text metrics, and render terminal bar charts or tag clouds
@@ -805,6 +809,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Text Readability Metrics & Prose Analyzer** (`tools/text_readability_metrics_analyzer.py`) - Multi-formula prose readability analyzer computing Flesch-Kincaid, Gunning Fog, SMOG, Coleman-Liau, ARI, LIX, and consensus grade level
 - **CSV Time-Series Resampler & Aggregator** (`tools/csv_time_series_resampler.py`) - Resamples and aggregates time series CSV datasets across uniform time buckets (hourly, daily, weekly, monthly) with ASCII sparkline visualization
 - **DNS Record Drift & Multi-Resolver Auditor** (`tools/dns_record_drift_checker.py`) - Audits DNS records across DoH providers (Cloudflare, Google, Quad9, AdGuard) to detect propagation drift and inconsistent answers
+- **DNS AXFR Zone Transfer Security Tester** (`tools/dns_zone_transfer_tester.py`) - Test DNS nameservers for AXFR zone transfer vulnerabilities (RFC 5936) by sending raw DNS queries over TCP/UDP sockets
 - **Markdown Quiz & Self-Assessment Generator** (`tools/markdown_quiz_generator.py`) - Converts Markdown notes, Q&As, definitions, and flashcards into interactive CLI quizzes or standalone single-file HTML web quizzes
 - **SSH Authorized Keys Auditor** (`tools/ssh_authorized_keys_auditor.py`) - Audit SSH authorized_keys files for weak keys, deprecated algorithms, duplicates, and security risks
 - **JSON to .env Converter** (`tools/json_to_env_converter.py`) - Convert nested or flat JSON configuration files into standard .env environment variable files with custom delimiters, secret masking, and array formatting
