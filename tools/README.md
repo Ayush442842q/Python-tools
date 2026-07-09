@@ -202,6 +202,47 @@ Audits database SQL DDL schemas for relational normalization violations (1NF/2NF
 python tools/sql_normalization_auditor.py schema.sql
 ```
 
+
+### Changelog Linter (`changelog_linter.py`)
+Validates CHANGELOG.md files against the Keep a Changelog standard.
+
+#### Usage:
+```bash
+python tools/changelog_linter.py CHANGELOG.md
+```
+
+### License Header Manager (`license_header_manager.py`)
+Audits, adds, removes, or updates license/copyright headers in source code.
+
+#### Usage:
+```bash
+python tools/license_header_manager.py --action check --owner "Ayush"
+```
+
+### Markdown to RSS Compiler (`markdown_to_rss.py`)
+Generates RSS 2.0 or Atom XML feeds from a directory of Markdown posts.
+
+#### Usage:
+```bash
+python tools/markdown_to_rss.py ./posts -o feed.xml --site-title "My Blog"
+```
+
+### GitHub Actions Version Auditor (`github_actions_version_auditor.py`)
+Audits GitHub Actions workflow files for version updates and security pinning.
+
+#### Usage:
+```bash
+python tools/github_actions_version_auditor.py .github/workflows
+```
+
+### Mermaid Syntax Linter (`mermaid_syntax_linter.py`)
+Parses Markdown and Mermaid files, checking for common syntax errors in Mermaid diagrams.
+
+#### Usage:
+```bash
+python tools/mermaid_syntax_linter.py README.md
+```
+
 #### Requirements:
 - Python 3.6+
 

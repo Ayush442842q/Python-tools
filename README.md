@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 876+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 881+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -147,6 +147,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Development Tools
+- **Changelog Linter** (`tools/changelog_linter.py`) - Validates `CHANGELOG.md` files against the Keep a Changelog standard (checking for proper headings, versions, YYYY-MM-DD dates, change categories like Added/Changed/Fixed, comparison links at the end)
+- **License Header Manager** (`tools/license_header_manager.py`) - Manages (check, insert, remove, update) license copyright headers across source files in a repository with customizable templates, comments, and file extensions
+- **GitHub Actions Version Auditor** (`tools/github_actions_version_auditor.py`) - Audits GitHub Actions workflow files to check if they are using pinned tags or commit SHAs, checks the GitHub API to notify if updates are available, and flags non-pinned commit SHAs or unsafe practices
+- **Mermaid Syntax Linter** (`tools/mermaid_syntax_linter.py`) - Parses markdown and mermaid files, extracts Mermaid.js blocks, and checks their syntax (e.g. balancing parentheses/brackets, checking for invalid flowchart connectors) and outputs detailed syntax errors with line numbers
 - **GitHub Actions Workflow Matrix & Cache Optimizer** (`tools/github_workflow_matrix_optimizer.py`) - Statically analyzes GitHub Actions workflow files to optimize matrix setups, configure dependency caching, set job timeouts, and audit security permissions
 - **JSON Schema to TypeScript Zod Schema Converter** (`tools/json_schema_to_zod.py`) - Converts JSON Schema definitions into type-safe Zod validation schemas for modern TypeScript web applications
 - **Python PEP 8 Naming Style Auditor** (`tools/python_pep8_naming_auditor.py`) - Statically inspects Python files using AST parsing to verify that class, function, method, variable, parameter, and constant names strictly comply with PEP 8 styling conventions
@@ -592,6 +596,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 
 
 ### Network & Web
+- **Markdown to RSS Compiler** (`tools/markdown_to_rss.py`) - Compiles a directory of Markdown posts (with YAML frontmatter) into standard-compliant RSS 2.0 or Atom XML feed files
 - **API Mock Server** (`tools/api_mock_server.py`) - A lightweight HTTP/REST API mock server
 - **Web Bundle Size Auditor** (`tools/web_bundle_size_auditor.py`) - Scans build output folders (e.g., `dist/`, `build/`) to analyze file sizes (raw/gzip), check budgets, minification, and source map exposures
 - **HTTP Connection Pool & Keep-Alive Latency Analyzer** (`tools/http_connection_pool_analyzer.py`) - Measures and compares request latency differences between connection pooling (HTTP Keep-Alive reuse) and fresh TCP/TLS connection creation for each request
