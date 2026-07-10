@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 881+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 886+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -144,6 +144,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Table Math Evaluator** (`tools/markdown_table_math_evaluator.py`) - Parses Markdown tables, evaluates embedded math formulas (=SUM, =AVG, =A1*B1), updates cell values and summary footer rows, and formats tables with clean alignment
 - **Local Markdown Search Engine & TF-IDF Indexer** (`tools/markdown_search_engine.py`) - Recursively indexes a directory of Markdown files, computes TF-IDF scores, and provides an interactive search interface with ranked results and highlighted context snippets in the terminal
 - **File Extension Distribution Analyzer** (`tools/file_extension_analyzer.py`) - Recursively scans a directory to analyze the distribution of file extensions (counts, total size, average size) and displays a beautiful ASCII/Unicode bar chart and summary table
+- **CLI Wordle Game** (`tools/cli_wordle.py`) - An interactive terminal-based Wordle game with colored letter feedback, keyboard status, statistics tracking, and custom secret words.
 
 
 ### Development Tools
@@ -470,6 +471,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Shell to Batch Script Converter** (`tools/shell_to_batch_converter.py`) - Transpiles basic Bash shell scripts (.sh) to Windows Command Prompt Batch files (.bat) translating commands, comments, variables, and conditions
 - **Python Side-Effect & Impurity Auditor** (`tools/python_ast_side_effect_auditor.py`) - An AST-based scanner that recursively parses Python files to check if functions/methods are pure or impure, detecting global/nonlocal mutations, parameter alterations, and stateful library side-effects
 - **Python AST Constant Folder & Optimizer** (`tools/python_constant_folder.py`) - Statically parses Python source files into an AST, performs constant folding on literal expressions (arithmetic, string concatenation, boolean logic), and writes back the simplified/optimized code
+- **Python AST Built-ins Shadow Detector** (`tools/python_ast_builtins_shadow_detector.py`) - Statically parses Python files to detect variable, parameter, class, or function names that shadow Python's built-in functions or constants.
 
 
 ### Data Processing
@@ -593,6 +595,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Table Pivot Generator** (`tools/sqlite_table_pivot_generator.py`) - Dynamically generates and executes SQL CASE-WHEN cross-tabulation pivot queries on SQLite database tables or custom queries without external libraries
 - **SQLite JSON Document Store Wrapper** (`tools/sqlite_document_store.py`) - A command-line utility implementing a MongoDB-like document-store interface (collections, insert, find, update, delete, indexing) on top of standard SQLite using native JSON capabilities
 - **CSV to Hierarchical JSON Converter** (`tools/csv_to_hierarchical_json.py`) - Converts a flat CSV with dot-notated headers (e.g. user.name.first, user.roles.0) into a nested hierarchical JSON, and vice versa
+- **SQLite to PostgreSQL Schema & Data Migrator** (`tools/sqlite_to_postgresql_converter.py`) - Inspects a SQLite database file and compiles a PostgreSQL-compatible SQL dump file, converting tables, primary/foreign keys, indexes, and inserting formatted data.
+- **XML XPath Tester & Query Utility** (`tools/xml_xpath_tester.py`) - Evaluates XPath queries against XML files using Python's standard `xml.etree.ElementTree` and formats/indents matching nodes or extracts text/attributes.
+- **CSV to Interactive HTML Dashboard Compiler** (`tools/csv_to_interactive_html.py`) - Compiles flat CSV files into beautiful, fully self-contained HTML dashboards containing built-in search, sorting, pagination, theme toggles, and data export features.
 
 
 ### Network & Web

@@ -243,6 +243,53 @@ Parses Markdown and Mermaid files, checking for common syntax errors in Mermaid 
 python tools/mermaid_syntax_linter.py README.md
 ```
 
+### SQLite to PostgreSQL Converter (`sqlite_to_postgresql_converter.py`)
+Inspects a SQLite database file and compiles a PostgreSQL-compatible SQL dump file, converting tables, primary/foreign keys, indexes, and inserting formatted data.
+
+#### Usage:
+```bash
+python tools/sqlite_to_postgresql_converter.py -i input.db -o output.sql --clean
+```
+
+### Python AST Built-ins Shadow Detector (`python_ast_builtins_shadow_detector.py`)
+Statically parses Python source files using AST to detect variable, parameter, class, or function names that shadow Python's built-in functions or constants.
+
+#### Usage:
+```bash
+python tools/python_ast_builtins_shadow_detector.py /path/to/project -r
+```
+
+### XML XPath Tester (`xml_xpath_tester.py`)
+Evaluates XPath queries against XML files using Python's standard `xml.etree.ElementTree` and formats/indents matching nodes or extracts text/attributes.
+
+#### Usage:
+```bash
+python tools/xml_xpath_tester.py -i file.xml -q ".//item[@status='active']"
+```
+
+### CSV to Interactive HTML Compiler (`csv_to_interactive_html.py`)
+Compiles flat CSV files into beautiful, fully self-contained HTML dashboards containing built-in search, sorting, pagination, theme toggles, and data export features.
+
+#### Usage:
+```bash
+python tools/csv_to_interactive_html.py -i data.csv -o report.html --theme dark
+```
+
+### CLI Wordle (`cli_wordle.py`)
+An interactive terminal-based Wordle game with colored letter feedback, keyboard status, statistics tracking, and custom secret words.
+
+#### Usage:
+```bash
+# Start a new standard game
+python tools/cli_wordle.py
+
+# Play with a custom secret word
+python tools/cli_wordle.py -w APPLE
+
+# View stats
+python tools/cli_wordle.py --stats
+```
+
 #### Requirements:
 - Python 3.6+
 
