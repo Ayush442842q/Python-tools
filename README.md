@@ -472,7 +472,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python Side-Effect & Impurity Auditor** (`tools/python_ast_side_effect_auditor.py`) - An AST-based scanner that recursively parses Python files to check if functions/methods are pure or impure, detecting global/nonlocal mutations, parameter alterations, and stateful library side-effects
 - **Python AST Constant Folder & Optimizer** (`tools/python_constant_folder.py`) - Statically parses Python source files into an AST, performs constant folding on literal expressions (arithmetic, string concatenation, boolean logic), and writes back the simplified/optimized code
 - **Python AST Built-ins Shadow Detector** (`tools/python_ast_builtins_shadow_detector.py`) - Statically parses Python files to detect variable, parameter, class, or function names that shadow Python's built-in functions or constants.
-
+- **Jupyter Notebook Cell Execution Order Auditor** (`tools/jupyter_execution_order_auditor.py`) - Statically analyzes Jupyter Notebooks to detect non-linear execution order and potential out-of-order execution variable dependency issues
+- **Git Author Alias Resolver & Mailmap Generator** (`tools/git_author_alias_resolver.py`) - Analyzes Git repository commit logs to identify similar/duplicate developer identities and automatically generates or updates a `.mailmap` file
+- **HTML & CSS Font Usage Auditor** (`tools/html_font_auditor.py`) - Recursively scans HTML and CSS files to audit font-family declarations, verify generic fallbacks, and detect unused or missing web font link imports
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -726,7 +728,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTTP Response Replay Server** (`tools/http_response_replay_server.py`) - Replay recorded HTTP traffic dumps or HAR files using a local mock HTTP server matching request paths and headers
 - **CLI Network Packet Builder & HEX Simulator** (`tools/cli_network_packet_generator.py`) - An educational interactive tool to construct custom network packets (Ethernet, IPv4, TCP, UDP, ICMP) step-by-step, compute internet checksums, and display Hex Dumps and structural byte layouts
 - **MAC Address Vendor Lookup Tool** (`tools/mac_vendor_lookup.py`) - Parses and checks MAC addresses against an offline database of popular OUIs (Organizationally Unique Identifier) with a fallback to a free public API for online lookups
-
+- **WebSocket Ping Tester & Performance Benchmarker** (`tools/websocket_ping_tester.py`) - Measures connection latency, round-trip time (RTT), and frame loss under concurrent connection load by natively implementing WebSocket RFC 6455 frame framing
+- **DNS Query Sniffer & Diagnostic Logger** (`tools/dns_query_sniffer.py`) - Binds to UDP port 53/5353/1053 to sniff, decode, and log incoming DNS query packets natively in real-time
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
