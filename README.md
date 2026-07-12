@@ -145,6 +145,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Local Markdown Search Engine & TF-IDF Indexer** (`tools/markdown_search_engine.py`) - Recursively indexes a directory of Markdown files, computes TF-IDF scores, and provides an interactive search interface with ranked results and highlighted context snippets in the terminal
 - **File Extension Distribution Analyzer** (`tools/file_extension_analyzer.py`) - Recursively scans a directory to analyze the distribution of file extensions (counts, total size, average size) and displays a beautiful ASCII/Unicode bar chart and summary table
 - **CLI Wordle Game** (`tools/cli_wordle.py`) - An interactive terminal-based Wordle game with colored letter feedback, keyboard status, statistics tracking, and custom secret words.
+- **Markdown Link Healer** (`tools/markdown_link_healer.py`) - Scans Markdown files for broken local file links, searches the workspace for candidates, and automatically or interactively heals them with correct relative paths.
 
 
 ### Development Tools
@@ -475,6 +476,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Jupyter Notebook Cell Execution Order Auditor** (`tools/jupyter_execution_order_auditor.py`) - Statically analyzes Jupyter Notebooks to detect non-linear execution order and potential out-of-order execution variable dependency issues
 - **Git Author Alias Resolver & Mailmap Generator** (`tools/git_author_alias_resolver.py`) - Analyzes Git repository commit logs to identify similar/duplicate developer identities and automatically generates or updates a `.mailmap` file
 - **HTML & CSS Font Usage Auditor** (`tools/html_font_auditor.py`) - Recursively scans HTML and CSS files to audit font-family declarations, verify generic fallbacks, and detect unused or missing web font link imports
+- **Code Localization Auditor** (`tools/code_localization_auditor.py`) - Statically audits Python, JavaScript, TypeScript, and HTML files to identify hardcoded user-facing strings that are not wrapped in translation/internationalization functions
+- **Git PR Template Generator** (`tools/git_pr_template_generator.py`) - Parses branch commits against a base branch to automatically compile a structured Markdown Pull Request description template
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -600,6 +603,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite to PostgreSQL Schema & Data Migrator** (`tools/sqlite_to_postgresql_converter.py`) - Inspects a SQLite database file and compiles a PostgreSQL-compatible SQL dump file, converting tables, primary/foreign keys, indexes, and inserting formatted data.
 - **XML XPath Tester & Query Utility** (`tools/xml_xpath_tester.py`) - Evaluates XPath queries against XML files using Python's standard `xml.etree.ElementTree` and formats/indents matching nodes or extracts text/attributes.
 - **CSV to Interactive HTML Dashboard Compiler** (`tools/csv_to_interactive_html.py`) - Compiles flat CSV files into beautiful, fully self-contained HTML dashboards containing built-in search, sorting, pagination, theme toggles, and data export features.
+- **SQLite Data Quality Auditor** (`tools/sqlite_data_quality_auditor.py`) - Audits SQLite databases to identify dynamic typing mismatches, null/empty value rates, foreign key violations, and formatting anomalies
 
 
 ### Network & Web
@@ -730,6 +734,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **MAC Address Vendor Lookup Tool** (`tools/mac_vendor_lookup.py`) - Parses and checks MAC addresses against an offline database of popular OUIs (Organizationally Unique Identifier) with a fallback to a free public API for online lookups
 - **WebSocket Ping Tester & Performance Benchmarker** (`tools/websocket_ping_tester.py`) - Measures connection latency, round-trip time (RTT), and frame loss under concurrent connection load by natively implementing WebSocket RFC 6455 frame framing
 - **DNS Query Sniffer & Diagnostic Logger** (`tools/dns_query_sniffer.py`) - Binds to UDP port 53/5353/1053 to sniff, decode, and log incoming DNS query packets natively in real-time
+- **WebSocket Load Tester** (`tools/websocket_load_tester.py`) - Stress tests WebSocket connections with connection-pacing, throughput metrics, and real-time latency percentiles
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
