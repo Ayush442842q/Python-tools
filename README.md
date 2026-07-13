@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 886+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 911+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -146,6 +146,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **File Extension Distribution Analyzer** (`tools/file_extension_analyzer.py`) - Recursively scans a directory to analyze the distribution of file extensions (counts, total size, average size) and displays a beautiful ASCII/Unicode bar chart and summary table
 - **CLI Wordle Game** (`tools/cli_wordle.py`) - An interactive terminal-based Wordle game with colored letter feedback, keyboard status, statistics tracking, and custom secret words.
 - **Markdown Link Healer** (`tools/markdown_link_healer.py`) - Scans Markdown files for broken local file links, searches the workspace for candidates, and automatically or interactively heals them with correct relative paths.
+- **Markdown Wiki Link to Standard Link Converter** (`tools/markdown_wiki_converter.py`) - Scans a folder of Markdown files and converts double-bracket wiki links (e.g. `[[Page]]` or `[[Page|Label]]`) into portable, standard relative Markdown links
+- **SVG Path Transformer & Scaler** (`tools/svg_path_transformer.py`) - Geometric transformation utility to apply scale, translation, and rotation directly to the coordinate coordinates in the 'd' attribute of `<path>` elements in SVG files
 
 
 ### Development Tools
@@ -478,6 +480,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **HTML & CSS Font Usage Auditor** (`tools/html_font_auditor.py`) - Recursively scans HTML and CSS files to audit font-family declarations, verify generic fallbacks, and detect unused or missing web font link imports
 - **Code Localization Auditor** (`tools/code_localization_auditor.py`) - Statically audits Python, JavaScript, TypeScript, and HTML files to identify hardcoded user-facing strings that are not wrapped in translation/internationalization functions
 - **Git PR Template Generator** (`tools/git_pr_template_generator.py`) - Parses branch commits against a base branch to automatically compile a structured Markdown Pull Request description template
+- **Python Virtual Environment Relocator** (`tools/venv_relocator.py`) - Updates absolute path references and shebangs in virtual environment activation scripts and entry points when a venv is moved
+- **Python AST Custom Rule Linter** (`tools/python_ast_custom_linter.py`) - Static analyzer that parses Python files and audits code against custom defined rules (forbidden calls, forbidden imports, naming structures, docstring mandates)
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -735,6 +739,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **WebSocket Ping Tester & Performance Benchmarker** (`tools/websocket_ping_tester.py`) - Measures connection latency, round-trip time (RTT), and frame loss under concurrent connection load by natively implementing WebSocket RFC 6455 frame framing
 - **DNS Query Sniffer & Diagnostic Logger** (`tools/dns_query_sniffer.py`) - Binds to UDP port 53/5353/1053 to sniff, decode, and log incoming DNS query packets natively in real-time
 - **WebSocket Load Tester** (`tools/websocket_load_tester.py`) - Stress tests WebSocket connections with connection-pacing, throughput metrics, and real-time latency percentiles
+- **JSON-RPC Mock Server** (`tools/jsonrpc_mock_server.py`) - Zero-dependency mock HTTP server simulating JSON-RPC 2.0 endpoints with request validation, batch request handling, and method response mappings
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
