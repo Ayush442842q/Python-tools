@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 911+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 916+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -482,6 +482,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Git PR Template Generator** (`tools/git_pr_template_generator.py`) - Parses branch commits against a base branch to automatically compile a structured Markdown Pull Request description template
 - **Python Virtual Environment Relocator** (`tools/venv_relocator.py`) - Updates absolute path references and shebangs in virtual environment activation scripts and entry points when a venv is moved
 - **Python AST Custom Rule Linter** (`tools/python_ast_custom_linter.py`) - Static analyzer that parses Python files and audits code against custom defined rules (forbidden calls, forbidden imports, naming structures, docstring mandates)
+- **Git Preflight & Staging Health Checker** (`tools/git_preflight_checker.py`) - Audits Git staging area and active branch context before commits, scanning file sizes, conventional commit structures, debug statements, and high-entropy secrets
+- **YAML JSON Schema Generator** (`tools/yaml_schema_generator.py`) - Automatically infers and generates a structured, validation-compliant JSON Schema from any YAML configuration file, supporting custom and PyYAML engines
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -740,6 +742,9 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS Query Sniffer & Diagnostic Logger** (`tools/dns_query_sniffer.py`) - Binds to UDP port 53/5353/1053 to sniff, decode, and log incoming DNS query packets natively in real-time
 - **WebSocket Load Tester** (`tools/websocket_load_tester.py`) - Stress tests WebSocket connections with connection-pacing, throughput metrics, and real-time latency percentiles
 - **JSON-RPC Mock Server** (`tools/jsonrpc_mock_server.py`) - Zero-dependency mock HTTP server simulating JSON-RPC 2.0 endpoints with request validation, batch request handling, and method response mappings
+- **DNS BIND Zone File Parser & Auditor** (`tools/dns_zone_parser.py`) - Parses standard BIND DNS zone files into structured JSON, handling directives and multi-line SOA records, and runs static analysis checks to catch configuration flaws
+- **OAuth 2.0 Authorization Code Flow Simulator** (`tools/oauth2_flow_simulator.py`) - Starts a local web server to simulate, visualize, and log every step of the OAuth 2.0 Authorization Code Flow in real-time
+- **Server-Sent Events (SSE) Mock Server & Tester** (`tools/sse_mock_server.py`) - Lightweight HTTP server streaming customizable telemetry events over Server-Sent Events, complete with an interactive live dashboard
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
