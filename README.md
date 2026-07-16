@@ -148,6 +148,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Link Healer** (`tools/markdown_link_healer.py`) - Scans Markdown files for broken local file links, searches the workspace for candidates, and automatically or interactively heals them with correct relative paths.
 - **Markdown Wiki Link to Standard Link Converter** (`tools/markdown_wiki_converter.py`) - Scans a folder of Markdown files and converts double-bracket wiki links (e.g. `[[Page]]` or `[[Page|Label]]`) into portable, standard relative Markdown links
 - **SVG Path Transformer & Scaler** (`tools/svg_path_transformer.py`) - Geometric transformation utility to apply scale, translation, and rotation directly to the coordinate coordinates in the 'd' attribute of `<path>` elements in SVG files
+- **Unicode Braille Art Generator** (`tools/braille_art_generator.py`) - Translates images (BMP/PNG) into Unicode Braille patterns (U+2800 to U+28FF) mapping 2x4 pixel grids to dots, achieving 4x ASCII resolution
 
 
 ### Development Tools
@@ -484,6 +485,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Python AST Custom Rule Linter** (`tools/python_ast_custom_linter.py`) - Static analyzer that parses Python files and audits code against custom defined rules (forbidden calls, forbidden imports, naming structures, docstring mandates)
 - **Git Preflight & Staging Health Checker** (`tools/git_preflight_checker.py`) - Audits Git staging area and active branch context before commits, scanning file sizes, conventional commit structures, debug statements, and high-entropy secrets
 - **YAML JSON Schema Generator** (`tools/yaml_schema_generator.py`) - Automatically infers and generates a structured, validation-compliant JSON Schema from any YAML configuration file, supporting custom and PyYAML engines
+- **WebAssembly Binary Inspector** (`tools/wasm_binary_inspector.py`) - Natively parses Wasm headers and decodes sections (Type, Import, Function, Export, Code, etc.) to list imports/exports and byte sizes
+- **GitLab CI/CD Pipeline Config Linter** (`tools/gitlab_ci_linter.py`) - Parses `.gitlab-ci.yml` pipeline files, checks stages/jobs configuration, and runs DAG cycle detection on needed dependencies
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -610,6 +613,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **XML XPath Tester & Query Utility** (`tools/xml_xpath_tester.py`) - Evaluates XPath queries against XML files using Python's standard `xml.etree.ElementTree` and formats/indents matching nodes or extracts text/attributes.
 - **CSV to Interactive HTML Dashboard Compiler** (`tools/csv_to_interactive_html.py`) - Compiles flat CSV files into beautiful, fully self-contained HTML dashboards containing built-in search, sorting, pagination, theme toggles, and data export features.
 - **SQLite Data Quality Auditor** (`tools/sqlite_data_quality_auditor.py`) - Audits SQLite databases to identify dynamic typing mismatches, null/empty value rates, foreign key violations, and formatting anomalies
+- **Apache HTTPD Log Analyzer & Auditor** (`tools/apache_log_analyzer.py`) - Parses Apache access logs, outputs request/bandwidth metrics, and audits paths for directory traversal, SQLi, XSS, and config leaks
 
 
 ### Network & Web
@@ -878,6 +882,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQL SELECT Query Mock Data Generator** (`tools/sql_query_mock_generator.py`) - Parses SQL SELECT queries, identifies columns and WHERE clause conditions/constraints (such as equal, greater than, less than, or matching patterns), and generates a corresponding mock dataset formatted in JSON, CSV, or SQL INSERT statements
 - **Diffie-Hellman Key Exchange Simulator & Educational Visualizer** (`tools/diffie_hellman_simulator.py`) - An interactive CLI simulator of the Diffie-Hellman key exchange protocol, including parameter verification, step-by-step key calculations, eavesdropper analysis, and brute-force scaling benchmarks
 - **CVSS Score Calculator & Vector Parser** (`tools/cvss_calculator.py`) - Calculates CVSS v3.1 base score, impact, and exploitability sub-scores from a vector string or interactive CLI menu
+- **GPG Keyring Auditor** (`tools/gpg_keyring_auditor.py`) - Audits local GPG keyrings and `gpg.conf` files for weak RSA key lengths, expirations, and cipher preference best practices
 
 ## Usage
 
