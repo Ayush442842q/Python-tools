@@ -290,6 +290,46 @@ python tools/cli_wordle.py -w APPLE
 python tools/cli_wordle.py --stats
 ```
 
+### Torrent Metadata Explorer (`torrent_metadata_explorer.py`)
+Parses BitTorrent (.torrent) files natively using a custom Bencode decoder, prints file layouts, computes info hashes, and generates magnet links.
+
+#### Usage:
+```bash
+python tools/torrent_metadata_explorer.py -i file.torrent
+```
+
+### ELF Header & Binary Analyzer (`elf_analyzer.py`)
+Parses Executable and Linkable Format (ELF) binaries to extract header metadata, program/section headers, dynamic dependencies, and symbols natively in Python.
+
+#### Usage:
+```bash
+python tools/elf_analyzer.py -i binary.elf --all
+```
+
+### PE Header & Dependency Analyzer (`pe_analyzer.py`)
+Parses Windows Portable Executable (PE) headers, checks DLL security mitigation characteristics (ASLR, DEP/NX, CFG), extracts imports, and computes section Shannon entropy for packing detection.
+
+#### Usage:
+```bash
+python tools/pe_analyzer.py -i app.exe --all
+```
+
+### Tarball & Archive Integrity Checker (`tar_zip_integrity_checker.py`)
+Deep integrity auditor of ZIP and TAR archives that validates checksums, scans for Zip Slip traversal paths, and alerts on potential Zip Bomb compression anomalies.
+
+#### Usage:
+```bash
+python tools/tar_zip_integrity_checker.py -i archive.zip --verbose
+```
+
+### Web Application Path Fuzzer (`web_path_fuzzer.py`)
+Multithreaded web application directory brute-forcer featuring soft-404 wildcard detection, status code filtering, rate limiting, and an embedded security wordlist.
+
+#### Usage:
+```bash
+python tools/web_path_fuzzer.py -u http://example.com --threads 20
+```
+
 #### Requirements:
 - Python 3.6+
 

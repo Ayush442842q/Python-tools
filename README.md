@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 916+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 926+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -749,6 +749,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DNS BIND Zone File Parser & Auditor** (`tools/dns_zone_parser.py`) - Parses standard BIND DNS zone files into structured JSON, handling directives and multi-line SOA records, and runs static analysis checks to catch configuration flaws
 - **OAuth 2.0 Authorization Code Flow Simulator** (`tools/oauth2_flow_simulator.py`) - Starts a local web server to simulate, visualize, and log every step of the OAuth 2.0 Authorization Code Flow in real-time
 - **Server-Sent Events (SSE) Mock Server & Tester** (`tools/sse_mock_server.py`) - Lightweight HTTP server streaming customizable telemetry events over Server-Sent Events, complete with an interactive live dashboard
+- **Torrent Metadata Explorer** (`tools/torrent_metadata_explorer.py`) - Parses BitTorrent (.torrent) files natively using a custom Bencode decoder, prints file layouts, computes info hashes, and generates magnet links
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
@@ -831,6 +832,10 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Gitignore Coverage & Audit Analyzer** (`tools/gitignore_coverage_analyzer.py`) - Evaluates .gitignore rules against workspace files, calculates ignore coverage percentage, and flags unignored sensitive files or temporary build artifacts
 - **Python Docstring Style Converter** (`tools/python_docstring_style_converter.py`) - Analyzes and converts Python docstrings between Google, NumPy, and reStructuredText (reST) formats using AST and regex parsing
 - **INI & CFG Configuration Linter** (`tools/ini_config_linter.py`) - Lints, security-audits, and converts standard INI/CFG configuration files for duplicate keys, syntax errors, insecure URLs, and plain-text credentials
+- **ELF Header & Binary Analyzer** (`tools/elf_analyzer.py`) - Parses Executable and Linkable Format (ELF) binaries to extract header metadata, program/section headers, dynamic dependencies, and symbols natively in Python
+- **PE Header & Dependency Analyzer** (`tools/pe_analyzer.py`) - Parses Windows Portable Executable (PE) headers, checks DLL security mitigation characteristics (ASLR, DEP/NX, CFG), extracts imports, and computes section Shannon entropy for packing detection
+- **Tarball & Archive Integrity Checker** (`tools/tar_zip_integrity_checker.py`) - Deep integrity auditor of ZIP and TAR archives that validates checksums, scans for Zip Slip traversal paths, and alerts on potential Zip Bomb compression anomalies
+- **Web Application Path Fuzzer** (`tools/web_path_fuzzer.py`) - Multithreaded web application directory brute-forcer featuring soft-404 wildcard detection, status code filtering, rate limiting, and an embedded security wordlist
 
 - **Markdown Table to CSV Exporter** (`tools/markdown_table_to_csv_exporter.py`) - Extracts tables from Markdown files or text, cleans formatting tags (links, bold, code), and exports to CSV, TSV, or JSON
 - **Text Column Aligner** (`tools/text_column_aligner.py`) - Aligns tabular plain text, log columns, or space-separated data into neat, padded columns with custom alignment and border separators
