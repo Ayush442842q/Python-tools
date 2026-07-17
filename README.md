@@ -149,6 +149,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Markdown Wiki Link to Standard Link Converter** (`tools/markdown_wiki_converter.py`) - Scans a folder of Markdown files and converts double-bracket wiki links (e.g. `[[Page]]` or `[[Page|Label]]`) into portable, standard relative Markdown links
 - **SVG Path Transformer & Scaler** (`tools/svg_path_transformer.py`) - Geometric transformation utility to apply scale, translation, and rotation directly to the coordinate coordinates in the 'd' attribute of `<path>` elements in SVG files
 - **Unicode Braille Art Generator** (`tools/braille_art_generator.py`) - Translates images (BMP/PNG) into Unicode Braille patterns (U+2800 to U+28FF) mapping 2x4 pixel grids to dots, achieving 4x ASCII resolution
+- **Archive Structural Diff Tool** (`tools/archive_diff.py`) - Compares directory structures, sizes, dates, and CRC32 checksums between two ZIP/TAR archives side-by-side without extraction
 
 
 ### Development Tools
@@ -487,6 +488,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **YAML JSON Schema Generator** (`tools/yaml_schema_generator.py`) - Automatically infers and generates a structured, validation-compliant JSON Schema from any YAML configuration file, supporting custom and PyYAML engines
 - **WebAssembly Binary Inspector** (`tools/wasm_binary_inspector.py`) - Natively parses Wasm headers and decodes sections (Type, Import, Function, Export, Code, etc.) to list imports/exports and byte sizes
 - **GitLab CI/CD Pipeline Config Linter** (`tools/gitlab_ci_linter.py`) - Parses `.gitlab-ci.yml` pipeline files, checks stages/jobs configuration, and runs DAG cycle detection on needed dependencies
+- **Mach-O Binary Inspector** (`tools/macho_binary_inspector.py`) - Natively parses macOS Mach-O executable headers, architecture slices (FAT binaries), load commands, and segments
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -614,6 +616,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CSV to Interactive HTML Dashboard Compiler** (`tools/csv_to_interactive_html.py`) - Compiles flat CSV files into beautiful, fully self-contained HTML dashboards containing built-in search, sorting, pagination, theme toggles, and data export features.
 - **SQLite Data Quality Auditor** (`tools/sqlite_data_quality_auditor.py`) - Audits SQLite databases to identify dynamic typing mismatches, null/empty value rates, foreign key violations, and formatting anomalies
 - **Apache HTTPD Log Analyzer & Auditor** (`tools/apache_log_analyzer.py`) - Parses Apache access logs, outputs request/bandwidth metrics, and audits paths for directory traversal, SQLi, XSS, and config leaks
+- **YAML Path Evaluator & Query Tool** (`tools/yaml_path_evaluator.py`) - Queries nested properties in YAML configuration files natively using dot-separated paths, indices, and wildcards
 
 
 ### Network & Web
@@ -750,6 +753,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **OAuth 2.0 Authorization Code Flow Simulator** (`tools/oauth2_flow_simulator.py`) - Starts a local web server to simulate, visualize, and log every step of the OAuth 2.0 Authorization Code Flow in real-time
 - **Server-Sent Events (SSE) Mock Server & Tester** (`tools/sse_mock_server.py`) - Lightweight HTTP server streaming customizable telemetry events over Server-Sent Events, complete with an interactive live dashboard
 - **Torrent Metadata Explorer** (`tools/torrent_metadata_explorer.py`) - Parses BitTorrent (.torrent) files natively using a custom Bencode decoder, prints file layouts, computes info hashes, and generates magnet links
+- **Hosts File Syntax Auditor & Prober** (`tools/hosts_auditor.py`) - Audits system hosts files for formatting, duplicates, loops, and checks mapped hostname responsiveness via HTTP/HTTPS sockets
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
@@ -888,6 +892,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Diffie-Hellman Key Exchange Simulator & Educational Visualizer** (`tools/diffie_hellman_simulator.py`) - An interactive CLI simulator of the Diffie-Hellman key exchange protocol, including parameter verification, step-by-step key calculations, eavesdropper analysis, and brute-force scaling benchmarks
 - **CVSS Score Calculator & Vector Parser** (`tools/cvss_calculator.py`) - Calculates CVSS v3.1 base score, impact, and exploitability sub-scores from a vector string or interactive CLI menu
 - **GPG Keyring Auditor** (`tools/gpg_keyring_auditor.py`) - Audits local GPG keyrings and `gpg.conf` files for weak RSA key lengths, expirations, and cipher preference best practices
+- **DMARC XML Log Parser & Reporter** (`tools/dmarc_log_parser.py`) - Decodes and summarizes SPF/DKIM authentication compliance from raw or zipped DMARC XML feedback reports
 
 ## Usage
 
