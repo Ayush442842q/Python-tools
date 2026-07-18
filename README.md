@@ -489,6 +489,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **WebAssembly Binary Inspector** (`tools/wasm_binary_inspector.py`) - Natively parses Wasm headers and decodes sections (Type, Import, Function, Export, Code, etc.) to list imports/exports and byte sizes
 - **GitLab CI/CD Pipeline Config Linter** (`tools/gitlab_ci_linter.py`) - Parses `.gitlab-ci.yml` pipeline files, checks stages/jobs configuration, and runs DAG cycle detection on needed dependencies
 - **Mach-O Binary Inspector** (`tools/macho_binary_inspector.py`) - Natively parses macOS Mach-O executable headers, architecture slices (FAT binaries), load commands, and segments
+- **C/C++ Preprocessor #include Dependency Graph Visualizer** (`tools/cpp_include_graph.py`) - Statically parses C/C++ headers and sources to map include dependency networks, flag include loops, and print ASCII trees
 
 ### Data Processing
 - **SQL Schema Circular Dependency Detector** (`tools/sql_circular_dependency_detector.py`) - Parses SQL schema DDL files recursively, extracting foreign key constraints and finding reference cycle loops
@@ -617,6 +618,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **SQLite Data Quality Auditor** (`tools/sqlite_data_quality_auditor.py`) - Audits SQLite databases to identify dynamic typing mismatches, null/empty value rates, foreign key violations, and formatting anomalies
 - **Apache HTTPD Log Analyzer & Auditor** (`tools/apache_log_analyzer.py`) - Parses Apache access logs, outputs request/bandwidth metrics, and audits paths for directory traversal, SQLi, XSS, and config leaks
 - **YAML Path Evaluator & Query Tool** (`tools/yaml_path_evaluator.py`) - Queries nested properties in YAML configuration files natively using dot-separated paths, indices, and wildcards
+- **Database Schema Migration SQL DAG Validator** (`tools/migration_dag_validator.py`) - Audits database migration SQL files, builds dependency DAGs, verifies sequence continuity, and outputs valid topological orderings
 
 
 ### Network & Web
@@ -754,6 +756,7 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **Server-Sent Events (SSE) Mock Server & Tester** (`tools/sse_mock_server.py`) - Lightweight HTTP server streaming customizable telemetry events over Server-Sent Events, complete with an interactive live dashboard
 - **Torrent Metadata Explorer** (`tools/torrent_metadata_explorer.py`) - Parses BitTorrent (.torrent) files natively using a custom Bencode decoder, prints file layouts, computes info hashes, and generates magnet links
 - **Hosts File Syntax Auditor & Prober** (`tools/hosts_auditor.py`) - Audits system hosts files for formatting, duplicates, loops, and checks mapped hostname responsiveness via HTTP/HTTPS sockets
+- **HTTP MIME Sniffing & Security Headers Auditor** (`tools/mime_sniffing_auditor.py`) - Probes web endpoints for missing security headers (nosniff, CSP, HSTS) and flags byte-signature Content-Type mismatches
 
 ### Security & Cryptography
 - **Regex ReDoS Vulnerability & Backtracking Auditor** (`tools/regex_redos_vulnerability_scanner.py`) - Analyzes regular expressions for Regular Expression Denial of Service (ReDoS) risks and catastrophic backtracking
@@ -893,6 +896,8 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **CVSS Score Calculator & Vector Parser** (`tools/cvss_calculator.py`) - Calculates CVSS v3.1 base score, impact, and exploitability sub-scores from a vector string or interactive CLI menu
 - **GPG Keyring Auditor** (`tools/gpg_keyring_auditor.py`) - Audits local GPG keyrings and `gpg.conf` files for weak RSA key lengths, expirations, and cipher preference best practices
 - **DMARC XML Log Parser & Reporter** (`tools/dmarc_log_parser.py`) - Decodes and summarizes SPF/DKIM authentication compliance from raw or zipped DMARC XML feedback reports
+- **PEM Certificate & Crypto Auditor** (`tools/pem_crypto_auditor.py`) - Decodes and parses PEM certificates/keys natively, audits subjects, validities, key sizes, and warns of cryptographic vulnerabilities
+- **SSL/TLS Certificate CRL & OCSP Revocation Prober** (`tools/crl_ocsp_prober.py`) - Extracts CRL and OCSP URLs from target TLS certificates, checks responder online status, and audits revocation availability
 
 ## Usage
 
