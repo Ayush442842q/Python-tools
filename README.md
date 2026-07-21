@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 926+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 941+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -898,6 +898,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **DMARC XML Log Parser & Reporter** (`tools/dmarc_log_parser.py`) - Decodes and summarizes SPF/DKIM authentication compliance from raw or zipped DMARC XML feedback reports
 - **PEM Certificate & Crypto Auditor** (`tools/pem_crypto_auditor.py`) - Decodes and parses PEM certificates/keys natively, audits subjects, validities, key sizes, and warns of cryptographic vulnerabilities
 - **SSL/TLS Certificate CRL & OCSP Revocation Prober** (`tools/crl_ocsp_prober.py`) - Extracts CRL and OCSP URLs from target TLS certificates, checks responder online status, and audits revocation availability
+- **Markdown Table to JSON Converter** (`tools/markdown_table_to_json.py`) - Parses single or multiple Markdown tables from input text or files, infers primitive data types, and exports structured JSON arrays or objects
+- **TOML to JSON & YAML Converter** (`tools/toml_to_json_converter.py`) - Converts TOML configuration files into formatted JSON or YAML with key path filtering and fallback parsing
+- **cURL Command to JS fetch() & Python Code Converter** (`tools/curl_to_fetch_converter.py`) - Parses cURL commands (headers, HTTP methods, auth, data bodies) and generates clean JavaScript fetch() or Python requests code snippets
+- **LLM Prompt Template Builder & Interpolator** (`tools/prompt_template_builder.py`) - Manages, inspects, validates, and renders LLM prompt templates with mustache-style variable substitution, default values, and JSON Schema generation
+- **SQLite Database to CSV / JSON Exporter** (`tools/sqlite_to_csv_exporter.py`) - Exports individual tables, multi-table databases, or custom SQL query results from SQLite database files into CSV, TSV, or JSON files
 
 ## Usage
 
