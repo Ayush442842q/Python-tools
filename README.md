@@ -1,6 +1,6 @@
 # Python Tools Collection
 
-A comprehensive collection of 941+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
+A comprehensive collection of 946+ useful Python tools and utilities for various tasks including file organization, data processing, web scraping, automation, development, security, and productivity.
 
 
 Each tool is a standalone Python script located in the `tools/` directory and can be run independently.
@@ -903,6 +903,11 @@ Each tool is a standalone Python script located in the `tools/` directory and ca
 - **cURL Command to JS fetch() & Python Code Converter** (`tools/curl_to_fetch_converter.py`) - Parses cURL commands (headers, HTTP methods, auth, data bodies) and generates clean JavaScript fetch() or Python requests code snippets
 - **LLM Prompt Template Builder & Interpolator** (`tools/prompt_template_builder.py`) - Manages, inspects, validates, and renders LLM prompt templates with mustache-style variable substitution, default values, and JSON Schema generation
 - **SQLite Database to CSV / JSON Exporter** (`tools/sqlite_to_csv_exporter.py`) - Exports individual tables, multi-table databases, or custom SQL query results from SQLite database files into CSV, TSV, or JSON files
+- **Base85 Encoder & Decoder** (`tools/base85_encoder_decoder.py`) - Encode and decode text or binary data to/from Ascii85 and RFC 1924 / ZeroMQ Base85 formats using standard library encoding
+- **YAML to .env Converter** (`tools/yaml_to_env_converter.py`) - Convert nested YAML configuration structures into flat key-value pairs formatted for .env files with custom delimiters and casing
+- **Unicode Normalization Linter & Homoglyph Auditor** (`tools/unicode_normalization_linter.py`) - Audits files for mixed Unicode normalization forms (NFC, NFD, NFKC, NFKD) and flags lookalike homoglyphs from mixed scripts, with auto-fix capabilities
+- **File Block Checksum Generator** (`tools/file_chunk_checksum_generator.py`) - Generates block-by-block cryptographic checksum manifests (SHA256, MD5, SHA1) for large files, detailing byte ranges and block hashes
+- **HTTP Status Code Lookup & Offline Developer Reference** (`tools/http_status_code_lookup.py`) - Look up standard HTTP status codes, definitions, RFC citations, and actionable debugging advice by status code or keyword search
 
 ## Usage
 
